@@ -1,0 +1,77 @@
+{% ckan_extends %}
+
+  {% block form_actions %}
+  {{ super() }}
+  <script>
+
+  var selectElementId = "field-data_type";
+    var selectElement = document.getElementById(selectElementId);
+	if (selectElement){		
+		var parent = selectElement.parentElement;
+		var textValue = selectElement.options[selectElement.options.selectedIndex].textContent;
+		if (!parent){
+			parent=selectElement.parentNode;
+			textValue = selectElement.options[selectElement.options.selectedIndex].text;
+		}
+		var input = document.createElement("input");
+		input.setAttribute("id",selectElement.id);
+		input.setAttribute("type","text");
+    input.setAttribute("class","form-control");
+		input.setAttribute("value",textValue);
+		input.style.background="#eeeeee";
+		input.readOnly = true;
+		parent.appendChild(input);
+	}
+	selectElement.style.display="none";
+    
+
+
+
+	$( document ).ready(function() {
+		 // console.log( "ready!" );
+		 // $(".control-label").attr("id", "display: none;");
+
+
+		
+
+
+	});
+
+
+
+	$(function() {
+		$('.control-label').click(function(event) {
+		  event.preventDefault();
+		  $(this).next('.controls').stop().slideToggle(450);
+		  $(this).toggleClass('close_control-label');
+		});
+	  });
+
+
+  </script>
+
+
+<style type="text/css">
+	
+.control-label{
+	display: block;
+	position: relative;
+}
+
+
+.control-label::before{
+	content: "\f056";
+	color: #e22226;
+	font: normal normal normal 20px / 1 FontAwesome;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.control-label.close_control-label::before{
+	content: "\f055";
+}
+
+</style>
+
+  {% endblock %}

@@ -1,0 +1,135 @@
+# Thai translations for ckanext-thaigdc_governance.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the
+# ckanext-thaigdc_governance project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-thaigdc_governance 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-06-20 12:35+0700\n"
+"PO-Revision-Date: 2022-06-20 12:36+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: th\n"
+"Language-Team: th <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "Dashboard"
+msgstr "My Dashboard"
+
+msgid "News feed"
+msgstr "รายการแจ้งเตือน"
+
+msgid "Add Prepare"
+msgstr "เพิ่มชุดข้อมูล"
+
+msgid "Processing"
+msgstr "อยู่ระหว่างพิจารณา"
+
+msgid "wait"
+msgstr "รอการตรวจสอบ"
+
+msgid "approval"
+msgstr "รอการอนุมัติ"
+
+msgid "reject"
+msgstr "ไม่ผ่านการตรวจสอบ/ไม่ผ่านการอนุมัติ"
+
+msgid "complete"
+msgstr "ผ่านการอนุมัติให้เผยแพร่"
+
+msgid "Private"
+msgstr "ลับ"
+
+msgid "public"
+msgstr "เปิดเผย"
+
+msgid "registered"
+msgstr "เผยแพร่ภายในองค์กร"
+
+msgid "first_trusted"
+msgstr "ลับ"
+
+msgid "second_trusted"
+msgstr "ลับมาก"
+
+msgid "secret"
+msgstr "ลับที่สุด"
+
+msgid "Disclosure"
+msgstr "ระดับชั้นข้อมูล"
+
+msgid "Dataset Type"
+msgstr "ประเภทชุดข้อมูล"
+
+msgid "Data Category"
+msgstr "หมวดหมู่ข้อมูลตามธรรมาภิบาลข้อมูลภาครัฐ"
+
+msgid "{number} requestdata found for \"{query}\""
+msgid_plural "{number} requestdatas found for \"{query}\""
+msgstr[0] "พบ {number} คำขอใช้ข้อมูลสำหรับ \"{query}\""
+
+msgid "No requestdatas found for \"{query}\""
+msgstr "ไม่พบคำขอใช้ข้อมูลสำหรับ \"{query}\""
+
+msgid "{number} requestdata found"
+msgid_plural "{number} requestdatas found"
+msgstr[0] "พบ {number} คำขอใช้ข้อมูล"
+
+msgid "No requestdatas found"
+msgstr "ไม่พบคำขอใช้ข้อมูล"
+
+msgid "Search requestdatas"
+msgstr "ค้นหาคำขอใช้ข้อมูล"
+
+msgid "{number} processing found for \"{query}\""
+msgid_plural "{number} processings found for \"{query}\""
+msgstr[0] "พบ {number} ชุดข้อมูลสำหรับ \"{query}\""
+
+msgid "No processings found for \"{query}\""
+msgstr "ไม่พบชุดข้อมูลสำหรับ \"{query}\""
+
+msgid "{number} processing found"
+msgid_plural "{number} processings found"
+msgstr[0] "พบ {number} ชุดข้อมูล"
+
+msgid "No processings found"
+msgstr "ไม่พบชุดข้อมูล"
+
+msgid "Search processings"
+msgstr "ค้นหาชุดข้อมูล"
+
+msgid "Data Governance"
+msgstr "ธรรมาภิบาลข้อมูล"
+
+msgid "requestdata_wait_steward"
+msgstr "รอการตรวจสอบจากทีมบริกร/เจ้าของข้อมูล"
+
+msgid "requestdata_wait_council"
+msgstr "รอการอนุมัติ"
+
+msgid "requestdata_reject"
+msgstr "ไม่ผ่านการตรวจสอบ/ไม่อนุมัติการขอใช้"
+
+msgid "requestdata_wait_maintainer_notify"
+msgstr "อนุมัติการขอใช้ และรอแจ้งผู้ดูแลข้อมูล"
+
+msgid "requestdata_wait_received"
+msgstr "แจ้งผู้ดูแลข้อมูลแล้ว และรอผู้ยื่นคำขอได้รับข้อมูล"
+
+msgid "requestdata_received"
+msgstr "ผู้ยื่นคำขอได้รับข้อมูลแล้ว"
+
+msgid "Back to dataset"
+msgstr "กลับไปหน้าชุดข้อมูล"
+
+msgid "Save Dataset"
+msgstr "บันทึกชุดข้อมูล"
+
+msgid "Owner"
+msgstr "เจ้าของข้อมูล"

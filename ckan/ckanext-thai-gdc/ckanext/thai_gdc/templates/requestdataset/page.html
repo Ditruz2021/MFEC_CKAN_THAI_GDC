@@ -1,0 +1,96 @@
+{% extends "page.html" %}
+
+
+
+
+{% block primary_content %}
+
+
+
+
+
+
+    {% if confirm and not already %}
+    <form id="requestdata-new" method="post" action="">
+    {{ form.errors(error_summary) }}
+    
+    <div class="col-sm-6" style="padding-left:unset">
+        {{ form.input("first_name", id="field-first_name", label='ชื่อผู้ร้องขอ', placeholder='', value=data.first_name, error=errors.first_name, is_required=True) }}
+    </div>
+    <div class="col-sm-6" style="padding-left:unset">
+      {{ form.input("last_name", id="field-last_name", label='นามสกุลผู้ร้องขอ', placeholder='', value=data.last_name, error=errors.last_name, is_required=True) }}
+    </div>
+    <div>
+      {{ form.input("email", id="field-email", label='ช่องทางการติดต่อกลับ (Email)', placeholder='', value=data.email, error=errors.email, is_required=True) }}   
+      {{ form.input("owner_org", id="field-owner_org", label='หน่วยงานที่ร้องขอ', placeholder='', value=data.owner_org, error=errors.owner_org, is_required=True) }}
+      {{ form.input("package_name", id="field-package_name", label='ชื่อชุดข้อมูลที่ต้องการ', placeholder='', value=data.package_name, error=errors.package_name, is_required=True) }}
+      {{ form.input("scope", id="field-scope", label='ขอบเขตการใช้งานของชุดข้อมูล', placeholder='', value=data.scope, error=errors.scope, is_required=True) }}
+      {{ form.input("objective", id="field-objective", label='วัตถุประสงค์ที่ต้องการใช้งานข้อมูล', placeholder='', value=data.objective, error=errors.objective, is_required=True) }}
+      {{ form.input("modified", id="field-modified", label='ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี', type='date' , placeholder='', value=data.modified, error=errors.modified, is_required=True) }}
+      </div>
+      {{ form.markdown('notes', id='field-notes', label='รายละเอียดชุดข้อมูลที่ต้องการ', value=data.notes, error=errors.notes, is_required=True) }}
+      
+      <div class="form-actions">
+        {% block form_actions %}
+        <button id="submit-button" class="btn btn-primary" type="submit" name="save">ส่งเรื่อง</button>
+        {% endblock %}
+      </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script>
+        $(document).ready(function() {
+          $('#field-notes').attr('rows','1')
+          $("label[for='field-first_name']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อผู้ร้องขอ");
+          $("label[for='field-last_name']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> นามสกุลผู้ร้องขอ");
+          $("label[for='field-email']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ช่องทางการติดต่อกลับ (Email)");
+          $("label[for='field-owner_org']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> หน่วยงานที่ร้องขอ");
+          $("label[for='field-package_name']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อชุดข้อมูลที่ต้องการ");
+          $("label[for='field-scope']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ขอบเขตการใช้งานของชุดข้อมูล");
+          $("label[for='field-objective']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> วัตถุประสงค์ที่ต้องการใช้งานข้อมูล");
+          $("label[for='field-modified']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี");
+      });
+      </script>
+      
+    {% elif not already %}
+    <div style="margin: 50px;font-size: 18px;">
+    <h2>ข้อตกลงของผู้ใช้ (User Agreement)</h2>
+    <ol>
+    <li>การยอมรับข้อตกลงของผู้ใช้ (User Agreement)<br />การ Download หรือ ได้รับข้อมูลที่อยู่ในบัญชีข้อมูล (Data Catalog) นี้โดยวิธีใดวิธีหนึ่ง ถือว่าผู้ที่ได้รับข้อมูลยอมรับข้อกำหนดของข้อตกลง (Agreement) นี้</li>
+    </ol>
+    <ol start="2">
+    <li>การใช้งานข้อมูล<br />การใช้งานข้อมูลหมายถึง การดูข้อมูล (แม้เพียงบางส่วน), การนำข้อมูลไปประมวลผล, เปรียบเทียบกับข้อมูลอื่น, หรือสกัดองค์ความรู้เพื่อใช้ในโครงการอื่น, การวิจัย, การนำเสนอ, การเขียนบทความวิชาการ หรืองานที่เกี่ยวข้องอื่น ๆ</li>
+    </ol>
+    <ol start="3">
+    <li>ข้อตกลงการใช้งาน
+    <ul>
+    <li>องค์กรและผู้มีส่วนได้ส่วนเสีย ไม่รับรองความถูกต้อง ความครบถ้วนสมบูรณ์ และความทันสมัยของข้อมูล การที่ผู้ใช้จะคัดลอก อ้างอิงหรือนำข้อมูลไปใช้ประโยชน์เป็นวิจารณญาณและการตัดสินใจของผู้ใช้</li>
+    <li>องค์กรและผู้มีส่วนได้ส่วนเสีย ขอสงวนสิทธิ์ที่จะไม่รับผิดชอบต่อความเสียหายใด ๆ ที่อาจเกิดขึ้นจากการใช้ข้อมูล</li>
+    <li>ผู้ใช้ข้อมูล ไม่มีสิทธิ์เผยแพร่ข้อมูล (ทั้งหมด, บางส่วน หรือผลลัพธ์ที่ได้จากข้อมูล) ให้กับบุคคลอื่นแม้แต่พนักงานภายในองค์กร และต้องมีมาตรการปกป้องข้อมูลอย่างเหมาะสมตาม &ldquo;ระเบียบที่ประกาศโดยองค์กร ว่าด้วยแนวปฏิบัติในการรักษาความมั่นคงปลอดภัยด้านสารสนเทศ หรือแนวปฏิบัติอื่นใดที่เกี่ยวข้อง&rdquo;</li>
+    <li>ผู้ใช้ข้อมูล ต้องไม่ใช้ข้อมูลไปในทางที่มิชอบด้วยกฎหมาย ไม่ใช้ข้อมูลไปในทางที่ก่อให้เกิดผลเสียต่อองค์กรหรือขัดต่อนโยบายและระเบียบขององค์กร</li>
+    <li>ผู้ใช้ข้อมูล เมื่อนำข้อมูลไปใช้ประโยชน์ใด ๆ จะต้องอ้างอิงถึงชุดข้อมูลที่นำมาใช้ให้ครบถ้วน และปฏิบัติตามข้อตกลงการใช้งานของชุดข้อมูลดังกล่าวที่กำหนดโดยเจ้าของข้อมูล และ/หรือ ตามที่องค์กรกำหนด</li>
+    <li>องค์กร และ/หรือ เจ้าของข้อมูล มีสิทธิ์เพิกถอนการอนุญาตสิทธิ์ในการใช้ข้อมูลได้ หากพบว่ามีการใช้งานผิดวัตถุประสงค์ หรือ ผิดเงื่อนไขการใช้ข้อมูล<br /><br /></li>
+    </ul>
+    </li>
+    <li>หากเกิดเหตุการณ์ที่ผู้ใช้ข้อมูลผิดข้อตกลงการใช้งานโดยเกิดจากความตั้งใจหรือความไม่ระมัดระวังตามสมควรของผู้ใช้ข้อมูล ผู้ใช้ข้อมูลจะต้องเป็นผู้รับผิดชอบหลักในผลที่เกิดขึ้นทั้งหมด</li>
+    </ol>
+    <div class="text-center" style="margin-top: 30px;">
+      <a href="/requestdata_form_other" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;">
+          <span style="font-size: 18px;">ยอมรับข้อตกลง</span>
+        </a>
+    </div>
+    </div>
+    {% else %}
+    <h3 style="text-align: center;">ไม่สามารถขอใช้ชุดข้อมูลนี้ได้<br />เนื่องจากท่านมีการยื่นขอใช้ชุดข้อมูลนี้แล้ว ใน 24 ชั่วโมงที่ผ่านมา ขอให้ท่านทำรายการอีกครั้งในวันถัดไป</h3>
+    
+    {% endif %}
+
+
+
+
+
+    
+  
+
+
+{% endblock %}

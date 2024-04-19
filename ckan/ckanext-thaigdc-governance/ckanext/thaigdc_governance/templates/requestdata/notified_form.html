@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% import 'macros/form.html' as form %}
+
+{% block page %}
+<style>
+    .form-group {
+    margin-bottom: 12px;
+}
+</style>
+
+{% if completed %}
+
+<div>
+  <stong>ท่านได้รับทราบแล้วว่ามีผู้ขอใช้ชุดข้อมูลของท่าน เมื่อวันที่ {{ h.thai_gdc_day_thai(maintainer_notify_date) }}</stong>
+</div>
+
+{% else %}
+<form id="requestdata-notified" method="post" action="">
+  {% set processing_action_schema = [
+    {
+      "field_name": "maintainer_notify_date",
+      "label": {
+        "en": "Notified date",
+        "th": "รับทราบแล้วเมื่อวันที่"
+      },
+      "preset": "date",
+      "required": true
+    }
+  ] %}
+  
+  <input type="hidden" id="field-request_state" name="request_state" value="requestdata_wait_received">
+
+  {% set field = h.scheming_field_by_name(processing_action_schema, 'maintainer_notify_date') %}
+  {%- snippet '/scheming/form_snippets/date.html', field=field, data=pkg, errors={} -%}
+  <div class="form-actions">
+    {% block form_actions %}
+    <button id="submit-button" class="btn btn-primary" type="submit" name="save">ยืนยันการรับทราบ</button>
+    {% endblock %}
+  </div>
+</form>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<script>
+  var nowDate = new Date();
+  document.getElementById('field-maintainer_notify_date').defaultValue = nowDate.toJSON().split("T")[0];
+  document.getElementById("field-maintainer_notify_date").setAttribute("onkeydown", "return false");
+  $('#myModal').modal('toggle');
+</script>
+
+{% endblock %}

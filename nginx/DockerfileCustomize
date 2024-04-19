@@ -1,0 +1,37 @@
+FROM nginx:alpine
+
+ENV NGINX_DIR=/etc/nginx
+
+# Install required packages
+RUN apk update && \
+    apk add --no-cache iproute2 iptables && \
+    sed -i '/^proc/s/ ro/ rw/' /etc/fstab
+
+# Disable ICMP redirect support
+RUN sysctl -w net.ipv4.conf.all.accept_redirects=0
+RUN sysctl -w net.ipv4.conf.default.accept_redirects=0
+RUN sysctl -w net.ipv4.conf.all.secure_redirects=0
+RUN sysctl -w net.ipv4.conf.default.secure_redirects=0
+
+# Set up iptables rules to drop ICMP timestamp requests and responses
+RUN iptables -A INPUT -p icmp --icmp-type timestamp-request -j DROP
+RUN iptables -A OUTPUT -p icmp --icmp-type timestamp-reply -j DROP
+
+# Copy SSL certificates
+# RUN mkdir -p ${NGINX_DIR}/ssl
+# COPY cert/* ${NGINX_DIR}/ssl
+
+# Copy HTML file
+COPY index.html /usr/share/nginx/html/index.html
+
+# Copy NGINX configuration files
+RUN mkdir -p ${NGINX_DIR}/sites-available && \
+    mkdir -p ${NGINX_DIR}/sites-enabled
+COPY setup/nginx.conf ${NGINX_DIR}
+COPY setup/sites-available/* ${NGINX_DIR}/sites-available
+
+# Enable CKAN site
+RUN ln -s ${NGINX_DIR}/sites-available/ckan.conf ${NGINX_DIR}/sites-enabled/ckan.conf
+
+# Expose port 443
+EXPOSE 443

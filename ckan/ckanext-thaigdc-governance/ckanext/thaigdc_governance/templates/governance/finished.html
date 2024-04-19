@@ -1,0 +1,67 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+{% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
+
+{% block breadcrumb_content %}
+<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+{% endblock %}
+
+{% block page_heading %}{{ _('Data Governance') }}{% endblock %}
+
+{% block primary_content %}
+  <article class="module" role="main">
+    <div class="module-content">
+        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
+        <ul class="nav nav-tabs" style="margin-bottom: 30px;">
+            <li {% if governance_state == 'complete' %} class="active" {% endif %}><a href="/governance/finished_state_complete"><i class="fa fa-sitemap"></i> {{ _('complete') }}</a></li>
+            <li {% if governance_state == 'reject' %} class="active" {% endif %}><a href="/governance/finished_state_reject"><i class="fa fa-sitemap"></i> {{ _('reject') }}</a></li>
+          </ul>
+        {% block form %}
+          {% set facets = {
+            'fields': fields_grouped,
+            'search': search_facets,
+            'titles': facet_titles,
+            'translated_fields': translated_fields,
+            'remove_field': remove_field }
+          %}
+          {% set sorting = [
+            (_('Relevance'), 'score desc, metadata_modified desc'),
+            (_('Last Modified'), 'metadata_modified desc')]
+          %}
+          {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+          <script>
+              $(function(){
+                $('#control-post-publish-governance-state').on('change', function () {
+                    var url = $(this).val(); // get selected value
+                    if (url) { // require a URL
+                        window.location = url; // redirect
+                    }
+                    return false;
+                });
+              });
+          </script>
+          <div style="float: right;">
+          <label for="control-post-publish-governance-state">สถานะ</label>
+          <select id="control-post-publish-governance-state" class="form-control" style="display: inline;width: auto;">
+            <option value="/governance/finished_state_complete" {% if not request.args.get('q') %} selected="selected" {% endif %}>ทั้งหมด</option>
+            <option value="/governance/finished_state_complete?q=post_publish_governance_state:เพิกถอน" {% if request.args.get('q')=='post_publish_governance_state:เพิกถอน' %} selected="selected" {% endif %}>เพิกถอน</option>
+          </select>
+        </div>
+        {% endblock %}
+        {% block package_search_results_list %}
+        <div class="col-sm-12">
+          {{ h.snippet('snippets/governance_package_list.html', packages=page.items) }}
+        </div>
+        {% endblock %}
+    </div>
+    {% block page_pagination %}
+      {{ page.pager(q=q) }}
+    {% endblock %}
+  </article>
+{% endblock %}
+
+{% block secondary_content %}
+{{ h.snippet('snippets/governance_menu.html') }}
+{% endblock %}

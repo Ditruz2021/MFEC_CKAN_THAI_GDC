@@ -1,0 +1,17 @@
+{% for category in category_articles_news %}
+<div class="col-sm-6 col-md-4">
+    <a class="new-item" href="{% if category.page_type == 'page' %}pages{% else %}{{ category.page_type }}{% endif %}/{{category.name}}">
+        <div class="img-new">
+            <img class="img-responsive" style="min-width: 100%" src="{{ category.image }}" alt="GD Catalog banner"
+                width="420" height="220" />
+        </div>
+        <div class="text-new">
+            <h4>{{ category.title }}</h4>
+            {% if category.publish_date %}
+            <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{
+                h.thai_gdc_day_thai(h.date_str_to_datetime(category.publish_date.split('T')[0])) }}</span>
+            {% endif %}
+        </div>
+    </a>
+</div>
+{% endfor %}

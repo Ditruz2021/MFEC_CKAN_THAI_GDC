@@ -1,0 +1,271 @@
+{
+  "scheming_version": 1,
+  "dataset_type": "requestdata",
+  "about": "A reimplementation of the default CKAN dataset schema",
+  "about_url": "http://github.com/ckan/ckanext-scheming",
+  "dataset_fields": [
+    {
+      "field_name": "name",
+      "label": "URL",
+      "preset": "dataset_slug",
+      "form_placeholder": "eg. my-dataset"
+    },
+    {
+      "field_name": "package_id",
+      "label": {
+        "en": "Package id",
+        "th": "ชุดข้อมูล"
+      },
+      "required": true
+    },
+    {
+      "field_name": "package_owner",
+      "label": {
+        "en": "Package Editor",
+        "th": "ผู้ดูแลชุดข้อมูล"
+      }
+    },
+    {
+      "field_name": "requester_id",
+      "label": {
+        "en": "Requester id",
+        "th": "ผู้ยื่นคำขอใช้ข้อมูล"
+      },
+      "required": true
+    },
+    {
+      "field_name": "title",
+      "label": "Request title",
+      "preset": "title",
+      "form_placeholder": "eg. A descriptive title",
+      "required": true
+    },
+    {
+      "field_name": "owner_org",
+      "label": "Organization",
+      "preset": "dataset_organization"
+    },
+    {
+      "field_name": "request_type",
+      "label": {
+        "en": "Request type",
+        "th": "วัตถุประสงค์"
+      },
+      "choices": [
+        {
+          "value": "ขอใช้ในโครงการ",
+          "label": "ขอใช้ในโครงการ"
+        },
+        {
+          "value": "ขอใช้ในหน่วยงาน",
+          "label": "ขอใช้ในหน่วยงาน"
+        }
+      ],
+      "preset": "select"
+    },
+    {
+      "field_name": "project_code",
+      "label": {
+        "en": "Project code",
+        "th": "รหัสโครงการ (ถ้ามี)"
+      }
+    },
+    {
+      "field_name": "project_title",
+      "label": {
+        "en": "Project title",
+        "th": "ชื่อ โครงการ/หน่วยงาน"
+      },
+      "required": true
+    },
+    {
+      "field_name": "project_manager",
+      "label": {
+        "en": "Project manager",
+        "th": "หัวหน้า โครงการ/หน่วยงาน"
+      },
+      "form_placeholder": "Joe Bloggs",
+      "display_property": "dc:creator",
+      "required": true
+    },
+    {
+      "field_name": "notes",
+      "label": {
+        "en": "Request detail",
+        "th": "รายละเอียด/เหตุผลการขอใช้ข้อมูล"
+      },
+      "form_snippet": "markdown.html",
+      "form_placeholder": "eg. Some useful notes about the data",
+      "required": true
+    },
+    {
+      "field_name": "usage_start_date",
+      "label": {
+        "en": "Usage start date",
+        "th": "วันที่เริ่มต้นการใช้ข้อมูล"
+      },
+      "preset": "date",
+      "required": true
+    },
+    {
+      "field_name": "usage_end_date",
+      "label": {
+        "en": "Usage end date",
+        "th": "วันที่สิ้นสุดการใช้ข้อมูล"
+      },
+      "preset": "date",
+      "required": true
+    },
+    {
+      "field_name": "requester_internal_code",
+      "label": {
+        "en": "Requester employee code",
+        "th": "รหัสพนักงานของผู้ยื่นขอ (ถ้ามี)"
+      }
+    },
+    {
+      "field_name": "author_email",
+      "label": {
+        "en": "Requester email",
+        "th": "อีเมลของผู้ยื่นขอ"
+      },
+      "form_placeholder": "joe@example.com",
+      "display_property": "dc:creator",
+      "display_snippet": "email.html",
+      "display_email_name_field": "author"
+    },
+    {
+      "field_name": "request_state",
+      "label": {
+        "en": "Requester state",
+        "th": "สถานะคำขอ"
+      },
+      "choices": [
+        {
+          "value": "requestdata_wait_steward",
+          "label": "รอการตรวจสอบจากทีมบริกร/เจ้าของข้อมูล"
+        },
+        {
+          "value": "requestdata_wait_council",
+          "label": "รอการอนุมัติ"
+        },
+        {
+          "value": "requestdata_reject",
+          "label": "ไม่ผ่านการตรวจสอบ/ไม่อนุมัติการขอใช้"
+        },
+        {
+          "value": "requestdata_wait_maintainer_notify",
+          "label": "อนุมัติการขอใช้ และรอแจ้งผู้ดูแลข้อมูล"
+        },
+        {
+          "value": "requestdata_wait_received",
+          "label": "แจ้งผู้ดูแลข้อมูลแล้ว และรอผู้ยื่นคำขอได้รับข้อมูล"
+        },
+        {
+          "value": "requestdata_received",
+          "label": "ผู้ยื่นคำขอได้รับข้อมูลแล้ว"
+        }
+      ],
+      "form_snippet": "select.html",
+      "display_snippet": "select.html",
+      "validators": "scheming_required"
+    },
+    {
+      "field_name": "accept_condition",
+      "label": {
+        "en": "Accept condition",
+        "th": "ยอมรับข้อตกลง"
+      },
+      "required": true
+    },
+    {
+      "field_name": "steward_comment",
+      "label": {
+        "en": "Steward comment",
+        "th": "ความเห็นของทีมบริกร/เจ้าของข้อมูล"
+      },
+      "form_snippet": "markdown.html",
+      "form_placeholder": "eg. Some useful notes about the data"
+    },
+    {
+      "field_name": "steward_date",
+      "label": {
+        "en": "Steward date",
+        "th": "วันที่ตรวจสอบโดยทีมบริกร/เจ้าของข้อมูล"
+      },
+      "preset": "date"
+    },
+    {
+      "field_name": "steward_from_wait_steward",
+      "label": {
+        "en": "Steward from wait steward",
+        "th": "Steward from wait steward"
+      }
+    },
+    {
+      "field_name": "council_comment",
+      "label": {
+        "en": "Council comment",
+        "th": "ความเห็นเพิ่มเติม"
+      },
+      "form_snippet": "markdown.html",
+      "form_placeholder": "eg. Some useful notes about the data"
+    },
+    {
+      "field_name": "council_date",
+      "label": {
+        "en": "Council date",
+        "th": "วันที่พิจารณาอนุมัติ"
+      },
+      "preset": "date"
+    },
+    {
+      "field_name": "steward_from_wait_council",
+      "label": {
+        "en": "Steward from wait council",
+        "th": "Steward from wait council"
+      }
+    },
+    {
+      "field_name": "summary_comment",
+      "label": {
+        "en": "Summary comment",
+        "th": "ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ"
+      },
+      "form_snippet": "markdown.html",
+      "form_placeholder": "eg. Some useful notes about the data"
+    },
+    {
+      "field_name": "maintainer_notify_date",
+      "label": {
+        "en": "Maintainer notify date",
+        "th": "วันที่แจ้งผู้ดูแลข้อมูล"
+      },
+      "preset": "date"
+    },
+    {
+      "field_name": "steward_from_wait_maintainer_notify",
+      "label": {
+        "en": "Steward from wait maintainer notify",
+        "th": "Steward from wait maintainer notify"
+      }
+    },
+    {
+      "field_name": "received_date",
+      "label": {
+        "en": "Received date",
+        "th": "วันที่ผู้ยื่นคำขอได้รับข้อมูล"
+      },
+      "preset": "date"
+    },
+    {
+      "field_name": "steward_from_wait_received",
+      "label": {
+        "en": "Steward from wait received",
+        "th": "Steward from wait received"
+      }
+    }
+  ],
+  "resource_fields": [
+  ]
+}

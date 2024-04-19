@@ -1,0 +1,45 @@
+
+
+
+
+
+
+
+
+
+
+
+
+.box h1{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 40px;
+    line-height: 44px;
+    position: relative;
+}
+.box div h1:nth-child(2){
+    position: relative;
+    margin-bottom: 30px;
+}
+.box div h1:nth-child(2):before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    height: 3px;
+    width: 70%;
+    background: #F66E22;
+}
+
+.box h2{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 26px;
+    line-height: 34px;
+    position: relative;
+    color: #F66E22;
+    font-family: 'DB Ozone X Medium';
+    font-weight: 500;
+}
+
+

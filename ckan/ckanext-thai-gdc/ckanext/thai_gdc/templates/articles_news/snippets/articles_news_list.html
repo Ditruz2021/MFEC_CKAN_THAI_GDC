@@ -1,0 +1,42 @@
+{% set pages_total = pages|length %}
+
+<h1 class="page-heading page-list-header">{{ _("Articles or news about information") }}</h1>
+
+{% if pages %}
+<div class="page-list">
+  {% set editor = h.pages_get_wysiwyg_editor() %}
+  {% for page in pages %}
+  <div class="row page-list-item dataset-item">
+
+    {% if page.image %}
+    <div class="span3 col-md-2 image">
+      <a style="background-image:url({{ page.image }})" href="{% if page.page_type == 'page' %}pages{% else %}{{ page.page_type }}{% endif %}/{{page.name}}"></a>
+    </div>
+    {% endif %}
+
+    <div class="{% if page.image %}span8 col-md-10{% else %}span11 col-md-12{% endif %}">
+      <h3 class="dataset-heading">
+        <a href="{% if page.page_type == 'page' %}pages{% else %}{{ page.page_type }}{% endif %}/{{page.name}}">{{ page.title }}</a>
+        {% if page.publish_date %}
+        <small class="date"> {{ h.render_datetime(page.publish_date) }} </small>
+        {% endif %}
+      </h3>
+
+      {% if page.content %}
+        {% if editor %}
+        <div>
+          {{page.content|striptags|truncate}}
+        </div>
+        {% else %}
+        {{ h.markdown_extract(page.content) }}
+        {% endif %}
+      {% else %}
+      <p class="empty">{{ _('This page currently has no content') }}</p>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">{{ _('There are currently no articles or news here') }}</p>
+{% endif %}
