@@ -279,11 +279,13 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             controller='ckanext.thai_gdc.controllers.popup:PopupController'
         )
         map.connect(
+            'articles_news',
             '/articles_news',
             action='articles_news',
             controller='ckanext.thai_gdc.controllers.user:UserManageController',
         )
         map.connect(
+            'requestdataset',
             '/requestdataset/page',
             action='requestdataset',
             controller='ckanext.thai_gdc.controllers.user:UserManageController'
