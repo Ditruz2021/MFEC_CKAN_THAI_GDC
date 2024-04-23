@@ -50,4 +50,4 @@ class UserManageController(plugins.toolkit.BaseController):
     def articles_news(self):
         return plugins.toolkit.render('articles_news/articles_news_list.html')
     def requestdataset(self):
-        return plugins.toolkit.render('requestdataset/page.html')
+        return plugins.toolkit.render('requestdataset/requestdataset_page.html')
