@@ -1,0 +1,49 @@
+{% import 'macros/form.html' as form %}
+
+{% set username_error = true if error_summary %}
+{% set password_error = true if error_summary %}
+
+<form id="requestdata-new" method="post" action="">
+  {{ form.errors(error_summary) }}
+  
+  <div class="col-sm-6" style="padding-left:unset">
+      {{ form.input("first_name", id="field-first_name", label='ชื่อผู้ร้องขอ', placeholder='', value=data.first_name, error=errors.first_name, is_required=True) }}
+  </div>
+  <div class="col-sm-6" style="padding-left:unset">
+    {{ form.input("last_name", id="field-last_name", label='นามสกุลผู้ร้องขอ', placeholder='', value=data.last_name, error=errors.last_name, is_required=True) }}
+  </div>
+  <div>
+    {{ form.input("email", id="field-email", label='ช่องทางการติดต่อกลับ (Email)', placeholder='', value=data.email, error=errors.email, is_required=True) }}   
+    {{ form.input("owner_org", id="field-owner_org", label='หน่วยงานที่ร้องขอ', placeholder='', value=data.owner_org, error=errors.owner_org, is_required=True) }}
+    {{ form.input("package_name", id="field-package_name", label='ชื่อชุดข้อมูลที่ต้องการ', placeholder='', value=data.package_name, error=errors.package_name, is_required=True) }}
+    {{ form.input("scope", id="field-scope", label='ขอบเขตการใช้งานของชุดข้อมูล', placeholder='', value=data.scope, error=errors.scope, is_required=True) }}
+    {{ form.input("objective", id="field-objective", label='วัตถุประสงค์ที่ต้องการใช้งานข้อมูล', placeholder='', value=data.objective, error=errors.objective, is_required=True) }}
+    {{ form.input("modified", id="field-modified", label='ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี', type='date' , placeholder='', value=data.modified, error=errors.modified, is_required=True) }}
+    </div>
+    {{ form.markdown('notes', id='field-notes', label='รายละเอียดชุดข้อมูลที่ต้องการ', value=data.notes, error=errors.notes, is_required=True) }}  
+    
+    <div class="form-actions">
+      {% block form_actions %}
+      <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+
+    
+      <div class="g-recaptcha text-center" data-sitekey="6LejTr4pAAAAAMTIDFKoLwBMvOtrcO-n_YHRLjGK" data-action="LOGIN"></div>
+<br>        
+      <button id="submit-button" class="btn btn-primary" type="submit" name="save">ส่งเรื่อง</button>
+      {% endblock %}
+    </div>
+  </form>
+
+
+
+  
+
+  <script type="text/javascript">
+    var onloadCallback = function() {
+      alert("grecaptcha is ready!");
+    };
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+  async defer>
+  </script>
+

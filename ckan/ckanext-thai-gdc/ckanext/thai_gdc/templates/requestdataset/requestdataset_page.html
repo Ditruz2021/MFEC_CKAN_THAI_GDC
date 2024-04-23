@@ -1,0 +1,31 @@
+{% extends "page.html" %}
+
+
+
+
+{% block main_content %}
+
+<section class="module">
+  <div class="module-content">
+    <h1 class="page-heading">{% block page_heading %}{{ _('Login') }}{% endblock %}</h1>
+    {% block requestdataset_form %}
+      {% set requestdataset_form = h.thai_gdc_h.add_package_request() %}
+      {% snippet  "requestdataset/snippets/requestdataset_form.html",  pages=requestdataset_form %}
+    {% endblock %}
+  </div>
+</section>
+
+<style>
+  /* already defined in bootstrap4 */
+  .text-xs-center {
+      text-align: center;
+  }
+
+  .g-recaptcha {
+      display: inline-block;
+  }
+</style>
+
+
+
+{% endblock %}
