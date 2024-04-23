@@ -279,14 +279,12 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             controller='ckanext.thai_gdc.controllers.popup:PopupController'
         )
         map.connect(
-            'articles_news',
             '/articles_news',
             action='articles_news',
             controller='ckanext.thai_gdc.controllers.user:UserManageController',
         )
         map.connect(
-            'requestdataset',
-            '/requestdataset/page',
+            '/requestdataset',
             action='requestdataset',
             controller='ckanext.thai_gdc.controllers.user:UserManageController'
         )
@@ -369,5 +367,6 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             'nso_get_popular_datasets' : thai_gdc_h.get_popular_datasets,
             'get_site_statistics': thai_gdc_h.get_site_statistics,
             'thai_gdc_build_nav_main_customize': thai_gdc_h.build_nav_main_customize,
-            'thai_gdc_get_articles_news_list' : thai_gdc_h.get_articles_news_list
+            'thai_gdc_get_articles_news_list' : thai_gdc_h.get_articles_news_list,
+            'thai_gdc_add_package_request' : thai_gdc_h.add_package_request
         }
