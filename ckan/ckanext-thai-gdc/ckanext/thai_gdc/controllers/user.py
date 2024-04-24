@@ -6,6 +6,9 @@ import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.model as model
 import logging
 from ckan.common import g
+import requests
+from pylons import config
+import json
 
 from ckan.plugins.toolkit import (
     _, c, h, BaseController, check_access, NotAuthorized, abort, render,
@@ -13,6 +16,7 @@ from ckan.plugins.toolkit import (
     )
 
 from ckan.controllers.home import CACHE_PARAMETERS
+from ckanext.thai_gdc import helpers as thai_gdc_h
 
 _validate = dict_fns.validate
 ValidationError = logic.ValidationError
@@ -49,5 +53,16 @@ class UserManageController(plugins.toolkit.BaseController):
                 return e
     def articles_news(self):
         return plugins.toolkit.render('articles_news/articles_news_list.html')
-    def requestdataset(self):
-        return plugins.toolkit.render('requestdataset/requestdataset_page.html')
+    def requestdataset(self, data=None, errors=None, error_summary=None):
+        if plugins.toolkit.request.method == 'POST' and not data:
+            data = dict(plugins.toolkit.request.POST)
+            try:
+                data = thai_gdc_h.add_package_request(data)
+            except plugins.toolkit.ValidationError as e:
+                errors = e.error_dict
+                error_summary = e.error_summary
+                return self.index(data, errors, error_summary)
+        errors = errors or {}
+        error_summary = error_summary or {}
+        extra_vars = {'data': data, 'errors': errors, 'error_summary': error_summary}
+        return plugins.toolkit.render('requestdataset/requestdataset_page.html', extra_vars=extra_vars)

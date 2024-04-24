@@ -12,16 +12,22 @@ import os
 import logging
 import copy
 import ckan.lib.dictization.model_dictize as model_dictize
+import requests
 
 from ckanext.thai_gdc.model.opend import OpendModel
-import requests
 from datetime import datetime as dt
+
 
 get_action = logic.get_action
 check_access = h.check_access
 opend_model = OpendModel()
 
 log = logging.getLogger(__name__)
+
+PAGE_DEFINITIONS = [
+    {'name': u'articles_news.index', 'controller': u'ckanext.thai_gdc.controllers.user:UserManageController', 'action': u'articles_news', 'needed':[], 'function_type': True},
+    {'name': u'request.dataset', 'controller': u'ckanext.thai_gdc.controllers.user:UserManageController', 'action': u'requestdataset', 'needed':[], 'function_type': True},
+]
 
 def dataset_bulk_import_log(import_id):
     logs = opend_model.get_dataset_bulk_import_log(import_id)
@@ -461,22 +467,33 @@ def _make_menu_item_customize(menu_item, title, **kw):
 
     This function is called by wrapper functions.
     '''
-    menu_item = h.map_pylons_to_flask_route_name(menu_item)
-    _menu_items = config['routes.named_routes']
-    if menu_item not in _menu_items:
-        raise Exception('menu item `%s` cannot be found' % menu_item)
-    item = copy.copy(_menu_items[menu_item])
-    item.update(kw)
-    active = h._link_active(item)
-    needed = item.pop('needed')
-    for need in needed:
-        if need not in kw:
-            raise Exception('menu item `%s` need parameter `%s`'
+    check_route = kw.pop('check_route', None)
+    if check_route : 
+        menu_item = h.map_pylons_to_flask_route_name(menu_item)
+        _menu_items = config['routes.named_routes']   
+
+    # for page_def in PAGE_DEFINITIONS:
+    #     _menu_items[page_def['name']] = {'function_type': page_def['function_type'],'controller': page_def['controller'], 'action': page_def['action'], 'needed': page_def['needed']}
+    
+        if menu_item not in _menu_items:
+            raise Exception('menu item `%s` cannot be found' % menu_item)
+    
+        item = copy.copy(_menu_items[menu_item])
+        item.update(kw)
+        active = h._link_active(item)
+        needed = item.pop('needed')
+        for need in needed:
+            if need not in kw:
+                raise Exception('menu item `%s` need parameter `%s`'
                             % (menu_item, need))
-    link = _link_to_customize(title, menu_item, suppress_active_class=True, **item)
-    if active:
-        return h.literal('<li class="active">') + link + h.literal('</li>')
-    return h.literal('<li>') + link + h.literal('</li>')
+        link = _link_to_customize(title, menu_item, suppress_active_class=True, **item)
+        if active:
+            return h.literal('<li class="active">') + link + h.literal('</li>')
+        return h.literal('<li>') + link + h.literal('</li>')
+    else:
+        link = _link_to_customize(title, menu_item, suppress_active_class=True, **kw)
+        return h.literal('<li>') + link + h.literal('</li>')
+    
 
 def build_nav_main_customize(*args):
     ''' build a set of menu items.
@@ -486,10 +503,10 @@ def build_nav_main_customize(*args):
     '''
     output = ''
     for item in args:
-        menu_item, title, img = item[:3]
-        if len(item) == 4 and not check_access(item[3]):
+        menu_item, title, img, check_route = item[:4]
+        if len(item) == 5 and not check_access(item[4]):
             continue
-        output += _make_menu_item_customize(menu_item, title, img=img)
+        output += _make_menu_item_customize(menu_item, title, img=img, check_route=check_route)
     return output
 
 def get_articles_news_list():
@@ -520,37 +537,10 @@ def get_articles_news_list():
     except requests.RequestException as e:
         print(e)
     
-    return state  
+    return state
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def add_package_request():
+def add_package_request(form_data):
+    params = form_data
     state = []
     site_url = config.get('ckan.site_url')
     request_proxy = config.get('thai_gdc.proxy_request', None)
@@ -567,7 +557,7 @@ def add_package_request():
             s.verify = False
             url = site_url + '/api/3/action/package_request_create'
             headers = {'Content-type': 'application/json', 'Authorization': ''}
-            res = s.post(url, data = json.dumps(myobj), headers = headers, proxies=proxies)
+            res = s.post(url, data=json.dumps(params), headers=headers, proxies=proxies)
             
             # Check if the response status code is 200 (OK)
             # Use res.json() directly, as it returns the JSON-decoded content
@@ -578,4 +568,7 @@ def add_package_request():
     except requests.RequestException as e:
         print(e)
     
-    return state  
+    return state
+
+
+
