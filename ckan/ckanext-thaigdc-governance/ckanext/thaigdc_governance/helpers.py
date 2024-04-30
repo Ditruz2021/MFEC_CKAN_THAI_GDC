@@ -4,9 +4,11 @@ import ckan.model as model
 import logging
 from pylons import config
 import ckan.logic as logic
-from ckan.common import g, _
+from ckan.common import g, _,request, asbool
 import ckan.lib.helpers as h
 from datetime import timedelta
+import requests
+import json
 
 log = logging.getLogger(__name__)
 
@@ -97,3 +99,70 @@ def get_user(user):
         if user:
             return user
     return user
+
+def get_request_dataset_list(id = ''):
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/package_request_list'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.get(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
+def send_request_dataset(id = ''):
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/package_request_update'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.post(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state

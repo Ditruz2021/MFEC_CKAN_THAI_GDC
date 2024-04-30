@@ -1,0 +1,51 @@
+{%- set exclude_fields = [
+  'id',
+  'package_name',
+  'notes',
+  'owner_org',
+  'email',
+  'objective',
+  'scope',
+  'modified',
+  'send_data'
+] -%}
+<section class="additional-info">
+  <h3>{{ _('Additional Info') }}</h3>
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th scope="col">{{ _('Field') }}</th>
+        <th scope="col">ค่า</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% block package_additional_info %}
+      {% for field in schema.dataset_fields %}
+      {%- if field.field_name in exclude_fields -%}
+      <tr>
+        <th scope="row" class="dataset-label">
+          {{ h.scheming_language_text(field.label) }}
+        </th>
+        {% if field.field_name == 'modified' %}
+        <td class="dataset-details">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict_list[field.field_name])) }}
+        </td>
+        {% elif field.field_name == 'send_data' %}
+        <td class="dataset-details">{% if pkg_dict_list[field.field_name] %}<span class="label label-default"
+            data-format="success">ปิดเรื่อง</span>{% else %}<span class="label label-default"
+            data-format="waiting">รอปิดเรื่อง</span>{% endif %}</td>
+        {% else %}
+        <td class="dataset-details">{{ pkg_dict_list[field.field_name] }}</td>
+        {% endif %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {% endblock %}
+    </tbody>
+  </table>
+  {% if pkg_dict_list['send_data'] == false %}
+  <form method="post" action="" id="requestdata-new" class="text-right">
+    <button class="btn btn-primary" type="submit" name="save_publish"
+      onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่')">ปิดเรื่อง</button>
+  </form>
+  {% endif %}
+</section>

@@ -531,7 +531,7 @@
             }
         ],
         "form_snippet": "select.html",
-        "display_snippet": "select.html",
+        "display_snippet" : "select.html",
         "form_attrs": {
             "onchange": "sSelect_disclosure();"
         },

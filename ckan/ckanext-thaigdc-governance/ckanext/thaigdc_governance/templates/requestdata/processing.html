@@ -12,7 +12,6 @@
 {% block primary_content %}
   <article class="module" role="main">
     <div class="module-content">
-        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
             <li {% if request_state == 'requestdata_wait_steward' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_steward"><i class="fa fa-sitemap"></i> รอการตรวจสอบ</a></li>
             <li {% if request_state == 'requestdata_wait_council' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_council"><i class="fa fa-sitemap"></i> รอการอนุมัติ</a></li>

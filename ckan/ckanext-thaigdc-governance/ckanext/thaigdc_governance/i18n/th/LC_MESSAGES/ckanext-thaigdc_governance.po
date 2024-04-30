@@ -133,3 +133,6 @@ msgstr "บันทึกชุดข้อมูล"
 
 msgid "Owner"
 msgstr "เจ้าของข้อมูล"
+
+msgid "requestdata_anonymous"
+msgstr "ผู้ยื่นคำขอ"

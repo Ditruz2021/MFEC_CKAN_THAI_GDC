@@ -14,6 +14,7 @@
         <li class="nav-item {% if request.endpoint.startswith('governance.requestdata_processing') %} active {% endif %}"><a href="/governance/requestdata/processing_state_wait_steward">คำขอใช้ข้อมูลที่รอการพิจารณา</a></li>
         <li class="nav-item {% if request.endpoint.startswith('governance.requestdata_receive') %} active {% endif %}"><a href="/governance/requestdata/receive_state_wait_maintainer_notify">คำขอใช้ข้อมูลที่รอการได้รับข้อมูล</a></li>
         <li class="nav-item {% if request.endpoint.startswith('governance.requestdata_finished') %} active {% endif %}"><a href="/governance/requestdata/finished_state_received">คำขอใช้ข้อมูลที่พิจารณาแล้ว</a></li>
+        <li class="nav-item {% if request.endpoint.startswith('governance.requestdata_anonymous') %} active {% endif %}"><a href="/governance/requestdata/anonymous">คำขอใช้ข้อมูลจากประชาชน</a></li>
     </ul>
 </nav>
 </section>

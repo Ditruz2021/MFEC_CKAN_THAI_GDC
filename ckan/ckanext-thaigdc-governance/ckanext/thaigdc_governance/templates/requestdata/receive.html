@@ -12,7 +12,6 @@
 {% block primary_content %}
   <article class="module" role="main">
     <div class="module-content">
-        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
             <li {% if request_state == 'requestdata_wait_maintainer_notify' %} class="active" {% endif %}><a href="/governance/requestdata/receive_state_wait_maintainer_notify"><i class="fa fa-sitemap"></i> รอแจ้งผู้ดูแลข้อมูล</a></li>
             <li {% if request_state == 'requestdata_wait_received' %} class="active" {% endif %}><a href="/governance/requestdata/receive_state_wait_received"><i class="fa fa-sitemap"></i> รอการได้รับข้อมูล</a></li>

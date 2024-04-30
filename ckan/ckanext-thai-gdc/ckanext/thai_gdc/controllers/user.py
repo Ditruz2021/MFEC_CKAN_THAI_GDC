@@ -6,9 +6,7 @@ import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.model as model
 import logging
 from ckan.common import g
-import requests
 from pylons import config
-import json
 
 from ckan.plugins.toolkit import (
     _, c, h, BaseController, check_access, NotAuthorized, abort, render,

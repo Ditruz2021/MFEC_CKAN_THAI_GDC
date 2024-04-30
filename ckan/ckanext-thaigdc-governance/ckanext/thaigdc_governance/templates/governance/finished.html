@@ -12,7 +12,6 @@
 {% block primary_content %}
   <article class="module" role="main">
     <div class="module-content">
-        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
         <ul class="nav nav-tabs" style="margin-bottom: 30px;">
             <li {% if governance_state == 'complete' %} class="active" {% endif %}><a href="/governance/finished_state_complete"><i class="fa fa-sitemap"></i> {{ _('complete') }}</a></li>
             <li {% if governance_state == 'reject' %} class="active" {% endif %}><a href="/governance/finished_state_reject"><i class="fa fa-sitemap"></i> {{ _('reject') }}</a></li>

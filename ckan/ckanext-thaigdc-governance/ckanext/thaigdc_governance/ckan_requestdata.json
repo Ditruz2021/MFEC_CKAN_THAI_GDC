@@ -264,6 +264,62 @@
         "en": "Steward from wait received",
         "th": "Steward from wait received"
       }
+    },
+    {
+      "field_name": "package_name",
+      "label": {
+        "en": "Package name",
+        "th": "ชื่อชุดข้อมูลที่ต้องการ"
+      }
+    },
+    {
+      "field_name": "id",
+      "label": {
+        "en": "Id Package name",
+        "th": "รหัสคำร้องขอชุดข้อมูล"
+      }
+    },
+    {
+      "field_name": "notes",
+      "label": {
+        "en": "Detail of package",
+        "th": "รายละเอียดชุดข้อมูลที่ต้องการ"
+      }
+    },
+    {
+      "field_name": "email",
+      "label": {
+        "en": "Contact to Email",
+        "th": "ช่องทางการติดต่อกลับ (Email)"
+      }
+    },
+    {
+      "field_name": "scope",
+      "label": {
+        "en": "Scope for dataset",
+        "th": "ขอบเขตการใช้งานของชุดข้อมูล"
+      }
+    },
+    {
+      "field_name": "objective",
+      "label": {
+        "en": "Objective for dataset",
+        "th": "วัตถุประสงค์ที่ต้องการใช้งานข้อมูล"
+      }
+    },
+    {
+      "field_name": "modified",
+      "label": {
+        "en": "Duration of use",
+        "th": "ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี"
+      }
+    },
+    {
+      "field_name": "send_data",
+      "label": {
+        "en": "Status of data",
+        "th": "สถานะข้อมูล"
+      }
     }
   ],
   "resource_fields": [

@@ -12,7 +12,6 @@
 {% block primary_content %}
   <article class="module" role="main">
     <div class="module-content">
-        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
             <li {% if governance_state == 'wait' %} class="active" {% endif %}><a href="/governance/processing_state_wait"><i class="fa fa-sitemap"></i> {{ _('wait') }}</a></li>
             <li {% if governance_state == 'approval' %} class="active" {% endif %}><a href="/governance/processing_state_approval"><i class="fa fa-sitemap"></i> {{ _('approval') }}</a></li>

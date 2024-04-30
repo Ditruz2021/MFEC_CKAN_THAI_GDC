@@ -670,9 +670,9 @@ span[lang]
 	margin-top: 2.5em;
   }
   
-  .page-list-header {
+  /* .page-list-header {
 	margin-left: 10px;
-  }
+  } */
   
   .page-list-item {
 	margin: 1.5em 0;
@@ -698,4 +698,17 @@ span[lang]
   .pages-form .form-actions {
 	margin-top: 10px;
   }
+  [role=main],
+  .main {
+    position: initial;
+  }
   
+.label[data-format=success],
+.label[data-format*=success] {
+  background-color: #05c41f;
+}
+.label[data-format=waiting],
+.label[data-format*=waiting] {
+  background-color: #ffc107;
+  color: black;
+}

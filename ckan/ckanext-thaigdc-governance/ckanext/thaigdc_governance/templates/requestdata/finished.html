@@ -12,7 +12,6 @@
 {% block primary_content %}
   <article class="module" role="main">
     <div class="module-content">
-        <h1 class="page-heading">{{ _('Data Governance') }}</h1>
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
             <li {% if request_state == 'requestdata_received' %} class="active" {% endif %}><a href="/governance/requestdata/finished_state_received"><i class="fa fa-sitemap"></i> ผู้ยื่นคำขอได้รับข้อมูลแล้ว</a></li>
             <li {% if request_state == 'requestdata_reject' %} class="active" {% endif %}><a href="/governance/requestdata/finished_state_reject"><i class="fa fa-sitemap"></i> ไม่ผ่านการพิจารณา</a></li>
