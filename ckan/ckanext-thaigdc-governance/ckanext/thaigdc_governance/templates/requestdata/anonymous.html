@@ -2,6 +2,7 @@
 {% import 'macros/form.html' as form %}
 
 {% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
+{% if sort_by_selected is not defined %}{% set sort_by_selected = c.sort_by_selected %}{% endif %}
 
 {% block breadcrumb_content %}
 <li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
@@ -16,7 +17,7 @@
             <li class="active"><a href="/governance/requestdata/anonymous"><i class="fa fa-sitemap"></i> ผู้ยื่นคำขอ</a></li>
           </ul>
         {% block form %}
-          {% snippet 'snippets/search_form_customize.html',query=q %}
+          {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=page.item_count,type='dataset' %}
         {% endblock %}
         {% block package_search_results_list %}
         <div class="col-sm-12">

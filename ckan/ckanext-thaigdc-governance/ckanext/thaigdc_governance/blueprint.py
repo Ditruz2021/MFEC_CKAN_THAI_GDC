@@ -1707,7 +1707,6 @@ def _requestdata_anonymous(page_url_type, request_state):
     package_type = u'requestdata'
     extra_vars = {}
     extra_vars['request_state'] = request_state
-
     try:
         context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
         logic.check_access(u'steward', context)
@@ -1731,7 +1730,6 @@ def _requestdata_anonymous(page_url_type, request_state):
     params_nosort = [(k, v) for k, v in params_nopage if k != u'sort']
 
     extra_vars[u'sort_by'] = partial(_sort_by, params_nosort, package_type)
-
     if not sort_by:
         sort_by_fields = []
     else:
@@ -1747,7 +1745,6 @@ def _requestdata_anonymous(page_url_type, request_state):
     extra_vars[u'fields'] = details[u'fields']
     extra_vars[u'fields_grouped'] = details[u'fields_grouped']
     search_extras = details[u'search_extras']
-
     admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
 
     # context = {
@@ -1767,7 +1764,6 @@ def _requestdata_anonymous(page_url_type, request_state):
     }
 
     q += u' +dataset_type:{type} +creator_user_id:{sysadmin} +request_state:{state}'.format(type=package_type, sysadmin=_extra_template_variables(context,{'id':admin_user})['user_dict']['id'], state=request_state)
-
     facets = OrderedDict()
 
     # Facet titles
@@ -1787,7 +1783,6 @@ def _requestdata_anonymous(page_url_type, request_state):
             config.get(u'ckan.search.default_include_private', True)
         ),
     }
-
     try:
         query = plugins.toolkit.get_action('package_search')(context, data_dict)
 
@@ -1820,7 +1815,6 @@ def _requestdata_anonymous(page_url_type, request_state):
         extra_vars[u'query_error'] = True
         extra_vars[u'search_facets'] = {}
         extra_vars[u'page'] = h.Page(collection=[])
-    
     # FIXME: try to avoid using global variables
     g.search_facets_limits = {}
     for facet in extra_vars[u'search_facets'].keys():
@@ -1841,12 +1835,12 @@ def _requestdata_anonymous(page_url_type, request_state):
         g.search_facets_limits[facet] = limit
 
     extra_vars[u'dataset_type'] = package_type
-
     # TODO: remove
     for key, value in six.iteritems(extra_vars):
         setattr(g, key, value)
 
     extra_vars[u'page'].items = thai_gdc_gh.get_request_dataset_list()
+    extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
     return extra_vars
 
 

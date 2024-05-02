@@ -111,7 +111,6 @@ def get_request_dataset_list(id = ''):
             'http': config.get('thai_gdc.proxy_url', None),
             'https': config.get('thai_gdc.proxy_url', None)
         }
-    
     try:
         with requests.Session() as s:
             s.verify = False
@@ -119,6 +118,8 @@ def get_request_dataset_list(id = ''):
             headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
             if id:
                 params = {'id': id}
+            elif request.params:
+                params = {'q': request.params['q']}
             else:
                 params = {}
             res = s.get(url,data=json.dumps(params),headers=headers, proxies=proxies)
@@ -131,7 +132,6 @@ def get_request_dataset_list(id = ''):
             
     except requests.RequestException as e:
         print(e)
-    
     return state
 def send_request_dataset(id = ''):
     state = []
