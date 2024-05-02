@@ -52,15 +52,41 @@ class UserManageController(plugins.toolkit.BaseController):
     def articles_news(self):
         return plugins.toolkit.render('articles_news/articles_news_list.html')
     def requestdataset(self, data=None, errors=None, error_summary=None):
+        submit_success = False  # Initialize submit_success flag
+        
         if plugins.toolkit.request.method == 'POST' and not data:
-            data = dict(plugins.toolkit.request.POST)
-            try:
-                data = thai_gdc_h.add_package_request(data)
-            except plugins.toolkit.ValidationError as e:
-                errors = e.error_dict
-                error_summary = e.error_summary
-                return self.index(data, errors, error_summary)
+                data = dict(plugins.toolkit.request.POST)
+                try:
+                        # Attempt to add package request
+                        data = thai_gdc_h.add_package_request(data)
+                        
+                        # Check if the request was successful and set a flag accordingly
+                        submit_success = True
+                except plugins.toolkit.ValidationError as e:
+                        # Handle validation errors
+                        errors = e.error_dict
+                        error_summary = e.error_summary
+                        return self.index(data, errors, error_summary)
+
+        # Initialize errors and error_summary if not provided
         errors = errors or {}
         error_summary = error_summary or {}
+
+        # Pass the data, errors, and error_summary to the template
         extra_vars = {'data': data, 'errors': errors, 'error_summary': error_summary}
-        return plugins.toolkit.render('requestdataset/requestdataset_page.html', extra_vars=extra_vars)
+
+        # Render the template, passing extra_vars
+        rendered_template = plugins.toolkit.render('requestdataset/requestdataset_page.html', extra_vars=extra_vars)
+        
+        # If submission was successful, append JavaScript code to display the modal
+        if submit_success:
+                modal_script = "<script>$('#requestdataset_success').modal('show');</script>"
+                rendered_template += modal_script
+        # else:
+        #         # Do something else if submission was not successful
+        #         modal_script = "<script>$('#requestdataset_erroor').modal('show');</script>"
+        #         rendered_template += modal_script
+        
+        return rendered_template
+    def newdataset(self):
+        return plugins.toolkit.render('newdataset/newdataset_page.html')

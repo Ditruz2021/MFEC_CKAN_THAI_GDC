@@ -3,11 +3,14 @@
 {% block styles %}
   {{ super() }}
 
+  <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/intro.css" />
-  <link rel="stylesheet" href="/css/datagroup-section.css" />
-  <link rel="stylesheet" href="/css/new-section.css" />
-  <link rel="stylesheet" href="/css/userstatistics-section.css" />
+  <link rel="stylesheet" href="/css/datagroup_section.css" />
+  <link rel="stylesheet" href="/css/new_section.css" />
+  <link rel="stylesheet" href="/css/userstatistics_section.css" />
   <script src="/js/Chart.js"></script>
+
+
 
 
   {% set type = 'asset' if h.ckan_version() > '2.9' else 'resource' %}
