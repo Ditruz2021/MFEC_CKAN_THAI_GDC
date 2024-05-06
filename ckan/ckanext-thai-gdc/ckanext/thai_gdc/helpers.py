@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 import ckan.model as model
 from pylons import config
-from ckan.common import _, c
+from ckan.common import _, c, g
 import ckan.lib.helpers as h
 import json
 import os
@@ -570,5 +570,44 @@ def add_package_request(form_data):
     
     return state
 
+def rollback_trash_by_id(id, ent_type):
+    print(g.userobj)
+    controller = ''
+    if ent_type == 'package':
+        controller = 'package_repair_update'
+    else:
+        controller = 'group_repair_update'
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/' + controller
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.post(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
 
 

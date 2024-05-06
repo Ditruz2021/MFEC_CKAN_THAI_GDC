@@ -290,6 +290,12 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             action='requestdataset',
             controller='ckanext.thai_gdc.controllers.user:UserManageController'
         )
+        map.connect(
+            'rollback_trash',
+            '/ckan-admin/rollback/{id:.*|}',
+            action='rollback_trash',
+            controller='ckanext.thai_gdc.controllers.user:UserManageController'
+        )
         return map
 
     # IAuthFunctions

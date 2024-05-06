@@ -90,3 +90,16 @@ class UserManageController(plugins.toolkit.BaseController):
         return rendered_template
     def newdataset(self):
         return plugins.toolkit.render('newdataset/newdataset_page.html')
+    def rollback_trash(self, id=None, errors=None, error_summary=None):
+        if id is None:
+            return h.redirect_to(u'admin.trash')
+        try:
+            data = thai_gdc_h.rollback_trash_by_id(id, request.params['ent_type'])
+        except plugins.toolkit.ValidationError as e:
+            errors = e.error_dict
+            error_summary = e.error_summary
+            return self.index(data, errors, error_summary)
+        errors = errors or {}
+        error_summary = error_summary or {}
+        # extra_vars = {'data': data, 'errors': errors, 'error_summary': error_summary}
+        return h.redirect_to(u'admin.trash')
