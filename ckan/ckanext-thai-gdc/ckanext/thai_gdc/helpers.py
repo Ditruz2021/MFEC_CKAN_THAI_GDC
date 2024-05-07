@@ -609,5 +609,36 @@ def rollback_trash_by_id(id, ent_type):
         print(e)
     
     return state
+def get_audit_log_list(query_params = ''):
+    if query_params == '':
+        params = {"offset":0,"limit": 0,"filter": ""}
+    else:
+        params = {"offset":0,"limit": 0,"filter": query_params}
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/all_activity_list'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            res = s.get(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    return state
 
 

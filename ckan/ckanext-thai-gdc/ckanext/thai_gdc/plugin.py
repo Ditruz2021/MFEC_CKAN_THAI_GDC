@@ -138,6 +138,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             toolkit.add_ckan_admin_tab(config_, 'dataset_import', u'นำเข้ารายการชุดข้อมูล', icon='cloud-upload')
             toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_export', u'ส่งออกรายการชุดข้อมูล', icon='cloud-download')
             toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_popup', u'ป็อปอัพ', icon='window-maximize')
+            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_audit_log', u'Audit Log', icon='list')
 
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
@@ -295,6 +296,13 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             '/ckan-admin/rollback/{id:.*|}',
             action='rollback_trash',
             controller='ckanext.thai_gdc.controllers.user:UserManageController'
+        )
+        map.connect(
+            'gdc_agency_admin_audit_log',
+            '/ckan-admin/audit-log',
+            action='index',
+            ckan_icon='file',
+            controller='ckanext.thai_gdc.controllers.audit_log:AuditLogController'
         )
         return map
 
