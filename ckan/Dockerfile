@@ -1,5 +1,7 @@
 FROM thepaeth/ckan-base:2.9.9-py2
 
+COPY ./ckan-customize ${SRC_DIR}/ckan/ckan
+
 RUN pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-xloader.git#egg=ckanext-xloader && \
     pip install -r ${SRC_DIR}/ckanext-xloader/requirements.txt && \
     pip install -r ${SRC_DIR}/ckanext-xloader/dev-requirements.txt && \
