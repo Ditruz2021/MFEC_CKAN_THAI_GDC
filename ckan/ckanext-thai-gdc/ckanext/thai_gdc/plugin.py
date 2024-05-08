@@ -292,6 +292,12 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             controller='ckanext.thai_gdc.controllers.user:UserManageController'
         )
         map.connect(
+            'user_create',
+            '/user_create/page',
+            action='user_create',
+            controller='ckanext.thai_gdc.controllers.user:UserManageController'
+        )
+        map.connect(
             'rollback_trash',
             '/ckan-admin/rollback/{id:.*|}',
             action='rollback_trash',

@@ -1707,6 +1707,7 @@ def _requestdata_anonymous(page_url_type, request_state):
     package_type = u'requestdata'
     extra_vars = {}
     extra_vars['request_state'] = request_state
+
     try:
         context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
         logic.check_access(u'steward', context)
@@ -1730,6 +1731,7 @@ def _requestdata_anonymous(page_url_type, request_state):
     params_nosort = [(k, v) for k, v in params_nopage if k != u'sort']
 
     extra_vars[u'sort_by'] = partial(_sort_by, params_nosort, package_type)
+
     if not sort_by:
         sort_by_fields = []
     else:
@@ -1745,6 +1747,7 @@ def _requestdata_anonymous(page_url_type, request_state):
     extra_vars[u'fields'] = details[u'fields']
     extra_vars[u'fields_grouped'] = details[u'fields_grouped']
     search_extras = details[u'search_extras']
+
     admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
 
     # context = {
@@ -1764,6 +1767,7 @@ def _requestdata_anonymous(page_url_type, request_state):
     }
 
     q += u' +dataset_type:{type} +creator_user_id:{sysadmin} +request_state:{state}'.format(type=package_type, sysadmin=_extra_template_variables(context,{'id':admin_user})['user_dict']['id'], state=request_state)
+
     facets = OrderedDict()
 
     # Facet titles
@@ -1783,6 +1787,7 @@ def _requestdata_anonymous(page_url_type, request_state):
             config.get(u'ckan.search.default_include_private', True)
         ),
     }
+
     try:
         query = plugins.toolkit.get_action('package_search')(context, data_dict)
 
@@ -1815,6 +1820,7 @@ def _requestdata_anonymous(page_url_type, request_state):
         extra_vars[u'query_error'] = True
         extra_vars[u'search_facets'] = {}
         extra_vars[u'page'] = h.Page(collection=[])
+    
     # FIXME: try to avoid using global variables
     g.search_facets_limits = {}
     for facet in extra_vars[u'search_facets'].keys():
@@ -1835,6 +1841,7 @@ def _requestdata_anonymous(page_url_type, request_state):
         g.search_facets_limits[facet] = limit
 
     extra_vars[u'dataset_type'] = package_type
+
     # TODO: remove
     for key, value in six.iteritems(extra_vars):
         setattr(g, key, value)
@@ -1849,6 +1856,228 @@ def requestdata_anonymous(request_state = u'requestdata_anonymous'):
 
     return toolkit.render('requestdata/anonymous.html',
                            extra_vars=extra_vars)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def _user_user_management(page_url_type, request_state):
+    package_type = u'requestdata'
+    extra_vars = {}
+    extra_vars['request_state'] = request_state
+
+    try:
+        context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
+        logic.check_access(u'steward', context)
+    except logic.NotAuthorized:
+        base.abort(403, _(u'Not authorized to see this page'))
+
+    extra_vars[u'q'] = q = request.args.get(u'q', u'')
+
+    extra_vars['query_error'] = False
+    page = h.get_page_number(request.args)
+
+    limit = int(config.get(u'ckan.datasets_per_page', 20))
+
+    params_nopage = [(k, v) for k, v in request.args.items(multi=True)
+                     if k != u'page']
+
+    extra_vars[u'drill_down_url'] = drill_down_url
+    extra_vars[u'remove_field'] = partial(remove_field, package_type)
+
+    sort_by = request.args.get(u'sort', None)
+    params_nosort = [(k, v) for k, v in params_nopage if k != u'sort']
+
+    extra_vars[u'sort_by'] = partial(_sort_by, params_nosort, package_type)
+
+    if not sort_by:
+        sort_by_fields = []
+    else:
+        sort_by_fields = [field.split()[0] for field in sort_by.split(u',')]
+    extra_vars[u'sort_by_fields'] = sort_by_fields
+
+    pager_url = partial(_pager_url, params_nopage, page_url_type)
+
+    search_url_params = urlencode(_encode_params(params_nopage))
+    extra_vars[u'search_url_params'] = search_url_params
+
+    details = _get_search_details()
+    extra_vars[u'fields'] = details[u'fields']
+    extra_vars[u'fields_grouped'] = details[u'fields_grouped']
+    search_extras = details[u'search_extras']
+
+    admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
+
+    # context = {
+    #     u'model': model,
+    #     u'session': model.Session,
+    #     u'user': admin_user,
+    #     u'for_view': True,
+    #     u'auth_user_obj': model.User.by_name(admin_user)
+    # }
+
+    context = {
+        u'model': model,
+        u'session': model.Session,
+        u'user': g.user,
+        u'for_view': True,
+        u'auth_user_obj': g.userobj
+    }
+
+    q += u' +dataset_type:{type} +creator_user_id:{sysadmin} +request_state:{state}'.format(type=package_type, sysadmin=_extra_template_variables(context,{'id':admin_user})['user_dict']['id'], state=request_state)
+
+    facets = OrderedDict()
+
+    # Facet titles
+    for plugin in plugins.PluginImplementations(plugins.IFacets):
+        facets = plugin.dataset_facets(facets, package_type)
+
+    extra_vars[u'facet_titles'] = facets
+
+    data_dict = {
+        u'q': q,
+        u'facet.field': list(facets.keys()),
+        u'rows': limit,
+        u'start': (page - 1) * limit,
+        u'sort': sort_by,
+        u'extras': search_extras,
+        u'include_private': asbool(
+            config.get(u'ckan.search.default_include_private', True)
+        ),
+    }
+
+    try:
+        query = plugins.toolkit.get_action('package_search')(context, data_dict)
+
+        extra_vars[u'sort_by_selected'] = query[u'sort']
+
+        extra_vars[u'page'] = h.Page(
+            collection=query[u'results'],
+            page=page,
+            url=pager_url,
+            item_count=query[u'count'],
+            items_per_page=limit
+        )
+        extra_vars[u'search_facets'] = query[u'search_facets']
+        extra_vars[u'page'].items = query[u'results']
+    except SearchQueryError as se:
+        # User's search parameters are invalid, in such a way that is not
+        # achievable with the web interface, so return a proper error to
+        # discourage spiders which are the main cause of this.
+        log.info(u'Dataset search query rejected: %r', se.args)
+        base.abort(
+            400,
+            _(u'Invalid search query: {error_message}')
+            .format(error_message=str(se))
+        )
+    except SearchError as se:
+        # May be bad input from the user, but may also be more serious like
+        # bad code causing a SOLR syntax error, or a problem connecting to
+        # SOLR
+        log.error(u'Dataset search error: %r', se.args)
+        extra_vars[u'query_error'] = True
+        extra_vars[u'search_facets'] = {}
+        extra_vars[u'page'] = h.Page(collection=[])
+    
+    # FIXME: try to avoid using global variables
+    g.search_facets_limits = {}
+    for facet in extra_vars[u'search_facets'].keys():
+        try:
+            limit = int(
+                request.args.get(
+                    u'_%s_limit' % facet,
+                    int(config.get(u'search.facets.default', 10))
+                )
+            )
+        except ValueError:
+            base.abort(
+                400,
+                _(u'Parameter u"{parameter_name}" is not '
+                  u'an integer').format(parameter_name=u'_%s_limit' % facet)
+            )
+
+        g.search_facets_limits[facet] = limit
+
+    extra_vars[u'dataset_type'] = package_type
+
+    # TODO: remove
+    for key, value in six.iteritems(extra_vars):
+        setattr(g, key, value)
+
+    extra_vars[u'page'].items = thai_gdc_gh.get_user_management()
+    return extra_vars
+
+
+def user_user_management(request_state = u'user_user_management'):
+    extra_vars = _user_user_management('user_management', request_state)
+
+    return toolkit.render('user/user_management.html',
+                           extra_vars=extra_vars)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def processing_anonymous_requestdata_read():
     id = request.params['id']
@@ -1904,6 +2133,150 @@ def processing_anonymous_requestdata_read():
         return base.abort(404, msg)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+def user_update_func():
+    id = request.params['id']
+    try:
+        context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
+        logic.check_access(u'steward', context)
+    except logic.NotAuthorized:
+        base.abort(403, _(u'Not authorized to see this page'))
+    
+    admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
+    
+    context = {
+        u'model': model,
+        u'session': model.Session,
+        u'user': admin_user,
+        u'for_view': True,
+        u'auth_user_obj': model.User.by_name(admin_user)
+    }
+
+    form_data = request.form.to_dict()
+    print(form_data)
+    if 'save_publish' in form_data:
+        try:
+            check = thai_gdc_gh.send_user_update(id, form_data)
+            print(check)
+            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        except logic.ValidationError as e:
+            errors = e.error_dict
+            error_summary = e.error_summary
+            return base.abort(404, errors, error_summary)
+
+
+    itemuser_dict = {}
+
+    template = 'governance/user/user_update.html'
+    
+    try:
+        return base.render(template, {
+              
+                u'itemuser_dict': itemuser_dict,
+            })
+    except TemplateNotFound as e:
+        msg = _(
+            u"Viewing datasets of type \"{package_type}\" is "
+            u"not supported ({file_!r}).".format(
+                 file_=e.message
+            )
+        )
+        return base.abort(404, msg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def user_delete_func():
+    id = request.params['id']
+    try:
+        context = dict(model=model, user=g.user, auth_user_obj=g.userobj)
+        logic.check_access(u'steward', context)
+    except logic.NotAuthorized:
+        base.abort(403, _(u'Not authorized to see this page'))
+    
+    admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
+    
+    context = {
+        u'model': model,
+        u'session': model.Session,
+        u'user': admin_user,
+        u'for_view': True,
+        u'auth_user_obj': model.User.by_name(admin_user)
+    }
+
+    form_data = request.form.to_dict()
+    print(form_data)
+    if 'delete_publish' in form_data:
+        try:
+            check = thai_gdc_gh.send_user_delete(id)
+            print(check)
+            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        except logic.ValidationError as e:
+            errors = e.error_dict
+            error_summary = e.error_summary
+            return base.abort(404, errors, error_summary)
+
+
+    itemuser_dict = {}
+
+    template = 'governance/user/user_delete.html'
+    
+    try:
+        return base.render(template, {
+              
+                u'itemuser_dict': itemuser_dict,
+            })
+    except TemplateNotFound as e:
+        msg = _(
+            u"Viewing datasets of type \"{package_type}\" is "
+            u"not supported ({file_!r}).".format(
+                 file_=e.message
+            )
+        )
+        return base.abort(404, msg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
 governance.add_url_rule(u'/governance', view_func=governance_processing_wait)
 
 governance.add_url_rule(u'/governance/processing_state', view_func=governance_processing_wait)
@@ -1952,3 +2325,11 @@ governance.add_url_rule(u'/governance/dataset_toprepare/<package_id>', view_func
 
 governance.add_url_rule(u'/governance/requestdata/anonymous', view_func=requestdata_anonymous)
 governance.add_url_rule(u'/governance/requestdata/processing_anonymous', view_func=processing_anonymous_requestdata_read, methods=["GET", "POST"])
+
+
+
+governance.add_url_rule(u'/governance/user/user_management', view_func=user_user_management)
+
+governance.add_url_rule(u'/governance/user/user_update', view_func=user_update_func, methods=["GET", "POST"])
+governance.add_url_rule(u'/governance/user/user_delete', view_func=user_delete_func, methods=["GET", "POST"])
+

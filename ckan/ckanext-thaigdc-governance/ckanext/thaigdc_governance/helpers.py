@@ -111,6 +111,7 @@ def get_request_dataset_list(id = ''):
             'http': config.get('thai_gdc.proxy_url', None),
             'https': config.get('thai_gdc.proxy_url', None)
         }
+    
     try:
         with requests.Session() as s:
             s.verify = False
@@ -132,7 +133,10 @@ def get_request_dataset_list(id = ''):
             
     except requests.RequestException as e:
         print(e)
+    
     return state
+
+
 def send_request_dataset(id = ''):
     state = []
     site_url = config.get('ckan.site_url')
@@ -149,6 +153,201 @@ def send_request_dataset(id = ''):
         with requests.Session() as s:
             s.verify = False
             url = site_url + '/api/3/action/package_request_update'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.post(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_user_management(id = ''):
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/user_list'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.get(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def get_user_show(id = ''):
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/user_show'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {'id': id}
+            else:
+                params = {}
+            res = s.get(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
+
+
+
+
+
+
+
+
+def send_user_update(id, form_data):
+    print(form_data) 
+    params = form_data
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/user_update'
+            headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
+            if id:
+                params = {
+                    "id": id,
+                    "fullname": form_data['fullname'],
+                    "about": "",
+                    "email": form_data['email'],
+                    "phone": form_data['phone'],
+                    "address": form_data['address'],
+                    "secret_level": "",
+                    "state": "",
+                    "organization": ""
+                }
+            print(params)
+            res = s.post(url,data=json.dumps(params),headers=headers, proxies=proxies)
+            print(res)
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                print(state)
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
+
+
+
+
+
+def send_user_delete(id = ''):
+    state = []
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/user_delete'
             headers = {'Content-type': 'application/json', 'Authorization': g.userobj.apikey}
             if id:
                 params = {'id': id}
