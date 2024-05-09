@@ -67,206 +67,42 @@
       </div>
     </div>
 
+
     <div class="row row2">
-      <div class="col-md-12 col-lg-8">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">สถิติข้อมูล 21 กุมภาพันธ์ 2567</div>
-          <div class="panel-body">
-            <table class="table">
-              <tbody>
-                <tr>
-                  <td>รายงาน COVID-19 ประจำวัน ข้อมูลประจำประเทศไทย</td>
-                  <td class="text-right">801,583</td>
-                </tr>
-                <tr>
-                  <td>สังคม-วัฒนธรรมในเอเชียตะวันออกเฉียงใต้</td>
-                  <td class="text-right">63,188</td>
-                </tr>
-                <tr>
-                  <td>แบบฟอร์มคำขอดำเนินการทางทะเบียนรถยนต์</td>
-                  <td class="text-right">46,662</td>
-                </tr>
-                <tr>
-                  <td>ข้อมูลโรงเรียนสังกัด สพฐ</td>
-                  <td class="text-right">46.053</td>
-                </tr>
-                <tr>
-                  <td>ข้อมูลพิกัด LAT/LONG ที่ตั้งตำบล</td>
-                  <td class="text-right">31,564</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">ภาพรวม</div>
-          <div class="panel-body text-center">
-            <canvas id="ChartOverview" style="width: 50%"></canvas>
+    
+      {% block feature_total_dataset_review %}
+      {% set item_total_dataset_review = h.thai_gdc_get_total_dataset_review_list() %}
+      {% snippet 'home/snippets/total_dataset_review.html', item_total_dataset_review=item_total_dataset_review %}
+      {% endblock %}
 
-            <script>
-              const ChartOverviewxValues = [
-                "ชุดข้อมูล(11,001)",
-                "องค์กร(1,390)",
-                "หมวดหมู่",
-              ];
-              const ChartOverviewyValues = [11001, 1390, 0];
-              const ChartOverviewbarColors = ["#065381", "#65cae6", "#e54854"];
 
-              new Chart("ChartOverview", {
-                type: "pie",
-                data: {
-                  labels: ChartOverviewxValues,
-                  datasets: [
-                    {
-                      backgroundColor: ChartOverviewbarColors,
-                      data: ChartOverviewyValues,
-                    },
-                  ],
-                },
-                options: {
-                  plugins: {
-                    legend: {
-                      position: "bottom",
-                    },
-                    title: {
-                      display: false,
-                    },
-                  },
-                },
-              });
-            </script>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">
-            จำนวนผู้เข้าใช้บริการ / จำนวนการใช้งาน
-          </div>
-          <div class="panel-body text-center box-count">
-            <i class="fa fa-eye" aria-hidden="true"></i>
+      {% block feature_total_news_review %}
+      {% set item_total_news_review = h.thai_gdc_get_total_news_review_list() %}
+      {% snippet 'home/snippets/total_news_review.html', item_total_news_review=item_total_news_review %}
+      {% endblock %}
 
-            <h4>3,878,375 คน</h4>
-            <h4>14,920,495 ครั้ง</h4>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">จำนวนข้อมูลจำแนกตามหมวดหมู่</div>
-          <div class="panel-body text-center">
-            <i class="fa fa-users" aria-hidden="true"></i>
-            <canvas id="ChartCategory" style="width: 70%"></canvas>
 
-            <script>
-              const ChartCategoryxValues = [
-                "เศรษฐกิจ การเงิน และอุดสาหกรรม",
-                "ทรัพยากรธรรมชาติและสิ่งแวดล้อม",
-                "เกษตรกรรม",
-                "คมนาคมและโลจิสติกส์",
-                "งบประมาณและการใช้จ่ายของภาครัฐ",
-                "เมืองและภูมิภาค",
-              ];
-              const ChartCategoryyValues = [10, 10, 10, 10, 10, 10];
-              const ChartCategorybarColors = [
-                "#065381",
-                "#65cae6",
-                "#e54854",
-                "#ff9b2c",
-                "#5dd5d4",
-                "#8b123f",
-              ];
+      {% block feature_total_user_review %}
+      {% set item_total_user_review = h.thai_gdc_get_total_user_review_list() %}
+      {% snippet 'home/snippets/total_user_review.html', item_total_user_review=item_total_user_review %}
+      {% endblock %}
 
-              new Chart("ChartCategory", {
-                type: "doughnut",
-                data: {
-                  labels: ChartCategoryxValues,
-                  datasets: [
-                    {
-                      backgroundColor: ChartCategorybarColors,
-                      data: ChartCategoryyValues,
-                    },
-                  ],
-                },
-                options: {
-                  plugins: {
-                    legend: {
-                      position: "bottom",
-                    },
-                    title: {
-                      display: false,
-                    },
-                  },
-                },
-              });
-            </script>
-          </div>
-        </div>
-      </div>
+      {% block feature_total_group_review %}
+      {% set item_total_group_review = h.thai_gdc_get_total_group_review_list() %}
+      {% snippet 'home/snippets/total_group_review.html', item_total_group_review=item_total_group_review %}
+      {% endblock %}
 
-      <div class="col-md-6 col-lg-4">
-        <div class="panel panel-default">
-          <!-- Default panel contents -->
-          <div class="panel-heading">จำนวนข้อมูลจำแนกตามองค์กร</div>
-          <div class="panel-body text-center">
-            <i class="fa fa-building" aria-hidden="true"></i>
-            <canvas id="ChartOrg" style="width: 70%"></canvas>
+      <!-- {% block feature_total_stats_review %} 
+      {% snippet 'home/snippets/total_stats.html' %} 
+      {% endblock %} -->
+   </div>
 
-            <script>
-              const ChartOrgxValues = [
-                "กรุงเทพมหานคร",
-                "สำนักงานสถิติแห่งชาติ",
-                "กรมธุรกิจพลังงาน",
-                "ธนาคารแห่งประเทศไทย",
-                "สำนักงานจังหวัดฉะเชิงเกรา",
-                "สำนักงานจังหวัดชลบุรี",
-              ];
-              const ChartOrgyValues = [10, 10, 10, 10, 10, 10];
-              const ChartOrgbarColors = [
-                "#065381",
-                "#65cae6",
-                "#e54854",
-                "#ff9b2c",
-                "#5dd5d4",
-                "#8b123f",
-              ];
 
-              new Chart("ChartOrg", {
-                type: "doughnut",
-                data: {
-                  labels: ChartOrgxValues,
-                  datasets: [
-                    {
-                      backgroundColor: ChartOrgbarColors,
-                      data: ChartOrgyValues,
-                    },
-                  ],
-                },
-                options: {
-                  plugins: {
-                    legend: {
-                      position: "bottom",
-                    },
-                    title: {
-                      display: false,
-                    },
-                  },
-                },
-              });
-            </script>
-          </div>
-        </div>
-      </div>
-    </div>
+
+
   </div>
 </div>
 

@@ -1,0 +1,18 @@
+<div class="col-md-12 col-lg-8">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">ชุดข้อมูลที่มีการเรียกดูมากที่สุด 5 อันดับ เรียงลำดับตามจำนวนครั้งการเข้าชม ณ 25
+            มีนาคม 2567</div>
+        <table class="table">
+            <tbody>
+                {% for item in item_total_dataset_review %}
+                <tr>
+                    <td width="80%">{{ item.name }}</td>
+                    <td class="text-right">{{ item.count }}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
