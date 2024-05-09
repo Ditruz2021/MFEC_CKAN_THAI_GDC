@@ -390,6 +390,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             'get_site_statistics': thai_gdc_h.get_site_statistics,
             'thai_gdc_build_nav_main_customize': thai_gdc_h.build_nav_main_customize,
             'thai_gdc_get_articles_news_list' : thai_gdc_h.get_articles_news_list,
+            'thai_gdc_get_total_dataset_review_list' : thai_gdc_h.get_total_dataset_review_list,
             'thai_gdc_get_total_news_review_list' : thai_gdc_h.get_total_news_review_list,
             'thai_gdc_get_total_user_review_list' : thai_gdc_h.get_total_user_review_list,
             'thai_gdc_get_total_group_review_list' : thai_gdc_h.get_total_group_review_list,
