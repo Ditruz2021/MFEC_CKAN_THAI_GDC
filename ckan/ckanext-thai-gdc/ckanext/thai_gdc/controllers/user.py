@@ -51,6 +51,13 @@ class UserManageController(plugins.toolkit.BaseController):
                 return e
     def articles_news(self):
         return plugins.toolkit.render('articles_news/articles_news_list.html')
+    
+
+
+
+
+
+    
     def requestdataset(self, data=None, errors=None, error_summary=None):
         submit_success = False  # Initialize submit_success flag
         
@@ -59,7 +66,7 @@ class UserManageController(plugins.toolkit.BaseController):
                 try:
                         # Attempt to add package request
                         data = thai_gdc_h.add_package_request(data)
-                        
+                        print(data)
                         # Check if the request was successful and set a flag accordingly
                         submit_success = True
                 except plugins.toolkit.ValidationError as e:

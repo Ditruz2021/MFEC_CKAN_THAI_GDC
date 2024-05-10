@@ -1,24 +1,32 @@
 {% extends "page.html" %}
 
 {% block main_content %}
+<article class="module" role="main">
+  <div class="row wrapper no-nav view-preview-container">
+    <section class="module module-narrow module-shallow">
 
-<section class="module">
-  <div class="module-content">
-    <h1 class="page-heading">{% block page_heading %}{{ _('Login') }}{% endblock %}</h1>
-    {% block requestdataset_form %}
-      {% snippet  "requestdataset/snippets/requestdataset_form.html" %}
-    {% endblock %}
+      <div class="module-content">
+        <div class="alert alert-warning">
+          <center>
+            <h1 class="page-heading">{% block page_heading %} ร้องขอชุดข้อมูลที่ท่านต้องการ {% endblock %}</h1>
+          </center>
+        </div>
+        {% block requestdataset_form %}
+        {% snippet  "requestdataset/snippets/requestdataset_form.html" %}
+        {% endblock %}
+      </div>
+
+    </section>
   </div>
-</section>
-
+</article>
 <style>
   /* already defined in bootstrap4 */
   .text-xs-center {
-      text-align: center;
+    text-align: center;
   }
 
   .g-recaptcha {
-      display: inline-block;
+    display: inline-block;
   }
 </style>
 

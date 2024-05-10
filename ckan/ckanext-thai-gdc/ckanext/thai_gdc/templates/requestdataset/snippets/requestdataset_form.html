@@ -3,43 +3,164 @@
 {% set username_error = true if error_summary %}
 {% set password_error = true if error_summary %}
 
-<form id="requestdata-new" method='post' action="">
+<style>
+  .rc-anchor-alert {
+    display: none !important;
+    visibility: hidden;
+  }
+</style>
+<script type="text/javascript">
+  var onloadCallback = function () {
+    grecaptcha.render('html_element', {
+      'sitekey': ' 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
+    });
+  };
+  var imNotARobot = function() {
+    console.log("Button was clicked");
+  };
+
+</script>
+
+
+<form id="requestdata-new" method='post' action="" onSubmit="JavaScript:return check();">
   {{ form.errors(error_summary) }}
 
-  <div class="col-sm-6" style="padding-left:unset">
-    {{ form.input("first_name", id="field-first_name", label='ชื่อผู้ร้องขอ', placeholder='', value='',
-    is_required=True) }}
+  <div class="row">
+    <div class="col-sm-6">
+      {{ form.input("first_name", id="field_first_name", label='ชื่อผู้ร้องขอ', placeholder='', value='', is_required=True) }}
+    </div>
+    <div class="col-sm-6">
+      {{ form.input("last_name", id="field_last_name", label='นามสกุลผู้ร้องขอ', placeholder='', value='', is_required=True) }}
+    </div>
   </div>
-  <div class="col-sm-6" style="padding-left:unset">
-    {{ form.input("last_name", id="field-last_name", label='นามสกุลผู้ร้องขอ', placeholder='', value='',
-    is_required=True) }}
-  </div>
-  <div>
-    {{ form.input("email", id="field-email", label='ช่องทางการติดต่อกลับ (Email)', placeholder='', value='',
-    is_required=True) }}
-    {{ form.input("owner_org", id="field-owner_org", label='หน่วยงานที่ร้องขอ', placeholder='', value='',
-    is_required=True) }}
-    {{ form.input("package_name", id="field-package_name", label='ชื่อชุดข้อมูลที่ต้องการ', placeholder='', value='',
-    is_required=True) }}
-    {{ form.input("scope", id="field-scope", label='ขอบเขตการใช้งานของชุดข้อมูล', placeholder='', value='',
-    is_required=True) }}
-    {{ form.input("objective", id="field-objective", label='วัตถุประสงค์ที่ต้องการใช้งานข้อมูล', placeholder='',
-    value='', is_required=True) }}
-    {{ form.input("modified", id="field-modified", label='ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี', type='date' ,
-    placeholder='', value='', is_required=True) }}
-  </div>
-  {{ form.markdown('notes', id='field-notes', label='รายละเอียดชุดข้อมูลที่ต้องการ', value='', is_required=True) }}
+
+  {{ form.input("email", id="field_email", label='ช่องทางการติดต่อกลับ (Email)', placeholder='', value='', is_required=True) }}
+  {{ form.input("owner_org", id="field_owner_org", label='หน่วยงานที่ร้องขอ', placeholder='', value='', is_required=True) }}
+  {{ form.input("package_name", id="field_package_name", label='ชื่อชุดข้อมูลที่ต้องการ', placeholder='', value='', is_required=True) }}
+
+  {{ form.markdown('notes', id='field_notes', label='รายละเอียดชุดข้อมูลที่ต้องการ', value='', is_required=True) }}
+
+
+  {{ form.input("scope", id="field_scope", label='ขอบเขตการใช้งานของชุดข้อมูล', placeholder='', value='', is_required=True) }}
+  {{ form.input("objective", id="field_objective", label='วัตถุประสงค์ที่ต้องการใช้งานข้อมูล', placeholder='', value='', is_required=True) }}
+  {{ form.input("modified", id="field_modified", label='ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี', type='date' , placeholder='', value='', is_required=True) }}
+
+
 
   <div class="form-actions">
     {% block form_actions %}
-    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <!-- <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <div class="g-recaptcha text-center" data-sitekey="6LejTr4pAAAAAMTIDFKoLwBMvOtrcO-n_YHRLjGK" data-action="LOGIN">
-    </div>
-    <br>
-    <button id="submit-button" class="btn btn-primary" type="submit" name="save">ส่งเรื่อง</button>
+    </div> -->
+    <center>
+      <div id="html_element" style="display: inline-block;"></div>
+      <br>
+      <button id="submit-button" class="btn btn-primary" type="submit" name="save">ส่งเรื่อง</button>
+    </center>
     {% endblock %}
   </div>
 </form>
 
+
+
+<div class="modal fade" id="requestdataset_success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ส่งคำร้องเรียบร้อย</h4>
+      </div>
+      <div class="modal-body">
+        ท่านสามารถตรวจสอบสถานะการดำเนินการได้ทางอีเมล์ของท่าน
+        หรือสามารถติดต่อเจ้าหน้าที่ได้ทางอีเมล์ support@mea.or.th
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="requestdataset_erroor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ช่องรายการที่ต้องกรอก</h4>
+      </div>
+      <div class="modal-body">
+        ท่านกรอกข้อมูลไม่ครบถ้วนกรุณากรอกให้ครบถ้วน
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+</script>
+
+
+<script language="javascript">
+  function check() {
+    var name = document.getElementById('field_first_name');
+    if (name.value == "") {
+      alert('กรุณากรอกชื่อผู้ร้องขอ');
+      window.location = "#field_first_name";
+      return false;
+    }
+    var name = document.getElementById('field_last_name');
+    if (name.value == "") {
+      alert('กรุณากรอกนามสกุลผู้ร้องขอ');
+      window.location = "#field_last_name";
+      return false;
+    }
+    var name = document.getElementById('field_email');
+    if (name.value == "") {
+      alert('กรุณากรอกช่องทางการติดต่อกลับ (Email)');
+      window.location = "#field_email";
+      return false;
+    }
+    var name = document.getElementById('field_owner_org');
+    if (name.value == "") {
+      alert('กรุณากรอกหน่วยงานที่ร้องขอ');
+      window.location = "#field_owner_org";
+      return false;
+    }
+    var name = document.getElementById('field_package_name');
+    if (name.value == "") {
+      alert('กรุณากรอกชื่อชุดข้อมูลที่ต้องการ');
+      window.location = "#field_package_name";
+      return false;
+    }
+    var name = document.getElementById('field_scope');
+    if (name.value == "") {
+      alert('กรุณากรอกขอบเขตการใช้งานของชุดข้อมูล');
+      window.location = "#field_scope'";
+      return false;
+    }
+    var name = document.getElementById('field_objective');
+    if (name.value == "") {
+      alert('กรุณากรอกวัตถุประสงค์ที่ต้องการใช้งานข้อมูล');
+      window.location = "#field_objective";
+      return false;
+    }
+    var name = document.getElementById('field_modified');
+    if (name.value == "") {
+      alert('กรุณากรอกระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี');
+      window.location = "#field_modified";
+      return false;
+    }
+    var name = document.getElementById('field_notes');
+    if (name.value == "") {
+      alert('กรุณากรอกรายละเอียดชุดข้อมูลที่ต้องการ');
+      window.location = "#field_notes";
+      return false;
+    }
+  }
 </script>
