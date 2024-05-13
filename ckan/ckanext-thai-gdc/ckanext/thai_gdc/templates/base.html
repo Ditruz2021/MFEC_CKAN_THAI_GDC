@@ -3,18 +3,19 @@
 {% block styles %}
   {{ super() }}
 
+
+  {% set type = 'asset' if h.ckan_version() > '2.9' else 'resource' %}
+  {% include 'thai_gdc/snippets/thai_gdc_' ~ type ~ '.html' %}
+
   <link rel="stylesheet" href="/css/header.css" />
   <link rel="stylesheet" href="/css/intro.css" />
   <link rel="stylesheet" href="/css/datagroup_section.css" />
   <link rel="stylesheet" href="/css/new_section.css" />
   <link rel="stylesheet" href="/css/userstatistics_section.css" />
+  <link rel="stylesheet" href="/css/custom.css" />
   <script src="/js/Chart.js"></script>
 
 
-
-
-  {% set type = 'asset' if h.ckan_version() > '2.9' else 'resource' %}
-  {% include 'thai_gdc/snippets/thai_gdc_' ~ type ~ '.html' %}
 {% endblock %}
 
 {% block scripts %}

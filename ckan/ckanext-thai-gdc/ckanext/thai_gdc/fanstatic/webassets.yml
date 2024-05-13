@@ -2,7 +2,9 @@ thai_gdc_css:
   filters: cssrewrite
   output: ckanext-thai-gdc/%(version)s_thai_gdc.css
   contents:
-    - css/thai_gdc.css
+    # - css/thai_gdc.css
+    - css/thai_gdc_custom.css
+    - css/page_custom.css
 thai_gdc_fuchsia_css:
   filters: cssrewrite
   output: ckanext-thai-gdc/%(version)s_thai_gdc_fuchsia.css
@@ -14,7 +16,9 @@ thai_gdc_green_css:
 thai_gdc_main_css:
   filters: cssrewrite
   output: ckanext-thai-gdc/%(version)s_thai_gdc_main.css
-  contents: css/thai_gdc_main.css
+  contents:
+  # - css/thai_gdc_main.css
+  - css/thai_gdc_main_custom.css
 thai_gdc_maroon_css:
   filters: cssrewrite
   output: ckanext-thai-gdc/%(version)s_thai_gdc_maroon.css

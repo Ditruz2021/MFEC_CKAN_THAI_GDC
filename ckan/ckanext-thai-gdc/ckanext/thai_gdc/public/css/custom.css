@@ -1,0 +1,10 @@
+
+@media (min-width: 992px) {
+    .custom-content {
+      padding: 30px!important;
+    }
+  
+    .homepage [role=main] {
+      padding: 50px 0!important;
+    }
+  }
