@@ -119,53 +119,8 @@ ALTER TABLE "public"."ckanext_pages" ADD CONSTRAINT "ckanext_pages_pkey" PRIMARY
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."user";
-CREATE TABLE "public"."user" (
-  "id" text COLLATE "pg_catalog"."default" NOT NULL,
-  "name" text COLLATE "pg_catalog"."default" NOT NULL,
-  "apikey" text COLLATE "pg_catalog"."default",
-  "created" timestamp(6),
-  "about" text COLLATE "pg_catalog"."default",
-  "password" text COLLATE "pg_catalog"."default",
-  "fullname" text COLLATE "pg_catalog"."default",
-  "email" text COLLATE "pg_catalog"."default",
-  "reset_key" text COLLATE "pg_catalog"."default",
-  "sysadmin" bool DEFAULT false,
-  "activity_streams_email_notifications" bool DEFAULT false,
-  "state" text COLLATE "pg_catalog"."default" NOT NULL DEFAULT 'active'::text,
-  "plugin_extras" jsonb,
-  "image_url" text COLLATE "pg_catalog"."default",
-  "phone" varchar(20) COLLATE "pg_catalog"."default",
-  "address" text COLLATE "pg_catalog"."default",
-  "secret_level" varchar(50) COLLATE "pg_catalog"."default",
-  "organization" text COLLATE "pg_catalog"."default"
-)
-;
-
--- ----------------------------
--- Indexes structure for table user
--- ----------------------------
-CREATE INDEX "idx_user_id" ON "public"."user" USING btree (
-  "id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
-CREATE INDEX "idx_user_name" ON "public"."user" USING btree (
-  "name" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
-CREATE INDEX "idx_user_name_index" ON "public"."user" USING btree (
-  (
-CASE
-    WHEN fullname IS NULL OR fullname = ''::text THEN name
-    ELSE fullname
-END) COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
-);
-
--- ----------------------------
--- Uniques structure for table user
--- ----------------------------
-ALTER TABLE "public"."user" ADD CONSTRAINT "user_name_key" UNIQUE ("name");
-
--- ----------------------------
--- Primary Key structure for table user
--- ----------------------------
-ALTER TABLE "public"."user" ADD CONSTRAINT "user_pkey" PRIMARY KEY ("id");
+ALTER TABLE "public"."user" ADD COLUMN IF NOT EXISTS "phone" varchar(20) COLLATE "pg_catalog"."default";
+ALTER TABLE "public"."user" ADD COLUMN IF NOT EXISTS "address" text COLLATE "pg_catalog"."default";
+ALTER TABLE "public"."user" ADD COLUMN IF NOT EXISTS "secret_level" varchar(50) COLLATE "pg_catalog"."default";
+ALTER TABLE "public"."user" ADD COLUMN IF NOT EXISTS "organization" text COLLATE "pg_catalog"."default";
 
