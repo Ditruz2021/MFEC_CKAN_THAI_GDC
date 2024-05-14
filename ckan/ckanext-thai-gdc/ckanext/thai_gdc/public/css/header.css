@@ -1,4 +1,6 @@
-
+.logo img{
+    max-width: 225px;
+}
 @media (min-width: 767px) {
  
 

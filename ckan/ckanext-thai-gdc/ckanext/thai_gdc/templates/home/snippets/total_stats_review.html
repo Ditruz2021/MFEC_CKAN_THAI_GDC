@@ -1,7 +1,7 @@
 <div class="col-md-6 col-lg-4">
   <div class="panel panel-default">
     <!-- Default panel contents -->
-    <div class="panel-heading">จำนวนข้อมูลจำแนกตามองค์กร</div>
+    <div class="panel-heading">ภาพรวม</div>
     <div class="panel-body text-center">
       <div class="chart-icon">
         <!-- <i class="fa fa-building" aria-hidden="true"></i> -->
@@ -10,16 +10,14 @@
         <canvas id="ChartOrg" style="width:70%;"></canvas>
       </div>
 
-      {% set stats = h.get_site_statistics() %}
-      {% block stats_group %}
-
-
       <script>
-        const ChartOrgxValues = ["{{ _('dataset') if stats.dataset_count == 1 else _('datasets') }}","{{ _('organization') if stats.organization_count == 1 else _('organizations') }}"];
-        const ChartOrgyValues = [{{h.SI_number_span(stats.dataset_count)}},{{h.SI_number_span(stats.organization_count)}}];
+        const ChartOrgxValues = ["ชุดข้อมูล", "องค์กร"];
+        const ChartOrgyValues = [11193, 1408];
         const ChartOrgbarColors = [
           "#065381",
           "#65cae6",
+         
+
         ];
 
 
@@ -48,7 +46,9 @@
           }
         });
       </script>
-      {% endblock %}
+
+
+
 
     </div>
   </div>

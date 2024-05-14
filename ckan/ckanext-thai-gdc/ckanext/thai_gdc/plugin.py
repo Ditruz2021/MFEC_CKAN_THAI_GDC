@@ -310,6 +310,18 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             ckan_icon='file',
             controller='ckanext.thai_gdc.controllers.audit_log:AuditLogController'
         )
+        map.connect(
+            'gdc_manual_usage_api',
+            '/manual_usage_api/page',
+            action='manual_usage_api',
+            controller='ckanext.thai_gdc.controllers.manual_usage_api:ManualUsageApiController'
+        )
+        map.connect(
+            'gdc_usage_for_users',
+            '/usage_for_users/page',
+            action='usage_for_users',
+            controller='ckanext.thai_gdc.controllers.usage_for_users:ManualUsageController'
+        )
         return map
 
     # IAuthFunctions
