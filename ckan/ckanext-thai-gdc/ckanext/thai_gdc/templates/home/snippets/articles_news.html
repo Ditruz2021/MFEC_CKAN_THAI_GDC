@@ -2,7 +2,7 @@
 <div class="col-sm-6 col-md-4">
     <a class="new-item" href="{% if category.page_type == 'page' %}pages{% else %}{{ category.page_type }}{% endif %}/{{category.name}}">
         <div class="img-new">
-            <img class="img-responsive" style="min-width: 100%" src="{{ category.image }}" alt="GD Catalog banner"
+            <img class="img-responsive" style="min-width: 100%" src="{% if category.image %}{{ category.image }}{% else %}{{ h.url_for_static('/base/logo_mea_opendata/logo2.png') }}{% endif %}" alt="GD Catalog banner"
                 width="420" height="220" />
         </div>
         <div class="text-new">

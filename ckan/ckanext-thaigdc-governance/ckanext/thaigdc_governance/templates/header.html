@@ -1,7 +1,16 @@
 {% ckan_extends %}
+{% set current_lang = request.environ.CKAN_LANG %}
 
 {% block header_account_logged %}
 {% set governance_organizations = h.organizations_available(permission='governance') %}
+<li>
+  <a href="{% url_for h.current_url(), locale='th' %}" class="image lang {% if 'th' == current_lang %}active{% endif %}" title="th">
+    <img src="{{ h.url_for_static('/base/logo_mea_opendata/th.png') }}"  class="user-image" width="22" height="22" alt="Gravatar">
+  </a>
+  <a href="{% url_for h.current_url(), locale='en' %}" class="image lang {% if 'en' == current_lang %}active{% endif %}" title="en">
+    <img src="{{ h.url_for_static('/base/logo_mea_opendata/en.png') }}" class="user-image" width="22" height="22" alt="Gravatar">
+  </a>
+</li>
 {% if h.check_access('steward') %}
 <li>
   <a href="/governance/processing_state" title="{{ _('Data Governance') }}">
@@ -18,4 +27,16 @@
 </li>
 {% endif %}
   {{ super() }}
+{% endblock %}
+
+{% block header_account_notlogged %}
+<li>
+  <a href="{% url_for h.current_url(), locale='th' %}" class="image lang {% if 'th' == current_lang %}active{% endif %}" title="th">
+    <img src="{{ h.url_for_static('/base/logo_mea_opendata/th.png') }}"  class="user-image" width="22" height="22" alt="Gravatar">
+  </a>
+  <a href="{% url_for h.current_url(), locale='en' %}" class="image lang {% if 'en' == current_lang %}active{% endif %}" title="en">
+    <img src="{{ h.url_for_static('/base/logo_mea_opendata/en.png') }}" class="user-image" width="22" height="22" alt="Gravatar">
+  </a>
+</li>
+{{ super() }}
 {% endblock %}

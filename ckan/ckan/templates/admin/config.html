@@ -42,7 +42,7 @@
   <div class="module module-narrow module-shallow">
     <h2 class="module-heading">
       <i class="fa fa-info-circle"></i>
-      {{ _('CKAN config options') }}
+      {{ _('Open-D config options') }}
     </h2>
     <div class="module-content">
       {% block admin_form_help %}
@@ -50,15 +50,15 @@
         {% set home_url = h.url_for(controller='home', action='index') %}
         {% set docs_url = "http://docs.ckan.org/en/{0}/theming".format(g.ckan_doc_version) %}
         {% trans %}
-          <p><strong>Site Title:</strong> This is the title of this CKAN instance
-            It appears in various places throughout CKAN.</p>
+          <p><strong>Site Title:</strong> This is the title of this Open-D instance
+            It appears in various places throughout Open-D.</p>
           <p><strong>Style:</strong> Choose from a list of simple variations of
             the main colour scheme to get a very quick custom theme working.</p>
           <p><strong>Site Tag Logo:</strong> This is the logo that appears in the
-            header of all the CKAN instance templates.</p>
-          <p><strong>About:</strong> This text will appear on this CKAN instances
+            header of all the Open-D instance templates.</p>
+          <p><strong>About:</strong> This text will appear on this Open-D instances
             <a href="{{ about_url }}">about page</a>.</p>
-          <p><strong>Intro Text:</strong> This text will appear on this CKAN instances
+          <p><strong>Intro Text:</strong> This text will appear on this Open-D instances
             <a href="{{ home_url }}">home page</a> as a welcome to visitors.</p>
           <p><strong>Custom CSS:</strong> This is a block of CSS that appears in
             <code>&lt;head&gt;</code> tag of every page. If you wish to customize

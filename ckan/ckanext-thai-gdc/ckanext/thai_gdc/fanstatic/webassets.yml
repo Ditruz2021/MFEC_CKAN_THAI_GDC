@@ -2,7 +2,7 @@ thai_gdc_css:
   filters: cssrewrite
   output: ckanext-thai-gdc/%(version)s_thai_gdc.css
   contents:
-    # - css/thai_gdc.css
+    - css/thai_gdc.css
     - css/thai_gdc_custom.css
     - css/page_custom.css
 thai_gdc_fuchsia_css:

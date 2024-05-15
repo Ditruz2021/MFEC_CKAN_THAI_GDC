@@ -13,9 +13,9 @@
 {% block page_primary_action %}
   {% if h.check_access('package_create', {'owner_org': group_dict.id}) %}
     {% snippet 'snippets/add_dataset.html', group=group_dict.id %}
-    {% if group_dict.id and c.userobj.sysadmin %}
+    <!-- {% if group_dict.id and c.userobj.sysadmin %}
       <a class="btn btn-primary" href="/ckan-admin/dataset-import?import_org={{ group_dict.name }}"><i class="fa fa-cloud-upload"></i> Import from template</a>
-    {% endif %}
+    {% endif %} -->
   {% endif %}
 {% endblock %}
 

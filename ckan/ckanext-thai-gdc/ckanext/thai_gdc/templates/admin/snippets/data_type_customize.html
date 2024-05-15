@@ -20,13 +20,15 @@
     {% for entity in entities %}
       {% set title = entity.title or entity.name %}
         <li>
-          {{ h.link_to(h.truncate(title, truncate_title), h.url_for(entity.type + '.read', id=entity.name)) }}
-          <a href="{{ h.url_for(controller='ckanext.thai_gdc.controllers.user:UserManageController', action='rollback_trash',id=entity.id,ent_type=ent_type) }}"
-               class="btn btn-success"
-               data-module="confirm-action"
-               data-module-content="ยืนยันการนำข้อมูลนี้กลับเข้าสู่ระบบ ?">
-               นำกลับ
+          <div class="trash-list">
+            {{ h.link_to(h.truncate(title, truncate_title), h.url_for(entity.type + '.read', id=entity.name)) }}
+            <a href="{{ h.url_for(controller='ckanext.thai_gdc.controllers.user:UserManageController', action='rollback_trash',id=entity.id,ent_type=ent_type) }}"
+              class="btn btn-success"
+              data-module="confirm-action"
+              data-module-content="ยืนยันการนำข้อมูลนี้กลับเข้าสู่ระบบ ?">
+              นำกลับ
             </a>
+          </div>
         </li>
       {% else %}
       <p>

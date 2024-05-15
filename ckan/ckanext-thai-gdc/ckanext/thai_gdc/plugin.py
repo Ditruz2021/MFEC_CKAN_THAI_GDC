@@ -129,15 +129,15 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
     # IConfigurer
     def update_config(self, config_):
         if toolkit.check_ckan_version(max_version='2.9'):
-            toolkit.add_ckan_admin_tab(config_, 'banner_edit', 'แก้ไขแบนเนอร์')
-            toolkit.add_ckan_admin_tab(config_, 'dataset_import', 'นำเข้ารายการชุดข้อมูล')
-            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_export', 'ส่งออกรายการชุดข้อมูล')
-            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_popup', 'ป็อปอัพ')
+            toolkit.add_ckan_admin_tab(config_, 'banner_edit', _('Banner edit'))
+            # toolkit.add_ckan_admin_tab(config_, 'dataset_import', 'นำเข้ารายการชุดข้อมูล')
+            # toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_export', 'ส่งออกรายการชุดข้อมูล')
+            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_popup', _('Popup'))
         else:
-            toolkit.add_ckan_admin_tab(config_, 'banner_edit', u'แก้ไขแบนเนอร์', icon='wrench')
-            toolkit.add_ckan_admin_tab(config_, 'dataset_import', u'นำเข้ารายการชุดข้อมูล', icon='cloud-upload')
-            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_export', u'ส่งออกรายการชุดข้อมูล', icon='cloud-download')
-            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_popup', u'ป็อปอัพ', icon='window-maximize')
+            toolkit.add_ckan_admin_tab(config_, 'banner_edit', _('Banner edit'), icon='wrench')
+            # toolkit.add_ckan_admin_tab(config_, 'dataset_import', u'นำเข้ารายการชุดข้อมูล', icon='cloud-upload')
+            # toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_export', u'ส่งออกรายการชุดข้อมูล', icon='cloud-download')
+            toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_popup', _('Popup'), icon='window-maximize')
             toolkit.add_ckan_admin_tab(config_, 'gdc_agency_admin_audit_log', u'Audit Log', icon='list')
 
         toolkit.add_template_directory(config_, 'templates')

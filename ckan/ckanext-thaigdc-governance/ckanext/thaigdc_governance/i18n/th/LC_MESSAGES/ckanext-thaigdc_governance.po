@@ -50,7 +50,7 @@ msgid "public"
 msgstr "เปิดเผย"
 
 msgid "registered"
-msgstr "เผยแพร่ภายในองค์กร"
+msgstr "เผยแพร่ภายในเขตทำการ"
 
 msgid "first_trusted"
 msgstr "ลับ"
@@ -136,3 +136,13 @@ msgstr "เจ้าของข้อมูล"
 
 msgid "requestdata_anonymous"
 msgstr "ผู้ยื่นคำขอ"
+
+msgid ""
+"You can use Open-D to create and manage collections of datasets. This "
+"could be to catalogue datasets for a particular project or team, or on a "
+"particular theme, or as a very simple way to help people find and search your"
+" own published datasets."
+msgstr "คุณสามารถใช้กลุ่มชุดข้อมูล Open-D ในการสร้างและจัดการชุดข้อมูล ไม่ว่าจะเป็นการสร้างแค็ตตาล็อกสำหรับชุดข้อมูลสำหรับโปรเจ็คต์ ทีม หรือธีม หรือเป็นวิธีง่ายๆ ในการช่วยให้ผู้ค้นหาชุดข้อมูลของคุณได้"
+
+msgid "Your profile lets other Open-D users know about who you are and what you do."
+msgstr "โปรไฟล์ของคุณช่วยให้ผู้ใช้ Open-D คนอื่นๆ ทราบว่าคุณเป็นใครและทำอะไรอยู่"

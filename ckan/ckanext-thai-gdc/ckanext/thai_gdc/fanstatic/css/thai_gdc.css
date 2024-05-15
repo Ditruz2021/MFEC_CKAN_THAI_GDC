@@ -712,3 +712,15 @@ span[lang]
   background-color: #ffc107;
   color: black;
 }
+.account-masthead .account .image.lang {
+  display: inline;
+  opacity: 0.6;
+}
+.account-masthead .account .image.lang.active {
+  opacity: 1;
+}
+.trash-list {
+  margin: 10px 0px;
+  justify-content: space-between;
+  display: flex;
+}

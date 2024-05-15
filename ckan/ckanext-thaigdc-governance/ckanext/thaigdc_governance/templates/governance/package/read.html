@@ -422,7 +422,7 @@
         {% if pkg.governance_state == 'approval' %}
           <div><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
         {% endif %}
-        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาชุดข้อมูลนี้หรือไม่')">ส่งเรื่อง</button>
+        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาชุดข้อมูลนี้หรือไม่')">อนุมัติ</button>
         </form>
       </section>
       {% elif pkg.governance_state == 'complete' and h.thaigdc_governance_get_action_foradmin('package_search',{"include_private":"true","q":"type:prepare +name:gprepare-"+h.thaigdc_governance_get_action_foradmin('package_show',{"id":pkg.prepare_dataset_id})['name']}).count == 0 %}
@@ -699,7 +699,7 @@
         
         <div style="margin-top: 20px;"><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
 
-        <button class="btn btn-primary" type="submit" name="save_publish" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่')">ส่งเรื่อง</button>
+        <button class="btn btn-primary" type="submit" name="save_publish" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่')">อนุมัติ</button>
         </form>
       </section>
       {% endif %}

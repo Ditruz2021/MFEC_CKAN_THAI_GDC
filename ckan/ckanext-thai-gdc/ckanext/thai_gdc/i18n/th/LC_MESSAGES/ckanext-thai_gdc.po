@@ -282,7 +282,7 @@ msgid "Groups Datasets"
 msgstr "กลุ่มชุดข้อมูล"
 
 msgid "Usage for users"
-msgstr "การใช้งานสำหรับผู้ใช้งาน"
+msgstr "คู่มือการใช้งาน"
 
 msgid "Manual usage API"
 msgstr "คู่มือการใช้งาน API"
@@ -292,3 +292,63 @@ msgstr "ร้องขอชุดข้อมูล"
 
 msgid "There are currently no articles or news here"
 msgstr "ไม่มีบทความหรือข่าวใดๆ ณ ปัจจุบัน"
+
+msgid "Articles and news"
+msgstr "บทความ/ข่าวสาร"
+
+msgid "Add Organization"
+msgstr "เพิ่มเขตทำการ"
+
+msgid "Deleted datasets"
+msgstr "ชุดข้อมูลที่ถูกลบ"
+
+msgid "Deleted organizations"
+msgstr "เขตทำการที่ถูกลบ"
+
+msgid "Deleted groups"
+msgstr "กลุ่มชุดข้อมูลที่ถูกลบ"
+
+msgid "There are no datasets to purge"
+msgstr "ไม่มีชุดข้อมูลที่ถูกลบ"
+
+msgid "There are no organizations to purge"
+msgstr "ไม่มีเขตทำการที่ถูกลบ"
+
+msgid "There are no groups to purge"
+msgstr "ไม่มีกลุ่มชุดข้อมูลที่ถูกลบ"
+
+msgid "Purge all"
+msgstr "ล้างทั้งหมด"
+
+msgid "Purge"
+msgstr "ล้างข้อมูล"
+
+msgid "Are you sure you want to purge everything?"
+msgstr "ท่านต้องการยืนยันการล้างข้อมูลทั้งหมดใช่หรือไม่ ?"
+
+msgid "Are you sure you want to purge datasets?"
+msgstr "ท่านต้องการยืนยันการล้างชุดข้อมูลทั้งหมดใช่หรือไม่ ?"
+
+msgid "Are you sure you want to purge organizations?"
+msgstr "ท่านต้องการยืนยันการล้างเขตทำการทั้งหมดใช่หรือไม่ ?"
+
+msgid "Are you sure you want to purge groups?"
+msgstr "ท่านต้องการยืนยันการล้างกลุ่มชุดข้อมูลทั้งหมดใช่หรือไม่ ?"
+
+msgid "{number} datasets have been purged"
+msgstr "{number} ชุดข้อมูลถูกล้างเรียบร้อย"
+
+msgid "{number} organizations have been purged"
+msgstr "{number} เขตทำการถูกล้างเรียบร้อย"
+
+msgid "{number} groups have been purged"
+msgstr "{number} กลุ่มชุดข้อมูลถูกล้างเรียบร้อย"
+
+msgid "Purge deleted datasets, organizations or groups forever and irreversibly."
+msgstr "สำหรับการล้างชุดข้อมูล เขตทำการ หรือกลุ่มชุดข้อมูลที่ถูกลบอย่างถาวรและไม่สามารถย้อนกลับได้"
+
+msgid "Banner edit"
+msgstr "แก้ไขแบนเนอร์"
+
+msgid "Popup"
+msgstr "ป็อปอัพ"

@@ -88,7 +88,8 @@ a {
   font-family: 'DB Ozone X Light', sans-serif;
 } */
 .img-nav {
-  width: 50px;
+  width: 40px;
+  margin-top: 20px;
 }
 
 .nav-text {
@@ -164,7 +165,7 @@ a {
 
   .masthead .nav-pills > li > a {
   background: #fff;
-  font-size: 22px;
+  font-size: 18px;
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
   color: #000;
   border-radius: 0px;
@@ -183,13 +184,14 @@ a {
 }
 
 .img-nav {
-  width: 45px;
+  width: 40px;
   position: relative;
+  margin-top: 20px;
 }
 .img-nav::before {
  content: '';
- width: 55px;
- height: 55px;
+ width: 40px;
+ height: 40px;
  position: absolute;
  
  left: -10px;
@@ -248,6 +250,7 @@ a {
   width: 35px;
   margin-right: 10px;
   display: inline-block;
+  margin-top: 20px;
 }
 .nav-text {
   display: inline-block;
