@@ -4,10 +4,12 @@
 		if(cb.value=="อื่นๆ" && cb.checked==true){
             document.getElementById('field-data_language_other').value = '';
             document.getElementById('field-data_language_other').disabled = false;
+            document.getElementById('field-data_language_other').attr("style", "display: block;");
             document.getElementById('field-data_language_other').focus()
         } else if(cb.value=="อื่นๆ" && cb.checked==false) {
             document.getElementById('field-data_language_other').value = '';
             document.getElementById('field-data_language_other').disabled = true;
+            document.getElementById('field-data_language_other').attr("style", "display: none;");
         }
 	}
 </script>
