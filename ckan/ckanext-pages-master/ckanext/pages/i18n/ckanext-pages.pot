@@ -245,7 +245,7 @@ msgid "Blog Articles"
 msgstr ""
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/blog_edit_base.html:12
-msgid " <p>Add blog articles to CKAN here.</p> "
+msgid " <p>Add blog articles to Open-D here.</p> "
 msgstr ""
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:5

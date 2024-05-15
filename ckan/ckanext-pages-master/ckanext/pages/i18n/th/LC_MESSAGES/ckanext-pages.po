@@ -121,7 +121,7 @@ msgstr ""
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:40
 msgid "Add Blog Article"
-msgstr ""
+msgstr "เพิ่มบทความและข่าวสาร"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:42
 msgid "Edit Blog Article"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:45
 msgid "eg. Blog Article Title"
-msgstr ""
+msgstr "ชื่อของบทความ/ข่าวสาร"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:48
 #: ckanext/pages/theme/templates_main/ckanext_pages/group_page_list.html:5
@@ -158,7 +158,7 @@ msgstr ""
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:65
 msgid "Publish Date"
-msgstr ""
+msgstr "วันที่เผยแพร่"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:65
 msgid "2005-01-01"
@@ -247,8 +247,8 @@ msgid "Blog Articles"
 msgstr "บทความและข่าวสาร"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/blog_edit_base.html:12
-msgid " <p>Add blog articles to CKAN here.</p> "
-msgstr ""
+msgid " <p>Add blog articles to Open-D here.</p> "
+msgstr "เพิ่มบทความและข่าวสารของ Open-D ที่นี่"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:5
 msgid "Add Article"
