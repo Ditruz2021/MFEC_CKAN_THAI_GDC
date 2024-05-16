@@ -1,0 +1,15 @@
+{% ckan_extends %}
+
+{% block footer_attribution %}
+<div class="col-md-12 col-sm-12 col-xs-12 text-right">
+    <span>
+        จำนวนผู้เข้าชม <span class="totalVisitor">{{ h.thai_gdc_get_stat_all_view() }}<!-- at {{ h.thai_gdc_get_last_update_tracking() }} --></span>
+    </span>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12" style="display: flex;justify-content: end;padding-left: 0px;margin-top: 10px;">
+    <span>
+        <small style="vertical-align: sub;color: #ffffff;">รุ่นโปรแกรม: {{h.thai_gdc_get_extension_version('version')}}</small><br/>
+        <small style="vertical-align: sub;line-height: 2.6;color: #ffffff;">วันที่: {{h.thai_gdc_get_extension_version('date')}}</small>
+    </span>
+</div>
+{% endblock %}

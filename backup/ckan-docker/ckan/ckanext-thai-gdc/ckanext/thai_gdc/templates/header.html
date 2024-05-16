@@ -1,0 +1,47 @@
+{% ckan_extends %}
+
+
+
+{% block header_account_container_content %}
+  {{ super() }}
+  <hgroup class="{{ g.header_class }} navbar-left">
+    {% block header_logo_2 %} {% if g.site_logo %}
+    <a class="logo" href="{{ h.url_for('home.index') }}"><img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+    {% else %}
+    <h1>
+      <a href="{{ h.url_for('home.index') }}">{{ g.site_title }}</a>
+    </h1>
+    {% if g.site_description %}
+    <h2>{{ g.site_description }}</h2>{% endif %} {% endif %} {% endblock %}
+  </hgroup>
+{% endblock %}
+
+{% block header_account_logged %}
+  <li>
+    <a href="/user" title="{{ _('User') }}">
+      <i class="fa fa-user"></i>
+      <span class="text">{{ _('User') }}</span>
+    </a>
+  </li>
+    {{ super() }}
+{% endblock %}
+
+
+{% block header_logo %}
+{% endblock %}
+
+{% block header_site_search %}
+{% endblock %}  
+
+{% block header_site_navigation_tabs %}
+  {{ h.thai_gdc_build_nav_main_customize(
+    ('dataset.search', _('Datasets'), h.url_for_static('/base/logo_mea_opendata/header1.png'),true),
+    ('organization.index', _('Organizations area'), h.url_for_static('/base/logo_mea_opendata/header2.png'),true),
+    ('group.index', _('Groups Datasets'), h.url_for_static('/base/logo_mea_opendata/header3.png'),true),
+    ('/usage_for_users/page', _('Usage for users'), h.url_for_static('/base/logo_mea_opendata/header4.png'),false),
+    ('/manual_usage_api/page', _('Manual usage API'), h.url_for_static('/base/logo_mea_opendata/header5.png'),false),
+    ('/requestdataset/page', _('Request a dataset'), h.url_for_static('/base/logo_mea_opendata/header6.png'),false),
+    ('home.about', _('About'), h.url_for_static('/base/logo_mea_opendata/header7.png'),true)
+   
+  ) }}
+{% endblock %}

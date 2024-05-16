@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+
+{% block primary_content_inner %}
+  <ul class="user-list">
+    {% for user in sysadmins %}
+      <li>{{ h.linked_user(user) }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block secondary_content %}
+  <div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+      <i class="fa fa-info-circle"></i>
+      {{ _('Administer Open-D') }}
+    </h2>
+    <div class="module-content">
+
+      {% set docs_url = "http://docs.ckan.org/en/{0}/sysadmin-guide.html".format(g.ckan_doc_version) %}
+      <p>{{ _('As a sysadmin user you have full control over this Open-D instance. Proceed with care!') }}</p>
+    </div>
+  </div>
+{% endblock %}

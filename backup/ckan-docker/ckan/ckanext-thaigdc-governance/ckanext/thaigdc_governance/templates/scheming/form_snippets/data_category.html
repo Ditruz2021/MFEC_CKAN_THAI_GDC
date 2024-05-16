@@ -1,0 +1,94 @@
+{% import 'macros/form.html' as form %}
+
+<script>
+  function sSelect_data_category(){
+      index = document.getElementById('field-data_category').value;
+      var sDisclosure = document.getElementById("field-disclosure");
+      if(index == 'ข้อมูลสาธารณะ'){
+        for (var i = 0; i < sDisclosure.length; i++) {
+          var txt = sDisclosure.options[i].attributes[0].nodeValue;
+          if(txt != 'public') {
+            $(sDisclosure.options[i]).attr('disabled', 'disabled').hide();
+          }
+          else {
+            $(sDisclosure.options[i]).removeAttr('disabled').show();
+          }
+        }
+        sDisclosure.selectedIndex = 0;
+      } else if(index == 'ข้อมูลใช้ภายใน') {
+        for (var i = 0; i < sDisclosure.length; i++) {
+          var txt = sDisclosure.options[i].attributes[0].nodeValue;
+          if(txt != 'registered') {
+            $(sDisclosure.options[i]).attr('disabled', 'disabled').hide();
+          }
+          else {
+            $(sDisclosure.options[i]).removeAttr('disabled').show();
+          }
+        }
+        sDisclosure.selectedIndex = 1;
+      } else if(index == 'ข้อมูลส่วนบุคคล') {
+        for (var i = 0; i < sDisclosure.length; i++) {
+          var txt = sDisclosure.options[i].attributes[0].nodeValue;
+          if(txt == 'public' || txt == 'secret') {
+            $(sDisclosure.options[i]).attr('disabled', 'disabled').hide();
+          }
+          else {
+            $(sDisclosure.options[i]).removeAttr('disabled').show();
+          }
+        }
+        sDisclosure.selectedIndex = 1;
+      } else {
+        for (var i = 0; i < sDisclosure.length; i++) {
+          var txt = sDisclosure.options[i].attributes[0].nodeValue;
+          if(txt == 'public' || txt == 'registered') {
+            $(sDisclosure.options[i]).attr('disabled', 'disabled').hide();
+          }
+          else {
+            $(sDisclosure.options[i]).removeAttr('disabled').show();
+          }
+        }
+        sDisclosure.selectedIndex = 2;
+      }
+      sSelect_disclosure();
+  }
+  </script>
+
+{%- set options=[] -%}
+{%- set form_restrict_choices_to=field.get('form_restrict_choices_to') -%}
+{%- if not h.scheming_field_required(field) or
+    field.get('form_include_blank_choice', false) -%}
+  {%- do options.append({'value': '', 'text': ''}) -%}
+{%- endif -%}
+{%- for c in h.scheming_field_choices(field) -%}
+  {%- if not form_restrict_choices_to or c.value in form_restrict_choices_to -%}
+    {%- do options.append({
+      'value': c.value|string,
+      'text': h.scheming_language_text(c.label) }) -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if field.get('sorted_choices') -%}
+  {%- set options = options|sort(case_sensitive=false, attribute='text') -%}
+{%- endif -%}
+{%- if data[field.field_name] -%}
+  {%- set option_selected = data[field.field_name]|string -%}
+{%- else -%}
+  {%- set option_selected = None -%}
+{%- endif -%}
+
+{% call form.select(
+    field.field_name,
+    id='field-' + field.field_name,
+    label=h.scheming_language_text(field.label),
+    options=options,
+    selected=option_selected,
+    error=errors[field.field_name],
+    classes=['control-medium'],
+    attrs=dict({"class": "form-control", 'onchange' : "sSelect_data_category();"}, **(field.get('form_attrs', {}))),
+    is_required=h.scheming_field_required(field)
+    )
+%}
+
+{% endcall %}
+
+
+

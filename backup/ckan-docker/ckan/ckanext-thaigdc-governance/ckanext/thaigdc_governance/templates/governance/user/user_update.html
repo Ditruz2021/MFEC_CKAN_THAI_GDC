@@ -1,0 +1,119 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+
+{% block main_content %}
+<article class="module" role="main">
+  <div class="row wrapper no-nav view-preview-container">
+    <section class="module module-narrow module-shallow">
+  
+    <div class="module-content">
+    <h1 class="page-heading">
+      {% block page_heading %}
+      <!-- {{ _('Login') }} -->
+      การจัดการผู้ใช้งาน
+      {% endblock %}
+    </h1>
+    {% block user_update_form %}
+    <form id="user_create" method='post' action="">
+
+      {{ form.errors(error_summary) }}
+      <div class="row">
+      <div class="col-sm-6">
+        {{ form.input("name", id="field_name", label='username', placeholder='', value=itemuser_dict.name, is_required=True) }}
+      </div>
+      <div class="col-sm-6">
+        {{ form.input("password", id="field_password", label='password', type="password", placeholder='', value=itemuser_dict.password, is_required=True) }}
+      </div>
+      </div>
+    
+     
+        {{ form.input("fullname", id="field_fullname", label='ชื่อ - นามสกุล', placeholder='', value=itemuser_dict.fullname, is_required=True) }}
+        <div class="row">
+      <div class="col-sm-6">
+        {{ form.input("phone", id="field_phone", label='เบอร์โทร', placeholder='', value=itemuser_dict.phone, is_required=True) }}
+        </div>
+      <div class="col-sm-6">
+        {{ form.input("email", id="field_email", label='อีเมล', placeholder='', value=itemuser_dict.email, is_required=True) }}
+        </div>
+        </div>
+       
+    
+    
+     {{ form.markdown("address", id="field_address", label='ที่อยู่', placeholder='', value=itemuser_dict.address, is_required=True) }}
+      <div class="form-actions">
+        {% block form_actions %}
+    
+    
+        
+        <button id="submit-button" class="btn btn-primary" type="submit" name="save_publish">บันทึก</button>
+        <a href="" class="btn btn-danger" >ยกเลิก</a>
+        {% endblock %}
+      </div>
+    </form>
+    {% endblock %}
+  </div>
+ 
+</section>
+</div>
+ </article>
+<style>
+  /* already defined in bootstrap4 */
+  .text-xs-center {
+      text-align: center;
+  }
+
+  .g-recaptcha {
+      display: inline-block;
+  }
+</style>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+<!-- 
+
+<div class="modal fade" id="requestdataset_success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ส่งคำร้องเรียบร้อย</h4>
+      </div>
+      <div class="modal-body">
+      ท่านสามารถตรวจสอบสถานะการดำเนินการได้ทางอีเมล์ของท่าน
+      หรือสามารถติดต่อเจ้าหน้าที่ได้ทางอีเมล์  support@mea.or.th
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="requestdataset_erroor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ช่องรายการที่ต้องกรอก</h4>
+      </div>
+      <div class="modal-body">
+      ท่านกรอกข้อมูลไม่ครบถ้วนกรุณากรอกให้ครบถ้วน
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+ -->

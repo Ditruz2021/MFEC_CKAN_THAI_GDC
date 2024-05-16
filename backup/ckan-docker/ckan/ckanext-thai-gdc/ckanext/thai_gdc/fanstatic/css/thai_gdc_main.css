@@ -1,0 +1,111 @@
+.masthead {
+  background: #fff
+  }
+.masthead .nav-pills > li > a {
+  background: #fff;
+  font-size: 18px;
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.1);
+  color: #000;
+  border-radius: 0px;
+  transition: box-shadow 0.3s ease;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  font-weight: bold;
+}
+.masthead .nav-pills > li > a:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+.masthead .navigation .nav-pills li a:hover{
+  background-color: #FE5000;
+  color: #fff;
+}
+.masthead .navigation .nav-pills li.active a{
+  background-color: #FE5000;
+  color: #fff;
+}
+.navbar-toggle {
+  background-color: #FE5000;
+}
+.account-masthead {
+  background: #fe5000;
+}
+.account-masthead .account ul li a {
+  color: #FFFFFF;
+  line-height: 80px;
+  font-size: 16px;
+}
+.account-masthead .account ul li {
+  border-left: 1px solid #ffffff;
+}
+.account-masthead .account ul li a:hover {
+  background-color: #C7581A;
+}
+.homepage .module-search .module-content {
+  background-color: #FE5000;
+}
+.homepage .module-search .tags {
+  background-color: #C7581A;
+}
+.account-masthead hgroup .logo img {
+  max-height: 60px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.site-footer{
+  background: #333333;
+}
+.btn-primary {
+  background-color: #FE5000;
+  border-color: #C7581A;
+}
+.btn-primary:hover {
+  background-color: #C7581A;
+  border-color: #FE5000;
+}
+a {
+  color: #000000;
+}
+.masthead .navbar-collapse {
+  float: left;
+}
+.masthead .section {
+  font-family: 'DB Ozone X Light', sans-serif;
+}
+.img-nav {
+  width: 40px;
+  margin-top: 20px;
+}
+.nav-text{
+  margin-bottom: 0px;
+  margin-top: revert;
+}
+.nav-link-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.masthead .container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stages li.active .highlight{
+  background: #FE5000;
+}
+.stages li.active:before {
+  color: #FE5000;
+}
+.nav-item.active > a, .nav-aside li.active a{
+  background-color: #FE5000;
+}
+.nav-item.active > a:before, .nav-aside li.active a:before{
+  border-left-color: #FE5000;
+}
+.nav-item.active > a:hover, .nav-aside li.active a:hover {
+  background-color: #C7581A;
+}
+.masthead .navigation .nav-pills li a:hover, .masthead .navigation .nav-pills li a:focus, .masthead .navigation .nav-pills li.active a{
+  background-color: #FE5000;
+}

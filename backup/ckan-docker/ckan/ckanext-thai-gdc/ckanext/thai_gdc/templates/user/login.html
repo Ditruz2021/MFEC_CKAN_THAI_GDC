@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block primary_content %}
+  {{ super() }}
+  <script type="text/javascript">
+    if (top != self) {
+        top.location = self.location;
+    }
+  </script>
+{% endblock %}

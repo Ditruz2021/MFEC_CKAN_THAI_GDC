@@ -1,0 +1,55 @@
+<div class="col-md-6 col-lg-4">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">ภาพรวม</div>
+    <div class="panel-body text-center">
+      <div class="chart-icon">
+        <!-- <i class="fa fa-building" aria-hidden="true"></i> -->
+      </div>
+      <div class="chart-item">
+        <canvas id="ChartOrg" style="width:70%;"></canvas>
+      </div>
+
+      <script>
+        const ChartOrgxValues = ["ชุดข้อมูล", "องค์กร"];
+        const ChartOrgyValues = [11193, 1408];
+        const ChartOrgbarColors = [
+          "#065381",
+          "#65cae6",
+         
+
+        ];
+
+
+
+        new Chart("ChartOrg", {
+          type: "pie",
+          data: {
+            labels: ChartOrgxValues,
+            datasets: [{
+              backgroundColor: ChartOrgbarColors,
+              data: ChartOrgyValues
+            }]
+          },
+          options: {
+            plugins: {
+              legend: {
+                position: 'bottom',
+              },
+              title: {
+                display: false,
+              }
+            }
+
+
+
+          }
+        });
+      </script>
+
+
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,226 @@
+{% extends "page.html" %}
+<!-- {% block breadcrumb_content %}
+  {{ super() }}
+  <li class="active"><a href="#">{{ _('Add view') }}</a></li>
+{% endblock %} -->
+{% block main_content %}
+<article class="module" role="main">
+  <div class="row wrapper no-nav view-preview-container">
+    <section class="module module-narrow module-shallow">
+
+      <div class="module-content custom-content">
+
+        <h1>คู่มือการใช้งาน API</h1>
+        {% block requestdataset_form %}
+        <p><strong>การสร้าง URL สำหรับเรียกใช้งาน API ผ่านระบบ Open-D</strong></p>
+        <p>รายละเอียดวิธีการใช้งานหน้าสืบค้นข้อมูลและการสร้าง URL สำหรับเรียกใช้งาน API ผ่านระบบ Open-D &nbsp;มีขั้นตอนดังนี้</p>
+
+        <p>ส่วนประกอบของหน้าจอสืบค้นข้อมูล ประกอบด้วย 2 ส่วน ได้แก่ ส่วนของการค้นหาข้อมูลและการสร้าง URL สำหรับเรียกใช้งาน API</p>
+        
+        <p>1. ส่วนของการค้นหาข้อมูล : ผู้ใช้สามารถค้นหาข้อมูลที่ต้องการได้ด้วยตนเอง โดยมีฟังก์ชันการค้นหาข้อมูล 2 รูปแบบ ได้แก่ 1) แบบระบุเงื่อนไข (field search) และ 2) แบบสรุปรายงาน (aggregation)</p>
+        
+        <p>1.1. การค้นหาข้อมูลแบบระบุเงื่อนไข (field search): ผู้ใช้งานสามารถกำหนดเงื่อนไขที่ต้องการสืบค้นได้ โดยเลือกคอลัมน์ที่ต้องการค้นหา (Properties), เครื่องหมาย (Operators) และข้อมูลที่ต้องการค้นหา (Values)</p>
+        
+        <p>กรณีที่ข้อมูลที่ต้องการค้นหามีชนิดข้อมูลตัวอักษร (string) สามารถกำหนดเครื่องหมายได้ 2 รูปแบบ คือ Contains และ S_EQUALS</p>
+        
+        <ul>
+            <li>Contains &ndash; ใช้กรณีที่ต้องการเปรียบเทียบข้อความเพียงบางส่วน เช่น ค้นหาข้อมูลวัฒนธรรมของจังหวัดที่มีคำว่า &quot;เชียง&quot; ระบบจะแสดงข้อมูลของจังหวัด &quot;เชียงใหม่&rdquo; และ &quot;เชียงราย&rdquo; เป็นต้น</li>
+            <li>S_EQUALS - ใช้กรณีที่ต้องการเปรียบเทียบข้อความแบบตรงกันหมด เช่น ค้นหาข้อมูลรูปภาพที่มีรหัสวัฒนธรรม &quot;MOC-136739&quot;</li>
+        </ul>
+        
+        <p>กรณีที่ต้องการค้นหามีชนิดข้อมูลตัวเลข (number) สามารถกำหนดเครื่องหมายได้ 5 รูปแบบ คือ =, &lt;, &lt;=,&gt;, &gt;=</p>
+        
+        <p>1.2. การค้นหาข้อมูลแบบสรุปรายงาน (aggregation): ผู้ใช้งานสามารถค้นหาข้อมูลแบบสรุปรายงานได้ โดยเลือกฟังก์ชันการคำนวณ (Aggregation Function), การแบ่งกลุ่ม (Group by) และการเรียงลำดับของข้อมูล (Order by) ฟังก์ชันการคำนวณ (Aggregation Function) มี 5 ฟังก์ชัน ได้แก่ จำนวน (count), จำนวนไม่ซ้ำ (distinct), ผลรวม (sum), ค่าเฉลี่ย (average), ค่าสูงสุด (max), ค่าต่ำสุด (min)</p>
+        
+        <p>2. ส่วนของการสร้าง URL เพื่อเรียกใช้งาน API : เป็นส่วนที่ระบบจะสร้าง URL เพื่อเรียกใช้งาน API แบบอัตโนมัติจากฟอร์มที่ผู้ใช้กำหนดเงื่อนไขในการค้นหาข้อมูล</p>
+        
+        <p><strong>ข้อมูลการใช้งาน&nbsp;</strong><strong>API</strong></p>
+        
+        <p><strong>Service Type</strong><strong>:</strong>&nbsp;REST/JSON</p>
+        
+        <p><strong>Method</strong><strong>:</strong>&nbsp;GET</p>
+        
+        <p><strong>ตัวอย่างการเรียกใช้งาน</strong></p>
+        
+        <p><strong>-&nbsp;</strong>เงื่อนไขสำหรับ field search: ค้นหารายชื่อนิติบุคคลที่มีที่อยู่ในจังหวัดเชียงใหม่</p>
+        
+        <p><a href="https://opend.data.go.th/opend-search/vir_1480_1579254770/query?dsname=vir_1480_1579254770&amp;path=vir_1480_1579254770&amp;property=col_8&amp;operator=CONTAINS&amp;valueLiteral=เช" target="_blank" rel="nofollow">https://opend.data.go.th/opend-search/vir_1480_1579254770/query?dsname=vir_1480_1579254770&amp;path=vir_1480_1579254770&amp;property=col_8&amp;operator=CONTAINS&amp;valueLiteral=เช</a>ียงใหม่&amp;loadAll=1&amp;type=json&amp;limit=100&amp;offset=0</p>
+        
+        <p>&nbsp;</p>
+        
+        <p>- เงื่อนไขสำหรับ aggregation : แสดงจำนวนนิติบุคคลที่มีทุนจดทะเบียนมากกว่า 10 ล้านบาท แบ่งกลุ่มตามวัตถุประสงค์การจัดตั้ง</p>
+        
+        <p><a href="https://opend.data.go.th/opend-search/vir_1480_1579254770/agg?dsname=vir_1480_1579254770&amp;path=vir_1480_1579254770&amp;aggf=count&amp;agg_prop=col_2&amp;groupby=col_7&amp;property=col_5&amp;operator=GT&amp;valueLiteral=10000000&amp;loadAll=1&amp;type=json&amp;limit=100&amp;offset=0" target="_blank" rel="nofollow">https://opend.data.go.th/opend-search/vir_1480_1579254770/agg?dsname=vir_1480_1579254770&amp;path=vir_1480_1579254770&amp;aggf=count&amp;agg_prop=col_2&amp;groupby=col_7&amp;property=col_5&amp;operator=GT&amp;valueLiteral=10000000&amp;loadAll=1&amp;type=json&amp;limit=100&amp;offset=0</a></p>
+        
+        <p><strong>Parameters&nbsp;</strong><strong>ของ&nbsp;</strong><strong>API</strong></p>
+        
+        <table border="1" cellpadding="0" cellspacing="0" style="width:604px">
+            <thead>
+                <tr>
+                    <th>
+                    <p><strong>ชื่อ</strong></p>
+                    </th>
+                    <th>
+                    <p><strong>ชื่อพารามิเตอร์</strong></p>
+                    </th>
+                    <th>
+                    <p><strong>คำอธิบาย</strong></p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                    <p>1</p>
+                    </td>
+                    <td>
+                    <p>dsname</p>
+                    </td>
+                    <td>
+                    <p>รหัสชุดข้อมูล</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>2</p>
+                    </td>
+                    <td>
+                    <p>path</p>
+                    </td>
+                    <td>
+                    <p>ชื่อตารางของชุดข้อมูล</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>3</p>
+                    </td>
+                    <td>
+                    <p>property</p>
+                    </td>
+                    <td>
+                    <p>คอลัมน์ที่ต้องการค้นหา</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>4</p>
+                    </td>
+                    <td>
+                    <p>operator</p>
+                    </td>
+                    <td>
+                    <p>เครื่องหมาย ประกอบด้วย Contains, S_EQUALS, EQUALS, LT, LE, GT, GE</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>5</p>
+                    </td>
+                    <td>
+                    <p>valueLiteral</p>
+                    </td>
+                    <td>
+                    <p>ค่าที่ต้องการค้นหา</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>6</p>
+                    </td>
+                    <td>
+                    <p>aggf</p>
+                    </td>
+                    <td>
+                    <p>ฟังก์ชันการคำนวณ ประกอบด้วย count, distinct, sum, average, min, max</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>7</p>
+                    </td>
+                    <td>
+                    <p>agg_prop</p>
+                    </td>
+                    <td>
+                    <p>คอลัมน์ที่ต้องการคำนวณ</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>8</p>
+                    </td>
+                    <td>
+                    <p>groupby</p>
+                    </td>
+                    <td>
+                    <p>คอลัมน์ที่ใช้ในการแบ่งกลุ่มข้อมูล</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>9</p>
+                    </td>
+                    <td>
+                    <p>orderby</p>
+                    </td>
+                    <td>
+                    <p>รูปแบบการเรียงลำดับ มี 2แบบ คือ มากไปน้อย (desc) และ น้อยไปมาก (asc)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>10</p>
+                    </td>
+                    <td>
+                    <p>limit</p>
+                    </td>
+                    <td>
+                    <p>จำกัดจำนวนแถวผลลัพธ์</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p>11</p>
+                    </td>
+                    <td>
+                    <p>offset</p>
+                    </td>
+                    <td>
+                    <p>แถวที่เริ่มต้น</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p>&nbsp;</p>
+        
+        <p><strong>รูปแบบของผลลัพธ์ (</strong><strong>Output)</strong></p>
+        
+        <p>ผลลัพธ์ที่ได้จากระบบ API จะอยู่ในรูปแบบของ JSON ดังแสดงในรูป มีองค์ประกอบดังนี้</p>
+        
+        <ul>
+            <li>numData: จำนวนผลลัพธ์</li>
+            <li>data: ข้อมูลผลลัพธ์ที่ตรงกับเงื่อนไขการค้นคืน</li>
+            <li>message:
+            <ul>
+                <li>Success,</li>
+            </ul>
+            </li>
+            <li>status:
+            <ul>
+                <li>200</li>
+            </ul>
+            </li>
+        </ul>
+
+
+        {% endblock %}
+      </div>
+
+    </section>
+  </div>
+</article>
+
+
+{% endblock %}

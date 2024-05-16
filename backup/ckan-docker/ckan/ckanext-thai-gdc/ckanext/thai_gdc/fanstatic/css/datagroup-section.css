@@ -1,0 +1,52 @@
+
+
+
+
+.media-heading a{ 
+    font-size: 24px;
+    line-height: 30px;
+    font-family: 'DB Ozone X Medium';
+    font-weight: 500;
+    color: #F66E22;
+    display: inline-block;
+    position: relative;
+}
+
+.media-heading a:hover{ 
+   text-decoration: none;
+}
+
+
+.media-heading a::before{ 
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #F66E22;
+  width: 0%;
+  height: 3px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -khtml-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.media-heading a:hover::before{ 
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -khtml-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+

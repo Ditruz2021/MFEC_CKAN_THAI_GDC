@@ -1,0 +1,33 @@
+{% extends "page.html" %}
+<!-- {% block breadcrumb_content %}
+  {{ super() }}
+  <li class="active"><a href="#">{{ _('Add view') }}</a></li>
+{% endblock %} -->
+{% block main_content %}
+<article class="module" role="main">
+  <div class="row wrapper no-nav view-preview-container">
+    <section class="module module-narrow module-shallow">
+
+      <div class="module-content custom-content">
+
+        <h1>{{ _('Usage for users') }}</h1>
+        {% block requestdataset_form %}
+        
+        <iframe src="/base/pdf/user_manual_for_applicant.pdf"></iframe>
+
+
+        {% endblock %}
+      </div>
+
+    </section>
+  </div>
+</article>
+<style>
+    iframe {
+        width: 100%;
+        height: 100vh;
+        border: none;
+    }
+</style>
+
+{% endblock %}

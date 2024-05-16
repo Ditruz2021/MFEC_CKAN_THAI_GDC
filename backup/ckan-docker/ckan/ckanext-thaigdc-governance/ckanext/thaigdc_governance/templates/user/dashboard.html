@@ -1,0 +1,25 @@
+{% ckan_extends %}
+
+{% block content_primary_nav %}
+  <ul class="nav nav-tabs">
+    {{ h.build_nav_icon('dashboard.index', _('News feed'), icon='list') }}
+    {{ h.build_nav_icon('dashboard.datasets', _('My Datasets'), icon='sitemap') }}
+    {{ h.build_nav_icon('dashboard.organizations', _('My Organizations'), icon='building-o') }}
+    {{ h.build_nav_icon('dashboard.groups', _('My Groups'), icon='users') }}
+    <li {% if request.endpoint=='governance.my_requestdata_list' %} class="active" {% endif %}><a href="/dashboard/requestdatas"><i class="fa fa-handshake-o"></i> คำขอใช้ข้อมูลของฉัน</a></li>
+    <li {% if request.endpoint=='governance.my_package_requested_list' %} class="active" {% endif %}><a href="/dashboard/requested_packages"><i class="fa fa-handshake-o"></i> ชุดข้อมูลของฉันที่ได้รับการขอใช้</a></li>
+  </ul>
+{% endblock %}
+
+{% block primary_content_inner %}
+  <div data-module="dashboard">
+    {% snippet 'user/snippets/followee_dropdown.html', context=dashboard_activity_stream_context, followees=followee_list %}
+    <h2 class="page-heading">
+      {% block page_heading %}
+        {{ _('News feed') }}
+      {% endblock %}
+      <small>{{ _("Activity from items that I'm following") }}</small>
+    </h2>
+    {% snippet 'snippets/activity_stream.html', activity_stream=dashboard_activity_stream, context=dashboard_activity_stream_context %}
+  </div>
+{% endblock %}

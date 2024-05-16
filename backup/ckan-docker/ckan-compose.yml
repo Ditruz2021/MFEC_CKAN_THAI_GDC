@@ -5,7 +5,10 @@ services:
   ckan:
     container_name: ckan-${PROJECT_NUMBER}
     restart: unless-stopped
-    image: thepaeth/ckan-thai_gdc:ckan-2.9-xloader
+    # image: thepaeth/ckan-thaigdc_governance:v1.0.0
+    build:
+      context: ckan/
+      dockerfile: Dockerfile
     env_file:
       - .env
     environment:

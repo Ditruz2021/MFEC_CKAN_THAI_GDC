@@ -1,0 +1,46 @@
+
+<style>
+  .dataset-item {
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+{% block package_list %}
+  {% if packages %}
+  {% if request.endpoint == 'dashboard.datasets' %}
+  <ul class="nav nav-tabs" style="margin-bottom: 30px;">
+    <li {% if request.args.get('governancestate')==None %} class="active" {% endif %}><a href="/dashboard/datasets"><i class="fa fa-sitemap"></i> ทุกสถานะ</a></li>
+    <li {% if request.args.get('governancestate')=='draft' %} class="active" {% endif %}><a href="/dashboard/datasets?governancestate=draft"><i class="fa fa-sitemap"></i> เอกสารร่าง</a></li>
+    <li {% if request.args.get('governancestate')=='wait' %} class="active" {% endif %}><a href="/dashboard/datasets?governancestate=wait"><i class="fa fa-sitemap"></i> รอการตรวจสอบ</a></li>
+    <li {% if request.args.get('governancestate')=='approval' %} class="active" {% endif %}><a href="/dashboard/datasets?governancestate=approval"><i class="fa fa-sitemap"></i> รอการอนุมัติ</a></li>
+    <li {% if request.args.get('governancestate')=='publish' %} class="active" {% endif %}><a href="/dashboard/datasets?governancestate=publish"><i class="fa fa-sitemap"></i> ผ่านการอนุมัติให้เผยแพร่</a></li>
+  </ul>
+  {% endif %}
+    <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
+    	{% block package_list_inner %}
+      {% if request.endpoint == 'dashboard.datasets' %}
+
+        {% for package in packages %}
+          {% if request.args.get('governancestate')=='draft' and package.get('type', '').startswith('prepare') and package.get('processing_dataset_id','') == '' and not package.get('name', '').startswith('gprepare-') and package.get('publish_dataset_id', '') == '' %}
+            {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+          {% elif (request.args.get('governancestate')=='wait' or request.args.get('governancestate')=='approval') and package.get('type', '').startswith('prepare') and package.get('processing_dataset_id','') != '' %}
+            {% set processing_dict = h.thaigdc_governance_get_action_foradmin('package_show',{"id":package.get('processing_dataset_id','')}) %}
+            {% if request.args.get('governancestate')=='wait' and processing_dict.get('governance_state') == 'wait' and not package.get('name', '').startswith('gprepare-') and package.get('publish_dataset_id', '') == '' %}
+              {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+            {% elif request.args.get('governancestate')=='approval' and processing_dict.get('governance_state') == 'approval' and not package.get('name', '').startswith('gprepare-') and package.get('publish_dataset_id', '') == '' %}
+              {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+            {% endif %}
+          {% elif request.args.get('governancestate')=='publish' and package.get('type', '').startswith('dataset') %}
+            {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}  
+          {% elif request.args.get('governancestate')==None and not package.get('name', '').startswith('gprepare-') and package.get('publish_dataset_id', '') == '' %}
+            {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}  
+          {% endif %}
+	      {% endfor %}
+      {% else %}
+	      {% for package in packages %}
+	        {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+	      {% endfor %}
+      {% endif %}
+	    {% endblock %}
+    </ul>
+  {% endif %}
+{% endblock %}

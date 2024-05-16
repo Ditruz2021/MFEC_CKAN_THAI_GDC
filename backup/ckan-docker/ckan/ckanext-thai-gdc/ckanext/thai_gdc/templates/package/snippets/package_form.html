@@ -1,0 +1,116 @@
+{% ckan_extends %}
+
+{% block form_actions %}
+
+{{ super() }}
+
+<!-- Modal -->
+<div class="modal fade" id="confirmRemove" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h1 class="modal-title" id="confirmRemoveLabel" style="margin-bottom: 0px;"> เเจ้งเตือน </h1>
+			</div>
+			<div class="modal-body">
+				ต้องการลบรายการนี้
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="confirmDelete">ยืนยัน</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	var selectElementId = "field-data_type";
+	var selectElement = document.getElementById(selectElementId);
+	if (selectElement) {
+		var parent = selectElement.parentElement;
+		var textValue = selectElement.options[selectElement.options.selectedIndex].textContent;
+		if (!parent) {
+			parent = selectElement.parentNode;
+			textValue = selectElement.options[selectElement.options.selectedIndex].text;
+		}
+		var input = document.createElement("input");
+		input.setAttribute("id", selectElement.id);
+		input.setAttribute("type", "text");
+		input.setAttribute("class", "form-control");
+		input.setAttribute("value", textValue);
+		input.style.background = "#eeeeee";
+		input.readOnly = true;
+		parent.appendChild(input);
+	}
+	selectElement.style.display = "none";
+
+
+
+	document.addEventListener("DOMContentLoaded", function () {
+		var formGroups = document.querySelectorAll('.form-group');
+
+		formGroups.forEach(function (formGroup) {
+			var requiredSpan = formGroup.querySelector('.control-required');
+
+			if (!requiredSpan) {
+				var button = document.createElement('button');
+				button.setAttribute('type', 'button');
+
+				// Create the icon element
+				var icon = document.createElement('i');
+				icon.classList.add('fa', 'fa-minus');
+				icon.setAttribute('aria-hidden', 'true');
+
+				// Append the icon to the button
+				button.appendChild(icon);
+				button.setAttribute('title', 'ลบรายการนี้');
+				button.classList.add('btn', 'btn-danger');
+
+				var controlsDiv = formGroup.querySelector('.controls');
+				controlsDiv.appendChild(button);
+			}
+		});
+
+		var buttons = document.querySelectorAll('.controls button');
+
+		buttons.forEach(function (button) {
+			button.addEventListener('click', function () {
+				var formGroup = button.closest('.form-group');
+				if (formGroup) {
+					formGroupToDelete = formGroup;
+					$('#confirmRemove').modal('show');
+				}
+			});
+		});
+		document.getElementById('confirmDelete').addEventListener('click', function () {
+			if (formGroupToDelete) {
+				formGroupToDelete.remove();
+				formGroupToDelete = null;
+				$('#confirmRemove').modal('hide');
+			}
+		});
+	});
+</script>
+
+
+
+
+
+<style type="text/css">
+	.form-group {
+		position: relative;
+	}
+
+	.controls .btn-danger {
+		position: absolute;
+		top: -5px;
+		right: 0px;
+		font-size: 14px;
+		line-height: 14px;
+		padding: 5px;
+		border-radius: 100%;
+	}
+</style>
+
+{% endblock %}

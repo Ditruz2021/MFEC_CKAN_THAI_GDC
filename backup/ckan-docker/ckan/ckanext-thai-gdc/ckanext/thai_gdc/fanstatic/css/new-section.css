@@ -1,0 +1,77 @@
+#new-section{
+
+}
+
+
+#new-section .new-item {
+    display: block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    border: 1px solid #dddddd;
+    box-shadow: rgb(149 157 165 / 50%) 0px 8px 24px;
+    background-color: transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -khtml-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#new-section .new-item:hover{
+   background-color: #333333;
+   -webkit-transition: all 0.3s ease-in-out;
+   -khtml-transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -ms-transition: all 0.3s ease-in-out;
+   -o-transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
+}
+#new-section .new-item .img-new{
+    filter: brightness(100%);
+   -webkit-transition: all 0.3s ease-in-out;
+   -khtml-transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -ms-transition: all 0.3s ease-in-out;
+   -o-transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
+}
+#new-section .new-item:hover .img-new{
+    filter: brightness(130%);
+   -webkit-transition: all 0.3s ease-in-out;
+   -khtml-transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -ms-transition: all 0.3s ease-in-out;
+   -o-transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
+}
+#new-section .new-item .text-new{
+   padding: 15px;
+}
+#new-section .new-item .text-new h4{
+    color: #F66E22;
+    font-size: 18px;
+    line-height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+}
+#new-section .new-item .text-new span{
+    color: #7D7D7D;
+    -webkit-transition: all 0.3s ease-in-out;
+    -khtml-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#new-section .new-item:hover .text-new span{
+    color: #ffffff;
+    -webkit-transition: all 0.3s ease-in-out;
+    -khtml-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}

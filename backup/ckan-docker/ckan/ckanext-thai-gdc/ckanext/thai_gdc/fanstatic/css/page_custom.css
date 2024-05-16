@@ -1,0 +1,19 @@
+.alert-warning {
+  color: #000000;
+  background-color: #F4A87D;
+  border-color: #F4A87D;
+}
+
+.alert-warning h1 {
+  font-family: 'DB Ozone X Light', sans-serif;
+  margin-bottom: 0px;
+}
+
+
+.wrapper {
+  /* border: 1px solid #ccc; */
+
+  -webkit-box-shadow: inherit !important;
+  box-shadow: inherit !important;
+
+}

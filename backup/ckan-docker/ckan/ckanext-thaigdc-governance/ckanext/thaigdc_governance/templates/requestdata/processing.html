@@ -1,0 +1,47 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+{% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
+
+{% block breadcrumb_content %}
+<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+{% endblock %}
+
+{% block page_heading %}{{ _('Data Governance') }}{% endblock %}
+
+{% block primary_content %}
+  <article class="module" role="main">
+    <div class="module-content">
+          <ul class="nav nav-tabs" style="margin-bottom: 30px;">
+            <li {% if request_state == 'requestdata_wait_steward' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_steward"><i class="fa fa-sitemap"></i> รอการตรวจสอบ</a></li>
+            <li {% if request_state == 'requestdata_wait_council' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_council"><i class="fa fa-sitemap"></i> รอการอนุมัติ</a></li>
+          </ul>
+        {% block form %}
+          {% set facets = {
+            'fields': fields_grouped,
+            'search': search_facets,
+            'titles': facet_titles,
+            'translated_fields': translated_fields,
+            'remove_field': remove_field }
+          %}
+          {% set sorting = [
+            (_('Relevance'), 'score desc, metadata_modified desc'),
+            (_('Last Modified'), 'metadata_modified desc') ]
+          %}
+          {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
+        {% endblock %}
+        {% block package_search_results_list %}
+        <div class="col-sm-12">
+          {{ h.snippet('governance/requestdata/snippets/requestdata_list.html', packages=page.items) }}
+        </div>
+        {% endblock %}
+    </div>
+    {% block page_pagination %}
+      {{ page.pager(q=q) }}
+    {% endblock %}
+  </article>
+{% endblock %}
+
+{% block secondary_content %}
+{{ h.snippet('snippets/governance_menu.html') }}
+{% endblock %}
