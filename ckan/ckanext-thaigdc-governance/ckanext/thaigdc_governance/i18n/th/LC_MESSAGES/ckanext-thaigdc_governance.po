@@ -146,3 +146,14 @@ msgstr "คุณสามารถใช้กลุ่มชุดข้อม
 
 msgid "Your profile lets other Open-D users know about who you are and what you do."
 msgstr "โปรไฟล์ของคุณช่วยให้ผู้ใช้ Open-D คนอื่นๆ ทราบว่าคุณเป็นใครและทำอะไรอยู่"
+
+
+msgid "Font size"
+msgstr "ขนาดตัวอักษร"
+
+msgid "A"
+msgstr "ก"
+
+
+msgid "tags"
+msgstr "คำสำคัญ"

@@ -678,11 +678,11 @@ msgstr "ไม่มีกลุ่ม"
 #: ckanext/stats/templates/ckanext/stats/index.html:61
 #: ckanext/stats/templates/ckanext/stats/index.html:110
 msgid "Top Tags"
-msgstr "แท็คที่เป็นที่นิยม"
+msgstr "คำสำคัญที่เป็นที่นิยม"
 
 #: ckanext/stats/templates/ckanext/stats/index.html:65
 msgid "Tag Name"
-msgstr "ชื่อแท็ค"
+msgstr "ชื่อคำสำคัญ"
 
 #: ckanext/stats/templates/ckanext/stats/index.html:66
 #: ckanext/stats/templates/ckanext/stats/index.html:86
@@ -960,7 +960,7 @@ msgstr "กลุ่มชุดข้อมูล"
 #: ckan/templates/tag/index.html:12 ckan/views/dataset.py:286
 #: ckan/views/group.py:306 ckan/views/home.py:51
 msgid "Tags"
-msgstr "แท็ค"
+msgstr "คำสำคัญ"
 
 #: ckan/controllers/group.py:320 ckan/controllers/home.py:64
 #: ckan/controllers/package.py:259 ckan/lib/helpers.py:1252
@@ -1555,7 +1555,7 @@ msgstr "เพิ่มเติม"
 #: ckan/logic/converters.py:77 ckan/logic/converters.py:92
 #, python-format
 msgid "Tag vocabulary \"%s\" does not exist"
-msgstr "ไม่มีแท็คสำหรับคำศัพท์ \"%s\" "
+msgstr "ไม่มีคำสำคัญสำหรับคำศัพท์ \"%s\" "
 
 #: ckan/logic/converters.py:149 ckan/logic/validators.py:173
 #: ckan/logic/validators.py:215 ckan/templates/package/read_base.html:21
@@ -1674,12 +1674,12 @@ msgstr "ชื่อกลุ่มมีอยู่แล้วในฐาน
 #: ckan/logic/validators.py:440
 #, python-format
 msgid "Tag \"%s\" length is less than minimum %s"
-msgstr "แท็ค \"%s\" มีความยาวน้อยกว่าขั้นต่ำ %s"
+msgstr "คำสำคัญ \"%s\" มีความยาวน้อยกว่าขั้นต่ำ %s"
 
 #: ckan/logic/validators.py:444
 #, python-format
 msgid "Tag \"%s\" length is more than maximum %i"
-msgstr "ความยาวของแท็ค \"%s\" เกินกว่าค่าสูงสุด %i"
+msgstr "ความยาวของคำสำคัญ \"%s\" เกินกว่าค่าสูงสุด %i"
 
 #: ckan/logic/validators.py:452
 #, python-format
@@ -1689,7 +1689,7 @@ msgstr "ค่าของ tag \"%s\" ต้องเป็นตัวอัก
 #: ckan/logic/validators.py:460
 #, python-format
 msgid "Tag \"%s\" must not be uppercase"
-msgstr "ค่าแท็ค \"%s\"  ต้องเป็นอักษรภาษาอังกฤษตัวเล็กเท่านั้น"
+msgstr "ค่าคำสำคัญ \"%s\"  ต้องเป็นอักษรภาษาอังกฤษตัวเล็กเท่านั้น"
 
 #: ckan/logic/validators.py:568
 msgid "User names must be strings"
@@ -1743,21 +1743,21 @@ msgstr ""
 
 #: ckan/logic/validators.py:671
 msgid "Tag vocabulary was not found."
-msgstr "ไม่พบแท็คคำศัพท์นี้"
+msgstr "ไม่พบคำสำคัญคำศัพท์นี้"
 
 #: ckan/logic/validators.py:684
 #, python-format
 msgid "Tag %s does not belong to vocabulary %s"
-msgstr "แท็ค %s ไม่ได้เป็นของคำศัพท์ %s"
+msgstr "คำสำคัญ %s ไม่ได้เป็นของคำศัพท์ %s"
 
 #: ckan/logic/validators.py:690
 msgid "No tag name"
-msgstr "ไม่มีชื่อแท็ค"
+msgstr "ไม่มีชื่อคำสำคัญ"
 
 #: ckan/logic/validators.py:703
 #, python-format
 msgid "Tag %s already belongs to vocabulary %s"
-msgstr "แท็ค %s เป็นของคำศัพท์ %s"
+msgstr "คำสำคัญ %s เป็นของคำศัพท์ %s"
 
 #: ckan/logic/validators.py:725
 msgid "Please provide a valid URL"
@@ -1916,7 +1916,7 @@ msgstr "ไม่สามารถหาคำศัพท์ \"%s\""
 #: ckan/logic/action/delete.py:669
 #, python-format
 msgid "Could not find tag \"%s\""
-msgstr "ไม่เจอแท็ค \"%s\""
+msgstr "ไม่เจอคำสำคัญ \"%s\""
 
 #: ckan/logic/action/delete.py:682 ckan/logic/action/delete.py:686
 msgid "You must be logged in to unfollow something."
@@ -4646,7 +4646,7 @@ msgstr ""
 
 #: ckan/templates/tag/index.html:33 ckan/templates/tag/index.html:34
 msgid "Search Tags"
-msgstr "ค้นหาแท็ค"
+msgstr "ค้นหาคำสำคัญ"
 
 #: ckan/templates/user/api_tokens.html:19
 msgid "Create API Token"

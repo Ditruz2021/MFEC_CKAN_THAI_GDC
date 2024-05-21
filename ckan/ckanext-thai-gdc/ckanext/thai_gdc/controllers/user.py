@@ -53,10 +53,8 @@ class UserManageController(plugins.toolkit.BaseController):
         return plugins.toolkit.render('articles_news/articles_news_list.html')
     
 
-
-
-
-
+    def group_index(self):
+        return plugins.toolkit.render('group/index.html')
     
     def requestdataset(self, data=None, errors=None, error_summary=None):
         submit_success = False  # Initialize submit_success flag

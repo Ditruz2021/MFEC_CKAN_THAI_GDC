@@ -40,6 +40,9 @@
       %} {% set stats = h.get_site_statistics() %} {% snippet
       'home/snippets/groups.html', stats=stats %} {% endif %} {% endblock %}
     </div>
+    <div class="text-right">
+      <a href="group/" class="btn btn-default">เพิ่มเติม</a>
+    </div>
   </div>
 
   <div id="new-section" class="container">
@@ -90,14 +93,19 @@
       {% snippet 'home/snippets/total_user_review.html', item_total_user_review=item_total_user_review %}
       {% endblock %}
 
+      {% block feature_total_package_data_review %}
+      {% set item_total_package_data_review = h.thai_gdc_get_total_package_data_review_list() %}
+      {% snippet 'home/snippets/total_package_data_review.html', item_total_package_data_review=item_total_package_data_review %}
+      {% endblock %}
+
+
+
       {% block feature_total_group_review %}
       {% set item_total_group_review = h.thai_gdc_get_total_group_review_list() %}
       {% snippet 'home/snippets/total_group_review.html', item_total_group_review=item_total_group_review %}
       {% endblock %}
 
-      {% block feature_total_stats_review %}
-      {% snippet 'home/snippets/total_stats_review.html', item_total_stats_review=item_total_stats_review %}
-      {% endblock %}
+
 
    </div>
 
