@@ -1,0 +1,507 @@
+# Translations template for ckanext-thaigdc_governance.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the
+# ckanext-thaigdc_governance project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-thaigdc_governance 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-06-20 12:35+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+#: ckanext/thaigdc_governance/blueprint.py:49
+msgid "User not found"
+msgstr ""
+
+#: ckanext/thaigdc_governance/blueprint.py:51
+#: ckanext/thaigdc_governance/blueprint.py:179
+#: ckanext/thaigdc_governance/blueprint.py:318
+#: ckanext/thaigdc_governance/blueprint.py:458
+#: ckanext/thaigdc_governance/blueprint.py:598
+#: ckanext/thaigdc_governance/blueprint.py:735
+#: ckanext/thaigdc_governance/blueprint.py:1165
+#: ckanext/thaigdc_governance/blueprint.py:1251
+msgid "Not authorized to see this page"
+msgstr ""
+
+#: ckanext/thaigdc_governance/blueprint.py:149
+#: ckanext/thaigdc_governance/blueprint.py:269
+#: ckanext/thaigdc_governance/blueprint.py:409
+#: ckanext/thaigdc_governance/blueprint.py:549
+#: ckanext/thaigdc_governance/blueprint.py:686
+#: ckanext/thaigdc_governance/blueprint.py:834
+msgid "Invalid search query: {error_message}"
+msgstr ""
+
+#: ckanext/thaigdc_governance/blueprint.py:294
+#: ckanext/thaigdc_governance/blueprint.py:434
+#: ckanext/thaigdc_governance/blueprint.py:574
+#: ckanext/thaigdc_governance/blueprint.py:711
+#: ckanext/thaigdc_governance/blueprint.py:859
+msgid "Parameter u\"{parameter_name}\" is not an integer"
+msgstr ""
+
+#: ckanext/thaigdc_governance/blueprint.py:879
+#: ckanext/thaigdc_governance/blueprint.py:903
+#: ckanext/thaigdc_governance/blueprint.py:1010
+#: ckanext/thaigdc_governance/blueprint.py:1056
+#: ckanext/thaigdc_governance/blueprint.py:1062
+#: ckanext/thaigdc_governance/blueprint.py:1211
+#: ckanext/thaigdc_governance/blueprint.py:1269
+msgid "Dataset not found"
+msgstr ""
+
+#: ckanext/thaigdc_governance/blueprint.py:1234
+#: ckanext/thaigdc_governance/blueprint.py:1348
+msgid "Viewing datasets of type \"{package_type}\" is not supported ({file_!r})."
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:75
+msgid "January"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:75
+msgid "February"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:75
+msgid "March"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:75
+msgid "April"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:76
+msgid "May"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:76
+msgid "June"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:76
+msgid "July"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:76
+msgid "August"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:77
+msgid "September"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:77
+msgid "October"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:77
+msgid "November"
+msgstr ""
+
+#: ckanext/thaigdc_governance/helpers.py:77
+msgid "December"
+msgstr ""
+
+#: ckanext/thaigdc_governance/logic.py:121
+msgid "disclosure"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:80
+msgid "Dataset Type"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:81
+msgid "Data Category"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:82
+msgid "Disclosure"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:193
+#, python-format
+msgid "User %s not authorized to edit package %s"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:199
+#, python-format
+msgid "User %s not authorized to edit these groups"
+msgstr ""
+
+#: ckanext/thaigdc_governance/plugin.py:215
+msgid "User {0} not authorized to data governance module"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/dataset_report.html:7
+#: ckanext/thaigdc_governance/templates/governance/dataset_report.html:10
+#: ckanext/thaigdc_governance/templates/governance/dataset_report.html:17
+#: ckanext/thaigdc_governance/templates/governance/finished.html:7
+#: ckanext/thaigdc_governance/templates/governance/finished.html:10
+#: ckanext/thaigdc_governance/templates/governance/finished.html:19
+#: ckanext/thaigdc_governance/templates/governance/overview_report.html:7
+#: ckanext/thaigdc_governance/templates/governance/overview_report.html:10
+#: ckanext/thaigdc_governance/templates/governance/overview_report.html:17
+#: ckanext/thaigdc_governance/templates/governance/package/read.html:6
+#: ckanext/thaigdc_governance/templates/governance/processing.html:7
+#: ckanext/thaigdc_governance/templates/governance/processing.html:10
+#: ckanext/thaigdc_governance/templates/governance/processing.html:19
+#: ckanext/thaigdc_governance/templates/governance/requestdata/read.html:6
+#: ckanext/thaigdc_governance/templates/header.html:10
+#: ckanext/thaigdc_governance/templates/header.html:12
+#: ckanext/thaigdc_governance/templates/requestdata/finished.html:7
+#: ckanext/thaigdc_governance/templates/requestdata/finished.html:10
+#: ckanext/thaigdc_governance/templates/requestdata/finished.html:19
+#: ckanext/thaigdc_governance/templates/requestdata/processing.html:7
+#: ckanext/thaigdc_governance/templates/requestdata/processing.html:10
+#: ckanext/thaigdc_governance/templates/requestdata/processing.html:19
+#: ckanext/thaigdc_governance/templates/requestdata/receive.html:7
+#: ckanext/thaigdc_governance/templates/requestdata/receive.html:10
+#: ckanext/thaigdc_governance/templates/requestdata/receive.html:19
+msgid "Data Governance"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/finished.html:22
+msgid "complete"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/finished.html:23
+msgid "reject"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/finished.html:35
+#: ckanext/thaigdc_governance/templates/governance/processing.html:35
+#: ckanext/thaigdc_governance/templates/requestdata/finished.html:35
+#: ckanext/thaigdc_governance/templates/requestdata/processing.html:36
+#: ckanext/thaigdc_governance/templates/requestdata/receive.html:35
+#: ckanext/thaigdc_governance/templates/user/dashboard_requestdatas.html:19
+msgid "Relevance"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/finished.html:36
+#: ckanext/thaigdc_governance/templates/governance/processing.html:36
+#: ckanext/thaigdc_governance/templates/requestdata/finished.html:36
+#: ckanext/thaigdc_governance/templates/requestdata/processing.html:37
+#: ckanext/thaigdc_governance/templates/requestdata/receive.html:36
+#: ckanext/thaigdc_governance/templates/user/dashboard_requestdatas.html:20
+msgid "Last Modified"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/overview_report.html:18
+msgid "รายงานภาพรวมข้อมูล"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/processing.html:22
+msgid "wait"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/processing.html:23
+msgid "approval"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/read.html:37
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/organization.html:8
+msgid "Private"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/read.html:43
+#: ckanext/thaigdc_governance/templates/package/read.html:177
+#, python-format
+msgid ""
+"You're currently viewing an old version of this dataset. To see the current "
+"version, click <a href=\"%(url)s\">here</a>."
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/read.html:54
+#: ckanext/thaigdc_governance/templates/package/read.html:188
+#: ckanext/thaigdc_governance/templates/snippets/governance_package_item.html:17
+#: ckanext/thaigdc_governance/templates/snippets/package_item.html:21
+#: ckanext/thaigdc_governance/templates/snippets/package_item.html:32
+msgid "Draft"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/read.html:57
+#: ckanext/thaigdc_governance/templates/package/read.html:191
+#: ckanext/thaigdc_governance/templates/snippets/governance_package_item.html:19
+#: ckanext/thaigdc_governance/templates/snippets/package_item.html:34
+msgid "Deleted"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:43
+msgid "Explore"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:52
+msgid "Preview"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:55
+msgid "More information"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:64
+msgid "Download"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:67
+msgid "Go to resource"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resource_item.html:76
+msgid "Edit"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resources_list.html:14
+msgid "Data and Resources"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resources_list.html:27
+#, python-format
+msgid ""
+"<p class=\"empty\">This dataset has no data, <a href=\"%(url)s\">why not add "
+"some?</a></p>"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/package/snippets/resources_list.html:31
+msgid "This dataset has no data"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/snippets/facet_list.html:111
+#: ckanext/thaigdc_governance/templates/snippets/facet_list.html:87
+msgid "Show More {facet_type}"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/snippets/facet_list.html:114
+#: ckanext/thaigdc_governance/templates/snippets/facet_list.html:90
+msgid "Show Only Popular {facet_type}"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/governance/snippets/facet_list.html:118
+#: ckanext/thaigdc_governance/templates/snippets/facet_list.html:94
+msgid "There are no {facet_type} that match this search"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:5
+msgid "statistics"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:11
+msgid "dataset"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:11
+msgid "datasets"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:17
+msgid "organization"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:17
+msgid "organizations"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:23
+msgid "group"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/home/snippets/stats.html:23
+msgid "groups"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:96
+msgid "COMPLETED"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:109
+msgid "WAIT_VALIDATE"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:114
+msgid "VALIDATE"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:119
+msgid "WAIT_VALIDATE_MODIFIED"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:124
+msgid "VALIDATE_MODIFIED"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:129
+msgid "APPROVAL"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:134
+msgid "WAIT_REVOKE"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:139
+msgid "VALIDATE_REVOKE"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:144
+msgid "REVOKE"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:149
+msgid "WAIT"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/read.html:156
+#: ckanext/thaigdc_governance/templates/package/read.html:158
+msgid "REJECT"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/resource_edit_base.html:5
+msgid "Back to dataset"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/package/resource_edit_base.html:9
+msgid "View resource"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/data_type.html:131
+msgid "Cancel"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/data_type.html:133
+msgid "Save"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/org_governance.html:13
+msgid "Governance Organization"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/organization.html:5
+msgid "Visibility"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/form_snippets/organization.html:8
+msgid "Public"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/package/snippets/additional_info.html:22
+msgid "Reference URL Catalog"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/package/snippets/additional_info.html:46
+msgid "State"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/package/snippets/additional_info.html:52
+msgid "Created"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/scheming/package/snippets/additional_info.html:60
+msgid "Last Updated"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/activity_stream.html:10
+#: ckanext/thaigdc_governance/templates/snippets/activity_stream.html:17
+#: ckanext/thaigdc_governance/templates/snippets/activity_stream.html:30
+msgid "unknown"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/add_dataset.html:7
+msgid "Add Dataset"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/approval_list_report.html:16
+msgid "WeasyPrint"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/governance_package_item.html:59
+#: ckanext/thaigdc_governance/templates/snippets/package_item.html:65
+msgid "This dataset has no description"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/search_form.html:5
+msgid "Search datasets..."
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/search_form.html:22
+#: ckanext/thaigdc_governance/templates/snippets/search_form.html:24
+msgid "Remove"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/search_form.html:30
+msgid "Filter Results"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/activities/changed_package.html:26
+msgid "{actor} updated the dataset {dataset}"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/activities/changed_package.html:36
+msgid "View this version"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/snippets/activities/changed_package.html:40
+msgid "Changes"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:5
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:18
+msgid "News feed"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:6
+#: ckanext/thaigdc_governance/templates/user/dashboard_datasets.html:12
+#: ckanext/thaigdc_governance/templates/user/dashboard_requestdatas.html:9
+msgid "My Datasets"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:7
+msgid "My Organizations"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:8
+msgid "My Groups"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard.html:20
+msgid "Activity from items that I'm following"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard_datasets.html:17
+msgid "You haven't created any datasets."
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/dashboard_datasets.html:19
+msgid "Create one now?"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/read_base.html:7
+msgid "Followers"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/read_base.html:11
+msgid "Datasets"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/snippets/followee_dropdown.html:28
+#: ckanext/thaigdc_governance/templates/user/snippets/followee_dropdown.html:29
+#: ckanext/thaigdc_governance/templates/user/snippets/followee_dropdown.html:62
+msgid "Activity from:"
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/snippets/followee_dropdown.html:37
+msgid "Search list..."
+msgstr ""
+
+#: ckanext/thaigdc_governance/templates/user/snippets/followee_dropdown.html:58
+msgid "You are not following anything"
+msgstr ""
+

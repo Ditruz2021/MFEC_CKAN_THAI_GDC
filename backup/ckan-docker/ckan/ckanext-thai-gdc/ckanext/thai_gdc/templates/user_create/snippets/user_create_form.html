@@ -1,0 +1,88 @@
+{% import 'macros/form.html' as form %}
+
+{% set username_error = true if error_summary %}
+{% set password_error = true if error_summary %}
+
+<form id="user_create" method='post' action="" onSubmit="JavaScript:return check();">
+
+
+
+  {{ form.errors(error_summary) }}
+  <div class="row">
+  <div class="col-sm-6">
+    {{ form.input("name", id="field_name", label='username', placeholder='', value='', is_required=True) }}
+  </div>
+  <div class="col-sm-6">
+    {{ form.input("password", id="field_password", label='password', type="password", placeholder='', value='', is_required=True) }}
+  </div>
+  </div>
+
+ 
+    {{ form.input("fullname", id="field_fullname", label='ชื่อ - นามสกุล', placeholder='', value='', is_required=True) }}
+    <div class="row">
+  <div class="col-sm-6">
+    {{ form.input("phone", id="field_phone", label='เบอร์โทร', placeholder='', value='', is_required=True) }}
+    </div>
+  <div class="col-sm-6">
+    {{ form.input("email", id="field_email", label='อีเมล', placeholder='', value='', is_required=True) }}
+    </div>
+    </div>
+   
+
+
+ {{ form.markdown("address", id="field_address", label='ที่อยู่', placeholder='', value='', is_required=True) }}
+  <div class="form-actions">
+    {% block form_actions %}
+
+
+    
+    <button id="submit-button" class="btn btn-primary" type="submit" name="save">บันทึก</button>
+    <a href="" class="btn btn-danger" >ยกเลิก</a>
+    {% endblock %}
+  </div>
+</form>
+
+
+
+{{ CKAN_SITE_URL}}
+
+<!-- 
+
+<div class="modal fade" id="requestdataset_success" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ส่งคำร้องเรียบร้อย</h4>
+      </div>
+      <div class="modal-body">
+      ท่านสามารถตรวจสอบสถานะการดำเนินการได้ทางอีเมล์ของท่าน
+      หรือสามารถติดต่อเจ้าหน้าที่ได้ทางอีเมล์  support@mea.or.th
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="requestdataset_erroor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">ช่องรายการที่ต้องกรอก</h4>
+      </div>
+      <div class="modal-body">
+      ท่านกรอกข้อมูลไม่ครบถ้วนกรุณากรอกให้ครบถ้วน
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+ -->

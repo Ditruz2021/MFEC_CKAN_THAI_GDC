@@ -1,0 +1,83 @@
+#userstatistics-section {}
+
+
+#userstatistics-section .panel-default>.panel-heading {
+    color: #F66E22;
+    font-family: 'DB Ozone X Medium';
+    font-weight: 500;
+    font-size: 25px;
+    background-color: #e5e5e5;
+    border-color: #ddd;
+}
+
+#userstatistics-section .table>tbody>tr>td {
+    border-top: inherit;
+}
+
+#userstatistics-section .box-count .fa-eye {
+    font-size: 70px;
+    color: #159ce4;
+    width: 125px;
+    height: 125px;
+    line-height: 120px;
+    display: inline-block;
+    background: #eeeeee;
+    border-radius: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#userstatistics-section .box-count h4 {
+    color: #1956aa;
+    font-size: 30px;
+    line-height: 34px;
+}
+
+.panel-body {
+    position: relative;
+}
+
+.panel-body .chart-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.panel-body .chart-icon .fa {
+    margin-top: calc(40% - 50px);
+    font-size: 60px;
+    color: #666666;
+}
+
+
+
+.panel-body .chart-item {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+/* .panel-body .fa-users{
+    position: absolute;
+    top: calc(40% - 50px);
+    left: calc(55% - 50px);
+    font-size: 60px;
+    z-index: 10;
+    color: #666666;
+}
+.panel-body .fa-building{
+    position: absolute;
+    top: calc(42% - 50px);
+    left: calc(57% - 50px);
+    font-size: 60px;
+    z-index: 10;
+    color: #666666;
+} */

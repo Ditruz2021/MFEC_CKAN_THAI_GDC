@@ -1,0 +1,173 @@
+{% ckan_extends %}
+
+{% block form_actions %}
+{% block restore_business_metadata_button %}
+<div class="input-group mt-3">
+	<select class="custom-select" id="inputGroupSelect04">
+		<option selected disabled>เลือกข้อมูล...</option>
+	</select>
+	<div class="input-group-append">
+		<a class="btn btn-outline-secondary" id="restoreButton">Restore Selected</a>
+	</div>
+</div>
+{% endblock %}
+
+{{ super() }}
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="confirmRemove" tabindex="-1" role="dialog" aria-labelledby="confirmRemoveLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+						aria-hidden="true">&times;</span></button>
+				<h1 class="modal-title" id="confirmRemoveLabel" style="margin-bottom: 0px;"> เเจ้งเตือน </h1>
+			</div>
+			<div class="modal-body">
+				ต้องการลบรายการนี้
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="confirmDelete">ยืนยัน</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectElementId = "field-data_type";
+        var selectElement = document.getElementById(selectElementId);
+
+        if (selectElement) {
+            var parent = selectElement.parentElement || selectElement.parentNode;
+            var textValue = selectElement.options[selectElement.options.selectedIndex].textContent || selectElement.options[selectElement.options.selectedIndex].text;
+            var input = document.createElement("input");
+
+            input.setAttribute("id", selectElement.id);
+            input.setAttribute("type", "text");
+            input.setAttribute("class", "form-control");
+            input.setAttribute("value", textValue);
+            input.style.background = "#eeeeee";
+            input.readOnly = true;
+
+            parent.appendChild(input);
+            selectElement.style.display = "none";
+        }
+
+        var formGroups = document.querySelectorAll('.form-group');
+        var deletedFormGroups = JSON.parse(localStorage.getItem('deletedFormGroups')) || [];
+
+        formGroups.forEach(function (formGroup, index) {
+            formGroup.setAttribute('data-id', 'formGroup' + index);
+
+            if (deletedFormGroups.includes(formGroup.getAttribute('data-id'))) {
+                formGroup.style.display = 'none';
+            }
+        });
+
+        formGroups.forEach(function (formGroup) {
+            var requiredSpan = formGroup.querySelector('.control-required');
+
+            if (!requiredSpan) {
+                var button = document.createElement('button');
+                button.setAttribute('type', 'button');
+                button.classList.add('btn', 'btn-danger');
+                button.setAttribute('title', 'ลบรายการนี้');
+
+                var icon = document.createElement('i');
+                icon.classList.add('fa', 'fa-minus');
+                icon.setAttribute('aria-hidden', 'true');
+                button.appendChild(icon);
+
+                var controlsDiv = formGroup.querySelector('.controls');
+                if (controlsDiv) {
+                    controlsDiv.appendChild(button);
+                }
+            }
+        });
+
+        var buttons = document.querySelectorAll('.controls button');
+        var formGroupToDelete = null;
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var formGroup = button.closest('.form-group');
+                if (formGroup) {
+                    formGroupToDelete = formGroup;
+                    $('#confirmRemove').modal('show');
+                }
+            });
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function () {
+            if (formGroupToDelete) {
+                deletedFormGroups.push(formGroupToDelete.getAttribute('data-id'));
+                localStorage.setItem('deletedFormGroups', JSON.stringify(deletedFormGroups));
+                formGroupToDelete.style.display = 'none';
+                updateSelectOptions();
+                formGroupToDelete = null;
+                $('#confirmRemove').modal('hide');
+            }
+        });
+
+        document.getElementById('restoreButton').addEventListener('click', function () {
+            var selectElement = document.getElementById('inputGroupSelect04');
+            var selectedValue = selectElement.value;
+
+            if (selectedValue) {
+                var formGroupToRestore = document.querySelector('[data-id="' + selectedValue + '"]');
+
+                if (formGroupToRestore) {
+                    formGroupToRestore.style.display = '';
+                    deletedFormGroups = deletedFormGroups.filter(function (dataId) {
+                        return dataId !== selectedValue;
+                    });
+                    localStorage.setItem('deletedFormGroups', JSON.stringify(deletedFormGroups));
+                    updateSelectOptions();
+                }
+            }
+        });
+
+        function updateSelectOptions() {
+            var selectElement = document.getElementById('inputGroupSelect04');
+            selectElement.innerHTML = '<option selected disabled>เลือกข้อมูล...</option>';
+            deletedFormGroups.forEach(function (dataId, index) {
+                var formGroup = document.querySelector('[data-id="' + dataId + '"]');
+                var option = document.createElement('option');
+                option.value = dataId;
+                var label = formGroup.querySelector('label.control-label');
+                var labelText = label ? label.textContent : 'Form Group ' + (index + 1);
+                option.textContent = labelText;
+                selectElement.appendChild(option);
+            });
+        }
+
+        updateSelectOptions();
+    });
+</script>
+
+
+
+
+
+<style type="text/css">
+	.form-group {
+		position: relative;
+	}
+
+	.controls .btn-danger {
+		position: absolute;
+		top: -5px;
+		right: 0px;
+		font-size: 14px;
+		line-height: 14px;
+		padding: 5px;
+		border-radius: 100%;
+	}
+</style>
+
+{% endblock %}

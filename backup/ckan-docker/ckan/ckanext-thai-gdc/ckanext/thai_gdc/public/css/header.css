@@ -1,0 +1,15 @@
+.logo img{
+    max-width: 225px;
+}
+@media (min-width: 767px) {
+ 
+
+}
+
+@media (max-width: 767px) {
+    .masthead {
+        background: #f35200;
+    }
+
+
+}

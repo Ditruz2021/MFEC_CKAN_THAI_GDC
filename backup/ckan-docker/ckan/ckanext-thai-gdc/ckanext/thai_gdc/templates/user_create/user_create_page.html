@@ -1,0 +1,36 @@
+{% extends "page.html" %}
+
+{% block main_content %}
+<article class="module" role="main">
+  <div class="row wrapper no-nav view-preview-container">
+    <section class="module module-narrow module-shallow">
+  
+    <div class="module-content">
+    <h1 class="page-heading">
+      {% block page_heading %}
+      <!-- {{ _('Login') }} -->
+      การจัดการผู้ใช้งาน
+      {% endblock %}
+    </h1>
+    {% block user_create_form %}
+      {% snippet  "user_create/snippets/user_create_form.html" %}
+    {% endblock %}
+  </div>
+ 
+</section>
+</div>
+ </article>
+<style>
+  /* already defined in bootstrap4 */
+  .text-xs-center {
+      text-align: center;
+  }
+
+  .g-recaptcha {
+      display: inline-block;
+  }
+</style>
+
+
+
+{% endblock %}

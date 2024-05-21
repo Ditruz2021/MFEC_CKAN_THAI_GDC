@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+
+  ckan:
+    container_name: ckan-${PROJECT_NUMBER}
+    restart: unless-stopped
+    # image: thepaeth/ckan-thaigdc_governance:v1.0.0
+    build:
+      context: ckan/
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - CKAN_SITE_URL=${DEFAULT_URL}
+      - CKAN_SQLALCHEMY_URL=postgresql://ckan:${POSTGRES_PASSWORD}@172.16.73.159:5432/ckan
+      - CKAN_DATASTORE_WRITE_URL=postgresql://ckan:${POSTGRES_PASSWORD}@172.16.73.159:5432/datastore
+      - CKAN_DATASTORE_READ_URL=postgresql://datastore_ro:${DATASTORE_READONLY_PASSWORD}@172.16.73.159:5432/datastore
+      - CKANEXT__XLOADER__JOBS_DB__URI=postgresql://ckan:${POSTGRES_PASSWORD}@172.16.73.159:5432/ckan
+    depends_on:
+      - solr
+      - redis
+    ports:
+      - "5000:5000"
+    volumes:
+      - ckan_storage:/var/lib/ckan
+     
+  solr:
+    container_name: solr${PROJECT_NUMBER}
+    image: ckan/ckan-solr:2.9-solr8
+    restart: unless-stopped
+    volumes:
+      - solr_data:/var/solr
+    environment:
+      - TZ=${TZ}
+    healthcheck:
+      test: ["CMD", "wget", "-qO", "/dev/null", "http://localhost:8983/solr/"]
+
+  redis:
+    container_name: redis${PROJECT_NUMBER}
+    image: redis:alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "-e", "QUIT"]
+
+volumes:
+  ckan_storage:
+  solr_data:
+

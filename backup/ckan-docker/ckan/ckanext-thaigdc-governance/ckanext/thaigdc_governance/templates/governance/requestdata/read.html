@@ -1,0 +1,329 @@
+{% extends "package/read_base.html" %}
+
+{%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+
+{% block breadcrumb_content %}
+    <li class="active"><a href="/governance/requestdata/processing_state">{{ _('Data Governance') }}</a></li>
+    {% if pkg %}
+        {% set dataset = h.dataset_display_name(pkg) %}
+        <li{{ self.breadcrumb_content_selected() }}><a href="#">{{ dataset }}</a></li>
+    {% endif %}
+
+{% endblock %}
+
+{% block secondary %}
+<style>
+    .wrapper::before {
+    width:unset;
+}
+</style>
+    <aside class="secondary col-sm-8">
+    {% block primary_content %}
+    <article class="module">
+    {% block page_header %}
+    {% endblock %}
+    <div class="module-content">
+        {% if self.page_primary_action() | trim %}
+        <div class="page_primary_action">
+            {% block page_primary_action %}{% endblock %}
+        </div>
+        {% endif %}
+        {% block primary_content_inner %}
+        {{ super() }}
+        {% block package_description %}
+            
+            {% block package_archive_notice %}
+            {% endblock %}
+            <h1>
+            {% block page_heading %}
+                {{ h.dataset_display_name(pkg) }}
+            {% endblock %}
+            </h1>
+            {% block package_notes %}
+          {% set package_title = h.dataset_display_name(pkg).replace(h.dataset_display_name(pkg)[:15], '') %}
+          <div class="notes embedded-content">
+            <strong>ชุดข้อมูล:</strong> <a href="/dataset/{{ pkg.package_id }}" target="_blank">{{ package_title }}</a>
+            </div>
+          <div class="notes embedded-content">
+            <strong>ระดับชั้นข้อมูล:</strong> {{ _(req_pkg_dict.disclosure) }}
+            </div>
+            <div class="notes embedded-content">
+              <strong>ผู้ดูแลชุดข้อมูล:</strong> {{ h.linked_user(req_pkg_dict.creator_user_id,0,0) }}
+              </div>
+            <div class="notes embedded-content">
+            <strong>ผู้ยื่นคำขอ:</strong> {{ h.linked_user(pkg.requester_id,0,0) }}
+            {% if pkg.requester_internal_code %} (รหัสพนักงาน: {{ pkg.requester_internal_code }}) {% endif %}
+            </div>
+          
+          <div class="notes embedded-content">
+            <strong>สถานะคำขอ:</strong> {{ _(pkg.request_state) }}
+          </div>
+          {% if pkg.request_state != 'requestdata_wait_steward' %}
+        <div class="notes embedded-content">
+          <strong>ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ:</strong> {{ pkg.summary_comment }}
+          </div>
+        <div class="notes embedded-content">
+          <strong>วันเวลาที่พิจารณาคำขอ (ล่าสุด):</strong> {{ h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg.metadata_modified)) }}
+          </div>
+          {% endif %}
+              {% endblock %}
+            {# FIXME why is this here? seems wrong #}
+            <span class="insert-comment-thread"></span>
+        {% endblock %}
+
+        {% block package_resources %}
+        {% endblock %}
+
+        {% block package_tags %}
+        {% endblock %}
+
+        {% block package_additional_info %}
+            {% snippet "scheming/requestdata/snippets/additional_info.html",
+                pkg_dict=pkg, dataset_type=dataset_type, schema=schema %}
+            {% endblock %}
+        {% endblock %}
+    </div>
+    </article>
+    {% endblock %}
+    
+    </aside>
+{% endblock %}
+
+{% block primary %}
+    <div class="primary col-sm-4">
+    {% block secondary_content %}
+    <section class="module module-narrow">
+        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> พิจารณาคำขอใช้ข้อมูล</h3><br />
+        <form id="processing-edit" method="post" action="">
+
+          {% set current_request_sate = pkg.request_state %}
+        
+        {% if current_request_sate == 'requestdata_wait_steward' %}
+        {% set processing_action_schema = [
+          {
+            "field_name": "request_state",
+            "label": {
+              "en": "Requester state",
+              "th": "สถานะคำขอ"
+            },
+            "choices": [
+              {
+                "value": "requestdata_wait_council",
+                "label": "ผ่านการตรวจสอบ และรอการอนุมัติ"
+              },
+              {
+                "value": "requestdata_reject",
+                "label": "ไม่ผ่านการตรวจสอบ"
+              }
+            ],
+            "preset": "select",
+            "required": true
+          },
+          {
+            "field_name": "steward_date",
+            "label": {
+              "en": "Steward date",
+              "th": "วันที่ตรวจสอบโดยทีมบริกร/เจ้าของข้อมูล"
+            },
+            "preset": "date",
+            "required": true
+          },
+          {
+            "field_name": "steward_comment",
+            "label": {
+              "en": "Steward comment",
+              "th": "ความเห็นของทีมบริกร/เจ้าของข้อมูล"
+            },
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+          },
+          {
+            "field_name": "summary_comment",
+            "label": {
+              "en": "Summary comment",
+              "th": "ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ"
+            },
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+          }
+        ] %}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'request_state') %}
+        {%- snippet '/scheming/form_snippets/select.html', field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'steward_date') %}
+        {%- snippet '/scheming/form_snippets/date.html', field=field, data={}, errors={} -%}
+        
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'steward_comment') %}
+        {%- snippet '/scheming/form_snippets/'+field.form_snippet, field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'summary_comment') %}
+        {%- snippet '/scheming/form_snippets/'+field.form_snippet, field=field, data={}, errors={} -%}
+
+        <script>
+          var nowDate = new Date();
+          document.getElementById('field-steward_date').defaultValue = nowDate.toJSON().split("T")[0];
+        </script>
+
+        {% elif current_request_sate == 'requestdata_wait_council' %}
+
+        {% set processing_action_schema = [
+          {
+            "field_name": "request_state",
+            "label": {
+              "en": "Requester state",
+              "th": "สถานะคำขอ"
+            },
+            "choices": [
+              {
+                "value": "requestdata_wait_maintainer_notify",
+                "label": "อนุมัติการขอใช้ และรอแจ้งผู้ดูแลข้อมูล"
+              },
+              {
+                "value": "requestdata_reject",
+                "label": "ไม่ผ่านการอนุมัติ"
+              }
+            ],
+            "preset": "select",
+            "required": true
+          },
+          {
+            "field_name": "council_date",
+            "label": {
+              "en": "Council date",
+              "th": "วันที่พิจารณาอนุมัติ"
+            },
+            "preset": "date",
+            "required": true
+          },
+          {
+            "field_name": "council_comment",
+            "label": {
+              "en": "Council comment",
+              "th": "ความเห็นเพิ่มเติม"
+            },
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+          },
+          {
+            "field_name": "summary_comment",
+            "label": {
+              "en": "Summary comment",
+              "th": "ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ"
+            },
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+          }
+        ] %}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'request_state') %}
+        {%- snippet '/scheming/form_snippets/select.html', field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'council_date') %}
+        {%- snippet '/scheming/form_snippets/date.html', field=field, data=pkg, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'council_comment') %}
+        {%- snippet '/scheming/form_snippets/'+field.form_snippet, field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'summary_comment') %}
+        {%- snippet '/scheming/form_snippets/'+field.form_snippet, field=field, data={}, errors={} -%}
+
+        <script>
+          var nowDate = new Date();
+          document.getElementById('field-council_date').defaultValue = nowDate.toJSON().split("T")[0];
+        </script>
+
+        {% elif current_request_sate == 'requestdata_wait_maintainer_notify' %}
+
+        {% set processing_action_schema = [
+          {
+            "field_name": "request_state",
+            "label": {
+              "en": "Requester state",
+              "th": "สถานะคำขอ"
+            },
+            "choices": [
+              {
+                "value": "requestdata_wait_received",
+                "label": "แจ้งผู้ดูแลข้อมูลแล้ว และรอผู้ยื่นคำขอได้รับข้อมูล"
+              }
+            ],
+            "preset": "select",
+            "required": true
+          },
+          {
+            "field_name": "maintainer_notify_date",
+            "label": {
+              "en": "Maintainer notify date",
+              "th": "วันที่แจ้งผู้ดูแลข้อมูล"
+            },
+            "preset": "date",
+            "required": true
+          }
+        ] %}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'request_state') %}
+        {%- snippet '/scheming/form_snippets/select.html', field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'maintainer_notify_date') %}
+        {%- snippet '/scheming/form_snippets/date.html', field=field, data=pkg, errors={} -%}
+
+        <script>
+          var nowDate = new Date();
+          document.getElementById('field-maintainer_notify_date').defaultValue = nowDate.toJSON().split("T")[0];
+        </script>
+
+        {% elif current_request_sate == 'requestdata_wait_received' %}
+
+        {% set processing_action_schema = [
+          {
+            "field_name": "request_state",
+            "label": {
+              "en": "Requester state",
+              "th": "สถานะคำขอ"
+            },
+            "choices": [
+              {
+                "value": "requestdata_received",
+                "label": "ผู้ยื่นคำขอได้รับข้อมูลแล้ว"
+              }
+            ],
+            "preset": "select",
+            "required": true
+          },
+          {
+            "field_name": "received_date",
+            "label": {
+              "en": "Received date",
+              "th": "วันที่ผู้ยื่นคำขอได้รับข้อมูล"
+            },
+            "preset": "date",
+            "required": true
+          }
+        ] %}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'request_state') %}
+        {%- snippet '/scheming/form_snippets/select.html', field=field, data={}, errors={} -%}
+
+        {% set field = h.scheming_field_by_name(processing_action_schema, 'received_date') %}
+        {%- snippet '/scheming/form_snippets/date.html', field=field, data=pkg, errors={} -%}
+
+        <script>
+          var nowDate = new Date();
+          document.getElementById('field-received_date').defaultValue = nowDate.toJSON().split("T")[0];
+        </script>
+
+        {% endif %}
+        <input type="hidden" name="current_request_sate" value="{{ current_request_sate }}" />
+        {% if current_request_sate == 'requestdata_wait_council' %}
+          <div><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
+        {% endif %}
+        {% if current_request_sate != 'requestdata_received' and current_request_sate != 'requestdata_reject' %}
+        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาคำขอใช้ข้อมูลนี้หรือไม่')">ส่งเรื่อง</button>
+        {% endif %}
+        </form>
+    </section>
+    {% endblock %}
+    </div>
+{% endblock %}
+

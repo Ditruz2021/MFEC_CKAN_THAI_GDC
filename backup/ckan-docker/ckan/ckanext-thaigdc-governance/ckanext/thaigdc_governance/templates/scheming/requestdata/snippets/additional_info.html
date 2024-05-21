@@ -1,0 +1,91 @@
+{% extends "package/snippets/additional_info.html" %}
+
+{%- set include_fields = [
+    'project_title',
+    'project_manager',
+    'notes'
+    ] -%}
+
+
+    
+        {% block package_additional_info %}
+        {%- for field in schema.dataset_fields -%}
+        {% if field.field_name == 'request_type' %}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ pkg_dict.request_type }}</td>
+          </tr>
+            {% if pkg_dict.request_type == 'ขอใช้ในโครงการ' %}
+              {% do include_fields.append('project_code') %}
+            {% endif %}
+          {%- endif -%}
+          {%- if field.field_name in include_fields -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{%- snippet 'scheming/snippets/display_field.html',
+              field=field, data=pkg_dict, schema=schema -%}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'usage_start_date' -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.usage_start_date)) }}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'usage_end_date' -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.usage_end_date)) }}</td>
+          </tr>
+          {%- endif -%}
+        {% endfor %}
+
+        {% if pkg_dict.metadata_created %}
+          <tr>
+            <th scope="row" class="dataset-label">วันเวลาที่ยื่นคำขอ</th>
+            <td class="dataset-details">
+                {{ h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg_dict.metadata_created)) }}
+            </td>
+          </tr>
+        {% endif %}
+
+        {%- for field in schema.dataset_fields -%}
+          {%- if field.field_name == 'steward_comment' and pkg_dict.steward_comment -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ pkg_dict.steward_comment }}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'steward_date' and pkg_dict.steward_date -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.steward_date+'T00:00:00.000000')) }} โดย {{ h.linked_user(pkg_dict.steward_from_wait_steward,0,0) }}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'council_comment' and pkg_dict.council_comment -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ pkg_dict.council_comment }}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'council_date' and pkg_dict.council_date -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.council_date+'T00:00:00.000000')) }} โดย {{ h.linked_user(pkg_dict.steward_from_wait_council,0,0) }}<br/>(รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล)</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'maintainer_notify_date' and pkg_dict.maintainer_notify_date -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.maintainer_notify_date+'T00:00:00.000000')) }} โดย {{ h.linked_user(pkg_dict.steward_from_wait_maintainer_notify,0,0) }}</td>
+          </tr>
+          {%- endif -%}
+          {%- if field.field_name == 'received_date' and pkg_dict.received_date -%}
+          <tr rel="dc:relation" resource="_:extra{{ i }}">
+            <th scope="row" class="dataset-label" property="rdfs:label">{{ h.scheming_language_text(field.label) }}</th>
+            <td class="dataset-details" property="rdf:value">{{ h.thai_gdc_day_thai(h.date_str_to_datetime(pkg_dict.received_date+'T00:00:00.000000')) }} โดย {{ h.linked_user(pkg_dict.steward_from_wait_received,0,0) }}</td>
+          </tr>
+          {%- endif -%}
+        {%- endfor -%}
+        {% endblock %}
+ 

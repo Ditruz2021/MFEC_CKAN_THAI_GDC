@@ -1,0 +1,111 @@
+{% ckan_extends %}
+
+{% set prepare_dict = h.thaigdc_governance_get_action_foradmin('package_search',{"q":"type:prepare +publish_dataset_id:"+package.id,"include_private":"true"}) %}
+      {% block content %}
+        <div class="dataset-content">
+          {% block heading %}
+            <h2 class="dataset-heading">
+              {% block heading_private %}
+                {% if package.private %}
+                  <span class="dataset-private label label-inverse"><i class="fa fa-lock"></i></span>
+                {% endif %}
+              {% endblock %}
+              {% block heading_title %}
+              {% if h.ckan_version() > '2.9' %}
+      {{ h.link_to(h.truncate(title, truncate_title), h.url_for('%s.read' % package.type, id=package.name)) }}
+              {% else %}
+      {{ h.link_to(h.truncate(title, truncate_title), h.url_for(package.type + '_read', controller='package', action='read', id=package.name)) }}
+              {% endif %}
+              {% endblock %}
+              {% block heading_meta %}
+                {% if package.get('type', '').startswith('prepare') and package.get('processing_dataset_id','') == '' %}
+                  <span class="label label-info">{{ _('Draft') }}</span>
+                {% elif package.get('type', '').startswith('prepare') and package.get('processing_dataset_id','') != '' %}
+                {% set processing_dict = h.thaigdc_governance_get_action_foradmin('package_show',{"id":package.get('processing_dataset_id','')}) %}
+                {% if processing_dict.get('governance_state') == 'wait' %}
+                  <span class="label label-info">รอการตรวจสอบ</span>
+                {% elif processing_dict.get('governance_state') == 'approval' %}
+                  <span class="label label-info">รอการอนุมัติ</span>
+                {% endif %}
+                {% endif %}
+                {% if request.path=='/dashboard/datasets' and prepare_dict.count>0 %}
+                  {% set processing_did = prepare_dict.results[0].get('processing_dataset_id','') %}
+                  {% if processing_did != '' and processing_did != 'finished' %}
+                    <span class="label label-warning"><a href="{{ h.url_for('%s.read' % prepare_dict.results[0].get('type'), id=prepare_dict.results[0].get('id')) }}" target="_blank">อยู่ระหว่างตรวจสอบการปรับปรุง <i class="fa fa-external-link"></i></a></span>
+                  {% else %}
+                    <span class="label label-warning"><a href="{{ h.url_for('%s.read' % prepare_dict.results[0].get('type'), id=prepare_dict.results[0].get('id')) }}" target="_blank">อยู่ระหว่างการปรับปรุง <i class="fa fa-external-link"></i></a></span>
+                  {% endif %}
+                {% endif %}
+                {% if package.get('state', '').startswith('draft') %}
+                  <span class="label label-info">{{ _('Draft') }}</span>
+                {% elif package.get('state', '').startswith('deleted') %}
+                  <span class="label label-danger">{{ _('Deleted') }}</span>
+                {% endif %}
+                {% if package.tracking_summary %}
+                  <span class="textRecentViews">
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                    {{package.tracking_summary.recent}} recent views
+                  </span>
+                {% endif %}
+                {#{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }#}
+              {% endblock %}
+            </h2>
+              {% if request.path=='/dashboard/datasets' and prepare_dict.count==0 and package.type=='dataset' %}
+              <div class="text-left">
+                <a href="/governance/dataset_toprepare/{{ package.id }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;">
+                    <i class="fa fa-file-text-o"></i>
+                    ปรับปรุงชุดข้อมูล
+                  </a>
+              </div>
+              {% endif %}
+          {% endblock %}
+          <div class="text-right">
+            {% if package.groups %}
+            <div class="blockTagSearch">
+            {% for data_groups in package.groups %}
+            {% if data_groups %}
+            {% set item_color = h.thai_gdc_get_group_color(data_groups.id) %}
+                <a class="aNoBUnder btn" href="{{h.url_for(controller='group', action='read', id=data_groups.name)}}"
+                   style="white-space: nowrap;background-color: {{item_color}};color: white;margin:0 5px 5px 0;padding: 3px;font-size:.7em;">
+                    {{data_groups.title}}
+                </a>
+            {% endif %}
+            {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% block notes %}
+            {% if notes %}
+              <div>{{ notes|urlize }}</div>
+            {% else %}
+              <p class="empty">{{ _("This dataset has no description") }}</p>
+            {% endif %}
+          {% endblock %}
+        </div>
+        {% block resources %}
+          {% if package.resources and not hide_resources %}
+            {% block resources_outer %}
+              <ul class="dataset-resources list-unstyled">
+                {% block resources_inner %}
+                  {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                  <li>
+                    {% if h.ckan_version() > '2.9' %}
+                    <a href="{{ h.url_for(package.type ~ '.read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                    {% else %}
+                    <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
+                    {% endif %}
+                  </li>
+                  {% endfor %}
+                {% endblock %}
+              </ul>
+            {% endblock %}
+          {% endif %}
+        {% endblock %}
+        <div style="margin-top: 8px;">
+          <i class="fa fa-building" aria-hidden="true"></i>
+          {{ package.organization.title }}
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_modified)) }}
+      </div>
+      {% endblock %}
+  

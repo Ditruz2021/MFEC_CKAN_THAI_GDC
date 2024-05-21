@@ -1,0 +1,21 @@
+{% set activity_data = h.thaigdc_governance_get_activity_data(activity.id) %}
+{% if activity_data.governance and activity_data.governance.governance_state == 'reject' and h.thaigdc_governance_get_action_foradmin('package_show',{'id':activity_data.package.id})['processing_dataset_id'] == '' %}
+<li class="item {{ activity.activity_type|replace(' ', '-')|lower }}">
+  <i class="fa icon fa-cogs"></i> 
+  <p>
+    Governance: {{ _('Dataset') }} {{ h.link_to(activity.data.package.title, h.url_for('%s.read' % activity_data.package.type, id=activity_data.package.name)) }} ได้รับการเปลี่ยนสถานะเป็น {{ _(activity_data.governance.governance_state) }}  
+    {#{ _('{actor} updated the dataset {dataset}').format(
+      actor=ah.actor(activity),
+      dataset=ah.dataset(activity)
+    )|safe }#}
+    <br />
+    <span>
+      ความเห็น: {{ activity_data.governance.governance_notes }}
+    </span>
+    <br />
+    <span class="date">
+      {{ h.time_ago_from_timestamp(activity.timestamp) }}
+    </span>
+  </p>
+</li>
+{% endif %}

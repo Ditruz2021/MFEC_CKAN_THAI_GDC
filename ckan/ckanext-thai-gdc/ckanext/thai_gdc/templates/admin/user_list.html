@@ -1,0 +1,29 @@
+{% extends "admin/base.html" %}
+{% import 'macros/form.html' as form %}
+
+
+{% if sort_by_selected is not defined %}{% set sort_by_selected = c.sort_by_selected %}{% endif %}
+
+{% block primary_content_inner %}
+    {% block form %}
+        {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=count,placeholder='ค้นหา...', type='User' %}
+    {% endblock %}
+    {% snippet 'snippets/user_stream.html', user_stream=data %}
+{% endblock %}
+
+
+{% block secondary_content %}
+<div class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+        <i class="fa fa-info-circle"></i>
+        การจัดการผู้ใช้งาน
+    </h2>
+    <div class="module-content">
+        {% block admin_form_help %}
+        {% trans %}
+        <p>หน้าแสดงรายการผู้ใช้งาน</p>
+        {% endtrans %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "user/dashboard.html" %}
+
+{% block dashboard_activity_stream_context %}{% endblock %}
+
+{% block page_primary_action %}
+{% endblock %}
+
+{% block primary_content_inner %}
+<h2 class="hide-heading">{{ _('My Datasets') }}</h2>
+{% block form %}
+  {% set facets = {
+    'fields': fields_grouped,
+    'search': search_facets,
+    'titles': facet_titles,
+    'translated_fields': translated_fields,
+    'remove_field': remove_field }
+  %}
+  {% set sorting = [
+    (_('Relevance'), 'score desc, metadata_modified desc'),
+    (_('Last Modified'), 'metadata_modified desc') ]
+  %}
+  {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
+{% endblock %}
+{% block package_search_results_list %}
+  {{ h.snippet('snippets/requestdata_list.html', packages=page.items) }}
+{% endblock %}
+{% endblock %}

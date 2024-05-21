@@ -1,0 +1,60 @@
+{% extends "page.html" %}
+
+{%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+
+{% block breadcrumb_content %}
+<li class="active"><a href="/governance/requestdata/anonymous">{{ _('Data Governance') }}</a></li>
+{% endblock %}
+
+{% block secondary %}
+<style>
+    .wrapper::before {
+    width:unset;
+}
+</style>
+    <aside class="secondary col-12">
+    {% block primary_content %}
+    <article class="module">
+    {% block page_header %}
+    {% endblock %}
+    <div class="module-content">
+        {% if self.page_primary_action() | trim %}
+        <div class="page_primary_action">
+            {% block page_primary_action %}{% endblock %}
+        </div>
+        {% endif %}
+        {% block primary_content_inner %}
+        {{ super() }}
+        {% block package_description %}
+            <h1>
+            {% block page_heading %}
+            <div style="display: flex;">
+            </div>
+            {% endblock %}
+            </h1>
+            {% block package_notes %}
+                <section>
+                  <div style="display: flex;">
+                    <div class="well" style="margin-bottom: 10px;flex: 50%;margin-right: 10px;">
+                      <strong>ผู้ร้องขอชุดข้อมูล : {{pkg_dict.first_name}} {{pkg_dict.last_name}}</strong><br/>
+                      <strong>หน่วยงาน:</strong> {{pkg_dict.owner_org}}
+                    </div>
+                  </div>
+                </section>
+                {% endblock %}
+            {# FIXME why is this here? seems wrong #}
+            <span class="insert-comment-thread"></span>
+        {% endblock %}
+
+        {% block package_additional_info %}
+          {% snippet "scheming/package/snippets/additional_info_anonymous.html", pkg_dict_list=pkg_dict, schema=schema %}
+        {% endblock %}
+        {% endblock %}
+    </div>
+    </article>
+    {% endblock %}
+    
+    </aside>
+{% endblock %}
+{% block primary %}
+{% endblock %}

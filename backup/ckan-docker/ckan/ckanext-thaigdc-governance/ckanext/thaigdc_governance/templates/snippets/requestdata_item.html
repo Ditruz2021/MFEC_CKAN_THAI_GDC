@@ -1,0 +1,129 @@
+{% block package_item %}
+<li class="{{ item_class or "dataset-item" }}">
+{% block content %}
+  <div class="dataset-content">
+    {% block heading %}
+      <h2 class="dataset-heading">
+        {% block heading_private %}
+        {% endblock %}
+        {% block heading_title %}
+        <strong>{{ package.title }}</strong>
+        {% endblock %}
+        {% block heading_meta %}
+            <span class="label label-info">{{ _(package.request_state) }}</span>
+        {% endblock %}
+      </h2>
+      {% if request.endpoint=='governance.my_requestdata_list' and package.request_state == 'requestdata_wait_received' %}
+      <div class="text-left">
+        <a href="#" data-href="/requestdata_received/{{ package.id }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
+            <i class="fa fa-file-text-o"></i>
+            ยืนยันการได้รับข้อมูล
+          </a>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog" style="width: 80%;">
+      
+        <!-- Modal content-->
+        <div class="modal-content" style="height: 100%;">
+          <div class="modal-header"><strong style="font-size: 30px;">แบบฟอร์มยืนยันการได้รับข้อมูล</strong>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body" style="height: 90%;">
+            <iframe id="myIframe" src="#" title="description" width="100%" height="100%"></iframe>
+          </div>
+        </div>
+      </div>
+      </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+    $(".showModal").click(function(e) {
+      e.preventDefault();
+      var url = $(this).attr("data-href");
+      $("#myModal iframe").attr("src", url);
+      $("#myModal").modal("show");
+    });
+    $("#close-modal").click(function(){
+      $("#myModal").modal('hide');
+    });
+    $('#myModal').on('hidden.bs.modal', function () {
+      window.location.reload();
+    });
+  });
+  var iframe = document.getElementById("myIframe");
+      iframe.onload = function(){
+        console.log('Iframe load');
+      }
+  </script>
+  {% elif request.endpoint=='governance.my_package_requested_list' and package.request_state == 'requestdata_wait_maintainer_notify' %}
+  <div class="text-left">
+    <a href="#" data-href="/requestdata_notified/{{ package.id }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
+        <i class="fa fa-file-text-o"></i>
+        รับทราบและจะดำเนินการให้ข้อมูล
+      </a>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog" style="width: 80%;">
+  
+    <!-- Modal content-->
+    <div class="modal-content" style="height: 100%;">
+      <div class="modal-header"><strong style="font-size: 30px;">แบบฟอร์มยืนยันการรับทราบว่ามีผู้ขอใช้ชุดข้อมูล</strong>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body" style="height: 90%;">
+        <iframe id="myIframe" src="#" title="description" width="100%" height="100%"></iframe>
+      </div>
+    </div>
+  </div>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+$(".showModal").click(function(e) {
+  e.preventDefault();
+  var url = $(this).attr("data-href");
+  $("#myModal iframe").attr("src", url);
+  $("#myModal").modal("show");
+});
+$("#close-modal").click(function(){
+  $("#myModal").modal('hide');
+});
+$('#myModal').on('hidden.bs.modal', function () {
+  window.location.reload();
+});
+});
+var iframe = document.getElementById("myIframe");
+  iframe.onload = function(){
+    console.log('Iframe load');
+  }
+</script>
+      {% endif %}
+    {% endblock %}
+
+    {% block notes %}
+    <div><i class="fa fa-sitemap" aria-hidden="true"></i> <strong>ชุดข้อมูล:</strong> <a href="/dataset/{{ package.package_id }}" target="_blank">{#{ package.title.split('-')[1] }#}{{ package.title.replace(package.title[:15], '') }}</a>  
+      {% if request.endpoint=='governance.my_requestdata_list' %}
+        <i class="fa fa-user" aria-hidden="true"></i> <strong>ผู้ดูแลชุดข้อมูล:</strong> {{ h.linked_user(package.package_owner, 0, 0) }}</div>
+      {% elif request.endpoint=='governance.my_package_requested_list' %}
+        <i class="fa fa-user" aria-hidden="true"></i> <strong>ผู้ขอใช้ชุดข้อมูล:</strong> {{ h.linked_user(package.requester_id, 0, 0) }}</div>
+      {% endif %}
+    <div>{{ package.request_type }} {{ package.project_title }}</div>
+        <!--<div>{{ package.notes|urlize }}</div>-->
+        <div>ระหว่างวันที่ {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.usage_start_date)) }} ถึง {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.usage_end_date)) }}</div>
+    {% endblock %}
+  </div>
+  {% block resources %}
+  {% endblock %}
+  <div style="margin-top: 8px;">
+  <i class="fa fa-calendar" aria-hidden="true"></i> <strong>วันที่ยื่นคำขอ:</strong> {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_created)) }}
+  {% if package.request_state != 'requestdata_wait_steward' %}
+  <i class="fa fa-calendar" aria-hidden="true"></i> <strong>วันที่พิจารณาคำขอ (ล่าสุด):</strong> {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_modified)) }}
+  <br/><i class="fa fa-commenting" aria-hidden="true"></i> <strong>ผลการพิจารณาคำขอ  (ล่าสุด):</strong> {{ package.summary_comment|urlize }}
+  {% endif %}
+</div>
+{% endblock %}
+</li>
+{% endblock %}
+  

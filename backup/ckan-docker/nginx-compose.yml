@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+
+  nginx:
+    container_name: nginx-${PROJECT_NUMBER}
+    restart: unless-stopped
+    build:
+      context: nginx/
+      dockerfile: Dockerfile
+    ports:
+      - "0.0.0.0:${NGINX_PORT}:443"
+    environment:
+      - TZ=${TZ}
