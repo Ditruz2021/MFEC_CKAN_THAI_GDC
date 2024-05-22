@@ -3492,7 +3492,7 @@ msgstr "เชื่อมโยงกลุ่มนี้กับข้อม
 
 #: ckan/templates/package/group_list.html:14
 msgid "Add to group"
-msgstr "เพิ่มไปที่กลุ่มนี้"
+msgstr "เพิ่มไปที่กลุ่มชุดข้อมูลนี้"
 
 #: ckan/templates/package/group_list.html:23
 msgid "There are no groups associated with this dataset"

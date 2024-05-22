@@ -129,6 +129,8 @@ class ThaigdcGovernancePlugin(plugins.SingletonPlugin, DefaultTranslation, Defau
 
         config_['scheming.dataset_schemas'] = config_.get('scheming.dataset_schemas','ckanext.thaigdc_governance:ckan_dataset.json ckanext.thaigdc_governance:ckan_prepare.json ckanext.thaigdc_governance:ckan_processing.json ckanext.thaigdc_governance:ckan_requestdata.json')
         config_['thaigdc_governance.steward_organization_name'] = config_.get('thaigdc_governance.steward_organization_name', 'data-steward-committee')
+        config_['thai_gdc.proxy_request'] = True
+        config_['thai_gdc.proxy_url'] = 'http://proxy.mea.or.th:9090'
     
     def update_config_schema(self, schema):
 
