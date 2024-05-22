@@ -23,6 +23,26 @@ h4 small {
   font-size: 20px;
 }
 
+
+
+.pagination-wrapper {
+  text-align: right!important;
+}
+
+.pagination > li > a, .pagination > li > span {
+
+  margin-left: 3px!important;
+  color: #333333!important;
+  border-radius: 4px!important;
+
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  color: #ffffff!important;
+  background-color: #f35200!important;
+  border-color: #f35200!important;
+}
+
 @media (min-width: 992px) {
     .custom-content {
       padding: 30px!important;
@@ -32,3 +52,5 @@ h4 small {
       padding: 50px 0!important;
     }
   }
+
+
