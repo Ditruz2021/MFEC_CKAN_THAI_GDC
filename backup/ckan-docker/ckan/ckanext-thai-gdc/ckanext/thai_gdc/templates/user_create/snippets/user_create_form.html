@@ -9,35 +9,35 @@
 
   {{ form.errors(error_summary) }}
   <div class="row">
-    <div class="col-sm-6">
-      {{ form.input("name", id="field_name", label='username', placeholder='', value='', is_required=True) }}
-    </div>
-    <div class="col-sm-6">
-      {{ form.input("password", id="field_password", label='password', type="password", placeholder='', value='',
-      is_required=True) }}
-    </div>
+  <div class="col-sm-6">
+    {{ form.input("name", id="field_name", label='username', placeholder='', value='', is_required=True) }}
+  </div>
+  <div class="col-sm-6">
+    {{ form.input("password", id="field_password", label='password', type="password", placeholder='', value='', is_required=True) }}
+  </div>
   </div>
 
-  {{ form.input("fullname", id="field_fullname", label='ชื่อ - นามสกุล', placeholder='', value='', is_required=True) }}
-  <div class="row">
-    <div class="col-sm-6">
-      {{ form.input("phone", id="field_phone", label='เบอร์โทร', placeholder='', value='', is_required=True) }}
+ 
+    {{ form.input("fullname", id="field_fullname", label='ชื่อ - นามสกุล', placeholder='', value='', is_required=True) }}
+    <div class="row">
+  <div class="col-sm-6">
+    {{ form.input("phone", id="field_phone", label='เบอร์โทร', placeholder='', value='', is_required=True) }}
     </div>
-    <div class="col-sm-6">
-      {{ form.input("email", id="field_email", label='อีเมล', placeholder='', value='', is_required=True) }}
+  <div class="col-sm-6">
+    {{ form.input("email", id="field_email", label='อีเมล', placeholder='', value='', is_required=True) }}
     </div>
-  </div>
+    </div>
+   
 
 
-
-  {{ form.markdown("address", id="field_address", label='ที่อยู่', placeholder='', value='', is_required=True) }}
+ {{ form.markdown("address", id="field_address", label='ที่อยู่', placeholder='', value='', is_required=True) }}
   <div class="form-actions">
     {% block form_actions %}
 
 
-
+    
     <button id="submit-button" class="btn btn-primary" type="submit" name="save">บันทึก</button>
-    <a href="" class="btn btn-danger">ยกเลิก</a>
+    <a href="" class="btn btn-danger" >ยกเลิก</a>
     {% endblock %}
   </div>
 </form>

@@ -1304,6 +1304,55 @@
                 "th": "Finished Governance State"
             },
             "form_data_type": ["ข้อมูลระเบียน","ข้อมูลสถิติ","ข้อมูลภูมิสารสนเทศเชิงพื้นที่","ข้อมูลหลากหลายประเภท","ข้อมูลประเภทอื่นๆ"]
+        },
+        {
+            "field_name": "metadata_number",
+            "label": {
+                "en": "Metadata number",
+                "th": "เลขที่ Metadata"
+            },
+            "form_data_type": ["ข้อมูลระเบียน", "ข้อมูลสถิติ", "ข้อมูลภูมิสารสนเทศเชิงพื้นที่", "ข้อมูลหลากหลายประเภท", "ข้อมูลประเภทอื่นๆ"]
+        },
+        {
+            "field_name": "distribution_type",
+            "label": {
+                "en": "Distribution Type",
+                "th": "ประเภทการจัดจำหน่าย"
+            },
+            "choices": [{
+                    "value": "inquiry (สอบถามรายละเอียดเพิ่มเติม)",
+                    "label": "inquiry (สอบถามรายละเอียดเพิ่มเติม)"
+                },
+                {
+                    "value": "sharing (การแบ่งปัน)",
+                    "label": "sharing (การแบ่งปัน)"
+                },
+                {
+                    "value": "export  (ส่งออก)",
+                    "label": "export  (ส่งออก)"
+                }
+            ],
+            "form_snippet": "select.html",
+            "display_snippet": "select.html",
+            "form_data_type": ["ข้อมูลระเบียน", "ข้อมูลสถิติ", "ข้อมูลภูมิสารสนเทศเชิงพื้นที่", "ข้อมูลหลากหลายประเภท", "ข้อมูลประเภทอื่นๆ"]
+        },
+        {
+        	"field_name": "effective_date",
+        	"label": {
+        		"en": "Effective date",
+        		"th": "วันทีมีผลใช้งาน"
+        	},
+        	"preset": "date",
+        	"form_data_type": ["ข้อมูลระเบียน", "ข้อมูลสถิติ", "ข้อมูลภูมิสารสนเทศเชิงพื้นที่", "ข้อมูลหลากหลายประเภท", "ข้อมูลประเภทอื่นๆ"]
+        },
+        {
+        	"field_name": "end_of_use_date",
+        	"label": {
+        		"en": "End of use date",
+        		"th": "วันที่สิ้นสุดการใช้งาน"
+        	},
+        	"preset": "date",
+        	"form_data_type": ["ข้อมูลระเบียน", "ข้อมูลสถิติ", "ข้อมูลภูมิสารสนเทศเชิงพื้นที่", "ข้อมูลหลากหลายประเภท", "ข้อมูลประเภทอื่นๆ"]
         }
     ],
     "resource_fields": [

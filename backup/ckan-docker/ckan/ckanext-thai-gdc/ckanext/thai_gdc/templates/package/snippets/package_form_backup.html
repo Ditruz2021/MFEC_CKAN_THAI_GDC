@@ -2,32 +2,14 @@
 
 {% block form_actions %}
 {% block restore_business_metadata_button %}
-
-<!-- <div class="form-inline">
-
 <div class="input-group mt-3">
-	<select class=" id="restore_selected">
+	<select class="custom-select" id="inputGroupSelect04">
 		<option selected disabled>เลือกข้อมูล...</option>
 	</select>
 	<div class="input-group-append">
-		
+		<a class="btn btn-outline-secondary" id="restoreButton">Restore Selected</a>
 	</div>
 </div>
-
-
-</div> -->
-
-
-
-  <div class="form-inline">
-    <div class="form-group">
-        <select class="form-control" id="restore_selected">
-            <option selected disabled>เลือกข้อมูล...</option>
-        </select>
-    </div>
-    <a class="btn btn-success" id="restoreButton"><i class="fa fa-plus" aria-hidden="true"></i></a>
-  </div>
-
 {% endblock %}
 
 {{ super() }}
@@ -56,7 +38,6 @@
 </div>
 
 <script>
-
     document.addEventListener("DOMContentLoaded", function () {
         var selectElementId = "field-data_type";
         var selectElement = document.getElementById(selectElementId);
@@ -78,6 +59,16 @@
         }
 
         var formGroups = document.querySelectorAll('.form-group');
+        var deletedFormGroups = JSON.parse(localStorage.getItem('deletedFormGroups')) || [];
+
+        formGroups.forEach(function (formGroup, index) {
+            formGroup.setAttribute('data-id', 'formGroup' + index);
+
+            if (deletedFormGroups.includes(formGroup.getAttribute('data-id'))) {
+                formGroup.style.display = 'none';
+            }
+        });
+
         formGroups.forEach(function (formGroup) {
             var requiredSpan = formGroup.querySelector('.control-required');
 
@@ -101,7 +92,6 @@
 
         var buttons = document.querySelectorAll('.controls button');
         var formGroupToDelete = null;
-        var deletedFormGroups = [];
 
         buttons.forEach(function (button) {
             button.addEventListener('click', function () {
@@ -115,39 +105,40 @@
 
         document.getElementById('confirmDelete').addEventListener('click', function () {
             if (formGroupToDelete) {
-                deletedFormGroups.push(formGroupToDelete);
-                formGroupToDelete.style.display = 'none'; // Hide the form group instead of removing
-                updateSelectOptions(); // Update the select options
+                deletedFormGroups.push(formGroupToDelete.getAttribute('data-id'));
+                localStorage.setItem('deletedFormGroups', JSON.stringify(deletedFormGroups));
+                formGroupToDelete.style.display = 'none';
+                updateSelectOptions();
                 formGroupToDelete = null;
                 $('#confirmRemove').modal('hide');
             }
         });
 
         document.getElementById('restoreButton').addEventListener('click', function () {
-            var selectElement = document.getElementById('restore_selected');
+            var selectElement = document.getElementById('inputGroupSelect04');
             var selectedValue = selectElement.value;
 
             if (selectedValue) {
-                var formGroupToRestore = deletedFormGroups.find(function (formGroup) {
-                    return formGroup.getAttribute('data-id') === selectedValue;
-                });
+                var formGroupToRestore = document.querySelector('[data-id="' + selectedValue + '"]');
 
                 if (formGroupToRestore) {
                     formGroupToRestore.style.display = '';
-                    deletedFormGroups = deletedFormGroups.filter(function (formGroup) {
-                        return formGroup.getAttribute('data-id') !== selectedValue;
+                    deletedFormGroups = deletedFormGroups.filter(function (dataId) {
+                        return dataId !== selectedValue;
                     });
+                    localStorage.setItem('deletedFormGroups', JSON.stringify(deletedFormGroups));
                     updateSelectOptions();
                 }
             }
         });
 
         function updateSelectOptions() {
-            var selectElement = document.getElementById('restore_selected');
+            var selectElement = document.getElementById('inputGroupSelect04');
             selectElement.innerHTML = '<option selected disabled>เลือกข้อมูล...</option>';
-            deletedFormGroups.forEach(function (formGroup, index) {
+            deletedFormGroups.forEach(function (dataId, index) {
+                var formGroup = document.querySelector('[data-id="' + dataId + '"]');
                 var option = document.createElement('option');
-                option.value = formGroup.getAttribute('data-id');
+                option.value = dataId;
                 var label = formGroup.querySelector('label.control-label');
                 var labelText = label ? label.textContent : 'Form Group ' + (index + 1);
                 option.textContent = labelText;
@@ -155,32 +146,11 @@
             });
         }
 
-        formGroups.forEach(function (formGroup, index) {
-            formGroup.setAttribute('data-id', 'formGroup' + index);
-        });
-    });
-    
-</script>
-
-<script>
-    function sCheck_data_language(checkbox) {
-        var field = document.getElementById('field-data_language_other');
-        if (checkbox.checked) {
-            field.disabled = false; // Optionally enable the field if needed
-            field.style.display = '';
-        } else {
-            field.disabled = true; // Optionally disable the field if needed
-            field.style.display = 'none';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var field = document.getElementById('field-data_language_other');
-        if (field.disabled) {
-            field.style.display = 'none';
-        }
+        updateSelectOptions();
     });
 </script>
+
+
 
 
 

@@ -137,6 +137,21 @@ GROUP BY "group".id;'''
 
     return data
 
+def total_package_data_review(context, data_dict):
+    model = context['model']
+    sql = u'''SELECT package_extra."value" AS name, COUNT(package_extra."value") AS count FROM package
+INNER JOIN package_extra ON package.id = package_extra.package_id 
+WHERE package.state = 'active'
+AND package."type" in ('dataset','prepare')
+AND package_extra."key" = 'data_type'
+GROUP BY package_extra."value"'''
+    result = model.Session.execute(text(sql))
+    data = []
+    for row in result:
+        data.append({'name': row.name, 'count': row.count})
+
+    return data
+
 def total_user_review(context, data_dict):
     model = context['model']
     sql = u'''SELECT (SELECT sum("count") FROM "tracking_summary" WHERE tracking_type = 'page') as count,

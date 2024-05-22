@@ -1,0 +1,35 @@
+<style>
+  .dataset-item {
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+{% block user_list %}
+
+
+
+<table class="table responsive" id="sort">
+  <thead>
+    <tr>
+      <th scope="col">ลำดับ</th>
+      <th scope="col">Username</th>
+      <th scope="col">ชื่อ-นามสกุล</th>
+      <th scope="col">หน่วยงาน/เขต/ฝ่าย</th>
+      <th scope="col">สิทธิการใช้งาน</th>
+      <th scope="col">สถานะ</th>
+      <th scope="col">การจัดการ</th>
+    </tr>
+  </thead>
+
+  {% if user_stream %}
+  <tbody class="{{ list_class or 'dataset-list list-unstyled' }}">
+    {% block user_list_inner %}
+    {% for user in user_stream %}
+    {% snippet 'governance/user/snippets/user_item.html', user=user, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+    {% endfor %}
+    {% endblock %}
+  </tbody>
+  {% endif %}
+
+</table>
+
+{% endblock %}
