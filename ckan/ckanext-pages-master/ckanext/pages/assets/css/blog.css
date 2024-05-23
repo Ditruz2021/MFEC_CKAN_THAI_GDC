@@ -18,3 +18,11 @@
 .secondary .blog-content .btn {
 	display:none;
 }
+
+
+.page-list-item .fa-bookmark{
+	position: absolute;
+    right: 0;
+    font-size: 25px;
+    color: #f35200;
+}

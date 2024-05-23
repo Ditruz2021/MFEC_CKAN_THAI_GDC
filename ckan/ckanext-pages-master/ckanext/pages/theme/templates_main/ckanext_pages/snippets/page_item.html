@@ -11,12 +11,14 @@
 <div class="{% if page.image %}span8 col-md-10{% else %}span11 col-md-12{% endif %}">
 
      {% block page_item_heading %}
+     <span class="custom_pin">{{ page.pin }}</span>
      <h3 class="dataset-heading">
         <a href="{{ url }}" >{{ page.title }}</a>
         {% if page.publish_date %}
            <small class="date"> {{ h.render_datetime(page.publish_date) }} </small>
         {% endif %}
     </h3>
+    
     {% endblock %}
 
     {% block page_item_content %}
@@ -35,3 +37,18 @@
   </div>
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var customPins = document.querySelectorAll('.custom_pin');
+      customPins.forEach(function(pin) {
+          if (pin.textContent.trim() === '1') {
+              var icon = document.createElement('i');
+              icon.className = 'fa fa-bookmark';
+              icon.setAttribute('aria-hidden', 'true');
+              pin.parentNode.replaceChild(icon, pin);
+          } else {
+              pin.parentNode.removeChild(pin);
+          }
+      });
+  });
+</script>

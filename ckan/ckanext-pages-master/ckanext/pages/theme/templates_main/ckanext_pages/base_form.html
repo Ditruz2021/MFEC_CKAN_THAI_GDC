@@ -83,6 +83,33 @@
       </div>
     </div>
 
+
+    <div class="control-group form-group">
+      <label for="field-category" class="control-label">เลือกการแสดงผล</label>
+      <div class="controls">
+        <select id="field-category" class="form-control" name="category">
+          {% for option in [('', _('แสดงในหน้าบทความ')), (1, _('การใช้งานสำหรับผู้ใช้งาน')), (2, _('คู่มือการใช้งาน API'))] %}
+          <option value="{{ option[0] }}" {% if option[0] == data.category %}selected="selected"{% endif %}>{{ option[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+
+
+
+    <div class="control-group form-group">
+      <label for="field-pin" class="control-label">ปักหมุด</label>
+      <div class="controls">
+        <select id="field-pin" class="form-control" name="pin">
+          {% for option in [(1, _('ปักหมุด')), (0, _('ไม่ปักมุด'))] %}
+          <option value="{{ option[0] }}" {% if option[0] == data.pin %}selected="selected"{% endif %}>{{ option[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+
     {% if not hide_field_order %}
       <div class="control-group form-group">
         <label for="field-order" class="control-label">{{ _('Header Order') }}</label>

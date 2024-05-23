@@ -30,3 +30,18 @@
 .pages-form .form-actions {
   margin-top: 10px;
 }
+
+
+
+
+.page-list-item .fa-bookmark{
+	position: absolute;
+    right: 0;
+    font-size: 40px;
+    color: #f35200;
+}
+
+
+.page-list-item .dataset-heading {
+  padding-right: 25px;
+}

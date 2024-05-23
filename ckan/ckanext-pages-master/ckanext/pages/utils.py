@@ -1,20 +1,33 @@
 import six
+import json
 
+import ckantoolkit as tk
 import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.plugins as p
-import ckan.plugins.toolkit as tk
 import ckan.logic as logic
 import ckan.lib.helpers as helpers
 
 config = tk.config
 _ = tk._
 
+ckan_29_or_higher = tk.check_ckan_version(min_version='2.9.0')
+
+
+def _get_form_data(request):
+    try:
+        form_data = request.form
+    except AttributeError:
+        # CKAN < 2.9
+        form_data = request.POST
+    return form_data
+
 
 def _parse_form_data(request):
+    form_data = _get_form_data(request)
     return logic.clean_dict(
         dict_fns.unflatten(
             logic.tuplize_dict(
-                logic.parse_params(request.form)
+                logic.parse_params(form_data)
             )
         )
     )
@@ -24,15 +37,16 @@ def pages_list_pages(page_type):
     data_dict = {'org_id': None, 'page_type': page_type}
     if page_type == 'blog':
         data_dict['order_publish_date'] = True
-    tk.g.pages_dict = tk.get_action('ckanext_pages_list')(
+    tk.c.pages_dict = tk.get_action('ckanext_pages_list')(
         context={}, data_dict=data_dict
     )
-    tk.g.page = helpers.Page(
+    tk.c.page = helpers.Page(
         collection=tk.c.pages_dict,
-        page=tk.request.args.get('page', 1),
+        page=tk.request.params.get('page', 1),
         url=helpers.pager_url,
         items_per_page=21
     )
+
     if page_type == 'blog':
         return tk.render('ckanext_pages/blog_list.html')
     return tk.render('ckanext_pages/pages_list.html')
@@ -50,16 +64,13 @@ def pages_edit(page=None, data=None, errors=None, error_summary=None, page_type=
     if page_dict is None:
         page_dict = {}
 
-    try:
-        tk.check_access('ckanext_pages_update', {'user': tk.g.user})
-    except tk.NotAuthorized:
-        return tk.abort(401, _('Unauthorized to create or edit a page'))
 
+        
     if tk.request.method == 'POST' and not data:
         data = _parse_form_data(tk.request)
 
         page_dict.update(data)
-
+        print(page_dict)
         page_dict['org_id'] = None
         page_dict['page'] = page
         page_dict['page_type'] = 'page' if page_type == 'pages' else page_type
@@ -74,12 +85,20 @@ def pages_edit(page=None, data=None, errors=None, error_summary=None, page_type=
             tk.h.flash_error(error_summary)
             return pages_edit(
                 page, data, errors, error_summary, page_type=page_type)
+        if ckan_29_or_higher:
+            endpoint = 'show' if page_type in ('pages', 'page') else '%s_show' % page_type
+            return tk.redirect_to('pages.%s' % endpoint, page=page_dict['name'])
+        else:
+            endpoint = 'pages_show' if page_type == 'page' else '%s_show' % page_type
+            tk.redirect_to(endpoint, page='/' + page_dict['name'])
 
-        endpoint = 'show' if page_type in ('pages', 'page') else '%s_show' % page_type
-        return tk.redirect_to('pages.%s' % endpoint, page=page_dict['name'])
+    try:
+        tk.check_access('ckanext_pages_update', {'user': tk.c.user or tk.c.author})
+    except tk.NotAuthorized:
+        return tk.abort(401, _('Unauthorized to create or edit a page'))
 
     if not data:
-        data = page_dict
+        data = page_dict        
 
     errors = errors or {}
     error_summary = error_summary or {}
@@ -144,10 +163,13 @@ def _inject_views_into_page(_page):
         elif not helpers.resource_view_is_iframed(view):
             resource_view_html = helpers.rendered_resource_view(view, resource, package)
         else:
-            src = helpers.url_for(
-                'resource.view', id=package['name'], resource_id=resource['id'],
-                view_id=view['id'], _external=True
-            )
+            if ckan_29_or_higher:
+                src = helpers.url_for('resource.view', id=package['name'],
+                                      resource_id=resource['id'], view_id=view['id'], _external=True)
+            else:
+                src = helpers.url_for(qualified=True, controller='package',
+                                      action='resource_view', id=package['name'],
+                                      resource_id=resource['id'], view_id=view['id'])
             message = _('Your browser does not support iframes.')
             resource_view_html = '<iframe src="{src}" frameborder="0" width="100%" height="100%" ' \
                                  'style="display:block"> <p>{message}</p> </iframe>'.format(src=src, message=message)
@@ -189,14 +211,20 @@ def pages_show(page=None, page_type='page'):
 def pages_delete(page, page_type='pages'):
     if page.startswith('/'):
         page = page[1:]
-    if 'cancel' in tk.request.args:
-        return tk.redirect_to('pages.%s_edit' % page_type, page=page)
+    if 'cancel' in tk.request.params:
+        if ckan_29_or_higher:
+            return tk.redirect_to('pages.%s_edit' % page_type, page=page)
+        else:
+            tk.redirect_to('%s_edit' % page_type, page='/' + page)
 
     try:
         if tk.request.method == 'POST':
             tk.get_action('ckanext_pages_delete')({}, {'page': page})
-            endpoint = page_type + '_index'
-            return tk.redirect_to('pages.%s' % endpoint)
+            if ckan_29_or_higher:
+                endpoint = 'index' if page_type in ('pages', 'page') else '%s_index' % page_type
+                return tk.redirect_to('pages.%s' % endpoint)
+            else:
+                tk.redirect_to('%s_index' % page_type)
         else:
             return tk.abort(404, _('Page Not Found'))
     except tk.NotAuthorized:
@@ -209,19 +237,24 @@ def pages_delete(page, page_type='pages'):
 def pages_upload():
     if not tk.request.method == 'POST':
         tk.abort(409, _('Only Posting is availiable'))
-    data_dict = logic.clean_dict(
-        dict_fns.unflatten(
-            logic.tuplize_dict(
-                logic.parse_params(tk.request.files)
+    if ckan_29_or_higher:
+        data_dict = logic.clean_dict(
+            dict_fns.unflatten(
+                logic.tuplize_dict(
+                    logic.parse_params(tk.request.files)
+                )
             )
         )
-    )
+    else:
+        data_dict = tk.request.POST
     try:
         upload_info = tk.get_action('ckanext_pages_upload')(None, data_dict)
     except tk.NotAuthorized:
         return tk.abort(401, _('Unauthorized to upload file %s') % id)
-
-    return upload_info
+    if ckan_29_or_higher:
+        return upload_info
+    else:
+        return json.dumps(upload_info)
 
 
 def group_list_pages(id, group_type, group_dict=None):
@@ -315,9 +348,12 @@ def group_edit(id, group_type, page=None, data=None, errors=None, error_summary=
             errors = e.error_dict
             error_summary = e.error_summary
             return group_edit(id, group_type, page, data, errors, error_summary)
-
-        endpoint = 'pages.{}_pages_show'.format(group_type)
-        return tk.redirect_to(endpoint, id=id, page=page_dict['name'])
+        if ckan_29_or_higher:
+            endpoint = 'pages.{}_pages_show'.format(group_type)
+            return tk.redirect_to(endpoint, id=id, page=page_dict['name'])
+        else:
+            endpoint = '{}_pages'.format(group_type)
+            tk.redirect_to(endpoint, id=id, page='/' + page_dict['name'])
 
     if not data:
         data = page_dict
@@ -345,16 +381,22 @@ def group_delete(id, group_type, page):
     if page.startswith('/'):
         page = page[1:]
 
-    if 'cancel' in tk.request.args:
-        return tk.redirect_to('pages.%s_edit' % group_type, id=tk.c.group_dict['name'], page=page)
+    if 'cancel' in tk.request.params:
+        if ckan_29_or_higher:
+            return tk.redirect_to('pages.%s_edit' % group_type, id=tk.c.group_dict['name'], page=page)
+        else:
+            tk.redirect_to('%s_edit' % group_type, id=tk.c.group_dict['name'], page='/' + page)
 
     try:
         if tk.request.method == 'POST':
             action = 'ckanext_org_pages_delete' if group_type == 'organization' else 'ckanext_group_pages_delete'
             action = tk.get_action(action)
             action({}, {'org_id': tk.c.group_dict['id'], 'page': page})
-            endpoint = 'pages.{}_pages_index'.format(group_type)
-            return tk.redirect_to(endpoint, id=id)
+            if ckan_29_or_higher:
+                endpoint = 'pages.{}_pages_index'.format(group_type)
+                return tk.redirect_to(endpoint, id=id)
+            else:
+                tk.redirect_to('{}_pages_index'.format(group_type), id=id)
         else:
             tk.abort(404, _('Page Not Found'))
     except tk.NotAuthorized:
@@ -371,3 +413,9 @@ def group_delete(id, group_type, page):
         'ckanext_pages/confirm_delete.html',
         {'page': page, 'group_type': group_type, 'group_dict': group_dict}
     )
+
+
+def initdb():
+    import ckanext.pages.db as db
+    db.init_db()
+ 
