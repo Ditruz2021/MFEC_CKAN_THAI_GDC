@@ -724,3 +724,6 @@ span[lang]
   justify-content: space-between;
   display: flex;
 }
+.table-chunky td, .table-chunky th {
+  font-size: unset;
+}
