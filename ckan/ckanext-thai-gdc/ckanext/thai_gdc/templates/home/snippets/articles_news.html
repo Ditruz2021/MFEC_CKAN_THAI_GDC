@@ -6,7 +6,7 @@
                 width="420" height="220" />
         </div>
         <div class="text-new">
-            <h4>{{ category.title }}</h4>
+            <h4>{{ category.title }}</h4><span class="custom_pin">{{ category.pin }}</span>
             {% if category.publish_date %}
             <span><i class="fa fa-calendar-o" aria-hidden="true"></i> {{
                 h.thai_gdc_day_thai(h.date_str_to_datetime(category.publish_date.split('T')[0])) }}</span>
@@ -15,3 +15,20 @@
     </a>
 </div>
 {% endfor %}
+{% block script_pin %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var customPins = document.querySelectorAll('.custom_pin');
+        customPins.forEach(function(pin) {
+            if (pin.textContent.trim() === '1') {
+                var icon = document.createElement('i');
+                icon.className = 'fa fa-bookmark';
+                icon.setAttribute('aria-hidden', 'true');
+                pin.parentNode.replaceChild(icon, pin);
+            } else {
+                pin.parentNode.removeChild(pin);
+            }
+        });
+    });
+  </script>
+  {% endblock %}

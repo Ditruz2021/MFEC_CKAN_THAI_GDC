@@ -36,7 +36,8 @@
 
 .page-list-item .fa-bookmark{
 	position: absolute;
-    right: 0;
+    right: 10px;
+    top: 10px;
     font-size: 40px;
     color: #f35200;
 }
