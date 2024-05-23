@@ -1,4 +1,5 @@
 import six
+import requests
 import json
 
 import ckantoolkit as tk
@@ -195,18 +196,36 @@ def pages_show(page=None, page_type='page'):
         page = page[1:]
     if not page:
         return pages_list_pages(page_type)
+    
     _page = tk.get_action('ckanext_pages_show')(
         context={},
-        data_dict={
-            'org_id': None, 'page': page}
+        data_dict={'org_id': None, 'page': page}
     )
+    print(_page)
+    
     if _page is None:
         return pages_list_pages(page_type)
+    
     tk.c.page = _page
     _inject_views_into_page(_page)
 
-    return tk.render('ckanext_pages/%s.html' % page_type)
+    # Extract the id from _page
+    page_id = _page.get('id')
+    if page_id:
+        # Define the URL to send the id to
+        site_url = config.get('ckan.site_url')  # Replace with your actual site URL
+        api_url = site_url + '/api/3/action/update_news_count'
 
+        # Send the id to the specified URL
+        response = requests.post(api_url, json={'id': page_id})
+
+        # Print or log the response for debugging purposes
+        if response.ok:
+            print("Request sent successfully:", response.json())
+        else:
+            print("Failed to send request:", response.text)
+
+    return tk.render('ckanext_pages/%s.html' % page_type)
 
 def pages_delete(page, page_type='pages'):
     if page.startswith('/'):
