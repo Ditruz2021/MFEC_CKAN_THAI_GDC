@@ -168,7 +168,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
         config_['ckan.datapusher.formats'] = 'csv xls xlsx tsv application/csv application/vnd.ms-excel application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         config_['ckan.group_and_organization_list_all_fields_max'] = '300'
         config_['ckan.group_and_organization_list_max'] = '300'
-        config_['ckan.datasets_per_page'] = '30'
+        config_['ckan.datasets_per_page'] = '20'
         config_['ckan.jobs.timeout'] = '3600'
         config_['ckan.recline.dataproxy_url'] = config_.get('ckan.recline.dataproxy_url','https://dataproxy.gdcatalog.go.th')
         config_['thai_gdc.opend_playground_url'] = config_.get('thai_gdc.opend_playground_url','https://opend-playground.gdcatalog.go.th')

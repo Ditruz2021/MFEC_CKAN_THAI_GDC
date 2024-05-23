@@ -6,10 +6,10 @@
 <div class="panel-row">
   <p class="fw-600"><span class="font-01">{{ _("Font size") }}</span></p>
   <div class="options">
-    <a class="option btn font-size-btn" data-size="smaller">
+    <a class="option btn font-size-btn" data-size="normal">
       <span style="font-size:14px;">{{ _("A") }}</span>
     </a>
-    <a class="option btn font-size-btn" data-size="normal">
+    <a class="option btn font-size-btn" data-size="smaller">
       <span style="font-size:16px;">{{ _("A") }}</span>
     </a>
     <a class="option btn font-size-btn" data-size="larger">
@@ -48,7 +48,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // โหลดการตั้งค่าขนาดฟอนต์จาก localStorage
+    // Store the original font sizes
+    const elements = document.querySelectorAll('body, h1, h2, h3, h4, h5, h6, p, a');
+    elements.forEach(element => {
+      element.setAttribute('data-original-size', window.getComputedStyle(element).fontSize);
+    });
+  
+    // Load saved font size setting from localStorage
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
       adjustFontSize(savedFontSize);
@@ -58,37 +64,36 @@
         }
       });
     }
-  });
-
-  document.querySelectorAll('.font-size-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      // ลบคลาส active จากปุ่มทั้งหมด
-      document.querySelectorAll('.font-size-btn').forEach(btn => btn.classList.remove('active'));
-      // เพิ่มคลาส active ให้กับปุ่มที่ถูกคลิก
-      this.classList.add('active');
-
-      // ปรับขนาดฟอนต์และบันทึกการตั้งค่า
-      const size = this.getAttribute('data-size');
-      adjustFontSize(size);
-      localStorage.setItem('fontSize', size);
+  
+    // Add event listeners to font size buttons
+    document.querySelectorAll('.font-size-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        // Remove active class from all buttons
+        document.querySelectorAll('.font-size-btn').forEach(btn => btn.classList.remove('active'));
+        // Add active class to the clicked button
+        this.classList.add('active');
+  
+        // Adjust font size and save setting
+        const size = this.getAttribute('data-size');
+        adjustFontSize(size);
+        localStorage.setItem('fontSize', size);
+      });
     });
+  
+    function adjustFontSize(size) {
+      elements.forEach(element => {
+        const originalFontSize = parseInt(element.getAttribute('data-original-size'));
+        if (size === 'smaller') {
+          element.style.fontSize = (originalFontSize + 2) + 'px';
+        } else if (size === 'larger') {
+          element.style.fontSize = (originalFontSize + 4) + 'px';
+        } else {
+          // Reset to original font size
+          element.style.fontSize = '';
+        }
+      });
+    }
   });
-
-  function adjustFontSize(size) {
-    const elements = document.querySelectorAll('body, h1, h2, h3, h4, h5, h6, p, a');
-    elements.forEach(element => {
-      if (size === 'smaller') {
-        const currentFontSize = parseInt(window.getComputedStyle(element).fontSize);
-        element.style.fontSize = (currentFontSize - 2) + 'px';
-      } else if (size === 'larger') {
-        const currentFontSize = parseInt(window.getComputedStyle(element).fontSize);
-        element.style.fontSize = (currentFontSize + 4) + 'px';
-      } else {
-        // คืนค่าเริ่มต้นของฟอนต์
-        element.style.fontSize = '';
-      }
-    });
-  }
 </script>
 {% endblock %}
 
@@ -96,10 +101,10 @@
 <div class="panel-row">
   <p class="fw-600"><span class="font-01">{{ _("Font size") }}</span></p>
   <div class="options">
-    <a class="option btn font-size-btn" data-size="smaller">
+    <a class="option btn font-size-btn" data-size="normal">
       <span style="font-size:14px;">{{ _("A") }}</span>
     </a>
-    <a class="option btn font-size-btn" data-size="normal">
+    <a class="option btn font-size-btn" data-size="smaller">
       <span style="font-size:16px;">{{ _("A") }}</span>
     </a>
     <a class="option btn font-size-btn" data-size="larger">
@@ -124,7 +129,13 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // โหลดการตั้งค่าขนาดฟอนต์จาก localStorage
+    // Store the original font sizes
+    const elements = document.querySelectorAll('body, h1, h2, h3, h4, h5, h6, p, a');
+    elements.forEach(element => {
+      element.setAttribute('data-original-size', window.getComputedStyle(element).fontSize);
+    });
+  
+    // Load saved font size setting from localStorage
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
       adjustFontSize(savedFontSize);
@@ -134,36 +145,35 @@
         }
       });
     }
-  });
-
-  document.querySelectorAll('.font-size-btn').forEach(button => {
-    button.addEventListener('click', function () {
-      // ลบคลาส active จากปุ่มทั้งหมด
-      document.querySelectorAll('.font-size-btn').forEach(btn => btn.classList.remove('active'));
-      // เพิ่มคลาส active ให้กับปุ่มที่ถูกคลิก
-      this.classList.add('active');
-
-      // ปรับขนาดฟอนต์และบันทึกการตั้งค่า
-      const size = this.getAttribute('data-size');
-      adjustFontSize(size);
-      localStorage.setItem('fontSize', size);
+  
+    // Add event listeners to font size buttons
+    document.querySelectorAll('.font-size-btn').forEach(button => {
+      button.addEventListener('click', function () {
+        // Remove active class from all buttons
+        document.querySelectorAll('.font-size-btn').forEach(btn => btn.classList.remove('active'));
+        // Add active class to the clicked button
+        this.classList.add('active');
+  
+        // Adjust font size and save setting
+        const size = this.getAttribute('data-size');
+        adjustFontSize(size);
+        localStorage.setItem('fontSize', size);
+      });
     });
+  
+    function adjustFontSize(size) {
+      elements.forEach(element => {
+        const originalFontSize = parseInt(element.getAttribute('data-original-size'));
+        if (size === 'smaller') {
+          element.style.fontSize = (originalFontSize + 2) + 'px';
+        } else if (size === 'larger') {
+          element.style.fontSize = (originalFontSize + 4) + 'px';
+        } else {
+          // Reset to original font size
+          element.style.fontSize = '';
+        }
+      });
+    }
   });
-
-  function adjustFontSize(size) {
-    const elements = document.querySelectorAll('body, h1, h2, h3, h4, h5, h6, p, a');
-    elements.forEach(element => {
-      if (size === 'smaller') {
-        const currentFontSize = parseInt(window.getComputedStyle(element).fontSize);
-        element.style.fontSize = (currentFontSize - 2) + 'px';
-      } else if (size === 'larger') {
-        const currentFontSize = parseInt(window.getComputedStyle(element).fontSize);
-        element.style.fontSize = (currentFontSize + 4) + 'px';
-      } else {
-        // คืนค่าเริ่มต้นของฟอนต์
-        element.style.fontSize = '';
-      }
-    });
-  }
 </script>
 {% endblock %}
