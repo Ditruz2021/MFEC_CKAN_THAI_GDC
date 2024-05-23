@@ -1,4 +1,4 @@
-{% for category in category_articles_news %}
+{% for category in category_articles_news[:6] %}
 <div class="col-sm-6 col-md-4">
     <a class="new-item" href="{% if category.page_type == 'page' %}pages{% else %}{{ category.page_type }}{% endif %}/{{category.name}}">
         <div class="img-new">
