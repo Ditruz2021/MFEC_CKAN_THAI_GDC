@@ -7,8 +7,10 @@ import ckan.lib.navl.dictization_functions as df
 import ckan.lib.uploader as uploader
 import ckan.lib.helpers as h
 from ckan.plugins import toolkit as tk
-from html.parser import HTMLParser
-
+try:
+    from html.parser import HTMLParser
+except ImportError:
+    from HTMLParser import HTMLParser
 from ckanext.pages.logic.schema import update_pages_schema
 
 import ckan.authz as authz
@@ -30,6 +32,13 @@ def _pages_show(context, data_dict):
     org_id = data_dict.get('org_id')
     page = data_dict.get('page')
     out = db.Page.get(group_id=org_id, name=page)
+    if out:
+        out = db.table_dictize(out, context)
+    return out
+
+def _pages_news_show(context, data_dict):
+    page = data_dict.get('page')
+    out = db.Page.get(name=page)
     if out:
         out = db.table_dictize(out, context)
     return out
@@ -76,6 +85,41 @@ def _pages_list(context, data_dict):
                   'publish_date': pg.publish_date.isoformat() if pg.publish_date else None,
                   'group_id': pg.group_id,
                   'page_type': pg.page_type,
+                  'count': pg.count,
+                  'pin': pg.pin,
+                  }
+        if img:
+            pg_row['image'] = img
+        extras = pg.extras
+        if extras:
+            pg_row.update(json.loads(pg.extras))
+        out_list.append(pg_row)
+    return out_list
+
+def _pages_all_list(context, data_dict):
+    search = {}
+    ordered = data_dict.get('order')
+    order_publish_date = data_dict.get('order_publish_date')
+    page_type = data_dict.get('page_type')
+    private = data_dict.get('private', True)
+    if ordered:
+        search['order'] = True
+    if page_type:
+        search['page_type'] = page_type
+    if order_publish_date:
+        search['order_publish_date'] = True
+        
+    out = db.Page.pages(**search)
+    out_list = []
+    for pg in out:
+        parser = HTMLFirstImage()
+        parser.feed(pg.content)
+        img = parser.first_image
+        pg_row = {'title': pg.title,
+                  'content': pg.content,
+                  'name': pg.name,
+                  'publish_date': pg.publish_date.isoformat() if pg.publish_date else None,                  
+                  'page_type': pg.page_type,
                   }
         if img:
             pg_row['image'] = img
@@ -114,7 +158,7 @@ def _pages_update(context, data_dict):
         out = db.Page()
         out.group_id = org_id
         out.name = page
-    items = ['title', 'content', 'name', 'private',
+    items = ['title', 'content', 'name', 'private', 'pin',
              'order', 'page_type', 'publish_date']
 
     # backward compatible with older version where page_type does not exist
@@ -165,7 +209,7 @@ def pages_upload(context, data_dict):
         message = (
             "Can't upload the file, size is too large. "
             "(Max allowed is {0}mb)".format(max_image_size)
-        )
+            )
         return {'uploaded': 0, 'error': {'message': message}}
 
     image_url = data_dict.get('image_url')
@@ -184,6 +228,9 @@ def pages_show(context, data_dict):
     except p.toolkit.NotAuthorized:
         p.toolkit.abort(401, p.toolkit._('Not authorized to see this page'))
     return _pages_show(context, data_dict)
+
+def pages_news_show(context, data_dict):    
+    return _pages_news_show(context, data_dict)
 
 
 def pages_update(context, data_dict):
@@ -209,6 +256,10 @@ def pages_list(context, data_dict):
     except p.toolkit.NotAuthorized:
         p.toolkit.abort(401, p.toolkit._('Not authorized to see this page'))
     return _pages_list(context, data_dict)
+
+def pages_all_list(context, data_dict):    
+    return _pages_all_list(context, data_dict)
+
 
 
 @tk.side_effect_free
@@ -280,4 +331,4 @@ def group_pages_list(context, data_dict):
         p.toolkit.check_access('ckanext_group_pages_list', context, data_dict)
     except p.toolkit.NotAuthorized:
         p.toolkit.abort(401, p.toolkit._('Not authorized to see this page'))
-    return _pages_list(context, data_dict)
+    return _pages_list(context, data_dict) 

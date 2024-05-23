@@ -33,9 +33,9 @@ missing = df.missing
 
 ROLE_PERMISSIONS = OrderedDict([
     ('admin', ['admin', 'membership']),
-    ('editor', ['read', 'delete_dataset', 'create_dataset', 'update_dataset', 'manage_group']),
+    ('owner', ['read', 'delete_dataset', 'create_dataset', 'update_dataset', 'manage_group']),
     ('member', ['read', 'manage_group']),
-    ('owner', ['read', 'delete_dataset', 'create_dataset', 'update_dataset', 'manage_group', 'governance']),
+    ('editor', ['read', 'delete_dataset', 'create_dataset', 'update_dataset', 'manage_group', 'governance']),
 ])
 authz.ROLE_PERMISSIONS = ROLE_PERMISSIONS
 
