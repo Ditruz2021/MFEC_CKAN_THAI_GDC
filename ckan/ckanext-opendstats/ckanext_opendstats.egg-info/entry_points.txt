@@ -1,0 +1,7 @@
+
+        [ckan.plugins]
+        opendstats=ckanext.opendstats.plugin:OpendstatsPlugin
+
+        [babel.extractors]
+        ckan = ckan.lib.extract:extract_ckan
+    
