@@ -1101,9 +1101,9 @@ def build_extra_admin_nav():
     if admin_tabs_dict:
         for k, v in six.iteritems(admin_tabs_dict):
             if v['icon']:
-                output += build_nav_icon(k, v['label'], icon=v['icon'])
+                output += build_nav_icon(k, _(v['label']), icon=v['icon'])
             else:
-                output += build_nav(k, v['label'])
+                output += build_nav(k, _(v['label']))
     return output
 
 

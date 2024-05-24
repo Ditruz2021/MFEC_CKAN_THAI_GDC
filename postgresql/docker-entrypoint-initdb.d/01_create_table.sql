@@ -114,3 +114,29 @@ ALTER TABLE "public"."ckanext_pages" ADD CONSTRAINT "ckanext_pages_pkey" PRIMARY
 
  Date: 25/04/2024 10:02:54
 */
+
+DROP TABLE IF EXISTS "public"."ckanext_pages";
+CREATE TABLE "public"."ckanext_pages" (
+  "id" text COLLATE "pg_catalog"."default" NOT NULL,
+  "title" text COLLATE "pg_catalog"."default",
+  "name" text COLLATE "pg_catalog"."default",
+  "content" text COLLATE "pg_catalog"."default",
+  "lang" text COLLATE "pg_catalog"."default",
+  "order" text COLLATE "pg_catalog"."default",
+  "private" bool,
+  "group_id" text COLLATE "pg_catalog"."default",
+  "user_id" text COLLATE "pg_catalog"."default",
+  "publish_date" timestamp(6),
+  "page_type" text COLLATE "pg_catalog"."default",
+  "created" timestamp(6),
+  "modified" timestamp(6),
+  "extras" text COLLATE "pg_catalog"."default",
+  "count" int4 DEFAULT 0,
+  "pin" int4 DEFAULT 0
+)
+;
+
+-- ----------------------------
+-- Primary Key structure for table ckanext_pages
+-- ----------------------------
+ALTER TABLE "public"."ckanext_pages" ADD CONSTRAINT "ckanext_pages_pkey" PRIMARY KEY ("id");
