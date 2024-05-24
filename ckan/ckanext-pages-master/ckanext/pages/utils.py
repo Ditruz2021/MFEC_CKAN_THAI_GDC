@@ -71,7 +71,7 @@ def pages_edit(page=None, data=None, errors=None, error_summary=None, page_type=
         data = _parse_form_data(tk.request)
 
         page_dict.update(data)
-        print(page_dict)
+        # print("111111111111111111111111111111111111111111:", page_dict)
         page_dict['org_id'] = None
         page_dict['page'] = page
         page_dict['page_type'] = 'page' if page_type == 'pages' else page_type
