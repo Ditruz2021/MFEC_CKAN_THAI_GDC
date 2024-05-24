@@ -47,13 +47,13 @@ class Page(DomainObject):
         order_publish_date = kw.pop('order_publish_date', False)
 
         query = model.Session.query(cls).autoflush(False)
-        query = query.filter_by(**kw)
+        query = query.order_by(cls.pin.desc()).filter_by(**kw)
         if order:
             query = query.order_by(sa.cast(cls.order, sa.Integer)).filter(cls.order != '')
-        elif order_publish_date:
-            query = query.order_by(cls.pin.desc(),cls.publish_date.desc()).filter(cls.publish_date != None)  # noqa: E711
         else:
-            query = query.order_by(cls.created.desc())
+            query = query.order_by(cls.publish_date.desc()).filter(cls.publish_date != None)  # noqa: E711
+        # else:
+        #     query = query.order_by(cls.created.desc())
         return query.all()
 
 
