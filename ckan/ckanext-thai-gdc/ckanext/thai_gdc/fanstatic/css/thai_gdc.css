@@ -727,7 +727,3 @@ span[lang]
 .table-chunky td, .table-chunky th {
   font-size: unset;
 }
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
