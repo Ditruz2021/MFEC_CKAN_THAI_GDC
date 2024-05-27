@@ -7,6 +7,7 @@ import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.plugins as p
 import ckan.logic as logic
 import ckan.lib.helpers as helpers
+from ckan.common import request
 
 config = tk.config
 _ = tk._
@@ -35,7 +36,12 @@ def _parse_form_data(request):
 
 
 def pages_list_pages(page_type):
-    data_dict = {'org_id': None, 'page_type': page_type}
+    
+    sort_by = request.params.get(u'sort', None)
+    tk.c.q = request.params.get(u'q', u'')
+    tk.c.sort_by_selected = sort_by
+
+    data_dict = {'org_id': None, 'page_type': page_type, 'q': tk.c.q}
     if page_type == 'blog':
         data_dict['order_publish_date'] = True
     tk.c.pages_dict = tk.get_action('ckanext_pages_list')(
@@ -71,7 +77,6 @@ def pages_edit(page=None, data=None, errors=None, error_summary=None, page_type=
         data = _parse_form_data(tk.request)
 
         page_dict.update(data)
-        # print("111111111111111111111111111111111111111111:", page_dict)
         page_dict['org_id'] = None
         page_dict['page'] = page
         page_dict['page_type'] = 'page' if page_type == 'pages' else page_type

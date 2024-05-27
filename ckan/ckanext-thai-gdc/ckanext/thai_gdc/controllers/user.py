@@ -5,7 +5,7 @@ import ckan.logic as logic
 import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.model as model
 import logging
-from ckan.common import g
+from ckan.common import g, request, config
 from pylons import config
 
 from ckan.plugins.toolkit import (
@@ -50,7 +50,18 @@ class UserManageController(plugins.toolkit.BaseController):
             except logic.ValidationError as e:
                 return e
     def articles_news(self):
-        return plugins.toolkit.render('articles_news/articles_news_list.html')
+        limit = int(config.get(u'ckan.datasets_per_page', 20))
+        sort_by = request.params.get(u'sort', None)
+        extra_vars = {}
+        extra_vars[u'page'] = helpers.Page(
+            collection=[],
+            items_per_page=limit
+        )
+        extra_vars[u'q'] = request.params.get(u'q', u'')
+        extra_vars[u'sort_by_selected'] = sort_by
+        extra_vars[u'page'].items = thai_gdc_h.get_articles_news_list()
+        extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
+        return plugins.toolkit.render('articles_news/articles_news_list.html',extra_vars=extra_vars)
     
 
     def group_index(self):

@@ -2168,8 +2168,6 @@ def user_update_func():
     if 'save_publish' in form_data:
         try:
             check = thai_gdc_gh.send_user_update(id, form_data)
-            print(check)
-            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
         except logic.ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary
@@ -2231,8 +2229,6 @@ def user_delete_func():
     if 'delete_publish' in form_data:
         try:
             check = thai_gdc_gh.send_user_delete(id)
-            print(check)
-            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
         except logic.ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary

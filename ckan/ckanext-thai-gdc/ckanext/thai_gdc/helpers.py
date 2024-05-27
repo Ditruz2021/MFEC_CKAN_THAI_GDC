@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 import ckan.logic as logic
 import ckan.model as model
 from pylons import config
-from ckan.common import _, c, g
+from ckan.common import _, c, request, g
 import ckan.lib.helpers as h
 import json
 import os
@@ -526,7 +526,11 @@ def get_articles_news_list():
             s.verify = False
             url = site_url + '/api/3/action/ckanext_pages_list'
             headers = {'Content-type': 'application/json', 'Authorization': ''}
-            res = s.get(url, headers=headers, proxies=proxies)
+            if request.params:
+                params = {'q': request.params['q']}
+            else:
+                params = {}
+            res = s.get(url, data=json.dumps(params),headers=headers, proxies=proxies)
             
             # Check if the response status code is 200 (OK)
             # Use res.json() directly, as it returns the JSON-decoded content

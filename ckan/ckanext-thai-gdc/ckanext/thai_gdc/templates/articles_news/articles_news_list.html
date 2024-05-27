@@ -5,11 +5,17 @@
 {% block primary %}
   <article class="module" role="main">
     <div class="module-content">
+      <h1 class="page-heading page-list-header">{{ _("Articles or news about information") }}</h1>
+      {% block form %}
+        {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=page.item_count,type='page' %}
+      {% endblock %}
       {% block category_articles_news %}
-        {% set category_articles_news = h.thai_gdc_get_articles_news_list() %}
-        {% snippet 'articles_news/snippets/articles_news_list.html', pages=category_articles_news %}
+        {% snippet 'articles_news/snippets/articles_news_list.html', pages=page.items %}
       {% endblock %}
     </div>
+    {% block page_pagination %}
+      {{ page.pager(q=q) }}
+    {% endblock %}
   </article>
 {% endblock %}
 

@@ -1713,7 +1713,6 @@ def _requestdata_anonymous(page_url_type, request_state):
         logic.check_access(u'steward', context)
     except logic.NotAuthorized:
         base.abort(403, _(u'Not authorized to see this page'))
-
     extra_vars[u'q'] = q = request.args.get(u'q', u'')
 
     extra_vars['query_error'] = False
@@ -2168,8 +2167,6 @@ def user_update_func():
     if 'save_publish' in form_data:
         try:
             check = thai_gdc_gh.send_user_update(id, form_data)
-            print(check)
-            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
         except logic.ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary
@@ -2231,8 +2228,6 @@ def user_delete_func():
     if 'delete_publish' in form_data:
         try:
             check = thai_gdc_gh.send_user_delete(id)
-            print(check)
-            print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
         except logic.ValidationError as e:
             errors = e.error_dict
             error_summary = e.error_summary

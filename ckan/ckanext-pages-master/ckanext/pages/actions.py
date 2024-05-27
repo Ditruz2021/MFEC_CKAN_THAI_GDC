@@ -55,6 +55,9 @@ def _pages_list(context, data_dict):
     order_publish_date = data_dict.get('order_publish_date')
     page_type = data_dict.get('page_type')
     private = data_dict.get('private', True)
+    q = data_dict.get('q')
+    if q:
+        search['title'] = q
     if ordered:
         search['order'] = True
     if page_type:
@@ -186,14 +189,6 @@ def _pages_update(context, data_dict):
     session.add(out)
     session.commit()
 
-
-    print("Orderxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx:", out.order)
-    print("Nameyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy:", out.name)
-    print("Pinzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz:", out.pin)
-
-   
-
-
     # Conditional API request when saving data
     if out.order in ['1', '2']:
         site_url = config.get('ckan.site_url')  # Replace with your actual site URL
@@ -207,9 +202,9 @@ def _pages_update(context, data_dict):
         
         # Optionally, handle the response
         if response.status_code == 200:
-            print("Successfully sent data to API5555555555555555555555555555555555555555")
+            print("Successfully sent data to API")
         else:
-            print("Failed to send data to API. Status code: 666666666666666666666666666666666" + str(response.status_code) + ", Response: " + response.text)
+            print("Failed to send data to API. Status code: " + str(response.status_code) + ", Response: " + response.text)
         # Second API request
         api_url_update_pin = site_url + '/api/3/action/update_pin'
         payload_update_pin = {
@@ -220,9 +215,9 @@ def _pages_update(context, data_dict):
         
         # Optionally, handle the response
         if response_update_pin.status_code == 200:
-                print("Successfully sent pin update data to API777777777777777777777777777777")
+                print("Successfully sent pin update data to API")
         else:
-                print("Failed to send pin update data to API. Status code: 8888888888888888888888888" + str(response_update_pin.status_code) + ", Response: " + response_update_pin.text)
+                print("Failed to send pin update data to API. Status code: " + str(response_update_pin.status_code) + ", Response: " + response_update_pin.text)
         # Return the saved page object
     return out
 

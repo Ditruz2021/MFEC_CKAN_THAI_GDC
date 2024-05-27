@@ -1,7 +1,5 @@
 {% set pages_total = pages|length %}
 
-<h1 class="page-heading page-list-header">{{ _("Articles or news about information") }}</h1>
-
 {% if pages %}
 <div class="page-list">
   {% set editor = h.pages_get_wysiwyg_editor() %}
