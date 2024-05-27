@@ -8,10 +8,7 @@
     {% block form %}
         {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=count,placeholder='ค้นหา...', type='Audit Log' %}
     {% endblock %}
-    {% snippet 'snippets/activity_stream.html', activity_stream=data %}
-    {% block page_pagination %}
-        {{ page.pager(q=q) }}
-    {% endblock %}
+    {% snippet 'snippets/activity_stream.html', activity_stream=page.items %}
 {% endblock %}
 
 

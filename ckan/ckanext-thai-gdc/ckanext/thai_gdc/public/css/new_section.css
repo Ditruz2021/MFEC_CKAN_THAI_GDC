@@ -103,4 +103,9 @@
   padding-right: 25px;
 }
 
+#new-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
