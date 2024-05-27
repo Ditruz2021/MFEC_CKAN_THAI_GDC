@@ -46,17 +46,30 @@
 }
 #new-section .new-item .text-new{
    padding: 15px;
+   position: relative;
 }
 #new-section .new-item .text-new h4{
     color: #F66E22;
     font-size: 18px;
     line-height: 24px;
+    padding-right: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-box-orient: vertical;
     display: -webkit-box;
     -webkit-line-clamp: 2;
 }
+
+#new-section .new-item .text-new .fa-bookmark{
+	position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 40px;
+    color: #f35200;
+}
+
+
+
 #new-section .new-item .text-new span{
     color: #7D7D7D;
     -webkit-transition: all 0.3s ease-in-out;
@@ -75,3 +88,19 @@
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+
+.page-list-item .fa-bookmark{
+	position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 40px;
+    color: #f35200;
+}
+
+
+.page-list-item .dataset-heading {
+  padding-right: 25px;
+}
+
+

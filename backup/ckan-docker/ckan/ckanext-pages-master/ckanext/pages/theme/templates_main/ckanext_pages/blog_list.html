@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block primary_content_inner %}
+  {% snippet 'ckanext_pages/snippets/search_form_customize.html',query=c.q,sorting_selected=c.sort_by_selected,count=c.page.item_count,type='page' %}
   {% snippet 'ckanext_pages/snippets/pages_list.html', pages=c.page.items, type='blog', title='Blog' %}
   {{ c.page.pager() }}
 {% endblock %}

@@ -85,11 +85,11 @@
 
 
     <div class="control-group form-group">
-      <label for="field-category" class="control-label">เลือกการแสดงผล</label>
+      <label for="field-order" class="control-label">เลือกการแสดงผล</label>
       <div class="controls">
-        <select id="field-category" class="form-control" name="category">
+        <select id="field-order" class="form-control" name="order">
           {% for option in [('', _('แสดงในหน้าบทความ')), (1, _('การใช้งานสำหรับผู้ใช้งาน')), (2, _('คู่มือการใช้งาน API'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.category %}selected="selected"{% endif %}>{{ option[1] }}</option>
+          <option value="{{ option[0] }}" {% if option[0] == data.order %}selected="selected"{% endif %}>{{ option[1] }}</option>
           {% endfor %}
         </select>
       </div>
@@ -110,7 +110,7 @@
     </div>
 
 
-    {% if not hide_field_order %}
+    <!-- {% if not hide_field_order %}
       <div class="control-group form-group">
         <label for="field-order" class="control-label">{{ _('Header Order') }}</label>
         <div class="controls">
@@ -121,7 +121,7 @@
           </select>
         </div>
       </div>
-    {% endif %}
+    {% endif %} -->
 
   {% endblock %}
 

@@ -273,3 +273,11 @@ msgstr ""
 msgid "There are currently no pages here"
 msgstr ""
 
+msgid "{number} page found"
+msgstr ""
+
+msgid "{number} page found for \"{query}\""
+msgstr ""
+
+msgid "No pages found for \"{query}\""
+msgstr ""

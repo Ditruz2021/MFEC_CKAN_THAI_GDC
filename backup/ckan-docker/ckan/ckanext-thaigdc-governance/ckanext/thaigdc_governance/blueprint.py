@@ -1713,6 +1713,7 @@ def _requestdata_anonymous(page_url_type, request_state):
         logic.check_access(u'steward', context)
     except logic.NotAuthorized:
         base.abort(403, _(u'Not authorized to see this page'))
+
     extra_vars[u'q'] = q = request.args.get(u'q', u'')
 
     extra_vars['query_error'] = False

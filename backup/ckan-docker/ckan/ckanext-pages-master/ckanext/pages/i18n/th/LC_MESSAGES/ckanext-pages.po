@@ -275,3 +275,16 @@ msgstr ""
 msgid "There are currently no pages here"
 msgstr ""
 
+msgid "{number} page found"
+msgid_plural "{number} pages found"
+msgstr[0] "พบ {number} บทความ"
+msgstr[1] "พบ {number} บทความ"
+
+msgid "{number} page found for \"{query}\""
+msgid_plural "{number} pages found for \"{query}\""
+msgstr[0] "พบ {number} บทความสำหรับ \"{query}\""
+msgstr[1] "พบ {number} บทความสำหรับ \"{query}\""
+
+msgid "No pages found for \"{query}\""
+msgstr "ไม่พบบทความสำหรับ \"{query}\""
+

@@ -12,6 +12,8 @@
         </div>
 
         <script>
+          Chart.defaults.font.family = "DB Ozone X Medium";
+          Chart.defaults.font.size = 18;
           const ChartCategoryxValues = [
           {% for item in item_total_package_data_review %}
           "{{ item.name }}",
@@ -33,7 +35,7 @@
           ];
 
 
-
+          
           new Chart("ChartCategory", {
             type: "doughnut",
             data: {
@@ -47,10 +49,17 @@
               plugins: {
                 legend: {
                   position: 'bottom',
+                  labels: {
+                    font: {
+                        size: 20 // Legend font size
+                    }
+                }
                 },
+                
                 title: {
                   display: false,
-                }
+                },
+                
               }
 
 

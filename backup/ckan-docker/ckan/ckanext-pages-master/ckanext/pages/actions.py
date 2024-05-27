@@ -1,12 +1,13 @@
 import datetime
+import requests
 import json
-
+from ckan.common import _, c
 from ckan import model
 import ckan.plugins as p
 import ckan.lib.navl.dictization_functions as df
 import ckan.lib.uploader as uploader
 import ckan.lib.helpers as h
-from ckan.plugins import toolkit as tk
+import ckantoolkit as tk
 try:
     from html.parser import HTMLParser
 except ImportError:
@@ -17,6 +18,9 @@ import ckan.authz as authz
 
 from ckanext.pages import db
 
+
+config = tk.config
+_ = tk._
 
 class HTMLFirstImage(HTMLParser):
     def __init__(self):
@@ -51,6 +55,9 @@ def _pages_list(context, data_dict):
     order_publish_date = data_dict.get('order_publish_date')
     page_type = data_dict.get('page_type')
     private = data_dict.get('private', True)
+    q = data_dict.get('q')
+    if q:
+        search['title'] = q
     if ordered:
         search['order'] = True
     if page_type:
@@ -158,6 +165,7 @@ def _pages_update(context, data_dict):
         out = db.Page()
         out.group_id = org_id
         out.name = page
+
     items = ['title', 'content', 'name', 'private', 'pin',
              'order', 'page_type', 'publish_date']
 
@@ -180,6 +188,38 @@ def _pages_update(context, data_dict):
     session = context['session']
     session.add(out)
     session.commit()
+
+    # Conditional API request when saving data
+    if out.order in ['1', '2']:
+        site_url = config.get('ckan.site_url')  # Replace with your actual site URL
+        api_url = site_url + '/api/3/action/ckan_page_delete'
+        payload = {
+            'name': out.name,
+            'order': out.order
+        }
+        headers = {'Content-type': 'application/json', 'Authorization': c.userobj.apikey}
+        response = requests.post(api_url, headers=headers, json=payload)
+        
+        # Optionally, handle the response
+        if response.status_code == 200:
+            print("Successfully sent data to API")
+        else:
+            print("Failed to send data to API. Status code: " + str(response.status_code) + ", Response: " + response.text)
+        # Second API request
+        api_url_update_pin = site_url + '/api/3/action/update_pin'
+        payload_update_pin = {
+                'pin': out.pin,
+                # Include any other required fields in the payload
+        }
+        response_update_pin = requests.post(api_url_update_pin, headers=headers, json=payload_update_pin)
+        
+        # Optionally, handle the response
+        if response_update_pin.status_code == 200:
+                print("Successfully sent pin update data to API")
+        else:
+                print("Failed to send pin update data to API. Status code: " + str(response_update_pin.status_code) + ", Response: " + response_update_pin.text)
+        # Return the saved page object
+    return out
 
 
 def pages_upload(context, data_dict):

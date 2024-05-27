@@ -4324,7 +4324,7 @@ msgstr "{actor} เพิ่มทรัพยากร {resource} ไปยั�
 
 #: ckan/templates/snippets/activities/new_user.html:4
 msgid "{actor} signed up"
-msgstr "{actor} เข้าสู่ระบบ"
+msgstr "{actor} ลงทะเบียนใหม่"
 
 #: ckan/templates/snippets/activities/removed_tag.html:4
 msgid "{actor} removed the tag {tag} from the dataset {dataset}"

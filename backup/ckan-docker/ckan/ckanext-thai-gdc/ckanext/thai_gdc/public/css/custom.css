@@ -43,6 +43,18 @@ h4 small {
   border-color: #f35200!important;
 }
 
+
+
+#s2id_field-format{ 
+  padding: 0px!important;
+  border: 0!important;
+}
+
+.select2-container .select2-choice{
+  line-height: 34px!important;
+  height: 34px!important;
+}
+
 @media (min-width: 992px) {
     .custom-content {
       padding: 30px!important;
