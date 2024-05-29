@@ -31,14 +31,14 @@
 </li>
 {% if h.check_access('steward') %}
 <li>
-  <a href="/governance/processing_state" title="{{ _('Data Governance') }}">
+  <a href="{{ h.url_for('/governance/processing_state') }}" title="{{ _('Data Governance') }}">
     <i class="fa fa-cogs" aria-hidden="true"></i>
     <span class="text">{{ _('Data Governance') }}</span>
   </a>
 </li>
 {% elif governance_organizations | length %}
 <li>
-  <a href="/governance/processing_state" title="{{ _('Data Governance') }}">
+  <a href="{{ h.url_for('/governance/processing_state') }}" title="{{ _('Data Governance') }}">
     <i class="fa fa-cogs" aria-hidden="true"></i>
     <span class="text">{{ _('Data Governance') }}</span>
   </a>

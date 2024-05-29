@@ -4,7 +4,7 @@
 {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
 
 {% block breadcrumb_content %}
-    <li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+    <li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
     {% if pkg_dict_prepare %}
         {% set dataset = h.dataset_display_name(pkg_dict_prepare) %}
         <li{{ self.breadcrumb_content_selected() }}><a href="#">{{ dataset }}</a></li>
@@ -75,8 +75,8 @@
                 {% endif %}
                 <section>
                     <div class="well" style="margin-bottom: 10px;padding: 10px;">
-                      <strong>ผู้ดูแลชุดข้อมูล:</strong> {{ h.linked_user(pkg_dict_prepare.creator_user_id,0,0) }}<br/>
-                      <strong>หน่วยงาน:</strong> {{pkg_dict_prepare.organization.title}}
+                      <strong>{{ _('Dataset administrator') }}:</strong> {{ h.linked_user(pkg_dict_prepare.creator_user_id,0,0) }}<br/>
+                      <strong>{{ _('Organization') }}:</strong> {{pkg_dict_prepare.organization.title}}
                     </div>
                 </section>
                 {% endblock %}
@@ -110,44 +110,44 @@
     
     {% if pkg.governance_state != 'wait' %}
     <section class="module module-narrow">
-      <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> ความเห็นของทีมบริกร/เจ้าของข้อมูล</h3><br />
+      <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ _('Steward comment')}}</h3><br />
         <table class="table table-striped table-bordered table-condensed">
         <tr>
-          <th scope="row" class="dataset-label">หมวดหมู่ข้อมูลตามธรรมาภิบาลข้อมูลภาครัฐ</th>
+          <th scope="row" class="dataset-label">{{_('Data Category')}}</th>
           <td class="dataset-details">{{ pkg.governance_data_category }}</td>
         </tr>
         <tr>
-          <th scope="row" class="dataset-label">ระดับชั้นข้อมูล</th>
+          <th scope="row" class="dataset-label">{{ _('Disclosure') }}</th>
           <td class="dataset-details">{{ _(pkg.governance_disclosure) }}</td>
         </tr>
         {% if pkg.governance_allow_harvest %}
           {% if pkg.governance_allow_harvest == 'False' %}
-            {% set governance_allow_harvest = 'ไม่ยินยอม' %}
+            {% set governance_allow_harvest = _('No') %}
           {% else %}
-            {% set governance_allow_harvest = 'ยินยอม' %}
+            {% set governance_allow_harvest = _('Yes') %}
           {% endif %}
         <tr>
-          <th scope="row" class="dataset-label">ยินยอมให้นำชื่อชุดข้อมูลไปใช้ที่ GD-Catalog</th>
+          <th scope="row" class="dataset-label">{{ _('Allow for harvest to GD-Catalog') }}</th>
           <td class="dataset-details">{{ governance_allow_harvest }}</td>
         </tr>
         {% endif %}
         <tr>
-          <th scope="row" class="dataset-label">ความเห็น/ข้อเสนอแนะ</th>
+          <th scope="row" class="dataset-label">{{ _('Governance Notes')}}</th>
           <td class="dataset-details">{{ pkg.governance_notes }}</td>
         </tr>
         {% if pkg.governance_date %}
         <tr>
-          <th scope="row" class="dataset-label">พิจารณาเมื่อวันที่</th>
+          <th scope="row" class="dataset-label">{{ _('Consideration date')}}</th>
           {% set governance_date = h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg.governance_date)).split() %}
           <td class="dataset-details">{{ governance_date[0]+' '+governance_date[1]+' '+governance_date[2] }}</td>
         </tr>
         {% endif %}
         <tr>
-          <th scope="row" class="dataset-label">ปรับปรุงในระบบโดย</th>
+          <th scope="row" class="dataset-label">{{ _('Updated in the system by') }}</th>
           <td class="dataset-details">{{ h.linked_user(pkg.governance_steward,0,0) }}</td>
         </tr>
         <tr>
-          <th scope="row" class="dataset-label">ปรับปรุงในระบบเมื่อวันที่</th>
+          <th scope="row" class="dataset-label">{{ _('Updated in the system on') }}</th>
           <td class="dataset-details">{{ h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg.metadata_modified)) }}</td>
         </tr>
         </table>
@@ -155,7 +155,7 @@
     {% endif %}
     {% if pkg.governance_state == 'wait' or pkg.governance_state == 'approval' %}
     <section class="module module-narrow">
-        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> พิจารณาชุดข้อมูล</h3><br />
+        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{_('Consider dataset')}}</h3><br />
         <form id="processing-edit" method="post" action="">
         {% set processing_action_schema = [
             {
@@ -420,14 +420,14 @@
         </script>
         
         {% if pkg.governance_state == 'approval' %}
-          <div><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
+          <div><strong>{{ _('Note') }}</strong> {{_('Assigned by the agency for data oversight')}}</div><br/>
         {% endif %}
-        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาชุดข้อมูลนี้หรือไม่')">อนุมัติ</button>
+        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาชุดข้อมูลนี้หรือไม่')">{{_('Approve')}}</button>
         </form>
       </section>
       {% elif pkg.governance_state == 'complete' and h.thaigdc_governance_get_action_foradmin('package_search',{"include_private":"true","q":"type:prepare +name:gprepare-"+h.thaigdc_governance_get_action_foradmin('package_show',{"id":pkg.prepare_dataset_id})['name']}).count == 0 %}
       <section class="module module-narrow">
-        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> ปรับปรุงชุดข้อมูลที่เผยแพร่</h3><br />
+        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ _('update dataset publication')}}</h3><br />
         <form id="publish-edit" method="post" action="">
         {% set publish_action_schema = [
             {
@@ -697,9 +697,9 @@
         {% set field = h.scheming_field_by_name(publish_action_schema, 'post_publish_governance_notes') %}
         {%- snippet '/scheming/form_snippets/'+field.form_snippet, field=field, data=pkg, errors={} -%}
         
-        <div style="margin-top: 20px;"><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
+        <div style="margin-top: 20px;"><strong>{{_('Note')}}</strong> {{_('Assigned by the agency for data oversight')}}</div><br/>
 
-        <button class="btn btn-primary" type="submit" name="save_publish" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่')">อนุมัติ</button>
+        <button class="btn btn-primary" type="submit" name="save_publish" style="float: right;" onclick="return confirm(_('Are you sure you want to submit the updates to this dataset publication?'))">{{_('Approve')}}</button>
         </form>
       </section>
       {% endif %}

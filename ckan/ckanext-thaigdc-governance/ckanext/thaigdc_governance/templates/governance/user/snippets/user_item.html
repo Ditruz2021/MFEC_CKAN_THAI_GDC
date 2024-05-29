@@ -20,10 +20,10 @@
   {{ user.state}}
  </td>
   <td>
-   <a href="/governance/user/user_update?id={{ user.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+   <a href="{{ h.url_for('/governance/user/user_update?id=' ~ user.id) }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
    
    
-   <a href="/governance/user/user_delete?id={{ user.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+   <a href="{{ h.url_for('/governance/user/user_delete?id=' ~ user.id) }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
     
   
  </td>

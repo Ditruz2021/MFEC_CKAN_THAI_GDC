@@ -3,7 +3,7 @@
 {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
 
 {% block breadcrumb_content %}
-    <li class="active"><a href="/governance/requestdata/processing_state">{{ _('Data Governance') }}</a></li>
+    <li class="active"><a href="{{ h.url_for('/governance/requestdata/processing_state') }}">{{ _('Data Governance') }}</a></li>
     {% if pkg %}
         {% set dataset = h.dataset_display_name(pkg) %}
         <li{{ self.breadcrumb_content_selected() }}><a href="#">{{ dataset }}</a></li>
@@ -42,13 +42,13 @@
             {% block package_notes %}
           {% set package_title = h.dataset_display_name(pkg).replace(h.dataset_display_name(pkg)[:15], '') %}
           <div class="notes embedded-content">
-            <strong>ชุดข้อมูล:</strong> <a href="/dataset/{{ pkg.package_id }}" target="_blank">{{ package_title }}</a>
+            <strong>ชุดข้อมูล:</strong> <a href="{{ h.url_for('/dataset/' ~ pkg.package_id) }}" target="_blank">{{ package_title }}</a>
             </div>
           <div class="notes embedded-content">
-            <strong>ระดับชั้นข้อมูล:</strong> {{ _(req_pkg_dict.disclosure) }}
+            <strong>{{ _('Disclosure') }}:</strong> {{ _(req_pkg_dict.disclosure) }}
             </div>
             <div class="notes embedded-content">
-              <strong>ผู้ดูแลชุดข้อมูล:</strong> {{ h.linked_user(req_pkg_dict.creator_user_id,0,0) }}
+              <strong>{{ _('Dataset administrator') }}:</strong> {{ h.linked_user(req_pkg_dict.creator_user_id,0,0) }}
               </div>
             <div class="notes embedded-content">
             <strong>ผู้ยื่นคำขอ:</strong> {{ h.linked_user(pkg.requester_id,0,0) }}
@@ -316,10 +316,10 @@
         {% endif %}
         <input type="hidden" name="current_request_sate" value="{{ current_request_sate }}" />
         {% if current_request_sate == 'requestdata_wait_council' %}
-          <div><strong>หมายเหตุ</strong> เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล</div><br/>
+          <div><strong>{{ _('Note') }}</strong> {{ _('Assigned by the agency for data oversight') }}</div><br/>
         {% endif %}
         {% if current_request_sate != 'requestdata_received' and current_request_sate != 'requestdata_reject' %}
-        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาคำขอใช้ข้อมูลนี้หรือไม่')">ส่งเรื่อง</button>
+        <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาคำขอใช้ข้อมูลนี้หรือไม่')">{{_('Send')}}</button>
         {% endif %}
         </form>
     </section>

@@ -3,7 +3,7 @@
 {%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/requestdata/anonymous">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/requestdata/anonymous') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block secondary %}
@@ -36,8 +36,8 @@
                 <section>
                   <div style="display: flex;">
                     <div class="well" style="margin-bottom: 10px;flex: 50%;margin-right: 10px;">
-                      <strong>ผู้ร้องขอชุดข้อมูล : {{pkg_dict.first_name}} {{pkg_dict.last_name}}</strong><br/>
-                      <strong>หน่วยงาน:</strong> {{pkg_dict.owner_org}}
+                      <strong>{{ _('Data requester')}} : {{pkg_dict.first_name}} {{pkg_dict.last_name}}</strong><br/>
+                      <strong>{{ _('Organization')}}:</strong> {{pkg_dict.owner_org}}
                     </div>
                   </div>
                 </section>

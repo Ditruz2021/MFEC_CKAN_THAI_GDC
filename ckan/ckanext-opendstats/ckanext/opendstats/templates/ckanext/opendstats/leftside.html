@@ -11,13 +11,13 @@
             {% endif %}
             <li class="nav-item{{ ' active' if on_page == 'top_package_views' else ''}}">
                 <a href="{{ h.url_for('opendstats.index', stats_page='top_package_views') }}">
-                    {{ _('ชุดข้อมูลที่มีคนเข้าชมมากที่สุด') }}
+                    {{ _('Dataset with the highest number of views') }}
                 </a>
             </li>
             {% if (h.ops_check_table_column('discovery_searchterm','result') or h.ops_check_table_column('discovery_searchterm')) and h.check_access('sysadmin') %}
             <li class="nav-item{{ ' active' if on_page == 'stats_keywordsearch' else ''}}">
                 <a href="{{ h.url_for('opendstats.index', stats_page='stats_keywordsearch') }}">
-                    {{ _('คำค้นที่มีการใช้มากที่สุด') }}
+                    {{ _('Most frequently used search terms') }}
                 </a>
             </li>
             {% endif %}

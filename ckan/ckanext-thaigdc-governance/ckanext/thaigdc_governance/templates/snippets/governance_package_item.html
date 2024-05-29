@@ -35,7 +35,7 @@
                   {% elif package.processing == 'not found' %}
                   <span class="label label-info">ผู้ดูแลลบชุดข้อมูลนี้แล้ว</span>
                   {% elif package.processing != '' %}
-                  <a href="/governance/processing?id={{ package.processing }}"><span class="label label-info">อยู่ระหว่างตรวจสอบ</span></a>
+                  <a href="{{ h.url_for('/governance/processing?id=' ~ package.processing) }}"><span class="label label-info">อยู่ระหว่างตรวจสอบ</span></a>
                   {% else %}
                   <span class="label label-info">รอการแก้ไข</span>
                   {% endif %}

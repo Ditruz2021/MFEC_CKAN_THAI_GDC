@@ -33,3 +33,43 @@ msgstr "หน่วยงานทั้งหมด"
 msgid "Total Data Files/Resources"
 msgstr "ข้อมูล ไฟล์/ทรัพยากร ทั้งหมด"
 
+msgid "Dataset with the highest number of views"
+msgstr "ชุดข้อมูลที่มีคนเข้าชมมากที่สุด"
+
+msgid "Dataset name"
+msgstr "ชื่อชุดข้อมูล"
+
+msgid "Number of views"
+msgstr "จำนวน views"
+
+msgid "Number of downloads"
+msgstr "จำนวน downloads"
+
+msgid "Number of recent views (last 14 days)"
+msgstr "จำนวน recent views (14 วันล่าสุด)"
+
+msgid "Most frequently used search terms"
+msgstr "คำค้นที่มีการใช้มากที่สุด"
+
+msgid "Rank"
+msgstr "ลำดับ"
+
+msgid "Search term"
+msgstr "คำค้น"
+
+msgid "Number of searches"
+msgstr "จำนวนการค้นหา"
+
+msgid "Number of datasets found"
+msgstr "จำนวนชุดข้อมูลที่พบ"
+
+msgid "Search terms that did not yield any datasets"
+msgstr "คำค้นที่ไม่พบชุดข้อมูล"
+
+msgid "Search terms that yielded datasets"
+msgstr "คำค้นที่พบชุดข้อมูล"
+
+msgid "Unauthorized to access data"
+msgstr "ไม่มีสิทธิ์เข้าดูข้อมูล"
+
+

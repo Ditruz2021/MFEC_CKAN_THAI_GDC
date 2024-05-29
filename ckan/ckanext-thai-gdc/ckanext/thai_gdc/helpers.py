@@ -836,6 +836,10 @@ def get_audit_log_list(query_params = ''):
         print(e)
     return state
 
+def get_current_date():
+    now = dt.now()
+    return now
+
 
 
 

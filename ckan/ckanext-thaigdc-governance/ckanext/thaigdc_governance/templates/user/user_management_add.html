@@ -4,7 +4,7 @@
 {% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block page_heading %}{{ _('Data Governance') }}{% endblock %}

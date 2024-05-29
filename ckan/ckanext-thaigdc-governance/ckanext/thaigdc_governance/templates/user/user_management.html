@@ -4,7 +4,7 @@
 {% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block page_heading %}{{ _('Data Governance') }}{% endblock %}
@@ -14,7 +14,7 @@
   <div class="module-content">
 
     <ul class="nav nav-tabs" style="margin-bottom: 30px;">
-      <li class="active"><a href="/governance/user/user_management"><i class="fa fa-user"></i> ผู้ใช้งาน</a></li>
+      <li class="active"><a href="{{ h.url_for('/governance/user/user_management') }}"><i class="fa fa-user"></i> ผู้ใช้งาน</a></li>
     </ul>
     {% block form %}
 
@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-md-6">
 
-        <a class="btn btn-info" href="/user_create/page"><i class="fa fa-plus"></i> ผู้ใช้งาน</a>
+        <a class="btn btn-info" href="{{ h.url_for('/user_create/page') }}"><i class="fa fa-plus"></i> ผู้ใช้งาน</a>
 
       </div>
       <div class="col-md-6">

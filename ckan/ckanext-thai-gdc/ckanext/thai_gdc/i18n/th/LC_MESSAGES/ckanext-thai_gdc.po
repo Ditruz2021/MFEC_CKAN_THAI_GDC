@@ -365,3 +365,183 @@ msgstr[1] "พบ {number} บทความสำหรับ \"{query}\""
 
 msgid "No pages found for \"{query}\""
 msgstr "ไม่พบบทความสำหรับ \"{query}\""
+
+msgid "More"
+msgstr "เพิ่มเติม"
+
+msgid "Top 5 most viewed datasets ranked by the number of views as of"
+msgstr "ชุดข้อมูลที่มีการเรียกดูมากที่สุด 5 อันดับ เรียงลำดับตามจำนวนครั้งการเข้าชม ณ"
+
+msgid "Article view statistics as of"
+msgstr "สถิติการเข้าชมบทความ ณ"
+
+msgid "Number of data entries classified by operation district"
+msgstr "จำนวนข้อมูลจำแนกตามเขตทำการ"
+
+msgid "Number of data entries classified by category"
+msgstr "จำนวนข้อมูลจำแนกตามหมวดหมู่"
+
+msgid "Overview"
+msgstr "ภาพรวม"
+
+msgid "Number of users / Number of visitors"
+msgstr "จำนวนผู้เข้าใช้บริการ / จำนวนผู้เข้าชม"
+
+msgid "people"
+msgstr "คน"
+
+msgid "times"
+msgstr "ครั้ง"
+
+msgid "Request the dataset you want"
+msgstr "ร้องขอชุดข้อมูลที่ท่านต้องการ"
+
+msgid "Requester's name"
+msgstr "ชื่อผู้ร้องขอ"
+
+msgid "Requester's surname"
+msgstr "นามสกุลผู้ร้องขอ"
+
+msgid "Contact channel for response (Email)"
+msgstr "ช่องทางการติดต่อกลับ (Email)"
+
+msgid "Requesting organization"
+msgstr "หน่วยงานที่ร้องขอ"
+
+msgid "Name of the dataset requested"
+msgstr "ชื่อชุดข้อมูลที่ต้องการ"
+
+msgid "Details of the dataset requested"
+msgstr "รายละเอียดชุดข้อมูลที่ต้องการ"
+
+msgid "Scope of dataset usage"
+msgstr "ขอบเขตการใช้งานของชุดข้อมูล"
+
+msgid "Purpose of data usage"
+msgstr "วัตถุประสงค์ที่ต้องการใช้งานข้อมูล"
+
+msgid "Duration of data usage, in day/month/year format"
+msgstr "ระยะเวลาที่ต้องการใช้ข้อมูล วัน/เดือน/ปี"
+
+msgid "Send"
+msgstr "ส่งเรื่อง"
+
+msgid "Send request success"
+msgstr "ส่งเรื่อง"
+
+msgid "Your request has been successfully submitted."
+msgstr "ส่งคำร้องเรียบร้อย"
+
+msgid "You can check the status of your request via email. Alternatively, you can contact our staff at support@mea.or.th for further assistance."
+msgstr "ท่านสามารถตรวจสอบสถานะการดำเนินการได้ทางอีเมล์ของท่าน หรือสามารถติดต่อเจ้าหน้าที่ได้ทางอีเมล์ support@mea.or.th"
+
+msgid "Close"
+msgstr "ปิด"
+
+msgid "Required fields to fill out."
+msgstr "ช่องรายการที่ต้องกรอก"
+
+msgid "You have not completed all the required information. Please fill out all fields completely."
+msgstr "ท่านกรอกข้อมูลไม่ครบถ้วนกรุณากรอกให้ครบถ้วน"
+
+msgid "Consideration of dataset publication"
+msgstr "พิจารณาการเผยแพร่ชุดข้อมูล"
+
+msgid "Dataset awaiting consideration"
+msgstr "ชุดข้อมูลที่รอการพิจารณา"
+
+msgid "Dataset considered"
+msgstr "ชุดข้อมูลที่พิจารณาแล้ว"
+
+msgid "Consideration of data request"
+msgstr "พิจารณาการขอใช้ข้อมูล"
+
+msgid "Data request pending consideration"
+msgstr "คำขอใช้ข้อมูลที่รอการพิจารณา"
+
+msgid "Data request awaiting data reception"
+msgstr "คำขอใช้ข้อมูลที่รอการได้รับข้อมูล"
+
+msgid "Data request considered"
+msgstr "คำขอใช้ข้อมูลที่พิจารณาแล้ว"
+
+msgid "Public data request"
+msgstr "คำขอใช้ข้อมูลจากประชาชน"
+
+msgid "Waiting for notification to the data administrator"
+msgstr "รอแจ้งผู้ดูแลข้อมูล"
+
+msgid "Waiting to receive data"
+msgstr "รอการได้รับข้อมูล"
+
+msgid "Did_not_pass_the_consideration"
+msgstr "ไม่ผ่านการพิจารณา"
+
+msgid "Date of request submission"
+msgstr "วันที่ยื่นคำขอ"
+
+msgid "Requester"
+msgstr "ผู้ยื่นคำขอ"
+
+msgid "Data requester"
+msgstr "ผู้ร้องขอชุดข้อมูล"
+
+msgid "Closed case"
+msgstr "ปิดเรื่อง"
+
+msgid "Waiting to close the case"
+msgstr "รอปิดเรื่อง"
+
+msgid "Employee ID"
+msgstr "รหัสพนักงาน"
+
+msgid "My data request"
+msgstr "คำขอใช้ข้อมูลของฉัน"
+
+msgid "My requested datasets"
+msgstr "ชุดข้อมูลของฉันที่ได้รับการขอใช้"
+
+msgid "All statuses"
+msgstr "ทุกสถานะ"
+
+msgid "Draft documents"
+msgstr "เอกสารร่าง"
+
+msgid "Steward comment"
+msgstr "ผู้ดูแลชุดข้อมูล"
+
+msgid "Allow for harvest to GD-Catalog"
+msgstr "ยินยอมให้นำชื่อชุดข้อมูลไปใช้ที่ GD-Catalog"
+
+msgid "No"
+msgstr "ไม่ยินยอม"
+
+msgid "Yes"
+msgstr "ยินยอม"
+
+msgid "Governance Notes"
+msgstr "ความเห็น/ข้อเสนอแนะ"
+
+msgid "Updated in the system by"
+msgstr "ปรับปรุงในระบบโดย"
+
+msgid "Updated in the system on"
+msgstr "ปรับปรุงในระบบเมื่อวันที่"
+
+msgid "Note"
+msgstr "หมายเหตุ"
+
+msgid "Assigned by the agency for data oversight"
+msgstr "เป็นผู้ได้รับมอบหมายจากหน่วยงานในการกำกับดูแลข้อมูล"
+
+msgid "Approve"
+msgstr "อนุมัติ"
+
+msgid "Consider dataset"
+msgstr "พิจารณาชุดข้อมูล"
+
+msgid "update dataset publication"
+msgstr "ปรับปรุงชุดข้อมูลที่เผยแพร่"
+
+msgid "Are you sure you want to submit the updates to this dataset publication?"
+msgstr "คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่"

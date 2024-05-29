@@ -7,7 +7,7 @@
         {% block heading_private %}
         {% endblock %}
         {% block heading_title %}
-        <strong><a href="/governance/requestdata/processing?id={{ package.name }}">{{ package.title }}</a></strong>
+        <strong><a href="{{ h.url_for('/governance/requestdata/processing?id=' ~ package.name) }}">{{ package.title }}</a></strong>
         {% endblock %}
         {% block heading_meta %}
         {% endblock %}
@@ -15,14 +15,14 @@
     {% endblock %}
 
     {% block notes %}
-    <i class="fa fa-user-o" aria-hidden="true"></i> ผู้ยื่นคำขอ: {{ h.linked_user(package.requester_id,0,0) }}
-    {% if package.requester_internal_code %} (รหัสพนักงาน: {{ package.requester_internal_code }}) {% endif %}
+    <i class="fa fa-user-o" aria-hidden="true"></i> {{ _('Requester')}} : {{ h.linked_user(package.requester_id,0,0) }}
+    {% if package.requester_internal_code %} ({{ _('Employee ID')}}: {{ package.requester_internal_code }}) {% endif %}
     {% endblock %}
   </div>
   {% block resources %}
   {% endblock %}
   <div style="margin-top: 8px;">
-  <i class="fa fa-calendar" aria-hidden="true"></i> วันที่ยื่นคำขอ: {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_created)) }}
+  <i class="fa fa-calendar" aria-hidden="true"></i> {{ _('Date of request submission')}}: {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_created)) }}
 </div>
 {% endblock %}
 </li>

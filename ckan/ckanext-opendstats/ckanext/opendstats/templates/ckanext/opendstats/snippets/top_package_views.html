@@ -1,17 +1,17 @@
 <header class="module-content page-header">
 <section class="module-content">
-  <h2>{{ _('ชุดข้อมูลที่มีคนเข้าชมมากที่สุด') }}</h2>
+  <h2>{{ _('Dataset with the highest number of views') }}</h2>
   <a style="float:right;   margin-bottom: 10px;" class="btn" href="#"
     onClick="$('#top_package_views').tableExport({type:'csv',escape:'false', tableName:'top_package_views'});">Export as CSV</a>
   <div id="kw-result" class="module-content tab-content active">
     <table class="table table-chunky table-bordered table-striped" id="top_package_views">
         <thead>
             <tr>
-                <th>{{ _('ชื่อชุดข้อมูล') }}</th>
-                <th>{{ _('จำนวน views') }}</th>
-                <th>{{ _('จำนวน downloads') }}</th>
-                <th>{{ _('จำนวน recent views (14 วันล่าสุด)') }}</th>
-                <th>{{ _('จำนวน recent downloads (14 วันล่าสุด)') }}</th>
+                <th>{{ _('Dataset name') }}</th>
+                <th>{{ _('Number of views') }}</th>
+                <th>{{ _('Number of downloads') }}</th>
+                <th>{{ _('Number of recent views (last 14 days)') }}</th>
+                <th>{{ _('Number of recent downloads (last 14 days)') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -31,9 +31,9 @@
     <table class="table table-chunky table-bordered table-striped" id="ke-search-noresult">
         <thead>
             <tr>
-                <th>{{ _('ลำดับ') }}</th>
-                <th>{{ _('คำค้น') }}</th>
-                <th>{{ _('จำนวนการค้นหา') }}</th>
+                <th>{{ _('Rank') }}</th>
+                <th>{{ _('Search term') }}</th>
+                <th>{{ _('Number of searches') }}</th>
             </tr>
         </thead>
         <tbody>

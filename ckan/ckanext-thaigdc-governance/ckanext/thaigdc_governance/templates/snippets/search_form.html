@@ -18,9 +18,9 @@
             {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', _(value)) }}
           {%- endif %}
           {% if 'governance' not in request.endpoint and 'requestdata' not in request.endpoint %}
-            <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            <a href="{{ h.url_for(facets.remove_field(field, value)) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
           {% else %}
-            <a href="{{ request.path }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+            <a href="{{ h.url_for(request.path) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
           {% endif %}
         </span>
       {% endfor %}

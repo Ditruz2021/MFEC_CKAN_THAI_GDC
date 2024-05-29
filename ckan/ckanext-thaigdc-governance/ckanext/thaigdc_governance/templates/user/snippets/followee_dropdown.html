@@ -64,7 +64,7 @@
       </a>
     </li>
     <li{% if context.q == 'reject' %} class="active"{% endif %} data-search="reject">
-      <a href="/dashboard?q=reject" title="ชุดข้อมูลที่รอการปรับปรุง">
+      <a href="{{ h.url_for('/dashboard?q=reject')}}" title="ชุดข้อมูลที่รอการปรับปรุง">
         Governance:
         <span>ชุดข้อมูลที่รอการปรับปรุง</span>
       </a>

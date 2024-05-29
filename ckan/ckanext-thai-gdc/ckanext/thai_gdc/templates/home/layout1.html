@@ -41,7 +41,7 @@
       'home/snippets/groups.html', stats=stats %} {% endif %} {% endblock %}
     </div>
     <div class="text-right">
-      <a href="group/" class="btn btn-default">เพิ่มเติม</a>
+      <a href="group/" class="btn btn-default">{{_("More")}}</a>
     </div>
   </div>
 
@@ -59,7 +59,7 @@
       {% endblock %}
     </div>
     <div class="text-right">
-      <a href="{{ h.url_for(controller='ckanext.thai_gdc.controllers.user:UserManageController',action='articles_news') }}" class="btn btn-default">เพิ่มเติม</a>
+      <a href="{{ h.url_for(controller='ckanext.thai_gdc.controllers.user:UserManageController',action='articles_news') }}" class="btn btn-default">{{_("More")}}</a>
     </div>
   </div>
 
@@ -140,7 +140,7 @@ event_conf.EVENT_PUBLIC == 'True' %} {% if event_conf.EVENT_IMAGE %}
           class="btn btn-success"
           target="_blank"
         >
-          {{event_conf.EVENT_TEXT if event_conf.EVENT_TEXT else 'เพิ่มเติม'}}
+          {{event_conf.EVENT_TEXT if event_conf.EVENT_TEXT else _("More")}}
         </a>
       </div>
       {% endif %}
