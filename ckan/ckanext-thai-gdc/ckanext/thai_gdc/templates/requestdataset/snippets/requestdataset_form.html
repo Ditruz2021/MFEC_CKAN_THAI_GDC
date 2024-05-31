@@ -24,23 +24,23 @@
 
   <div class="row">
     <div class="col-sm-6">
-      {{ form.input("first_name", id="field_first_name", label="{{ _('Requester's name') }}", placeholder='', value='', is_required=True) }}
+      {{ form.input("first_name", id="field_first_name", label=_("Requester's name"), placeholder='', value='', is_required=True) }}
     </div>
     <div class="col-sm-6">
-      {{ form.input("last_name", id="field_last_name", label="{{ _('Requester's surname') }}", placeholder='', value='', is_required=True) }}
+      {{ form.input("last_name", id="field_last_name", label=_("Requester's surname"), placeholder='', value='', is_required=True) }}
     </div>
   </div>
 
-  {{ form.input("email", id="field_email", label="{{ _('Contact channel for response (Email)') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("owner_org", id="field_owner_org", label="{{ _('Requesting organization') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("package_name", id="field_package_name", label="{{ _('Name of the dataset requested') }}", placeholder='', value='', is_required=True) }}
+  {{ form.input("email", id="field_email", label=_('Contact channel for response (Email)'), placeholder='', value='', is_required=True) }}
+  {{ form.input("owner_org", id="field_owner_org", label=_('Requesting organization'), placeholder='', value='', is_required=True) }}
+  {{ form.input("package_name", id="field_package_name", label=_('Name of the dataset requested'), placeholder='', value='', is_required=True) }}
 
-  {{ form.markdown('notes', id='field_notes', label="{{ _('Details of the dataset requested') }}", value='', is_required=True) }}
+  {{ form.markdown('notes', id='field_notes', label=_('Details of the dataset requested'), value='', is_required=True) }}
 
 
-  {{ form.input("scope", id="field_scope", label="{{ _('Scope of dataset usage') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("objective", id="field_objective", label="{{ _('Purpose of data usage') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("modified", id="field_modified", label="{{ _('Duration of data usage, in day/month/year format') }}", type='date' , placeholder='', value='', is_required=True) }}
+  {{ form.input("scope", id="field_scope", label=_('Scope of dataset usage'), placeholder='', value='', is_required=True) }}
+  {{ form.input("objective", id="field_objective", label=_('Purpose of data usage'), placeholder='', value='', is_required=True) }}
+  {{ form.input("modified", id="field_modified", label=_('Duration of data usage, in day/month/year format'), type='date' , placeholder='', value='', is_required=True) }}
 
 
 
