@@ -41,7 +41,7 @@ def pages_list_pages(page_type):
     tk.c.q = request.params.get(u'q', u'')
     tk.c.sort_by_selected = sort_by
 
-    data_dict = {'org_id': None, 'page_type': page_type, 'q': tk.c.q}
+    data_dict = {'org_id': None, 'page_type': page_type}
     if page_type == 'blog':
         data_dict['order_publish_date'] = True
     tk.c.pages_dict = tk.get_action('ckanext_pages_list')(
@@ -53,6 +53,13 @@ def pages_list_pages(page_type):
         url=helpers.pager_url,
         items_per_page=21
     )
+
+    if tk.c.q:
+        filtered_articles = [article for article in tk.c.page.items if tk.c.q.lower() in article['title'].lower()]
+    else:
+        filtered_articles = tk.c.page.items
+    tk.c.page.items = filtered_articles
+    tk.c.page.item_count = len(tk.c.page.items)
 
     if page_type == 'blog':
         return tk.render('ckanext_pages/blog_list.html')

@@ -1138,12 +1138,11 @@ def user_create(context, data_dict):
         'activity_type': 'new user',
     }
     logic.get_action('activity_create')(activity_create_context, activity_dict)
-
     upload.upload(uploader.get_max_image_size())
 
     if not context.get('defer_commit'):
         model.repo.commit()
-
+    
     # A new context is required for dictizing the newly constructed user in
     # order that all the new user's data is returned, in particular, the
     # api_key.
@@ -1347,6 +1346,8 @@ def activity_create(context, activity_dict, **kw):
 
     schema = context.get('schema') or \
         ckan.logic.schema.default_create_activity_schema()
+    
+    log.info('Creating activity %r' % schema)
 
     data, errors = _validate(activity_dict, schema, context)
     if errors:
@@ -1354,6 +1355,8 @@ def activity_create(context, activity_dict, **kw):
 
     activity = model_save.activity_dict_save(data, context)
 
+    log.info('Created activity %s' % activity)
+    
     if not context.get('defer_commit'):
         model.repo.commit()
 

@@ -5079,3 +5079,6 @@ msgstr ""
 msgid "As a sysadmin user you have full control over this Open-D instance. Proceed with care!"
 msgstr "ในฐานะผู้ใช้ดูแลระบบ คุณสามารถปรับปรุง Open-D นี้ได้ทั้งหมด และต้องดำเนินการด้วยความระมัดระวัง!"
 
+#: ckan/templates/snippets/activities/user_sign-in.html:4
+msgid "{actor} signed in"
+msgstr "{actor} เข้าสู่ระบบ"

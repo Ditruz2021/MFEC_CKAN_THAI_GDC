@@ -545,3 +545,6 @@ msgstr "ปรับปรุงชุดข้อมูลที่เผยแ
 
 msgid "Are you sure you want to submit the updates to this dataset publication?"
 msgstr "คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่"
+
+msgid "Go back"
+msgstr "ย้อนกลับ"

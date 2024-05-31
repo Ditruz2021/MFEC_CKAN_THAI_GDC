@@ -59,3 +59,17 @@
 {% asset 'pages/blog-css' %}
 
 {% endblock %}
+
+{% block primary %}
+  {{ super() }}
+  <div class="primary col-sm-9 col-xs-12" style="position:relative;float:left;margin-left: 0;">
+    <section class="module-content">
+      <a class="btn btn-default pull-left" onclick="goBack()">{{ _('Go back') }}</a>
+      <script>
+        function goBack() {
+            window.history.back();
+        }
+      </script>
+    </section>
+  </div>
+{% endblock %}

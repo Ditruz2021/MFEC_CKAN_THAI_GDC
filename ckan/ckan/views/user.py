@@ -477,9 +477,29 @@ def logged_in():
         return h.redirect_to(str(came_from))
 
     if g.user:
+        user = model.User.by_name(g.user)
+        log.info(u'User %s logged in', g.user)
+        log.info(u'SUCCESS')
+
+        activity_create_context = {
+            u'model': model,
+            u'user': g.user,
+            u'defer_commit': True,
+            u'ignore_auth': True,
+            u'session': model.Session
+        }
+        activity_dict = {
+            u'user_id': user.id,
+            u'object_id': user.id,
+            u'activity_type': 'user sign-in',
+        }
+        logic.get_action('activity_create')(activity_create_context, activity_dict)
+        model.repo.commit()
+        
         return me()
     else:
         err = _(u'Login failed. Bad username or password.')
+        log.info(u'FAIL')
         h.flash_error(err)
         return login()
 
