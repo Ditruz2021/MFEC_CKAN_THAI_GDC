@@ -1,0 +1,14 @@
+# opendstats-js:
+#   filter: rjsmin
+#   output: ckanext-opendstats/%(version)s-opendstats.js
+#   contents:
+#     - js/opendstats.js
+#   extra:
+#     preload:
+#       - base/main
+
+# opendstats-css:
+#   filter: cssrewrite
+#   output: ckanext-opendstats/%(version)s-opendstats.css
+#   contents:
+#     - css/opendstats.css

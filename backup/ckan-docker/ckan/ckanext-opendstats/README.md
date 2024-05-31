@@ -1,0 +1,40 @@
+# ckanext-opendstats
+
+ckanext-opendstats เป็น CKAN extension ที่ปรับปรุงมาจาก ckanext-dga_stats เพื่อใช้งานร่วมกับ ckanext-thai_gdc ใช้สำหรับแสดงสถานะ/สถิติ การเข้าใช้งานชุดข้อมูลต่างๆของเว็บ Data Catalag ของหน่วยงานที่ติดตั้ง
+
+## Installation
+
+วิธีการติดตั้ง ckanext-opendstats:
+1. Active CKAN environment ของหน่วยงาน
+    ```
+    source /usr/lib/ckan/default/bin/activate
+    ```
+2. pip install ผ่าน git repository
+    ```
+    pip install -e 'git+https://gitlab.nectec.or.th/opend/ckanext-opendstats.git#egg=ckanext-opendstats'
+    ```
+
+## Config settings
+
+วิธีตั้งค่าการใช้งาน ckanext-opendstats:
+1. เพิ่ม opendstats เข้าไปหลัง stats ใน ckan.plugins ของไฟล์ /etc/ckan/default/ckan.ini 
+    ```
+    ckan.plugins = ... stats opendstats ...
+    ```
+    ```
+    sudo supervisorctl reload
+    ```
+
+2. รันคำสั่ง db-init เพื่อสร้างตารางข้อมูลสำหรับ ckanext-opendstats
+    ```
+    sudo /usr/lib/ckan/default/bin/ckan -c /etc/ckan/default/ckan.ini opendstats db-init
+    ```
+    *** ขั้นตอนนี้อาจจะใช้เวลานานขึ้นอยู่กับจำนวนข้อมูล tracking และ ชุดข้อมูลของแต่ละหน่วยงานอาจจะต้องรันด้วย tmux
+
+3. เพิ่ม crontab เพื่อดึงข้อมูลใหม่ในทุกวัน
+    ```
+    crontab -e
+    ```
+    ```
+    @daily /usr/lib/ckan/default/bin/ckan -c /etc/ckan/default/ckan.ini opendstats fetch
+    ```
