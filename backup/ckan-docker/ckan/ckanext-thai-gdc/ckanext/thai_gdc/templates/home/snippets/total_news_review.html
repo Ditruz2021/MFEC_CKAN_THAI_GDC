@@ -1,7 +1,9 @@
+{% set datetime = h.get_current_date() %}
+
 <div class="col-md-12 col-lg-4">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">สถิติการเข้าชมบทความ ณ <span id="current_date_blog"></span></div>
+        <div class="panel-heading">{{ _('Article view statistics as of') }} {{ h.thai_gdc_day_thai(datetime) }}</div>
         <table class="table">
             <tbody>
                 {% for item in item_total_news_review %}
@@ -15,18 +17,3 @@
         </table>
     </div>
 </div>
-
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var currentDate = new Date();
-      var formattedDate = currentDate.toLocaleDateString('th-TH', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-      document.getElementById('current_date_blog').textContent = formattedDate;
-    });
-  </script>

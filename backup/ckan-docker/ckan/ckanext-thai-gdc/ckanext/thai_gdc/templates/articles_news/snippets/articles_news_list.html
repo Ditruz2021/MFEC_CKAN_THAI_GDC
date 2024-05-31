@@ -33,6 +33,9 @@
       {% else %}
       <p class="empty">{{ _('This page currently has no content') }}</p>
       {% endif %}
+      <div class="text-right">
+        <a href="{% if page.page_type == 'page' %}pages{% else %}{{ page.page_type }}{% endif %}/{{page.name}}" class="btn btn-default">{{_("More")}}</a>
+      </div>
     </div>
   </div>
   {% endfor %}

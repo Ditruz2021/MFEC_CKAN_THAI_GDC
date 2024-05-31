@@ -5,7 +5,7 @@
 {% if sort_by_selected is not defined %}{% set sort_by_selected = c.sort_by_selected %}{% endif %}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block page_heading %}{{ _('Data Governance') }}{% endblock %}
@@ -14,7 +14,7 @@
   <article class="module" role="main">
     <div class="module-content">
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
-            <li class="active"><a href="/governance/requestdata/anonymous"><i class="fa fa-sitemap"></i> ผู้ยื่นคำขอ</a></li>
+            <li class="active"><a href="{{ h.url_for('/governance/requestdata/anonymous') }}"><i class="fa fa-sitemap"></i> ผู้ยื่นคำขอ</a></li>
           </ul>
         {% block form %}
           {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=page.item_count,type='dataset' %}

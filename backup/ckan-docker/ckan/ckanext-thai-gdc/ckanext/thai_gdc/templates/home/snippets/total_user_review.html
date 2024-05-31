@@ -1,15 +1,15 @@
 <div class="col-md-6 col-lg-4">
     <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading">จำนวนผู้เข้าใช้บริการ / จำนวนผู้เข้าชม</div>
+        <div class="panel-heading">{{ _('Number of users / Number of visitors') }}</div>
         <div class="panel-body text-center box-count">
 
 
             <i class="fa fa-eye" aria-hidden="true"></i>
             {% for item in item_total_user_review %}
             
-                <h4>{{ item.countuser }} คน</h4>
-                    <h4><span id="count">{{ item.count }}</span> ครั้ง</h4>
+                <h4>{{ item.countuser }} {{ _('people') }}</h4>
+                    <h4><span id="count">{{ item.count }}</span> {{ _('times') }}</h4>
 
           
             {% endfor %}

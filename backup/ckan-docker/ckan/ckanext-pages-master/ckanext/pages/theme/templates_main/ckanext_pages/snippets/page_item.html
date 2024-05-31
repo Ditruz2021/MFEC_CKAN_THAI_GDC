@@ -33,6 +33,9 @@
       {% else %}
         <p class="empty">{{ _('This page currently has no content') }}</p>
       {% endif %}
+      <div class="text-right">
+        <a href="{{ url }}" class="btn btn-default">{{_("More")}}</a>
+      </div>
     {% endblock %}
   </div>
 </div>

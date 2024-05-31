@@ -4,7 +4,7 @@
 {% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block page_heading %}{{ _('Data Governance') }}{% endblock %}
@@ -13,8 +13,8 @@
   <article class="module" role="main">
     <div class="module-content">
           <ul class="nav nav-tabs" style="margin-bottom: 30px;">
-            <li {% if request_state == 'requestdata_wait_steward' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_steward"><i class="fa fa-sitemap"></i> รอการตรวจสอบ</a></li>
-            <li {% if request_state == 'requestdata_wait_council' %} class="active" {% endif %}><a href="/governance/requestdata/processing_state_wait_council"><i class="fa fa-sitemap"></i> รอการอนุมัติ</a></li>
+            <li {% if request_state == 'requestdata_wait_steward' %} class="active" {% endif %}><a href="{{ h.url_for('/governance/requestdata/processing_state_wait_steward') }}"><i class="fa fa-sitemap"></i> {{_('wait')}}</a></li>
+            <li {% if request_state == 'requestdata_wait_council' %} class="active" {% endif %}><a href="{{ h.url_for('/governance/requestdata/processing_state_wait_council') }}"><i class="fa fa-sitemap"></i> {{ _('approval')}}</a></li>
           </ul>
         {% block form %}
           {% set facets = {

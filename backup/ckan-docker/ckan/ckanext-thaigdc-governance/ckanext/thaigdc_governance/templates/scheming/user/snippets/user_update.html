@@ -31,8 +31,8 @@
         </td>
         {% elif field.field_name == 'send_data' %}
         <td class="dataset-details">{% if pkg_dict_list[field.field_name] %}<span class="label label-default"
-            data-format="success">ปิดเรื่อง</span>{% else %}<span class="label label-default"
-            data-format="waiting">รอปิดเรื่อง</span>{% endif %}</td>
+            data-format="success">{{_('Closed case') }}</span>{% else %}<span class="label label-default"
+            data-format="waiting">{{_('Waiting to close the case') }}</span>{% endif %}</td>
         {% else %}
         <td class="dataset-details">{{ pkg_dict_list[field.field_name] }}</td>
         {% endif %}
@@ -45,7 +45,7 @@
   {% if pkg_dict_list['send_data'] == false %}
   <form method="post" action="" id="requestdata-new" class="text-right">
     <button class="btn btn-primary" type="submit" name="save_publish"
-      onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการปรับปรุงชุดข้อมูลที่เผยแพร่นี้หรือไม่')">ปิดเรื่อง</button>
+      onclick="return confirm(_('Are you sure you want to submit the updates to this dataset publication?'))">{{_('Closed case') }}</button>
   </form>
   {% endif %}
 </section>

@@ -102,7 +102,7 @@
       <label for="field-pin" class="control-label">ปักหมุด</label>
       <div class="controls">
         <select id="field-pin" class="form-control" name="pin">
-          {% for option in [(1, _('ปักหมุด')), (0, _('ไม่ปักมุด'))] %}
+          {% for option in [(1, _('ปักหมุด')), (0, _('ไม่ปักหมุด'))] %}
           <option value="{{ option[0] }}" {% if option[0] == data.pin %}selected="selected"{% endif %}>{{ option[1] }}</option>
           {% endfor %}
         </select>
@@ -157,7 +157,7 @@
             <a class="btn btn-danger pull-left" href="{{ delete_url }}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
           {% endif %}
         {% endblock %}
-
+        <a class="btn btn-default pull-left" style="margin-left: 10px" href="{{ cancel_url }}">{{ _('Cancel') }}</a>
         <button class="btn btn-primary" name="save" value="save" type="submit">{{ _('Save') }}</button>
       {% endif %}
     </div>

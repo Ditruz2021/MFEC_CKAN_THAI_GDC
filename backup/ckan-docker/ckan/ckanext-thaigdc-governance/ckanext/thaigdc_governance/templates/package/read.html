@@ -4,7 +4,7 @@
     {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources, is_activity_archive=is_activity_archive %}
     {% if pkg.type == 'dataset' and pkg.disclosure != 'public' and pkg.disclosure != 'secret' %}
     <div class="text-right">
-        <a href="#" data-href="/requestdata_agreement/{{ pkg.id }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
+        <a href="#" data-href="{{ h.url_for('/requestdata_agreement/' ~ pkg.id) }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
             <i class="fa fa-file-text-o"></i>
             แบบฟอร์มขอใช้ข้อมูล
           </a>
@@ -49,7 +49,7 @@
 {% if h.check_access('package_update', {'id':pkg.id }) and pkg.type == 'prepare' and (pkg.processing_dataset_id == '' or not pkg.processing_dataset_id) %}
     <div class="text-right">
       <span style="font-weight:bold;color: #0088cc;">เอกสารร่าง</span> / รอการตรวจสอบ / รอการอนุมัติ / ผ่านการอนุมัติให้เผยแพร่
-        <br/><a href="/governance/prepare_toprocess/{{ pkg.id }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;margin-top: 10px;" onclick="return confirm('คุณแน่ใจที่จะส่งเรื่องเพื่อพิจารณาชุดข้อมูลหรือไม่');">
+        <br/><a href="{{ h.url_for('/governance/prepare_toprocess/' ~ pkg.id) }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;margin-top: 10px;" onclick="return confirm('คุณแน่ใจที่จะส่งเรื่องเพื่อพิจารณาชุดข้อมูลหรือไม่');">
             <i class="fa fa-file-text-o"></i>
             {% if pkg.name.startswith('gprepare-') and pkg.publish_dataset_id and pkg.publish_dataset_id != '' %}
               ส่งเรื่องพิจารณาปรับปรุงชุดข้อมูล

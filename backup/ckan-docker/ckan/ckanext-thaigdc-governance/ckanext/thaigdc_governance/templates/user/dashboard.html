@@ -6,8 +6,8 @@
     {{ h.build_nav_icon('dashboard.datasets', _('My Datasets'), icon='sitemap') }}
     {{ h.build_nav_icon('dashboard.organizations', _('My Organizations'), icon='building-o') }}
     {{ h.build_nav_icon('dashboard.groups', _('My Groups'), icon='users') }}
-    <li {% if request.endpoint=='governance.my_requestdata_list' %} class="active" {% endif %}><a href="/dashboard/requestdatas"><i class="fa fa-handshake-o"></i> คำขอใช้ข้อมูลของฉัน</a></li>
-    <li {% if request.endpoint=='governance.my_package_requested_list' %} class="active" {% endif %}><a href="/dashboard/requested_packages"><i class="fa fa-handshake-o"></i> ชุดข้อมูลของฉันที่ได้รับการขอใช้</a></li>
+    <li {% if request.endpoint=='governance.my_requestdata_list' %} class="active" {% endif %}><a href="{{ h.url_for('/dashboard/requestdatas') }}"><i class="fa fa-handshake-o"></i> {{ _('My data request')}}</a></li>
+    <li {% if request.endpoint=='governance.my_package_requested_list' %} class="active" {% endif %}><a href="{{ h.url_for('/dashboard/requested_packages') }}"><i class="fa fa-handshake-o"></i> {{ _('My requested datasets')}}</a></li>
   </ul>
 {% endblock %}
 

@@ -59,7 +59,16 @@ class UserManageController(plugins.toolkit.BaseController):
         )
         extra_vars[u'q'] = request.params.get(u'q', u'')
         extra_vars[u'sort_by_selected'] = sort_by
-        extra_vars[u'page'].items = thai_gdc_h.get_articles_news_list()
+        # Retrieve the list of articles
+        articles = thai_gdc_h.get_articles_news_list()
+
+        # Filter articles by the presence of extra_vars[u'q'] in each article's content or title
+        if extra_vars[u'q']:
+            filtered_articles = [article for article in articles if extra_vars[u'q'].lower() in article['title'].lower()]
+        else:
+            filtered_articles = articles
+
+        extra_vars[u'page'].items = filtered_articles
         extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
         return plugins.toolkit.render('articles_news/articles_news_list.html',extra_vars=extra_vars)
     

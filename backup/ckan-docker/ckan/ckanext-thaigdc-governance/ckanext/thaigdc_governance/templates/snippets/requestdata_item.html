@@ -15,7 +15,7 @@
       </h2>
       {% if request.endpoint=='governance.my_requestdata_list' and package.request_state == 'requestdata_wait_received' %}
       <div class="text-left">
-        <a href="#" data-href="/requestdata_received/{{ package.id }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
+        <a href="#" data-href="{{ h.url_for('/requestdata_received/' ~ package.id) }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
             <i class="fa fa-file-text-o"></i>
             ยืนยันการได้รับข้อมูล
           </a>
@@ -58,7 +58,7 @@
   </script>
   {% elif request.endpoint=='governance.my_package_requested_list' and package.request_state == 'requestdata_wait_maintainer_notify' %}
   <div class="text-left">
-    <a href="#" data-href="/requestdata_notified/{{ package.id }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
+    <a href="#" data-href="{{ h.url_for('/requestdata_notified/' ~ package.id) }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
         <i class="fa fa-file-text-o"></i>
         รับทราบและจะดำเนินการให้ข้อมูล
       </a>
@@ -103,9 +103,9 @@ var iframe = document.getElementById("myIframe");
     {% endblock %}
 
     {% block notes %}
-    <div><i class="fa fa-sitemap" aria-hidden="true"></i> <strong>ชุดข้อมูล:</strong> <a href="/dataset/{{ package.package_id }}" target="_blank">{#{ package.title.split('-')[1] }#}{{ package.title.replace(package.title[:15], '') }}</a>  
+    <div><i class="fa fa-sitemap" aria-hidden="true"></i> <strong>ชุดข้อมูล:</strong> <a href="{{ h.url_for('/dataset/' ~ package.package_id) }}" target="_blank">{#{ package.title.split('-')[1] }#}{{ package.title.replace(package.title[:15], '') }}</a>  
       {% if request.endpoint=='governance.my_requestdata_list' %}
-        <i class="fa fa-user" aria-hidden="true"></i> <strong>ผู้ดูแลชุดข้อมูล:</strong> {{ h.linked_user(package.package_owner, 0, 0) }}</div>
+        <i class="fa fa-user" aria-hidden="true"></i> <strong>{{_('Dataset administrator')}}:</strong> {{ h.linked_user(package.package_owner, 0, 0) }}</div>
       {% elif request.endpoint=='governance.my_package_requested_list' %}
         <i class="fa fa-user" aria-hidden="true"></i> <strong>ผู้ขอใช้ชุดข้อมูล:</strong> {{ h.linked_user(package.requester_id, 0, 0) }}</div>
       {% endif %}
@@ -117,7 +117,7 @@ var iframe = document.getElementById("myIframe");
   {% block resources %}
   {% endblock %}
   <div style="margin-top: 8px;">
-  <i class="fa fa-calendar" aria-hidden="true"></i> <strong>วันที่ยื่นคำขอ:</strong> {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_created)) }}
+  <i class="fa fa-calendar" aria-hidden="true"></i> <strong>{{_('Date of request submission')}}:</strong> {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_created)) }}
   {% if package.request_state != 'requestdata_wait_steward' %}
   <i class="fa fa-calendar" aria-hidden="true"></i> <strong>วันที่พิจารณาคำขอ (ล่าสุด):</strong> {{ h.thai_gdc_day_thai(h.date_str_to_datetime(package.metadata_modified)) }}
   <br/><i class="fa fa-commenting" aria-hidden="true"></i> <strong>ผลการพิจารณาคำขอ  (ล่าสุด):</strong> {{ package.summary_comment|urlize }}

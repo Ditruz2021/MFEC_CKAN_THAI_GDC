@@ -4,7 +4,7 @@
 {% if facet_titles is not defined %}{% set facet_titles = c.facet_titles %}{% endif %}
 
 {% block breadcrumb_content %}
-<li class="active"><a href="/governance/processing_state">{{ _('Data Governance') }}</a></li>
+<li class="active"><a href="{{ h.url_for('/governance/processing_state') }}">{{ _('Data Governance') }}</a></li>
 {% endblock %}
 
 {% block page_heading %}{{ _('Data Governance') }}{% endblock %}
@@ -13,8 +13,8 @@
   <article class="module" role="main">
     <div class="module-content">
         <ul class="nav nav-tabs" style="margin-bottom: 30px;">
-            <li {% if governance_state == 'complete' %} class="active" {% endif %}><a href="/governance/finished_state_complete"><i class="fa fa-sitemap"></i> {{ _('complete') }}</a></li>
-            <li {% if governance_state == 'reject' %} class="active" {% endif %}><a href="/governance/finished_state_reject"><i class="fa fa-sitemap"></i> {{ _('reject') }}</a></li>
+            <li {% if governance_state == 'complete' %} class="active" {% endif %}><a href="{{ h.url_for('/governance/finished_state_complete') }}"><i class="fa fa-sitemap"></i> {{ _('complete') }}</a></li>
+            <li {% if governance_state == 'reject' %} class="active" {% endif %}><a href="{{ h.url_for('/governance/finished_state_reject') }}"><i class="fa fa-sitemap"></i> {{ _('reject') }}</a></li>
           </ul>
         {% block form %}
           {% set facets = {

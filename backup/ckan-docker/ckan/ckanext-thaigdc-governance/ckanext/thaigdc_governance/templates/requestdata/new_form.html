@@ -135,7 +135,7 @@
 <li>หากเกิดเหตุการณ์ที่ผู้ใช้ข้อมูลผิดข้อตกลงการใช้งานโดยเกิดจากความตั้งใจหรือความไม่ระมัดระวังตามสมควรของผู้ใช้ข้อมูล ผู้ใช้ข้อมูลจะต้องเป็นผู้รับผิดชอบหลักในผลที่เกิดขึ้นทั้งหมด</li>
 </ol>
 <div class="text-center" style="margin-top: 30px;">
-  <a href="/requestdata_form/{{ pkg.id }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;">
+  <a href="{{ h.url_for('/requestdata_form/{{ pkg.id }}') }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;">
       <span style="font-size: 18px;">ยอมรับข้อตกลง</span>
     </a>
 </div>

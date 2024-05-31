@@ -7,7 +7,7 @@
       {% block heading_private %}
       {% endblock %}
       {% block heading_title %}
-      <strong><a href="/governance/requestdata/processing_anonymous?id={{ package.id }}">{{ package.package_name
+      <strong><a href="{{ h.url_for('/governance/requestdata/processing_anonymous?id=' ~ package.id) }}">{{ package.package_name
           }}</a></strong>
       {% endblock %}
       {% block heading_meta %}
@@ -16,20 +16,20 @@
     {% endblock %}
 
     {% block notes %}
-    <i class="fa fa-user-o" aria-hidden="true"></i> ผู้ยื่นคำขอ: {{ package.first_name }} {{ package.last_name}}
+    <i class="fa fa-user-o" aria-hidden="true"></i> {{ _('Requester')}}: {{ package.first_name }} {{ package.last_name}}
     {% endblock %}
   </div>
   {% block resources %}
   {% endblock %}
   <div style="margin-top: 8px;">
-    <i class="fa fa-calendar" aria-hidden="true"></i> วันที่ยื่นคำขอ: {{
+    <i class="fa fa-calendar" aria-hidden="true"></i> {{ _('Date of request submission')}}: {{
     h.thai_gdc_day_thai(h.date_str_to_datetime(package.created)) }}
   </div>
   <div style="margin-top: 8px;">
     {% if package.send_data %}
-    <span class="label label-default" data-format="success">ปิดเรื่อง</span>
+    <span class="label label-default" data-format="success">{{ _('Closed case')}}</span>
     {% else %}
-    <span class="label label-default" data-format="waiting">รอปิดเรื่อง</span>
+    <span class="label label-default" data-format="waiting">{{ _('Waiting to close the case')}}</span>
     {% endif %}
   </div>
   {% endblock %}

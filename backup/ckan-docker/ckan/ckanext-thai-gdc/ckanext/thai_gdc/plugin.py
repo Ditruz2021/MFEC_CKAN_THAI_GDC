@@ -414,5 +414,6 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             'thai_gdc_get_total_user_review_list' : thai_gdc_h.get_total_user_review_list,
             'thai_gdc_get_total_package_data_review_list' : thai_gdc_h.get_total_package_data_review_list,
             'thai_gdc_get_total_group_review_list' : thai_gdc_h.get_total_group_review_list,
+            'get_current_date' : thai_gdc_h.get_current_date,
            
         }
