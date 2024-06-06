@@ -7,9 +7,6 @@
     {% set is_upload = not data.EVENT_IMAGE_IS_URL and data.EVENT_IMAGE | length > 0 %}
     {% set is_url = data.EVENT_IMAGE_IS_URL %}
 
-    {{data}}
-    {{errors}}
-
     {{ form.image_upload(data,
     errors,
     is_upload_enabled=h.uploads_enabled(),
