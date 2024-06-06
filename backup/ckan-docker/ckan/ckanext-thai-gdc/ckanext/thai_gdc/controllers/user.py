@@ -4,6 +4,7 @@ import ckan.lib.helpers as helpers
 import ckan.logic as logic
 import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.model as model
+import ckan.lib.captcha as captcha
 import logging
 from ckan.common import g, request, config
 from pylons import config
@@ -16,8 +17,7 @@ from ckan.plugins.toolkit import (
 from ckan.controllers.home import CACHE_PARAMETERS
 from ckanext.thai_gdc import helpers as thai_gdc_h
 
-_validate = dict_fns.validate
-ValidationError = logic.ValidationError
+# ValidationError = logic.ValidationError
 
 log = logging.getLogger(__name__)
 
@@ -50,75 +50,36 @@ class UserManageController(plugins.toolkit.BaseController):
             except logic.ValidationError as e:
                 return e
     def articles_news(self):
-        limit = int(config.get(u'ckan.datasets_per_page', 20))
+        articles = thai_gdc_h.get_articles_news_list()
+        
         sort_by = request.params.get(u'sort', None)
         extra_vars = {}
-        extra_vars[u'page'] = helpers.Page(
-            collection=[],
-            items_per_page=limit
-        )
         extra_vars[u'q'] = request.params.get(u'q', u'')
         extra_vars[u'sort_by_selected'] = sort_by
-        # Retrieve the list of articles
-        articles = thai_gdc_h.get_articles_news_list()
 
-        # Filter articles by the presence of extra_vars[u'q'] in each article's content or title
         if extra_vars[u'q']:
             filtered_articles = [article for article in articles if extra_vars[u'q'].lower() in article['title'].lower()]
         else:
             filtered_articles = articles
-
-        extra_vars[u'page'].items = filtered_articles
-        extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
+        
+        extra_vars[u'page'] = helpers.Page(
+            collection=filtered_articles,
+            page=request.params.get('page', 1),
+            url=helpers.pager_url,
+            items_per_page=20
+        )
+        
+        # Retrieve the list of articles
+        # extra_vars[u'page'].items = filtered_articles
+        # extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
         return plugins.toolkit.render('articles_news/articles_news_list.html',extra_vars=extra_vars)
     
 
     def group_index(self):
         return plugins.toolkit.render('group/index.html')
-    
-    def requestdataset(self, data=None, errors=None, error_summary=None):
-        submit_success = False  # Initialize submit_success flag
-        
-        if plugins.toolkit.request.method == 'POST' and not data:
-                data = dict(plugins.toolkit.request.POST)
-                try:
-                        # Attempt to add package request
-                        data = thai_gdc_h.add_package_request(data)
-                        print(data)
-                        # Check if the request was successful and set a flag accordingly
-                        submit_success = True
-                except plugins.toolkit.ValidationError as e:
-                        # Handle validation errors
-                        errors = e.error_dict
-                        error_summary = e.error_summary
-                        return self.index(data, errors, error_summary)
-
-        # Initialize errors and error_summary if not provided
-        errors = errors or {}
-        error_summary = error_summary or {}
-
-        # Pass the data, errors, and error_summary to the template
-        extra_vars = {'data': data, 'errors': errors, 'error_summary': error_summary}
-
-        # Render the template, passing extra_vars
-        rendered_template = plugins.toolkit.render('requestdataset/requestdataset_page.html', extra_vars=extra_vars)
-        
-        # If submission was successful, append JavaScript code to display the modal
-        if submit_success:
-                modal_script = "<script>$('#requestdataset_success').modal('show');</script>"
-                rendered_template += modal_script
-        # else:
-        #         # Do something else if submission was not successful
-        #         modal_script = "<script>$('#requestdataset_erroor').modal('show');</script>"
-        #         rendered_template += modal_script
-        
-        return rendered_template
-    
-
 
     def user_create(self, data=None, errors=None, error_summary=None):
         submit_success = False  # Initialize submit_success flag
-        
         if plugins.toolkit.request.method == 'POST' and not data:
                 data = dict(plugins.toolkit.request.POST)
                 print(data)

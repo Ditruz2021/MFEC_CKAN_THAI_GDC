@@ -548,3 +548,27 @@ msgstr "คุณแน่ใจที่จะส่งข้อมูลกา
 
 msgid "Go back"
 msgstr "ย้อนกลับ"
+
+msgid "Data Requester"
+msgstr "ผู้ขอใช้ชุดข้อมูล"
+
+msgid "Between the dates of"
+msgstr "ระหว่างวันที่"
+
+msgid "Date of Request Review (Most Recent)"
+msgstr "วันที่พิจารณาคำขอ (ล่าสุด)"
+
+msgid "Result of Request Review (Most Recent)"
+msgstr "ผลการพิจารณาคำขอ  (ล่าสุด)"
+
+msgid "Only JPG/PNG image files can be uploaded"
+msgstr "สามารถอัปโหลดได้เฉพาะไฟล์รูปภาพ JPG/PNG"
+
+msgid "Number of visitors"
+msgstr "จำนวนผู้เข้าชม"
+
+msgid "Program version"
+msgstr "รุ่นโปรแกรม"
+
+msgid "Date of version"
+msgstr "วันที่"

@@ -46,7 +46,7 @@
 }
 
 .panel-body .chart-icon .fa {
-    margin-top: calc(40% - 50px);
+    margin-top: calc(50% - 50px);
     font-size: 60px;
     color: #666666;
 }
@@ -81,3 +81,32 @@
     z-index: 10;
     color: #666666;
 } */
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    margin: auto;
+}
+
+#doughnutChart {
+    width: 100%;
+    height: auto;
+}
+
+.icon-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 50px !important;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px !important;
+}
+.icon-center .fa {
+    font-size: 50px;
+    color: #666666;
+}

@@ -11,7 +11,7 @@
     errors,
     is_upload_enabled=h.uploads_enabled(),
     is_url=is_url, is_upload=is_upload,
-    upload_label = '', url_label='',
+    upload_label = _('Image') ~ ' (' ~ _('Only JPG/PNG image files can be uploaded')~ ')', url_label='',
     field_url='EVENT_IMAGE',
     field_upload='EVENT_IMAGE_UPLOAD',
     field_clear='EVENT_IMAGE_CLEAR' )}}

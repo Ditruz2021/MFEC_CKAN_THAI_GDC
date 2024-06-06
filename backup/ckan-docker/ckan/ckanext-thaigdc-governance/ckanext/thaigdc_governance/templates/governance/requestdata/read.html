@@ -42,7 +42,7 @@
             {% block package_notes %}
           {% set package_title = h.dataset_display_name(pkg).replace(h.dataset_display_name(pkg)[:15], '') %}
           <div class="notes embedded-content">
-            <strong>ชุดข้อมูล:</strong> <a href="{{ h.url_for('/dataset/' ~ pkg.package_id) }}" target="_blank">{{ package_title }}</a>
+            <strong>{{ _('Dataset') }}:</strong> <a href="{{ h.url_for('/dataset/' ~ pkg.package_id) }}" target="_blank">{{ package_title }}</a>
             </div>
           <div class="notes embedded-content">
             <strong>{{ _('Disclosure') }}:</strong> {{ _(req_pkg_dict.disclosure) }}
@@ -51,7 +51,7 @@
               <strong>{{ _('Dataset administrator') }}:</strong> {{ h.linked_user(req_pkg_dict.creator_user_id,0,0) }}
               </div>
             <div class="notes embedded-content">
-            <strong>ผู้ยื่นคำขอ:</strong> {{ h.linked_user(pkg.requester_id,0,0) }}
+            <strong>{{ _('Requester') }}:</strong> {{ h.linked_user(pkg.requester_id,0,0) }}
             {% if pkg.requester_internal_code %} (รหัสพนักงาน: {{ pkg.requester_internal_code }}) {% endif %}
             </div>
           

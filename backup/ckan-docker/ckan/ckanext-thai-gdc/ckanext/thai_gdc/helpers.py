@@ -526,10 +526,7 @@ def get_articles_news_list():
             s.verify = False
             url = site_url + '/api/3/action/ckanext_pages_list'
             headers = {'Content-type': 'application/json', 'Authorization': ''}
-            if request.params:
-                params = {'q': request.params['q']}
-            else:
-                params = {}
+            params = {}
             res = s.get(url, data=json.dumps(params),headers=headers, proxies=proxies)
             
             # Check if the response status code is 200 (OK)

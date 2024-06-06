@@ -1,57 +1,43 @@
 {% import 'macros/form.html' as form %}
 
-{% set username_error = true if error_summary %}
-{% set password_error = true if error_summary %}
-
 <style>
   .rc-anchor-alert {
     display: none !important;
     visibility: hidden;
   }
 </style>
-<script type="text/javascript">
-  var onloadCallback = function () {
-    grecaptcha.render('html_element', {
-      'sitekey': ' 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI'
-    });
-  };
-
-</script>
 
 
-<form id="requestdata-new" method='post' action="" onSubmit="JavaScript:return check();">
-  {{ form.errors(error_summary) }}
+<form id="requestdata-new" method='post' action="" enctype="multipart/form-data">
 
   <div class="row">
     <div class="col-sm-6">
-      {{ form.input("first_name", id="field_first_name", label="{{ _('Requester's name') }}", placeholder='', value='', is_required=True) }}
+      {{ form.input("first_name", id="field_first_name", label=_("Requester's name"), placeholder='', value=data.first_name,error=errors.first_name, classes=["control-medium"], is_required=True) }}
     </div>
     <div class="col-sm-6">
-      {{ form.input("last_name", id="field_last_name", label="{{ _('Requester's surname') }}", placeholder='', value='', is_required=True) }}
+      {{ form.input("last_name", id="field_last_name", label=_("Requester's surname"), placeholder='', value=data.last_name,error=errors.last_name, classes=["control-medium"], is_required=True) }}
     </div>
   </div>
-
-  {{ form.input("email", id="field_email", label="{{ _('Contact channel for response (Email)') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("owner_org", id="field_owner_org", label="{{ _('Requesting organization') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("package_name", id="field_package_name", label="{{ _('Name of the dataset requested') }}", placeholder='', value='', is_required=True) }}
-
-  {{ form.markdown('notes', id='field_notes', label="{{ _('Details of the dataset requested') }}", value='', is_required=True) }}
+  {{ form.input("email", id="field_email", label=_('Contact channel for response (Email)'), placeholder='', value=data.email,error=errors.email, classes=["control-medium"], is_required=True) }}
+  {{ form.input("owner_org", id="field_owner_org", label=_('Requesting organization'), placeholder='', value=data.owner_org,error=errors.owner_org, classes=["control-medium"], is_required=True) }}
+  {{ form.input("package_name", id="field_package_name", label=_('Name of the dataset requested'), placeholder='', value=data.package_name,error=errors.package_name, classes=["control-medium"], is_required=True) }}
+  {{ form.markdown('notes', id='field_notes', label=_('Details of the dataset requested'), value=data.notes,error=errors.notes, classes=["control-medium"], is_required=True) }}
 
 
-  {{ form.input("scope", id="field_scope", label="{{ _('Scope of dataset usage') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("objective", id="field_objective", label="{{ _('Purpose of data usage') }}", placeholder='', value='', is_required=True) }}
-  {{ form.input("modified", id="field_modified", label="{{ _('Duration of data usage, in day/month/year format') }}", type='date' , placeholder='', value='', is_required=True) }}
+  {{ form.input("scope", id="field_scope", label=_('Scope of dataset usage'), placeholder='', value=data.scope,error=errors.scope, classes=["control-medium"], is_required=True) }}
+  {{ form.input("objective", id="field_objective", label=_('Purpose of data usage'), placeholder='', value=data.objective,error=errors.objective, classes=["control-medium"], is_required=True) }}
+  {{ form.input("modified", id="field_modified", label=_('Duration of data usage, in day/month/year format'), type='date' , placeholder='', value=data.modified,error=errors.modified, classes=["control-medium"], is_required=True) }}
 
+  {% if g.recaptcha_publickey %}
+    {% snippet "user/snippets/recaptcha.html", public_key=g.recaptcha_publickey %}
+  {% endif %}
+
+  {{ form.required_message() }}
 
 
   <div class="form-actions">
     {% block form_actions %}
-    <!-- <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
-    <div class="g-recaptcha text-center" data-sitekey="6LejTr4pAAAAAMTIDFKoLwBMvOtrcO-n_YHRLjGK" data-action="LOGIN">
-    </div> -->
     <center>
-      <div id="html_element" style="display: inline-block;"></div>
-      <br>
       <button id="submit-button" class="btn btn-primary" type="submit" name="save">{{ _('Send') }}</button>
     </center>
     {% endblock %}
@@ -98,12 +84,9 @@
 </div>
 
 
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
-</script>
-
-
 <script language="javascript">
   function check() {
+    console.log(document);
     var name = document.getElementById('field_first_name');
     if (name.value == "") {
       alert('กรุณากรอกชื่อผู้ร้องขอ');
