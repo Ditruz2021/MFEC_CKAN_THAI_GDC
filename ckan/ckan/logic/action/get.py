@@ -114,8 +114,8 @@ def package_request_list(context, data_dict):
 
 def total_dataset_review(context, data_dict):
     model = context['model']
-    sql = u'''SELECT url,SUM(recent_views) as count,(SELECT title FROM package WHERE name = REPLACE(tracking_summary.url,'/dataset/','') AND "state" = 'active') as name
-FROM tracking_summary WHERE url in (SELECT ('/dataset/' || name) as url FROM package WHERE "state" = 'active') GROUP BY url ORDER BY count DESC limit 5;'''
+    sql = u'''SELECT url,SUM(recent_views) as count,(SELECT title FROM package WHERE name = REPLACE(tracking_summary.url,'/dataset/','') AND "state" = 'active' AND private = false) as name
+FROM tracking_summary WHERE url in (SELECT ('/dataset/' || name) as url FROM package WHERE "state" = 'active' AND private = false) GROUP BY url ORDER BY count DESC limit 5;'''
     result = model.Session.execute(text(sql))
     data = []
     for row in result:
@@ -126,7 +126,7 @@ def total_group_review(context, data_dict):
     model = context['model']
     sql = u'''SELECT "group".title as name, COUNT("group".id) as count FROM "group" 
 INNER JOIN package ON package.owner_org = "group".id 
-WHERE "group".type = 'organization' 
+WHERE "group".type = 'organization' AND package.private = false
 AND package.state = 'active' 
 AND package."type" in ('dataset','prepare')
 GROUP BY "group".id;'''
@@ -141,10 +141,10 @@ def total_package_data_review(context, data_dict):
     model = context['model']
     sql = u'''SELECT package_extra."value" AS name, COUNT(package_extra."value") AS count FROM package
 INNER JOIN package_extra ON package.id = package_extra.package_id 
-WHERE package.state = 'active'
+WHERE package.state = 'active'  AND package.private = false
 AND package."type" in ('dataset','prepare')
 AND package_extra."key" = 'data_type'
-GROUP BY package_extra."value"'''
+GROUP BY package_extra."value";'''
     result = model.Session.execute(text(sql))
     data = []
     for row in result:

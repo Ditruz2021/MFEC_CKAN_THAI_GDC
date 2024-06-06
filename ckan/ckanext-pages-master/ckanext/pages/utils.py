@@ -51,7 +51,7 @@ def pages_list_pages(page_type):
         collection=tk.c.pages_dict,
         page=tk.request.params.get('page', 1),
         url=helpers.pager_url,
-        items_per_page=21
+        items_per_page=20
     )
 
     if tk.c.q:
@@ -59,7 +59,6 @@ def pages_list_pages(page_type):
     else:
         filtered_articles = tk.c.page.items
     tk.c.page.items = filtered_articles
-    tk.c.page.item_count = len(tk.c.page.items)
 
     if page_type == 'blog':
         return tk.render('ckanext_pages/blog_list.html')

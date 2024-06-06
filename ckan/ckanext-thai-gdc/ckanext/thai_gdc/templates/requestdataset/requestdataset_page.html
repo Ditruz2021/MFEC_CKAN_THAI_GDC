@@ -1,35 +1,23 @@
 {% extends "page.html" %}
 
-{% block main_content %}
-<article class="module" role="main">
-  <div class="row wrapper no-nav view-preview-container">
-    <section class="module module-narrow module-shallow">
+{% block subtitle %}{{ _('Request a dataset') }}{% endblock %}
 
-      <div class="module-content custom-content">
-        <div class="alert alert-warning" style="margin-bottom: 30px;">
-          <center>
-            <h1 class="page-heading">{% block page_heading %} {{ _('Request the dataset you want') }} {% endblock %}</h1>
-          </center>
-        </div>
-        {% block requestdataset_form %}
-        {% snippet  "requestdataset/snippets/requestdataset_form.html" %}
-        {% endblock %}
+{% block breadcrumb_content %}
+  <li class="active"><a href="{{ h.url_for('/user/register') }}">{{ _('Request a dataset') }}</a></li>
+{% endblock %}
+
+{% block primary_content %}
+<article class="module">
+  <div class="module-content">
+    {% block primary_content_inner %}
+      <div class="alert alert-warning" style="margin-bottom: 30px;">
+        <center>
+          <h1 class="page-heading">{% block page_heading %} {{ _('Request the dataset you want') }} {% endblock %}</h1>
+        </center>
       </div>
-
-    </section>
+      {{ form | safe }}
+    {% endblock %}
   </div>
 </article>
-<style>
-  /* already defined in bootstrap4 */
-  .text-xs-center {
-    text-align: center;
-  }
-
-  .g-recaptcha {
-    display: inline-block;
-  }
-</style>
-
-
 
 {% endblock %}

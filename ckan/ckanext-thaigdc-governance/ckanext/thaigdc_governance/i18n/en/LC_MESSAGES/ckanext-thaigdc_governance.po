@@ -1,0 +1,29 @@
+# Thai translations for ckanext-thaigdc_governance.
+# Copyright (C) 2022 ORGANIZATION
+# This file is distributed under the same license as the
+# ckanext-thaigdc_governance project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-thaigdc_governance 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2022-06-20 12:35+0700\n"
+"PO-Revision-Date: 2022-06-20 12:36+0700\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.7.0\n"
+
+msgid "ข้อมูลระเบียน"
+msgstr "Data record"
+
+msgid "ข้อมูลสาธารณะ"
+msgstr "Public Data"
+
+msgid "ข้อมูลความลับทางราชการ"
+msgstr "Government Confidential Information"

@@ -11,7 +11,7 @@ import ckan.model as model
 
 from six import string_types
 
-from actions import exporter_action, popup_action, opend_action
+from actions import exporter_action, popup_action, opend_action, requestdataset_action
 from ckanext.thai_gdc import helpers as thai_gdc_h
 from ckanext.thai_gdc import auth as thai_gdc_auth
 from ckanext.thai_gdc import validation as thai_gdc_validator
@@ -295,8 +295,8 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
         map.connect(
             'requestdataset',
             '/requestdataset/page',
-            action='requestdataset',
-            controller='ckanext.thai_gdc.controllers.user:UserManageController'
+            action='index',
+            controller='ckanext.thai_gdc.controllers.request_dataset:RequestDatasetController'
         )
         map.connect(
             'user_create',
@@ -357,6 +357,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             'resource_view_create': opend_action.resource_view_create,
             'resource_view_update': opend_action.resource_view_update,
             'resource_view_delete': opend_action.resource_view_delete,
+            'validate_request_dataset': requestdataset_action.validate_request_dataset,
         }
         return action_functions
 

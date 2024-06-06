@@ -1,4 +1,4 @@
-{% extends "page.html" %}
+{% extends 'page.html' %}
 
 {% block subtitle %}{{ _('Articles or news about information') }}{% endblock %}
 
@@ -6,17 +6,13 @@
   <article class="module" role="main">
     <div class="module-content">
       <h1 class="page-heading page-list-header">{{ _("Articles or news about information") }}</h1>
-      {% block form %}
-        {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=page.item_count,type='page' %}
-      {% endblock %}
-      {% block category_articles_news %}
-        {% snippet 'articles_news/snippets/articles_news_list.html', pages=page.items %}
-      {% endblock %}
+      {% snippet 'snippets/search_form_customize.html',query=q,sorting_selected=sort_by_selected,count=page.item_count,type='page' %}
+      {% snippet 'articles_news/snippets/articles_news_list.html', pages=page.items %}
+      {{ page.pager() }}
     </div>
-    {% block page_pagination %}
-      {{ page.pager(q=q) }}
-    {% endblock %}
   </article>
 {% endblock %}
 
 {% block secondary %}{% endblock %}
+
+
