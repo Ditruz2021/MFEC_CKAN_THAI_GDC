@@ -572,3 +572,6 @@ msgstr "รุ่นโปรแกรม"
 
 msgid "Date of version"
 msgstr "วันที่"
+
+msgid "Consideration date"
+msgstr "วันที่พิจารณา"

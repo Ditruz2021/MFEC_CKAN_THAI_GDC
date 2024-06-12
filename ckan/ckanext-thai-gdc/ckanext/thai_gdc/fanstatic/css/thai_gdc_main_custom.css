@@ -158,10 +158,6 @@ a {
   .nav-pills > li + li {
     margin-left: 0px;
   }
-  .nav-pills>li {
-    
-    width: 14.28571428571429%;
-  }
 
   .masthead .nav-pills > li > a {
   background: #fff;

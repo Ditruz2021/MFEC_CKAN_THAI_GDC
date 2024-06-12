@@ -16,6 +16,8 @@ except ImportError:
 
 from ckan import model
 from ckan.model.domain_object import DomainObject
+import logging
+log = logging.getLogger(__name__)
 
 pages_table = None
 
@@ -43,13 +45,13 @@ class Page(DomainObject):
     @classmethod
     def pages(cls, **kw):
         '''Finds a single entity in the register.'''
-        order = kw.pop('order', False)
+        order = kw.pop('order', '')
         order_publish_date = kw.pop('order_publish_date', False)
 
         query = model.Session.query(cls).autoflush(False)
         query = query.order_by(cls.pin.desc()).filter_by(**kw)
         if order:
-            query = query.order_by(sa.cast(cls.order, sa.Integer)).filter(cls.order != '')
+            query = query.order_by(sa.cast(cls.order, sa.Integer)).filter(cls.order == order)
         else:
             query = query.order_by(cls.publish_date.desc()).filter(cls.publish_date != None)  # noqa: E711
         # else:

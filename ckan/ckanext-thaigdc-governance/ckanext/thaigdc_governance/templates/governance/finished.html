@@ -41,6 +41,7 @@
                 });
               });
           </script>
+          {# 
           <div style="float: right;">
           <label for="control-post-publish-governance-state">สถานะ</label>
           <select id="control-post-publish-governance-state" class="form-control" style="display: inline;width: auto;">
@@ -48,6 +49,7 @@
             <option value="/governance/finished_state_complete?q=post_publish_governance_state:เพิกถอน" {% if request.args.get('q')=='post_publish_governance_state:เพิกถอน' %} selected="selected" {% endif %}>เพิกถอน</option>
           </select>
         </div>
+        #}
         {% endblock %}
         {% block package_search_results_list %}
         <div class="col-sm-12">

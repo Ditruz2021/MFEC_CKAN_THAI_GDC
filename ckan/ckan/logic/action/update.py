@@ -88,7 +88,17 @@ def package_request_update(context, data_dict):
     if not context.get('defer_commit'):
         model.Session.commit()
 
-    return id
+    import ckan.lib.mailer
+    name = u"คุณ" + u"{} {}".format(pkg.first_name, pkg.last_name)
+    subject = u"การร้องขอชุดข้อมูล" + u"{}".format(pkg.package_name)
+    body = u"คำร้องขอชุดข้อมูลของท่าน ได้ทำการอนุมัติเรียบร้อยแล้ว"
+    
+    try: 
+        ckan.lib.mailer.mail_recipient(name, pkg.email, subject, body)
+    except ckan.lib.mailer.MailerException as e:
+        return e
+
+    return pkg.id
 
 def package_repair_update(context, data_dict):  
     model = context['model']
@@ -1572,3 +1582,32 @@ def config_option_update(context, data_dict):
     log.info('Updated config options: {0}'.format(data))
 
     return data
+
+def ckan_page_delete(context, data_dict):   
+    order = data_dict.get('order')
+    name = data_dict.get('name')
+    _check_access('package_request_list', context, data_dict)
+
+    sql = '''
+       DELETE FROM "ckanext_pages" WHERE "id" IN (SELECT "id" FROM "ckanext_pages" WHERE "order" = :orders AND "name" != :names)
+    '''
+    Session().execute(sql,{'orders': order,'names': name})
+    Session().commit()
+    return {'success': True}
+
+def update_pin(context, data_dict): 
+    pin = data_dict.get('pin') 
+    _check_access('package_request_list', context, data_dict)
+    
+    if pin == 1:
+        sql = '''
+        UPDATE "ckanext_pages" SET "pin" = 0 WHERE "id" = 
+(SELECT (CASE   
+   WHEN ( SELECT COUNT ( "pin" ) FROM "ckanext_pages" WHERE "pin" = 1 AND "order" = '' GROUP BY "pin" ) = 6 THEN
+   ( SELECT id FROM "ckanext_pages"  WHERE "pin" = 1 AND "order" = '' ORDER BY publish_date LIMIT 1)    
+ END ) as id FROM "ckanext_pages" LIMIT 1)
+ OR "id" IN (SELECT "id" FROM "ckanext_pages" WHERE "pin" = 1 AND "order" != '')
+    '''
+        Session().execute(sql)
+        Session().commit()
+    return {'success': True}

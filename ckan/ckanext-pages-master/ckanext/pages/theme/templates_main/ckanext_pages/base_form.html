@@ -73,36 +73,30 @@
 
   {% block form_visibility_fields %}
     <div class="control-group form-group">
-      <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
+      <label for="field-order" class="control-label">{{_('Select Display')}}</label>
       <div class="controls">
-        <select id="field-private" class="form-control" name="private">
-          {% for option in [(true, _('Private')), (false, _('Public'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.private %}selected="selected"{% endif %}>{{ option[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-
-
-    <div class="control-group form-group">
-      <label for="field-order" class="control-label">เลือกการแสดงผล</label>
-      <div class="controls">
-        <select id="field-order" class="form-control" name="order">
+        <select id="field-order" class="form-control" name="order" onchange="updateSecondSelect()">
           {% for option in [('', _('แสดงในหน้าบทความ')), (1, _('การใช้งานสำหรับผู้ใช้งาน')), (2, _('คู่มือการใช้งาน API'))] %}
           <option value="{{ option[0] }}" {% if option[0] == data.order %}selected="selected"{% endif %}>{{ option[1] }}</option>
           {% endfor %}
         </select>
       </div>
     </div>
-
-
-
-
     <div class="control-group form-group">
-      <label for="field-pin" class="control-label">ปักหมุด</label>
+      <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
+      <div class="controls">
+        <select id="field-private" class="form-control" name="private">
+          {% for option in [(false, _('Public')),(true, _('Private'))] %}
+          <option value="{{ option[0] }}" {% if option[0] == data.private %}selected="selected"{% endif %}>{{ option[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <div class="control-group form-group">
+      <label for="field-pin" class="control-label">{{_('Pin')}}</label>
       <div class="controls">
         <select id="field-pin" class="form-control" name="pin">
-          {% for option in [(1, _('ปักหมุด')), (0, _('ไม่ปักหมุด'))] %}
+          {% for option in [(0, _('ไม่ปักหมุด')),(1, _('ปักหมุด'))] %}
           <option value="{{ option[0] }}" {% if option[0] == data.pin %}selected="selected"{% endif %}>{{ option[1] }}</option>
           {% endfor %}
         </select>
@@ -166,9 +160,31 @@
 </form>
 
 {% block scripts %}
+
  <!--
   CKEditor needs to be loaded here instead of using webassets
   or it won't load properly when setting debug=False
   -->
   <script src="/vendor/ckeditor/ckeditor.js"></script>
+  <script>
+    function updateSecondSelect() {
+        
+        const fieldOrder = document.getElementById("field-order");
+        const fieldPin = document.getElementById("field-pin");
+        const fieldPrivate = document.getElementById("field-private");
+
+        if (fieldOrder.value !== "") {
+          fieldPin.disabled = true
+          fieldPrivate.disabled = true
+        } else {
+          fieldPin.disabled = false
+          fieldPrivate.disabled = false
+        }
+        fieldPin.value = fieldPin.options[0].value;  // Reset to the first option
+        fieldPrivate.value = fieldPrivate.options[0].value;  // Reset to the first option
+    }
+  </script>
+  <script>
+    updateSecondSelect();
+  </script>
 {% endblock %}

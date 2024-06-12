@@ -18,9 +18,12 @@ import ckan.authz as authz
 
 from ckanext.pages import db
 
+import logging
 
 config = tk.config
 _ = tk._
+
+log = logging.getLogger(__name__)
 
 class HTMLFirstImage(HTMLParser):
     def __init__(self):
@@ -55,8 +58,6 @@ def _pages_list(context, data_dict):
     order_publish_date = data_dict.get('order_publish_date')
     page_type = data_dict.get('page_type')
     private = data_dict.get('private', True)
-    if ordered:
-        search['order'] = True
     if page_type:
         search['page_type'] = page_type
     if order_publish_date:
@@ -77,6 +78,9 @@ def _pages_list(context, data_dict):
         search['group_id'] = org_id
         if not member:
             search['private'] = False
+    if ordered:
+        search['order'] = ordered
+        del search['private']
     out = db.Page.pages(**search)
     out_list = []
     for pg in out:

@@ -27,3 +27,12 @@ msgstr "Public Data"
 
 msgid "ข้อมูลความลับทางราชการ"
 msgstr "Government Confidential Information"
+
+msgid "ข้อมูลส่วนบุคคล"
+msgstr "Data Privacy"
+
+msgid "ข้อมูลประเภทอื่นๆ"
+msgstr "Data Other"
+
+msgid "ข้อมูลใช้ภายใน"
+msgstr "Data Internal"

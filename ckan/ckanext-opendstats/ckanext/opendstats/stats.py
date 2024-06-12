@@ -539,7 +539,7 @@ class OpendStats(object):
 									    "full outer join activity on activity.object_id=package.id "
                                         "where activity_type = 'changed package' "
                                         "and timestamp::date > NOW() - interval '{recent_period} day' and type = 'dataset' and private = 'f' and state='active' "
-                                        "order by timestamp asc limit {recent_limit};".format(
+                                        "order by timestamp desc limit {recent_limit};".format(
                                             recent_period=cls.recent_period,
                                             recent_limit=cls.recent_limit)).fetchall()
             r = []

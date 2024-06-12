@@ -288,3 +288,9 @@ msgstr[1] "พบ {number} บทความสำหรับ \"{query}\""
 msgid "No pages found for \"{query}\""
 msgstr "ไม่พบบทความสำหรับ \"{query}\""
 
+msgid "Pin"
+msgstr "ปักหมุด"
+
+msgid "Select Display"
+msgstr "เลือกการแสดงผล"
+

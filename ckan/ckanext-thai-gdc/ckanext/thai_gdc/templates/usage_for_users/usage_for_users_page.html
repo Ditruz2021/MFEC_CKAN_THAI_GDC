@@ -1,33 +1,50 @@
 {% extends "page.html" %}
-<!-- {% block breadcrumb_content %}
-  {{ super() }}
-  <li class="active"><a href="#">{{ _('Add view') }}</a></li>
-{% endblock %} -->
+
+{% block subtitle %}{{ data.title }}{% endblock %}
+
 {% block main_content %}
 <article class="module" role="main">
-  <div class="row wrapper no-nav view-preview-container">
-    <section class="module module-narrow module-shallow">
-
-      <div class="module-content custom-content">
-
-        <h1>{{ _('Usage for users') }}</h1>
-        {% block requestdataset_form %}
-        
-        <iframe src="/base/pdf/user_manual_for_applicant.pdf"></iframe>
-
-
+    <div id="content" class="container">
+        {% block toolbar %}
+        <div class="toolbar" role="navigation" aria-label="{{ _('Breadcrumb') }}">
+            {% block breadcrumb %}
+            {% if self.breadcrumb_content() | trim %}
+            <ol class="breadcrumb">
+                {% snippet 'snippets/home_breadcrumb_item.html' %}
+                {% block breadcrumb_content %}
+                <li class="active"><a href="{{ h.url_for('/usage_for_users/page') }}">{{ _('Usage for users') }}</a>
+                </li>
+                {% endblock %}
+            </ol>
+            {% endif %}
+            {% endblock %}
+        </div>
         {% endblock %}
-      </div>
+        <div class="row wrapper no-nav view-preview-container">
+            <section class="module module-narrow module-shallow">
+                <div class="module-content custom-content">
+                    <h1 class="page-heading">{{ data.title }}</h1>
+                    {% if data.publish_date %}
+                    <span class="muted date"> {{ h.render_datetime(data.publish_date) }} </span>
+                    {% endif %}
+                    {% if data.content %}
+                    {% set editor = h.pages_get_wysiwyg_editor() %}
+                    {% if editor %}
+                    <div>
+                        {{data.content|safe}}
+                    </div>
+                    {% else %}
+                    {{ h.render_content(data.content) }}
+                    {% endif %}
+                    {% else %}
+                    <p class="empty">{{ _('This page currently has no content') }}</p>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </div>
 
-    </section>
-  </div>
 </article>
-<style>
-    iframe {
-        width: 100%;
-        height: 100vh;
-        border: none;
-    }
-</style>
+
 
 {% endblock %}
