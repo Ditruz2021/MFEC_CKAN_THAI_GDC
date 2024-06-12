@@ -1,8 +1,10 @@
 # encoding: utf-8
-
+import logging
 from ckan.common import config, asint
 
 import requests
+
+log = logging.getLogger(__name__)
 
 TIMEOUT = asint(config.get('ckan.requests.timeout', 5))
 
@@ -30,8 +32,11 @@ def check_recaptcha(request):
         remoteip=client_ip_address,
         response=recaptcha_response_field.encode('utf8')
     )
+    log.info('Checking recaptcha: %s', params)
     response = requests.get(recaptcha_server_name, params, timeout=TIMEOUT)
     data = response.json()
+
+
 
     try:
         if not data['success']:

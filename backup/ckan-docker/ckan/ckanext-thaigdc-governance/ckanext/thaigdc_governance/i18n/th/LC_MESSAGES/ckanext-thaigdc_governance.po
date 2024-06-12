@@ -73,6 +73,7 @@ msgstr "หมวดหมู่ข้อมูลตามธรรมาภิ
 msgid "{number} requestdata found for \"{query}\""
 msgid_plural "{number} requestdatas found for \"{query}\""
 msgstr[0] "พบ {number} คำขอใช้ข้อมูลสำหรับ \"{query}\""
+msgstr[1] "พบ {number} คำขอใช้ข้อมูลสำหรับ \"{query}\""
 
 msgid "No requestdatas found for \"{query}\""
 msgstr "ไม่พบคำขอใช้ข้อมูลสำหรับ \"{query}\""
@@ -80,6 +81,7 @@ msgstr "ไม่พบคำขอใช้ข้อมูลสำหรับ
 msgid "{number} requestdata found"
 msgid_plural "{number} requestdatas found"
 msgstr[0] "พบ {number} คำขอใช้ข้อมูล"
+msgstr[1] "พบ {number} คำขอใช้ข้อมูล"
 
 msgid "No requestdatas found"
 msgstr "ไม่พบคำขอใช้ข้อมูล"

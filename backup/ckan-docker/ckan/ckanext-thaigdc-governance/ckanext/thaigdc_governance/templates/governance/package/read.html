@@ -425,7 +425,7 @@
         <button class="btn btn-primary" type="submit" name="save" style="float: right;" onclick="return confirm('คุณแน่ใจที่จะส่งข้อมูลการพิจารณาชุดข้อมูลนี้หรือไม่')">{{_('Approve')}}</button>
         </form>
       </section>
-      {% elif pkg.governance_state == 'complete' and h.thaigdc_governance_get_action_foradmin('package_search',{"include_private":"true","q":"type:prepare +name:gprepare-"+h.thaigdc_governance_get_action_foradmin('package_show',{"id":pkg.prepare_dataset_id})['name']}).count == 0 %}
+      {#{% elif pkg.governance_state == 'complete' and h.thaigdc_governance_get_action_foradmin('package_search',{"include_private":"true","q":"type:prepare +name:gprepare-"+h.thaigdc_governance_get_action_foradmin('package_show',{"id":pkg.prepare_dataset_id})['name']}).count == 0 %}
       <section class="module module-narrow">
         <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{ _('update dataset publication')}}</h3><br />
         <form id="publish-edit" method="post" action="">
@@ -702,6 +702,7 @@
         <button class="btn btn-primary" type="submit" name="save_publish" style="float: right;" onclick="return confirm(_('Are you sure you want to submit the updates to this dataset publication?'))">{{_('Approve')}}</button>
         </form>
       </section>
+      #}
       {% endif %}
     {% endblock %}
     </div>

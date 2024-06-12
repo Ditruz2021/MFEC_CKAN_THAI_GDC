@@ -468,6 +468,7 @@ def _make_menu_item_customize(menu_item, title, **kw):
     This function is called by wrapper functions.
     '''
     check_route = kw.pop('check_route', None)
+    log.info
     if check_route : 
         menu_item = h.map_pylons_to_flask_route_name(menu_item)
         _menu_items = config['routes.named_routes']   
@@ -491,7 +492,20 @@ def _make_menu_item_customize(menu_item, title, **kw):
             return h.literal('<li class="active">') + link + h.literal('</li>')
         return h.literal('<li>') + link + h.literal('</li>')
     else:
+        # Check if the current path matches the menu_item
+        current_path = request.path
+        active = False
+        if menu_item.startswith('/'):
+            active = (current_path == menu_item)
+        else:
+            try:
+                route_url = h.url_for(menu_item)
+                active = (current_path == route_url)
+            except:
+                active = False
         link = _link_to_customize(title, menu_item, suppress_active_class=True, **kw)
+        if active:
+            return h.literal('<li class="active">') + link + h.literal('</li>')
         return h.literal('<li>') + link + h.literal('</li>')
     
 
@@ -520,7 +534,8 @@ def get_articles_news_list():
             'http': config.get('thai_gdc.proxy_url', None),
             'https': config.get('thai_gdc.proxy_url', None)
         }
-    
+    else:
+        proxies = None
     try:
         with requests.Session() as s:
             s.verify = False
@@ -836,6 +851,42 @@ def get_audit_log_list(query_params = ''):
 def get_current_date():
     now = dt.now()
     return now
+
+def get_ckanext_pages_list_page(id = ''):
+    state = []
+    log.info(id)
+    site_url = config.get('ckan.site_url')
+    request_proxy = config.get('thai_gdc.proxy_request', None)
+    proxies = None
+    
+    if request_proxy:
+        proxies = {
+            'http': config.get('thai_gdc.proxy_url', None),
+            'https': config.get('thai_gdc.proxy_url', None)
+        }
+    else:
+        proxies = None
+    try:
+        with requests.Session() as s:
+            s.verify = False
+            url = site_url + '/api/3/action/ckanext_pages_list'
+            headers = {'Content-type': 'application/json', 'Authorization': ''}
+            params = {
+                "order":id
+            }
+            log.info(json.dumps(params))
+            res = s.get(url, data=json.dumps(params),headers=headers, proxies=proxies)
+            log.info(res.json())
+            # Check if the response status code is 200 (OK)
+            # Use res.json() directly, as it returns the JSON-decoded content
+            response_json = res.json()
+            if "result" in response_json:
+                state = response_json["result"]
+            
+    except requests.RequestException as e:
+        print(e)
+    
+    return state
 
 
 

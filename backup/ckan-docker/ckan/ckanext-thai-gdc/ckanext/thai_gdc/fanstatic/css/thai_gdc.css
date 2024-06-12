@@ -727,3 +727,6 @@ span[lang]
 .table-chunky td, .table-chunky th {
   font-size: unset;
 }
+.hide { 
+  display: none;
+}
