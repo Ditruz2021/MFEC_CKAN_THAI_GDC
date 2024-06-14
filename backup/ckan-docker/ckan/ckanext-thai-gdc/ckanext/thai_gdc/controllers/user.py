@@ -74,10 +74,6 @@ class UserManageController(plugins.toolkit.BaseController):
         # extra_vars[u'page'].item_count = len(extra_vars[u'page'].items)
         return plugins.toolkit.render('articles_news/articles_news_list.html',extra_vars=extra_vars)
     
-
-    def group_index(self):
-        return plugins.toolkit.render('group/index.html')
-
     def user_create(self, data=None, errors=None, error_summary=None):
         submit_success = False  # Initialize submit_success flag
         if plugins.toolkit.request.method == 'POST' and not data:

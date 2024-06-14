@@ -19,7 +19,7 @@ msgstr ""
 "Generated-By: Babel 2.7.0\n"
 
 msgid "Usage summary by organization"
-msgstr "สรุปการใช้งานตามองค์กร"
+msgstr "สรุปการใช้งานตามเขตทำการ"
 
 msgid "Total Data API Resources"
 msgstr "ข้อมูล API ทรัพยากรทั้งหมด"

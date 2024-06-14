@@ -287,13 +287,6 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
             action='articles_news',
             controller='ckanext.thai_gdc.controllers.user:UserManageController',
         )
-
-        map.connect(
-            'group_index',
-            '/group_index',
-            action='group_index',
-            controller='ckanext.thai_gdc.controllers.user:UserManageController',
-        )
         map.connect(
             'requestdataset',
             '/requestdataset/page',

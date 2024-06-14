@@ -575,3 +575,6 @@ msgstr "วันที่"
 
 msgid "Consideration date"
 msgstr "วันที่พิจารณา"
+
+msgid "Please select the type of dataset"
+msgstr "กรุณาเลือกประเภทของชุดข้อมูล"

@@ -72,37 +72,27 @@
   {% endblock extra_pages_form %}
 
   {% block form_visibility_fields %}
-    <div class="control-group form-group">
-      <label for="field-order" class="control-label">{{_('Select Display')}}</label>
-      <div class="controls">
-        <select id="field-order" class="form-control" name="order" onchange="updateSecondSelect()">
-          {% for option in [('', _('แสดงในหน้าบทความ')), (1, _('การใช้งานสำหรับผู้ใช้งาน')), (2, _('คู่มือการใช้งาน API'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.order %}selected="selected"{% endif %}>{{ option[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-    <div class="control-group form-group">
-      <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
-      <div class="controls">
-        <select id="field-private" class="form-control" name="private">
-          {% for option in [(false, _('Public')),(true, _('Private'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.private %}selected="selected"{% endif %}>{{ option[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-    <div class="control-group form-group">
-      <label for="field-pin" class="control-label">{{_('Pin')}}</label>
-      <div class="controls">
-        <select id="field-pin" class="form-control" name="pin">
-          {% for option in [(0, _('ไม่ปักหมุด')),(1, _('ปักหมุด'))] %}
-          <option value="{{ option[0] }}" {% if option[0] == data.pin %}selected="selected"{% endif %}>{{ option[1] }}</option>
-          {% endfor %}
-        </select>
-      </div>
-    </div>
-
+    {{ form.select('order',
+      label=_('Select Display'),
+      id='field-order',
+      attrs={'class': 'form-control','onchange': 'updateSecondSelect()'},
+      options=[{'value':'', 'text': _('แสดงในหน้าบทความ')},{'value': '1', 'text': _('การใช้งานสำหรับผู้ใช้งาน')},{'value': '2', 'text': _('คู่มือการใช้งาน API')}],
+      selected=data.order if data.order else '') 
+    }}
+    {{ form.select('private',
+      label=_('Visibility'),
+      id='field-private',
+      attrs={'class': 'form-control'},
+      options=[{'value':'false', 'text': _('Public')},{'value': 'true', 'text': _('Private')}],
+      selected=data.private if data.private else 'false') 
+    }}
+    {{ form.select('private',
+      label=_('Pin'),
+      id='field-pin',
+      attrs={'class': 'form-control'},
+      options=[{'value':'0', 'text': _('ไม่ปักหมุด')},{'value': '1', 'text': _('ปักหมุด')}],
+      selected=data.pin if data.pin else '0') 
+    }}
 
     <!-- {% if not hide_field_order %}
       <div class="control-group form-group">
@@ -152,7 +142,7 @@
           {% endif %}
         {% endblock %}
         <a class="btn btn-default pull-left" style="margin-left: 10px" href="{{ cancel_url }}">{{ _('Cancel') }}</a>
-        <button class="btn btn-primary" name="save" value="save" type="submit">{{ _('Save') }}</button>
+        <button class="btn btn-primary" name="save" style="margin-left: 10px" value="save" type="submit">{{ _('Save') }}</button>
       {% endif %}
     </div>
 
