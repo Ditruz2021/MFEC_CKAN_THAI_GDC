@@ -306,7 +306,10 @@ def fetch_new_data_usage_by_org(model):
                 DATE(created) = pkv.tracking_date
         ) AS create_resources
     FROM ckanext_opendstats_package_views pkv
-    WHERE pkv.tracking_date > (SELECT tracking_date FROM public.ckanext_opendstats_usage_by_org order by tracking_date DESC limit 1)
+    WHERE pkv.tracking_date > COALESCE(
+        (SELECT tracking_date FROM public.ckanext_opendstats_usage_by_org ORDER BY tracking_date DESC LIMIT 1), 
+        '1900-01-01'
+    )
     GROUP BY pkv.package_id,
 		pkv.package_name,
 		pkv.package_title,

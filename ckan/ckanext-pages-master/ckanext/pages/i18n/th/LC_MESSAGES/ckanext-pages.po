@@ -125,7 +125,7 @@ msgstr "เพิ่มบทความและข่าวสาร"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:42
 msgid "Edit Blog Article"
-msgstr ""
+msgstr "แก้ไขบทความและข่าวสาร"
 
 #: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:45
 msgid "eg. Blog Article Title"

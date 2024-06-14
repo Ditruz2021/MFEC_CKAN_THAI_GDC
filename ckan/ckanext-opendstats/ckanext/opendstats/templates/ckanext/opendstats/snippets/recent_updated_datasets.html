@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for date,package,group,user in data_receive|reverse() %}
+            {% for date,package,group,user in data_receive %}
             <tr>
                 <td>{{ date.strftime(date_format) }}</td>
                 <td>{{ h.link_to(package.title or package.name, h.url_for('%s.read' % package.type, id=package.name)) }}

@@ -36,3 +36,12 @@ msgstr "Data Other"
 
 msgid "ข้อมูลใช้ภายใน"
 msgstr "Data Internal"
+
+msgid "ข้อมูลภูมิสารสนเทศเชิงพื้นที่"
+msgstr "Data Geospatial Information"
+
+msgid "ข้อมูลหลากหลายประเภท"
+msgstr "Data of Various Types"
+
+msgid "ข้อมูลสถิติ"
+msgstr "Data Statistical"
