@@ -86,7 +86,7 @@
       options=[{'value':'false', 'text': _('Public')},{'value': 'true', 'text': _('Private')}],
       selected=data.private if data.private else 'false') 
     }}
-    {{ form.select('private',
+    {{ form.select('pin',
       label=_('Pin'),
       id='field-pin',
       attrs={'class': 'form-control'},

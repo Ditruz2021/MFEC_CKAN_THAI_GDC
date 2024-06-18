@@ -588,13 +588,13 @@ msgstr "ผู้ใช้ที่ลงทะเบียนใหม่"
 msgid "Deleted user"
 msgstr "ผู้ใช้ที่ถูกลบ"
 
-msgid "Organisation Address (footer)"
+msgid "Organization Address (footer)"
 msgstr "ที่อยู่เขตทำการ (ส่วนท้าย)"
 
-msgid "Organisation Phone Number (footer)"
+msgid "Organization Phone Number (footer)"
 msgstr "เบอร์โทรเขตทำการ (ส่วนท้าย)"
 
-msgid "Organisation E-mail (footer)"
+msgid "Organization E-mail (footer)"
 msgstr "อีเมลเขตทำการ (ส่วนท้าย)"
 
 msgid "Website policy links (footer)"
@@ -609,8 +609,20 @@ msgstr "ปรับปรุง"
 msgid "Pending"
 msgstr "รอการแก้ไข"
 
+msgid "Under review"
+msgstr "อยู่ระหว่างตรวจสอบ"
+
 msgid "Deleted"
 msgstr "ผู้ดูแลลบชุดข้อมูลนี้แล้ว"
 
 msgid "Fixed"
 msgstr "แก้ไขแล้ว"
+
+msgid "submit for consideration to publish the dataset"
+msgstr " ส่งเรื่องพิจารณาเผยแพร่ชุดข้อมูล"
+
+msgid "submit for consideration to update the dataset"
+msgstr "ส่งเรื่องพิจารณาปรับปรุงชุดข้อมูล"
+
+msgid "Data Request Form"
+msgstr "แบบฟอร์มขอใช้ข้อมูล"

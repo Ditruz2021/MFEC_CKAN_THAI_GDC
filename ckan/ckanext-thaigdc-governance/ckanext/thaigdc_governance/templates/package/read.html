@@ -6,7 +6,7 @@
     <div class="text-right">
         <a href="#" data-href="{{ h.url_for('/requestdata_agreement/' ~ pkg.id) }}" class="btn btn-success showModal" style="font-weight: normal;margin-bottom: 10px;">
             <i class="fa fa-file-text-o"></i>
-            แบบฟอร์มขอใช้ข้อมูล
+            {{_('Data Request Form')}}
           </a>
     </div>
     <div class="modal fade" id="myModal" role="dialog">
@@ -14,7 +14,7 @@
       
         <!-- Modal content-->
         <div class="modal-content" style="height: 100%;">
-          <div class="modal-header"><strong style="font-size: 30px;">แบบฟอร์มขอใช้ข้อมูล</strong>
+          <div class="modal-header"><strong style="font-size: 30px;">{{_('Data Request Form')}}</strong>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="modal-body" style="height: 90%;">
@@ -51,9 +51,9 @@
         <br/><a href="{{ h.url_for('/governance/prepare_toprocess/' ~ pkg.id) }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;margin-top: 10px;" onclick="return confirm('คุณแน่ใจที่จะส่งเรื่องเพื่อพิจารณาชุดข้อมูลหรือไม่');">
             <i class="fa fa-file-text-o"></i>
             {% if pkg.name.startswith('gprepare-') and pkg.publish_dataset_id and pkg.publish_dataset_id != '' %}
-              ส่งเรื่องพิจารณาปรับปรุงชุดข้อมูล
+            {{_('submit for consideration to update the dataset')}}
             {% else %}
-              ส่งเรื่องพิจารณาเผยแพร่ชุดข้อมูล
+              {{_('submit for consideration to publish the dataset')}}
             {% endif %}
           </a>
     </div>
