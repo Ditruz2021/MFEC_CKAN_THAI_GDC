@@ -18,17 +18,18 @@ Example
     <div class="modal-content">
       <div class="modal-header">
           <h3>
-            {{ _('CKAN Data API') }}
+            {{ _('Open Data API') }}
           </h3>
         </div>
         <div{% if not embedded %} class="modal-body"{% endif %}>
           <p><strong>{{ _('Access resource data via a web API with powerful query support') }}</strong>.
-          {% trans %}
+          {#% trans %}
           Further information in the <a
             href="http://docs.ckan.org/en/latest/maintaining/datastore.html" target="_blank">main
             CKAN Data API and DataStore documentation</a>.</p>
-          {% endtrans %}
+          {% endtrans %#}
           <div class="panel-group" id="accordion2">
+          {#
           <div class="panel panel-default">
             <div class="panel-heading">
 
@@ -62,6 +63,7 @@ Example
               </div>
             </div>
           </div>
+          #}
 
           <div class="panel panel-default">
             <div class="panel-heading">

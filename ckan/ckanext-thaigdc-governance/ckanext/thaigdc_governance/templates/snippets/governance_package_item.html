@@ -31,20 +31,20 @@
                 {% endif %}-->
                 {% if package.governance_state == 'reject' %}
                   {% if package.processing == 'finished' %}
-                  <span class="label label-info">แก้ไขแล้ว</span>
+                  <span class="label label-info">{{ _('Fixed') }}</span>
                   {% elif package.processing == 'not found' %}
-                  <span class="label label-info">ผู้ดูแลลบชุดข้อมูลนี้แล้ว</span>
+                  <span class="label label-info">{{ _('Deleted') }}</span>
                   {% elif package.processing != '' %}
                   <a href="{{ h.url_for('/governance/processing?id=' ~ package.processing) }}"><span class="label label-info">อยู่ระหว่างตรวจสอบ</span></a>
                   {% else %}
-                  <span class="label label-info">รอการแก้ไข</span>
+                  <span class="label label-info">{{ _('Pending') }}</span>
                   {% endif %}
                 {% elif package.governance_state == 'wait' or package.governance_state == 'approval' %}
                   {% set prepare_dict = h.thaigdc_governance_get_action_foradmin('package_show',{"id":package.prepare_dataset_id}) %}
                   {% if prepare_dict.publish_dataset_id %}
-                  <span class="label label-info">ปรับปรุง</span>
+                  <span class="label label-info">{{ _('Update') }}</span>
                   {% else %}
-                  <span class="label label-info">ใหม่</span>
+                  <span class="label label-info">{{ _('New dataset') }}</span>
                   {% endif %}
                 {% endif %}
                 {#{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }#}

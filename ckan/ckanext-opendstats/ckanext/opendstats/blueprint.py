@@ -161,7 +161,7 @@ def export(stats_page):
         output = io.StringIO()
     writer = csv.writer(output)
     if stats_page == 'usage_by_org' and h.check_access('sysadmin'):
-        csv_header = [_('หน่วยงาน'), _('หน่วยงานต้นสังกัด'), _('ปี'), _('เดือน'), _('จำนวนเข้าชม'), _('จำนวนการดวน์โหลด'), _('จำนวนชุดข้อมูลที่สร้าง'), _('จำนวนครั้งที่มีการปรับปรุงชุดข้อมูล'), _('จำนวนทรัพยากรที่สร้าง')]
+        csv_header = [_(u'เขตทำการ'), _(u'เขตทำการต้นสังกัด'), _(u'ปี'), _(u'เดือน'), _(u'จำนวนเข้าชม'), _(u'จำนวนการดาวน์โหลด'), _(u'จำนวนชุดข้อมูลที่สร้าง'), _(u'จำนวนครั้งที่มีการปรับปรุงชุดข้อมูล'), _(u'จำนวนทรัพยากรที่สร้าง')]
         # csv_header = ",".join(csv_header)
         writer.writerow(csv_header)
         data = stats.export_usage_by_org()

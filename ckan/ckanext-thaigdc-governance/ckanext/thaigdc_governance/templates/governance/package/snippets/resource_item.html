@@ -23,10 +23,22 @@
 {% set url = '/dataset/'+pkg.id+'/resource/'+res.id %}
 <li class="resource-item" data-id="{{ res.id }}">
   {% block resource_item_title %}
-  <a class="heading showModal" href="#" data-href="{{ url }}" title="{{ res.name or res.description }}">
+  {% if res.resource_private == "True" %}
+  <span class="dataset-private label label-inverse">
+    <i class="fa fa-lock"></i>
+    {{ _('Private') }}
+  </span>
+  {% endif %}
+  <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
     {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
     {{ h.popular('views', res.tracking_summary.total, min=10) if res.tracking_summary }}
   </a>
+  {% if res.tracking_summary %}
+  <span class="textRecentViews">
+    <i class="fa fa-line-chart" aria-hidden="true"></i>
+    {{res.tracking_summary.total}} {{_('downloads')}}
+  </span>
+  {% endif %}
   {% endblock %}
   {% block resource_item_description %}
     <p class="description">
@@ -37,7 +49,7 @@
   {% endblock %}
   {% block resource_item_explore %}
   {% if not url_is_edit %}
-  <!--<div class="dropdown btn-group">
+  <div class="dropdown btn-group">
     <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
       <i class="fa fa-share"></i>
       {{ _('Explore') }}
@@ -79,7 +91,7 @@
       {% endif %}
       {% endblock %}
     </ul>
-  </div>-->
+  </div>
   {% endif %}
   {% endblock %}
 </li>
@@ -98,7 +110,6 @@
   </div>
   </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
   $(document).ready(function() {
   $(".showModal").click(function(e) {

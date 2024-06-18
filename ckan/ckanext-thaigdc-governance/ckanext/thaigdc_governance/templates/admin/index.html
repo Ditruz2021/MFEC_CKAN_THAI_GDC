@@ -55,7 +55,7 @@
     </div>
     <br>
     <div class="col-md-12 card" style="background-color: #f6f6f6;margin-bottom: 20px;">
-      <h2>ผู้ใช้ที่ลงทะเบียนใหม่</h2>
+      <h2>{{ ('New users') }}</h2>
       {% set users_non_member = h.thai_gdc_get_users_non_member() %}
       <div class="card-body">
         <ul class="user-list">
@@ -67,7 +67,7 @@
     </div>
     <br>
     <div class="col-md-12 card" style="background-color: #f6f6f6">
-      <h2>ผู้ใช้ที่ถูกลบ</h2>
+      <h2>{{ ('Deleted user') }}</h2>
       {% set users_deleted = h.thai_gdc_get_users_deleted() %}
       <div class="card-body">
         <ul class="user-list">

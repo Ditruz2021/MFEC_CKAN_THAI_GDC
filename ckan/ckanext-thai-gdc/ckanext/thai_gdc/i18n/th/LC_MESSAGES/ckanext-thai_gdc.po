@@ -578,3 +578,39 @@ msgstr "วันที่พิจารณา"
 
 msgid "Please select the type of dataset"
 msgstr "กรุณาเลือกประเภทของชุดข้อมูล"
+
+msgid "Open Data API"
+msgstr "Open Data API"
+
+msgid "New users"
+msgstr "ผู้ใช้ที่ลงทะเบียนใหม่"
+
+msgid "Deleted user"
+msgstr "ผู้ใช้ที่ถูกลบ"
+
+msgid "Organisation Address (footer)"
+msgstr "ที่อยู่เขตทำการ (ส่วนท้าย)"
+
+msgid "Organisation Phone Number (footer)"
+msgstr "เบอร์โทรเขตทำการ (ส่วนท้าย)"
+
+msgid "Organisation E-mail (footer)"
+msgstr "อีเมลเขตทำการ (ส่วนท้าย)"
+
+msgid "Website policy links (footer)"
+msgstr "รวมลิ้งค์นโยบายเว็บไซต์ (ส่วนท้าย)"
+
+msgid "New dataset"
+msgstr "ใหม่"
+
+msgid "Update"
+msgstr "ปรับปรุง"
+
+msgid "Pending"
+msgstr "รอการแก้ไข"
+
+msgid "Deleted"
+msgstr "ผู้ดูแลลบชุดข้อมูลนี้แล้ว"
+
+msgid "Fixed"
+msgstr "แก้ไขแล้ว"

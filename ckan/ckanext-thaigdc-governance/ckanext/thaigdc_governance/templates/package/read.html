@@ -24,7 +24,6 @@
       </div>
       </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script>
     $(document).ready(function() {
     $(".showModal").click(function(e) {
@@ -48,7 +47,7 @@
 {% block package_description %}
 {% if h.check_access('package_update', {'id':pkg.id }) and pkg.type == 'prepare' and (pkg.processing_dataset_id == '' or not pkg.processing_dataset_id) %}
     <div class="text-right">
-      <span style="font-weight:bold;color: #0088cc;">เอกสารร่าง</span> / รอการตรวจสอบ / รอการอนุมัติ / ผ่านการอนุมัติให้เผยแพร่
+      <span style="font-weight:bold;color: #0088cc;">{{ _('Draft documents')}}</span> / {{ _('Wait')}} / {{ _('Approval')}} / {{ _('Complete')}}
         <br/><a href="{{ h.url_for('/governance/prepare_toprocess/' ~ pkg.id) }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;margin-top: 10px;" onclick="return confirm('คุณแน่ใจที่จะส่งเรื่องเพื่อพิจารณาชุดข้อมูลหรือไม่');">
             <i class="fa fa-file-text-o"></i>
             {% if pkg.name.startswith('gprepare-') and pkg.publish_dataset_id and pkg.publish_dataset_id != '' %}
@@ -63,12 +62,12 @@
 {% if pkg.type == 'prepare' and pkg.processing_dataset_id %}
     {% set processing_governance_state = h.thaigdc_governance_get_processing_governance_state(pkg.processing_dataset_id) %}
     {% if processing_governance_state == 'wait' %}
-      เอกสารร่าง / <span style="font-weight:bold;color: #0088cc;">รอการตรวจสอบ</span> / รอการอนุมัติ / ผ่านการอนุมัติให้เผยแพร่
+    {{ _('Draft documents')}} / <span style="font-weight:bold;color: #0088cc;">{{ _('Wait')}}</span> / {{ _('Approval')}} / {{ _('Complete')}}
     {% elif processing_governance_state == 'approval' %}
-      เอกสารร่าง / รอการตรวจสอบ / <span style="font-weight:bold;color: #0088cc;">รอการอนุมัติ</span> / ผ่านการอนุมัติให้เผยแพร่
+    {{ _('Draft documents')}} / {{ _('Wait')}} / <span style="font-weight:bold;color: #0088cc;">{{ _('Approval')}}</span> / {{ _('Complete')}}
     {% endif %}
 {% elif pkg.type == 'dataset' %}
-    เอกสารร่าง / รอการตรวจสอบ / รอการอนุมัติ / <span style="font-weight:bold;color: #0088cc;">ผ่านการอนุมัติให้เผยแพร่</span>
+    {{ _('Draft documents')}} / {{ _('Wait')}} / {{ _('Approval')}} / <span style="font-weight:bold;color: #0088cc;">{{ _('Complete')}}</span>
 {% endif %}
 </div>
 {{super()}}

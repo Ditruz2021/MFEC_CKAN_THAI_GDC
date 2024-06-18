@@ -45,3 +45,30 @@ msgstr "Data of Various Types"
 
 msgid "ข้อมูลสถิติ"
 msgstr "Data Statistical"
+
+msgid "เขตทำการ"
+msgstr "Organization"
+
+msgid "เขตทำการต้นสังกัด"
+msgstr "Affiliated organization"
+
+msgid "เดือน"
+msgstr "Month"
+
+msgid "ปี"
+msgstr "Year"
+
+msgid "จำนวนเข้าชม"
+msgstr "Number of visitors"
+
+msgid "จำนวนการดาวน์โหลด"
+msgstr "Number of downloads"
+
+msgid "จำนวนชุดข้อมูลที่สร้าง"
+msgstr "Number of datasets created"
+
+msgid "จำนวนครั้งที่มีการปรับปรุงชุดข้อมูล"
+msgstr "Number of times datasets have been updated"
+
+msgid "จำนวนทรัพยากรที่สร้าง"
+msgstr "Number of resources created"
