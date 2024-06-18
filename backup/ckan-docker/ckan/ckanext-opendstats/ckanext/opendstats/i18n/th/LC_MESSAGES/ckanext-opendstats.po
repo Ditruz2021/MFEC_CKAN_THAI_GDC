@@ -40,13 +40,16 @@ msgid "Dataset name"
 msgstr "ชื่อชุดข้อมูล"
 
 msgid "Number of views"
-msgstr "จำนวน views"
+msgstr "จำนวนการเข้าชม"
 
 msgid "Number of downloads"
-msgstr "จำนวน downloads"
+msgstr "จำนวนการดาวน์โหลด"
 
 msgid "Number of recent views (last 14 days)"
-msgstr "จำนวน recent views (14 วันล่าสุด)"
+msgstr "จำนวนการเข้าชม (14 วันล่าสุด)"
+
+msgid "Number of recent downloads (last 14 days)"
+msgstr "จำนวนการดาวน์โหลด (14 วันล่าสุด)"
 
 msgid "Most frequently used search terms"
 msgstr "คำค้นที่มีการใช้มากที่สุด"
@@ -71,5 +74,8 @@ msgstr "คำค้นที่พบชุดข้อมูล"
 
 msgid "Unauthorized to access data"
 msgstr "ไม่มีสิทธิ์เข้าดูข้อมูล"
+
+msgid "downloads"
+msgstr "ดาวน์โหลด"
 
 
