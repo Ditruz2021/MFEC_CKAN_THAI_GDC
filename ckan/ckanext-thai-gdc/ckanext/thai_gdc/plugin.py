@@ -38,6 +38,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
         facets_dict['data_type'] = toolkit._('Dataset Type') #ประเภทชุดข้อมูล
         facets_dict['data_category'] = toolkit._('Data Category') #หมวดหมู่ตามธรรมาภิบาลข้อมูล
         facets_dict['private'] = toolkit._('Visibility') #การเข้าถึง
+        
         return facets_dict
 
     # IPackageController
