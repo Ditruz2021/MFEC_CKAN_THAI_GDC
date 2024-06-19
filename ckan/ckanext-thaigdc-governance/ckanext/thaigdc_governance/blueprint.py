@@ -1318,7 +1318,6 @@ def dataset_toprepare(package_id):
     return h.redirect_to('/prepare/'+pkg_prepare_return['id'])
 
 def prepare_toprocess(package_id):
-    log.info('prepare_toprocess '+str(package_id))
 
     admin_user = config.get('thaigdc_governance.admin_user','ckan-admin')
 
@@ -1581,7 +1580,6 @@ def processing_package_read():
     else:
         template = 'governance/package/read_modify.html'
         pkg_dict_publish = plugins.toolkit.get_action('package_show')(context, {u'id': pkg_dict_prepare['publish_dataset_id']})
-    print(pkg_dict)
     try:
         return base.render(
             template, {

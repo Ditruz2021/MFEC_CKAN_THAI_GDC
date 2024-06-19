@@ -1,7 +1,7 @@
 <section class="module-content">
     <h2>{{ _('Usage summary by organization') }}</h2>
     {% if data_receive %}
-    <a style="float:right;   margin-bottom: 10px;" class="btn" target="_blank" href="{{ h.url_for('opendstats.export', stats_page='usage_by_org') }}">{{_('Export as CSV')}}</a>
+    <a style="float:right;   margin-bottom: 10px;" class="btn" target="_blank" href="#" onClick="$('#used-dataset-by-org').tableExport({type:'csv',escape:'false', tableName:'used-dataset-by-org'});">{{_('Export as CSV')}}</a>
     <table class="table table-chunky table-bordered table-striped" id="used-dataset-by-org">
         <thead>
             <tr>

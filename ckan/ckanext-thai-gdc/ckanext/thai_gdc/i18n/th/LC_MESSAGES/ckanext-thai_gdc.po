@@ -619,10 +619,97 @@ msgid "Fixed"
 msgstr "แก้ไขแล้ว"
 
 msgid "submit for consideration to publish the dataset"
-msgstr " ส่งเรื่องพิจารณาเผยแพร่ชุดข้อมูล"
+msgstr "ส่งเรื่องพิจารณาเผยแพร่ชุดข้อมูล"
 
 msgid "submit for consideration to update the dataset"
 msgstr "ส่งเรื่องพิจารณาปรับปรุงชุดข้อมูล"
 
 msgid "Data Request Form"
 msgstr "แบบฟอร์มขอใช้ข้อมูล"
+
+msgid "Requester id"
+msgstr "ผู้ยื่นคำขอใช้ข้อมูล"
+
+msgid "Full name"
+msgstr "ชื่อ-นามสกุล"
+
+msgid "Employee ID (for internal employees)"
+msgstr "รหัสพนักงาน (กรณีพนักงานภายในองค์กร)"
+
+msgid "Objective"
+msgstr "วัตถุประสงค์"
+
+msgid "Project code"
+msgstr "รหัสโครงการ (ถ้ามี)"
+
+msgid "Project name"
+msgstr "ชื่อโครงการ"
+
+msgid "Project manager"
+msgstr "หัวหน้าโครงการ"
+
+msgid "Usage start date"
+msgstr "วันที่เริ่มต้นการใช้ข้อมูล"
+
+msgid "Usage end date"
+msgstr "วันที่สิ้นสุดการใช้ข้อมูล"
+
+msgid "Request detail"
+msgstr "รายละเอียด/เหตุผลการขอใช้ข้อมูล"
+
+msgid "The data requester has read and accepted the organization's user agreement and will strictly comply with it"
+msgstr "ผู้ขอใช้ข้อมูลได้อ่านและยอมรับข้อตกลงของผู้ใช้ (user agreement) ขององค์กร และจะปฏิบัติตามอย่างเคร่งครัด"
+
+msgid "User Agreement"
+msgstr "ข้อตกลงของผู้ใช้ (User Agreement)"
+
+msgid "Acceptance of User Agreement"
+msgstr "การยอมรับข้อตกลงของผู้ใช้ (User Agreement)"
+
+msgid "Downloading or receiving data in this Data Catalog by any means is considered to be the recipient's acceptance of the terms of this Agreement."
+msgstr "การ Download หรือ ได้รับข้อมูลที่อยู่ในบัญชีข้อมูล (Data Catalog) นี้โดยวิธีใดวิธีหนึ่ง ถือว่าผู้ที่ได้รับข้อมูลยอมรับข้อกำหนดของข้อตกลง (Agreement) นี้"
+
+msgid "Data Use"
+msgstr "การใช้งานข้อมูล"
+
+msgid "Data use means viewing data (even in part), processing data, comparing with other data, or extracting knowledge for use in other projects, research, presentations, writing academic articles, or other related works."
+msgstr "การใช้งานข้อมูลหมายถึง การดูข้อมูล (แม้เพียงบางส่วน), การนำข้อมูลไปประมวลผล, เปรียบเทียบกับข้อมูลอื่น, หรือสกัดองค์ความรู้เพื่อใช้ในโครงการอื่น, การวิจัย, การนำเสนอ, การเขียนบทความวิชาการ หรืองานที่เกี่ยวข้องอื่น ๆ"
+
+msgid "Terms of Use"
+msgstr "ข้อตกลงการใช้งาน"
+
+msgid "The organization and its stakeholders do not guarantee the accuracy, completeness, and timeliness of the data. The user's decision to copy, reference, or use the data is at the user's discretion and decision."
+msgstr "องค์กรและผู้มีส่วนได้ส่วนเสีย ไม่รับรองความถูกต้อง ความครบถ้วนสมบูรณ์ และความทันสมัยของข้อมูล การที่ผู้ใช้จะคัดลอก อ้างอิงหรือนำข้อมูลไปใช้ประโยชน์เป็นวิจารณญาณและการตัดสินใจของผู้ใช้"
+
+msgid "The organization and its stakeholders reserve the right not to be responsible for any damages that may occur from the use of the data."
+msgstr "องค์กรและผู้มีส่วนได้ส่วนเสีย ขอสงวนสิทธิ์ที่จะไม่รับผิดชอบต่อความเสียหายใด ๆ ที่อาจเกิดขึ้นจากการใช้ข้อมูล"
+
+msgid "The data user has no right to disclose the data (all, part, or results obtained from the data) to other persons, even employees within the organization, and must have appropriate data protection measures in accordance with the \"Regulations announced by the organization on information security practices or other related practices\"."
+msgstr "ผู้ใช้ข้อมูล ไม่มีสิทธิ์เผยแพร่ข้อมูล (ทั้งหมด, บางส่วน หรือผลลัพธ์ที่ได้จากข้อมูล) ให้กับบุคคลอื่นแม้แต่พนักงานภายในองค์กร และต้องมีมาตรการปกป้องข้อมูลอย่างเหมาะสมตาม \"ระเบียบที่ประกาศโดยองค์กร ว่าด้วยแนวปฏิบัติในการรักษาความมั่นคงปลอดภัยด้านสารสนเทศ หรือแนวปฏิบัติอื่นใดที่เกี่ยวข้อง\""
+
+msgid "The data user must not use the data in an unlawful manner. Do not use data in a way that causes harm to the organization or violates the organization's policies and regulations."
+msgstr "ผู้ใช้ข้อมูล ต้องไม่ใช้ข้อมูลไปในทางที่มิชอบด้วยกฎหมาย ไม่ใช้ข้อมูลไปในทางที่ก่อให้เกิดผลเสียต่อองค์กรหรือขัดต่อนโยบายและระเบียบขององค์กร"
+
+msgid "When using data for any purpose, the data user must refer to the data set used in full and comply with the terms of use of the data set specified by the data owner and/or as specified by the organization."
+msgstr "ผู้ใช้ข้อมูล เมื่อนำข้อมูลไปใช้ประโยชน์ใด ๆ จะต้องอ้างอิงถึงชุดข้อมูลที่นำมาใช้ให้ครบถ้วน และปฏิบัติตามข้อตกลงการใช้งานของชุดข้อมูลดังกล่าวที่กำหนดโดยเจ้าของข้อมูล และ/หรือ ตามที่องค์กรกำหนด"
+
+msgid "The organization and/or the data owner have the right to revoke the permission to use the data if it is found that it is being used for the wrong purpose or in violation of the terms of use of the data."
+msgstr "องค์กร และ/หรือ เจ้าของข้อมูล มีสิทธิ์เพิกถอนการอนุญาตสิทธิ์ในการใช้ข้อมูลได้ หากพบว่ามีการใช้งานผิดวัตถุประสงค์ หรือ ผิดเงื่อนไขการใช้ข้อมูล"
+
+msgid "If there is an incident where the data user violates the terms of use due to intention or due carelessness of the data user, the data user will be primarily responsible for all consequences."
+msgstr "หากเกิดเหตุการณ์ที่ผู้ใช้ข้อมูลผิดข้อตกลงการใช้งานโดยเกิดจากความตั้งใจหรือความไม่ระมัดระวังตามสมควรของผู้ใช้ข้อมูล ผู้ใช้ข้อมูลจะต้องเป็นผู้รับผิดชอบหลักในผลที่เกิดขึ้นทั้งหมด"
+
+msgid "Accept condition"
+msgstr "ยอมรับข้อตกลง"
+
+msgid "Cannot request to use this dataset."
+msgstr "ไม่สามารถขอใช้ชุดข้อมูลนี้ได้"
+
+msgid "Since you have already requested to use this dataset within the past 24 hours, please make the request again the next day."
+msgstr "เนื่องจากท่านมีการยื่นขอใช้ชุดข้อมูลนี้แล้ว ใน 24 ชั่วโมงที่ผ่านมา ขอให้ท่านทำรายการอีกครั้งในวันถัดไป"
+
+msgid "Organization name"
+msgstr "ชื่อหน่วยงาน"
+
+msgid "Organization head"
+msgstr "ผู้รับผิดชอบหน่วยงาน"

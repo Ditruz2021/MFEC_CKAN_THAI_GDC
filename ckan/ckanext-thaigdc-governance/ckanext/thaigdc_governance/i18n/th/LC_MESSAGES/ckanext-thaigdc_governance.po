@@ -34,7 +34,13 @@ msgstr "อยู่ระหว่างพิจารณา"
 msgid "wait"
 msgstr "รอการตรวจสอบ"
 
+msgid "Wait"
+msgstr "รอการตรวจสอบ"
+
 msgid "approval"
+msgstr "รอการอนุมัติ"
+
+msgid "Approval"
 msgstr "รอการอนุมัติ"
 
 msgid "reject"
