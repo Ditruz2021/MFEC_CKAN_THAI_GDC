@@ -21,15 +21,15 @@
 
 <table class="table table-striped table-bordered table-condensed">
     <tr>
-      <th scope="row" class="dataset-label">ชื่อชุดข้อมูล</th>
+      <th scope="row" class="dataset-label">{{ _('Dataset name')}}</th>
       <td class="dataset-details">{{ pkg.title }}</td>
     </tr>
     {% if employee_code != '' %}
     <tr>
-      <th scope="row" class="dataset-label">ผู้ยื่นคำขอใช้ข้อมูล</th>
-      <td class="dataset-details"><div style="margin-bottom: 5px;"><strong>รหัสพนักงาน: </strong>{{ employee_code }}<br />
-        <strong>ชื่อ-นามสกุล: </strong>{{ user.display_name }}<br />
-        <strong>อีเมล: </strong>{{ user.email }}</div>
+      <th scope="row" class="dataset-label">{{_('Requester id')}}</th>
+      <td class="dataset-details"><div style="margin-bottom: 5px;"><strong>{{_('Employee ID')}}: </strong>{{ employee_code }}<br />
+        <strong>{{_('Full name')}}: </strong>{{ user.display_name }}<br />
+        <strong>{{_('Email')}}: </strong>{{ user.email }}</div>
         <input id="field-requester_internal_code" name="requester_internal_code" value="{{ employee_code }}" placeholder="" class="form-control" type="hidden">
       </td>
     </tr>
@@ -38,41 +38,41 @@
       {% set employee_code = data.requester_internal_code %}
     {% endif %}
     <tr>
-      <th scope="row" class="dataset-label">ผู้ยื่นคำขอใช้ข้อมูล</th>
+      <th scope="row" class="dataset-label">{{_('Requester id')}}</th>
       <td class="dataset-details"><div style="margin-bottom: 5px;">{{ user.display_name }} ({{ user.email }})</div>
-        {{ form.input("requester_internal_code", id="field-requester_internal_code", label='รหัสพนักงาน (กรณีพนักงานภายในองค์กร)', placeholder='', value=employee_code, error=errors.requester_internal_code, is_required=False) }}
+        {{ form.input("requester_internal_code", id="field-requester_internal_code", label=_('Employee ID (for internal employees)'), placeholder='', value=employee_code, error=errors.requester_internal_code, is_required=False) }}
       </td>
     </tr>
     {% endif %}
 </table>
 
-{{ form.select('request_type', id='field-request_type', label='วัตถุประสงค์', options=[
+{{ form.select('request_type', id='field-request_type', label=_('Objective'), options=[
         {'value': 'ขอใช้ในโครงการ', 'text': 'ขอใช้ในโครงการ'}
         , {'value': 'ขอใช้ในหน่วยงาน', 'text': 'ขอใช้ในหน่วยงาน'}
     ], selected=data.request_type if data.request_type else 'ขอใช้ในโครงการ', is_required=true) }}
 
 <div id="project" class="col-sm-3" style="padding-left:unset">
-    {{ form.input("project_code", id="field-project_code", label='รหัสโครงการ (ถ้ามี)', placeholder='', value=data.project_code, error=errors.project_code, is_required=False) }}
+    {{ form.input("project_code", id="field-project_code", label=_('Project code'), placeholder='', value=data.project_code, error=errors.project_code, is_required=False) }}
 </div>
 <div id="lab" class="col-sm-9" style="padding:unset">
-  {{ form.input("project_title", id="field-project_title", label='ชื่อโครงการ', placeholder='', value=data.project_title, error=errors.project_title, is_required=True) }}
+  {{ form.input("project_title", id="field-project_title", label=_('Project name'), placeholder='', value=data.project_title, error=errors.project_title, is_required=True) }}
 </div>
-    {{ form.input("project_manager", id="field-project_manager", label='หัวหน้าโครงการ', placeholder='', value=data.project_manager, error=errors.project_manager, is_required=True) }}
+    {{ form.input("project_manager", id="field-project_manager", label=_('Project manager'), placeholder='', value=data.project_manager, error=errors.project_manager, is_required=True) }}
 
 <table class="table table-striped table-condensed">
     <tr>
-        <td>{{ form.input("usage_start_date", id="field-usage_start_date", label='วันที่เริ่มต้นการใช้ข้อมูล', type='date' , placeholder='', value=data.usage_start_date, error=errors.usage_start_date, is_required=True) }}</td>
-        <td>{{ form.input("usage_end_date", id="field-usage_end_date", label='วันที่สิ้นสุดการใช้ข้อมูล', type='date' , placeholder='', value=data.usage_end_date, error=errors.usage_end_date, is_required=True) }}</td>
+        <td>{{ form.input("usage_start_date", id="field-usage_start_date", label=_('Usage start date'), type='date' , placeholder='', value=data.usage_start_date, error=errors.usage_start_date, is_required=True) }}</td>
+        <td>{{ form.input("usage_end_date", id="field-usage_end_date", label=_('Usage end date'), type='date' , placeholder='', value=data.usage_end_date, error=errors.usage_end_date, is_required=True) }}</td>
     </tr>
 </table>
 
-{{ form.markdown('notes', id='field-notes', label='รายละเอียด/เหตุผลการขอใช้ข้อมูล', value=data.notes, error=errors.notes, is_required=True) }}
+{{ form.markdown('notes', id='field-notes', label=_('Request detail'), value=data.notes, error=errors.notes, is_required=True) }}
 
-{{ form.checkbox('accept_condition', id='field-accept_condition', label ='ผู้ขอใช้ข้อมูลได้อ่านและยอมรับข้อตกลงของผู้ใช้ (user agreement) ขององค์กร และจะปฏิบัติตามอย่างเคร่งครัด',value='true' , error=errors.accept_condition, is_required=True) }}
+{{ form.checkbox('accept_condition', id='field-accept_condition', label =_("The data requester has read and accepted the organization's user agreement and will strictly comply with it"),value='true' , error=errors.accept_condition, is_required=True) }}
 
   <div class="form-actions">
     {% block form_actions %}
-    <button id="submit-button" class="btn btn-primary" type="submit" name="save">ส่งเรื่อง</button>
+    <button id="submit-button" class="btn btn-primary" type="submit" name="save">{{_('Send')}}</button>
     {% endblock %}
   </div>
 </form>
@@ -85,14 +85,14 @@
         if (selected == 'ขอใช้ในโครงการ') {
             $("#project").show();
             $("#lab").attr("class","col-sm-9");
-            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อโครงการ");
-            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> หัวหน้าโครงการ");
+            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Project name')}}");
+            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Project manager')}}");
         } else {
             $("#project").hide();
             $("#lab").attr("class","col-sm-12");
             $("#field-project_code").val("");
-            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อหน่วยงาน");
-            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ผู้รับผิดชอบหน่วยงาน");
+            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Organization name')}}");
+            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Organization head')}}");
         }
   });
   var select = document.getElementById("field-request_type");
@@ -101,47 +101,47 @@
         if (selected == 'ขอใช้ในโครงการ') {
             $("#project").show();
             $("#lab").attr("class","col-sm-9");
-            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อโครงการ");
-            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> หัวหน้าโครงการ");
+            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Project name')}}");
+            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Project manager')}}");
         } else {
             $("#project").hide();
             $("#lab").attr("class","col-sm-12");
             $("#field-project_code").val("");
-            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ชื่อหน่วยงาน");
-            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> ผู้รับผิดชอบหน่วยงาน");
+            $("label[for='field-project_title']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Organization name')}}");
+            $("label[for='field-project_manager']").html("<span title='ต้องการฟิลด์นี้' class='control-required'>*</span> {{_('Organization head')}}");
         }
       }
   </script>
 {% elif not already %}
 <div style="margin: 50px;font-size: 18px;">
-<h2>ข้อตกลงของผู้ใช้ (User Agreement)</h2>
+<h2>{{_('User Agreement')}}</h2>
 <ol>
-<li>การยอมรับข้อตกลงของผู้ใช้ (User Agreement)<br />การ Download หรือ ได้รับข้อมูลที่อยู่ในบัญชีข้อมูล (Data Catalog) นี้โดยวิธีใดวิธีหนึ่ง ถือว่าผู้ที่ได้รับข้อมูลยอมรับข้อกำหนดของข้อตกลง (Agreement) นี้</li>
+<li>{{_('Acceptance of User Agreement')}}<br />{{_("Downloading or receiving data in this Data Catalog by any means is considered to be the recipient's acceptance of the terms of this Agreement.")}}</li>
 </ol>
 <ol start="2">
-<li>การใช้งานข้อมูล<br />การใช้งานข้อมูลหมายถึง การดูข้อมูล (แม้เพียงบางส่วน), การนำข้อมูลไปประมวลผล, เปรียบเทียบกับข้อมูลอื่น, หรือสกัดองค์ความรู้เพื่อใช้ในโครงการอื่น, การวิจัย, การนำเสนอ, การเขียนบทความวิชาการ หรืองานที่เกี่ยวข้องอื่น ๆ</li>
+<li>{{_('Data Use')}}<br />{{_('Data use means viewing data (even in part), processing data, comparing with other data, or extracting knowledge for use in other projects, research, presentations, writing academic articles, or other related works.')}}</li>
 </ol>
 <ol start="3">
-<li>ข้อตกลงการใช้งาน
+<li>{{ _('Terms of Use') }}
 <ul>
-<li>องค์กรและผู้มีส่วนได้ส่วนเสีย ไม่รับรองความถูกต้อง ความครบถ้วนสมบูรณ์ และความทันสมัยของข้อมูล การที่ผู้ใช้จะคัดลอก อ้างอิงหรือนำข้อมูลไปใช้ประโยชน์เป็นวิจารณญาณและการตัดสินใจของผู้ใช้</li>
-<li>องค์กรและผู้มีส่วนได้ส่วนเสีย ขอสงวนสิทธิ์ที่จะไม่รับผิดชอบต่อความเสียหายใด ๆ ที่อาจเกิดขึ้นจากการใช้ข้อมูล</li>
-<li>ผู้ใช้ข้อมูล ไม่มีสิทธิ์เผยแพร่ข้อมูล (ทั้งหมด, บางส่วน หรือผลลัพธ์ที่ได้จากข้อมูล) ให้กับบุคคลอื่นแม้แต่พนักงานภายในองค์กร และต้องมีมาตรการปกป้องข้อมูลอย่างเหมาะสมตาม &ldquo;ระเบียบที่ประกาศโดยองค์กร ว่าด้วยแนวปฏิบัติในการรักษาความมั่นคงปลอดภัยด้านสารสนเทศ หรือแนวปฏิบัติอื่นใดที่เกี่ยวข้อง&rdquo;</li>
-<li>ผู้ใช้ข้อมูล ต้องไม่ใช้ข้อมูลไปในทางที่มิชอบด้วยกฎหมาย ไม่ใช้ข้อมูลไปในทางที่ก่อให้เกิดผลเสียต่อองค์กรหรือขัดต่อนโยบายและระเบียบขององค์กร</li>
-<li>ผู้ใช้ข้อมูล เมื่อนำข้อมูลไปใช้ประโยชน์ใด ๆ จะต้องอ้างอิงถึงชุดข้อมูลที่นำมาใช้ให้ครบถ้วน และปฏิบัติตามข้อตกลงการใช้งานของชุดข้อมูลดังกล่าวที่กำหนดโดยเจ้าของข้อมูล และ/หรือ ตามที่องค์กรกำหนด</li>
-<li>องค์กร และ/หรือ เจ้าของข้อมูล มีสิทธิ์เพิกถอนการอนุญาตสิทธิ์ในการใช้ข้อมูลได้ หากพบว่ามีการใช้งานผิดวัตถุประสงค์ หรือ ผิดเงื่อนไขการใช้ข้อมูล<br /><br /></li>
+<li>{{ _("The organization and its stakeholders do not guarantee the accuracy, completeness, and timeliness of the data. The user's decision to copy, reference, or use the data is at the user's discretion and decision.")}}</li>
+<li>{{_('The organization and its stakeholders reserve the right not to be responsible for any damages that may occur from the use of the data.')}}</li>
+<li>{{_('The data user has no right to disclose the data (all, part, or results obtained from the data) to other persons, even employees within the organization, and must have appropriate data protection measures in accordance with the \"Regulations announced by the organization on information security practices or other related practices\".')}}</li>
+<li>{{_("The data user must not use the data in an unlawful manner. Do not use data in a way that causes harm to the organization or violates the organization's policies and regulations.")}}</li>
+<li>{{_('When using data for any purpose, the data user must refer to the data set used in full and comply with the terms of use of the data set specified by the data owner and/or as specified by the organization.')}}</li>
+<li>{{_('The organization and/or the data owner have the right to revoke the permission to use the data if it is found that it is being used for the wrong purpose or in violation of the terms of use of the data.')}}<br /><br /></li>
 </ul>
 </li>
-<li>หากเกิดเหตุการณ์ที่ผู้ใช้ข้อมูลผิดข้อตกลงการใช้งานโดยเกิดจากความตั้งใจหรือความไม่ระมัดระวังตามสมควรของผู้ใช้ข้อมูล ผู้ใช้ข้อมูลจะต้องเป็นผู้รับผิดชอบหลักในผลที่เกิดขึ้นทั้งหมด</li>
+<li>{{_('If there is an incident where the data user violates the terms of use due to intention or due carelessness of the data user, the data user will be primarily responsible for all consequences.')}}</li>
 </ol>
 <div class="text-center" style="margin-top: 30px;">
   <a href="{{ h.url_for('/requestdata_form/'~ pkg.id) }}" class="btn btn-success" style="font-weight: normal;margin-bottom: 10px;">
-      <span style="font-size: 18px;">ยอมรับข้อตกลง</span>
+      <span style="font-size: 18px;">{{_('Accept condition')}}</span>
     </a>
 </div>
 </div>
 {% else %}
-<h3 style="text-align: center;">ไม่สามารถขอใช้ชุดข้อมูลนี้ได้<br />เนื่องจากท่านมีการยื่นขอใช้ชุดข้อมูลนี้แล้ว ใน 24 ชั่วโมงที่ผ่านมา ขอให้ท่านทำรายการอีกครั้งในวันถัดไป</h3>
+<h3 style="text-align: center;">{{_('Cannot request to use this dataset.')}}<br />{{_('Since you have already requested to use this dataset within the past 24 hours, please make the request again the next day.')}}</h3>
 
 {% endif %}
 
