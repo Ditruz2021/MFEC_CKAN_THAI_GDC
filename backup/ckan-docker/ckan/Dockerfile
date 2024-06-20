@@ -1,6 +1,9 @@
 FROM thepaeth/ckan-base:2.9.9-py2
 
-COPY ./ckan-customize ${SRC_DIR}/ckan/ckan
+COPY ./ckan ${SRC_DIR}/ckan/ckan
+
+RUN apk add openldap-dev
+
 
 RUN pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-xloader.git#egg=ckanext-xloader && \
     pip install -r ${SRC_DIR}/ckanext-xloader/requirements.txt && \
@@ -12,8 +15,8 @@ RUN pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-xloader.git#egg
     pip install -e git+https://github.com/ckan/ckanext-geoview.git#egg=ckanext-geoview && \
     pip install -e git+https://github.com/nectec-opend/ckanext-cesiumpreview.git#egg=ckanext-cesiumpreview && \
     pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-discovery.git#egg=ckanext-discovery && \
-    pip install -e git+https://github.com/conwetlab/ckanext-oauth2.git#egg=ckanext-oauth2 && \
-    pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-opendstats.git#egg=ckanext-opendstats
+    pip install -e git+https://github.com/conwetlab/ckanext-oauth2.git#egg=ckanext-oauth2
+    # pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-opendstats.git#egg=ckanext-opendstats
 
 COPY ./ckanext-thai-gdc ${SRC_DIR}/ckanext-thai-gdc
 
@@ -21,11 +24,16 @@ COPY ./ckanext-thaigdc-governance ${SRC_DIR}/ckanext-thaigdc-governance
 
 COPY ./ckanext-pages-master ${SRC_DIR}/ckanext-pages
 
+COPY ./ckanext-opendstats ${SRC_DIR}/ckanext-opendstats
+
+COPY ./ckanext-ldap ${SRC_DIR}/ckanext-ldap
+
 RUN pip install -e ${SRC_DIR}/ckanext-thai-gdc && \
     pip install -r ${SRC_DIR}/ckanext-thai-gdc/requirements.txt && \
+    pip install -e ${SRC_DIR}/ckanext-ldap && \
     pip install -e ${SRC_DIR}/ckanext-thaigdc-governance && \
-#     pip install -e ${SRC_DIR}/ckanext-ldap && \
-    pip install -e ${SRC_DIR}/ckanext-pages
+    pip install -e ${SRC_DIR}/ckanext-pages && \
+    pip install -e ${SRC_DIR}/ckanext-opendstats
     # pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-thaigdc_governance.git#egg=ckanext-thaigdc_governance
 
 # Install and configure supervisor

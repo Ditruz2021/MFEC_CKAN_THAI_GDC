@@ -196,6 +196,11 @@ def redirect_to(*args, **kw):
         toolkit.redirect_to('/some/other/path')
 
     '''
+    current_language = i18n.get_lang()
+    kw['locale'] = current_language
+
+    log.info('Current language: %s' % current_language)
+    # Set flash message cache flag
     if are_there_flash_messages():
         kw['__no_cache__'] = True
 
@@ -209,7 +214,7 @@ def redirect_to(*args, **kw):
             and (uargs[0].startswith('/') or is_url(uargs[0])) \
             and parse_url is False:
         skip_url_parsing = True
-        _url = uargs[0]
+        _url =  str('/'+current_language.rstrip('/') + uargs[0])
 
     if skip_url_parsing is False:
         _url = url_for(*uargs, **kw)
