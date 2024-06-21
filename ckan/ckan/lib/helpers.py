@@ -214,12 +214,13 @@ def redirect_to(*args, **kw):
             and (uargs[0].startswith('/') or is_url(uargs[0])) \
             and parse_url is False:
         skip_url_parsing = True
-        _url =  str('/'+current_language.rstrip('/') + uargs[0])
-        log.info('URL_1: %s' % _url)
+        if not uargs[0].startswith('/' + current_language + '/') and not uargs[0].startswith('/' + current_language + '?'):
+            _url = str('/' + current_language.rstrip('/') + uargs[0])
+        else:
+            _url = uargs[0]
 
     if skip_url_parsing is False:
         _url = url_for(*uargs, **kw)
-        log.info('URL_2: %s' % _url)
 
     if _url.startswith('/'):
         _url = str(config['ckan.site_url'].rstrip('/') + _url)
