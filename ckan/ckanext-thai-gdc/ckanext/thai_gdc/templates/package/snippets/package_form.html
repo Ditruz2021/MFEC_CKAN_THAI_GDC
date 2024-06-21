@@ -40,7 +40,41 @@
 	let deletedFields = [];
 	let uniqueIdCounter = 0;
 
-	function addDeleteButtons(id) {
+	function checkRequiredFields() {
+		const formGroups = document.querySelectorAll('.form-group');
+
+		formGroups.forEach(group => {
+			const controlLabel = group.querySelector('.control-label');
+			if (controlLabel && !controlLabel.querySelector('.control-required')) {
+				const input = group.querySelector('input, select, textarea');
+				if (!input.value) {
+					deletedFields.push({
+						id: group.id,
+						label: controlLabel.textContent.trim(),
+						html: group.outerHTML,
+						haveOther: false
+					});
+					input.value = null;
+					checkAndHideField(input);
+					updateRollbackOptions();
+				}
+				if (group.querySelector('.checkboxes')) {
+					deletedFields.push({
+						id: group.id,
+						label: controlLabel.textContent.trim(),
+						html: group.outerHTML,
+						haveOther: true
+					});
+					input.value = null;
+					checkAndHideField(input, true);
+					updateRollbackOptions();
+				}
+			}
+
+		});
+	}
+
+	function addDeleteButtons() {
 		const formGroups = document.querySelectorAll('.form-group');
 		formGroups.forEach(group => {
 			if (!group.id) {
@@ -57,11 +91,22 @@
 				deleteBtn.className = 'delete-btn';
 				deleteBtn.onclick = () => {
 					const input = group.querySelector('input, select, textarea');
-					if (input) {
+					if (group.querySelector('.checkboxes')) {
 						deletedFields.push({
 							id: group.id,
 							label: controlLabel.textContent.trim(),
-							html: group.outerHTML
+							html: group.outerHTML,
+							haveOther: true
+						});
+						input.value = null;
+						checkAndHideField(input, true);
+						updateRollbackOptions();
+					} else if (input && !group.querySelector('.checkboxes')) {
+						deletedFields.push({
+							id: group.id,
+							label: controlLabel.textContent.trim(),
+							html: group.outerHTML,
+							haveOther: false
 						});
 						input.setAttribute('data-none', 'true');
 						input.value = null;
@@ -73,6 +118,7 @@
 							updateRollbackOptions();
 						}
 					}
+					
 				};
 				group.querySelector('.controls').appendChild(deleteBtn);
 			}
@@ -80,10 +126,18 @@
 	}
 
 	// Function to check if field value is null and hide it if not required
-	function checkAndHideField(input) {
+	function checkAndHideField(input, isCheckbox = false) {
+
 		const controlLabel = input.closest('.form-group').querySelector('.control-label');
 		if (!controlLabel.querySelector('.control-required') && input.value === '') {
 			input.closest('.form-group').classList.add('hidden');
+		}
+		if (isCheckbox) {
+			const dataLanguageOther = document.getElementById('field-data_language_other');
+			if (dataLanguageOther) {
+				dataLanguageOther.classList.add('hidden'); // Hide the `data_language_other` field
+				dataLanguageOther.value = null;
+			}
 		}
 	}
 
@@ -108,6 +162,12 @@
 			if (fieldToRestore) {
 				const formGroup = document.getElementById(fieldToRestore.id);
 				formGroup.classList.remove('hidden');
+				if(fieldToRestore.haveOther) {
+					const dataLanguageOther = document.getElementById('field-data_language_other');
+					if (dataLanguageOther) {
+						dataLanguageOther.classList.remove('hidden'); // Show the `data_language_other` field
+					}
+				}
 				const input = formGroup.querySelector('input, select, textarea');
 				if (input) {
 					input.value = "";
@@ -123,6 +183,7 @@
 	// Run the function when the DOM is fully loaded
 	document.addEventListener('DOMContentLoaded', () => {
 		addDeleteButtons();
+		checkRequiredFields();
 		document.getElementById('rollback-select').addEventListener('change', rollbackField);
 	});
 </script>

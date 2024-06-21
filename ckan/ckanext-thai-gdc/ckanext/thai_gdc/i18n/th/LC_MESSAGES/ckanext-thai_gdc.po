@@ -713,3 +713,12 @@ msgstr "ชื่อหน่วยงาน"
 
 msgid "Organization head"
 msgstr "ผู้รับผิดชอบหน่วยงาน"
+
+msgid "Bring back"
+msgstr "นำกลับ"
+
+msgid "Bring back Metadata"
+msgstr "นำกลับ Metadata"
+
+msgid "Select Metadata..."
+msgstr "เลือก Metadata..."
