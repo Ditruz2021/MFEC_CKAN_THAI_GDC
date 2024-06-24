@@ -717,8 +717,8 @@ msgstr "ผู้รับผิดชอบหน่วยงาน"
 msgid "Bring back"
 msgstr "นำกลับ"
 
-msgid "Bring back Metadata"
-msgstr "นำกลับ Metadata"
+msgid "Lists of Business Metadata"
+msgstr "รายการ Business Metadata"
 
 msgid "Select Metadata..."
 msgstr "เลือก Metadata..."
