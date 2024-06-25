@@ -722,3 +722,6 @@ msgstr "รายการ Business Metadata"
 
 msgid "Select Metadata..."
 msgstr "เลือก Metadata..."
+
+msgid "The user {actor} has downloaded resource {resource} from the dataset {dataset}"
+msgstr "ผู้ใช้งาน {actor} ได้ทำการดาวน์โหลดข้อมูล {resource} จากชุดข้อมูล {dataset}"

@@ -343,6 +343,7 @@ class ThaigdcGovernancePlugin(plugins.SingletonPlugin, DefaultTranslation, Defau
             'thaigdc_governance_day_thai':gh.day_thai,
             'thaigdc_governance_check_package_owner': gh.check_package_owner,
             'thaigdc_governance_get_user': gh.get_user,
+            'thaigdc_governance_find_resource_by_id': gh.find_resource_by_id,
         }
 
 def package_name_validator(key, data, errors, context):
