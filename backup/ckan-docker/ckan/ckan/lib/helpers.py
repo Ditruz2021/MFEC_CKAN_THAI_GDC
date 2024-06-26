@@ -214,14 +214,18 @@ def redirect_to(*args, **kw):
             and (uargs[0].startswith('/') or is_url(uargs[0])) \
             and parse_url is False:
         skip_url_parsing = True
-        _url =  str('/'+current_language.rstrip('/') + uargs[0])
+        if not uargs[0].startswith('/' + current_language + '/') and not uargs[0].startswith('/' + current_language + '?'):
+            _url = str('/' + current_language.rstrip('/') + uargs[0])
+        else:
+            _url = uargs[0]
 
     if skip_url_parsing is False:
         _url = url_for(*uargs, **kw)
 
     if _url.startswith('/'):
         _url = str(config['ckan.site_url'].rstrip('/') + _url)
-
+        log.info('URL_3: %s' % _url)
+        
     if is_flask_request():
         return _flask_redirect(_url)
     else:

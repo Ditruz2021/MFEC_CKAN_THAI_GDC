@@ -1,9 +1,9 @@
 FROM thepaeth/ckan-base:2.9.9-py2
 
 COPY ./ckan ${SRC_DIR}/ckan/ckan
+COPY ./ckanext ${SRC_DIR}/ckan/ckanext
 
-RUN apk add openldap-dev
-
+# RUN apk add openldap-dev
 
 RUN pip install -e git+https://gitlab.nectec.or.th/opend/ckanext-xloader.git#egg=ckanext-xloader && \
     pip install -r ${SRC_DIR}/ckanext-xloader/requirements.txt && \
@@ -26,11 +26,11 @@ COPY ./ckanext-pages-master ${SRC_DIR}/ckanext-pages
 
 COPY ./ckanext-opendstats ${SRC_DIR}/ckanext-opendstats
 
-COPY ./ckanext-ldap ${SRC_DIR}/ckanext-ldap
+# COPY ./ckanext-ldap ${SRC_DIR}/ckanext-ldap
 
 RUN pip install -e ${SRC_DIR}/ckanext-thai-gdc && \
     pip install -r ${SRC_DIR}/ckanext-thai-gdc/requirements.txt && \
-    pip install -e ${SRC_DIR}/ckanext-ldap && \
+    # pip install -e ${SRC_DIR}/ckanext-ldap && \
     pip install -e ${SRC_DIR}/ckanext-thaigdc-governance && \
     pip install -e ${SRC_DIR}/ckanext-pages && \
     pip install -e ${SRC_DIR}/ckanext-opendstats

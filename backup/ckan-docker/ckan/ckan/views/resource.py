@@ -152,6 +152,8 @@ def read(package_type, id, resource_id):
 
 
 def download(package_type, id, resource_id, filename=None):
+    import ckan.model
+    import ckan.logic
     """
     Provides a direct download by either redirecting the user to the url
     stored or downloading an uploaded file directly.
@@ -162,6 +164,49 @@ def download(package_type, id, resource_id, filename=None):
         u'user': g.user,
         u'auth_user_obj': g.userobj
     }
+
+    if g.user:
+        user = model.User.by_name(g.user)
+        log.info(u'User %s Download resource', g.user)
+        log.info(u'SUCCESS')
+
+        actor = model.meta.Session.query(ckan.model.User).get(user.id)
+
+        dictized_package = ckan.logic.get_action('package_show')(
+            {
+                'model': ckan.model,
+                'session': ckan.model.Session,
+                'for_view': False,  # avoid ckanext-multilingual translating it
+                'ignore_auth': True
+            },
+            {
+                'id': id,
+                'include_tracking': False
+            }
+        )
+
+        activity_create_context = {
+            u'model': model,
+            u'user': g.user,
+            u'defer_commit': True,
+            u'ignore_auth': True,
+            u'session': model.Session
+        }
+        activity_dict = {
+            u'data':{
+                u'filename': filename,
+                u'resource': resource_id,
+                u'actor': actor.name if actor else None,
+                u'package':dictized_package,
+            }, 
+            u'user_id': user.id,
+            u'object_id': id,
+            u'activity_type': 'download resource',
+        }
+        log.info(u'Activity: %s', activity_dict)
+
+        logic.get_action('activity_create')(activity_create_context, activity_dict)
+        model.repo.commit()
 
     try:
         rsc = get_action(u'resource_show')(context, {u'id': resource_id})
@@ -178,7 +223,6 @@ def download(package_type, id, resource_id, filename=None):
         if rsc.get(u'mimetype'):
             resp.headers[u'Content-Type'] = rsc[u'mimetype']
         return resp
-
     elif u'url' not in rsc:
         return base.abort(404, _(u'No download is available'))
     return h.redirect_to(rsc[u'url'])

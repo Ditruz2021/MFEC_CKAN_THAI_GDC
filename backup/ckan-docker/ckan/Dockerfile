@@ -1,6 +1,7 @@
 FROM thepaeth/ckan-base:2.9.9-py2
 
 COPY ./ckan ${SRC_DIR}/ckan/ckan
+COPY ./ckanext ${SRC_DIR}/ckan/ckanext
 
 RUN apk add openldap-dev
 

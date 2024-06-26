@@ -1,0 +1,19 @@
+{% set activity_data = h.thaigdc_governance_get_activity_data(activity.id) %}
+{% set resource = h.thaigdc_governance_find_resource_by_id(activity_data.package.resources,activity_data.resource) %}
+{% set url = '/dataset/'+resource.package_id+'/resource/'+resource.id %}
+{% set url_api = '/api/3/action/datastore_search?resource_id='+resource.id %}
+<li class="item {{ activity.activity_type|replace(' ', '-')|lower }}">
+  <i class="fa icon fa-exchange"></i>
+  <p>
+    {{ _('The user {actor} has called the {data_api} for the {resource} information from the {dataset} dataset').format(
+      actor=ah.actor(activity),
+      resource=h.link_to(resource.name, h.url_for(url)),
+      dataset=h.link_to(activity.data.package.title, h.url_for('%s.read' % activity_data.package.type, id=activity_data.package.name)),
+      data_api=h.link_to('Data API', h.url_for(url_api))
+    )|safe }}
+    <br />
+    <span class="date" title="{{ h.render_datetime(activity.timestamp, with_hours=True) }}">
+      {{ h.time_ago_from_timestamp(activity.timestamp) }}
+    </span>
+  </p>
+</li>

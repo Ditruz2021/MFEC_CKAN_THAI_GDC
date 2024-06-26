@@ -38,6 +38,7 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
         facets_dict['data_type'] = toolkit._('Dataset Type') #ประเภทชุดข้อมูล
         facets_dict['data_category'] = toolkit._('Data Category') #หมวดหมู่ตามธรรมาภิบาลข้อมูล
         facets_dict['private'] = toolkit._('Visibility') #การเข้าถึง
+        
         return facets_dict
 
     # IPackageController
@@ -182,8 +183,6 @@ class Thai_GDCPlugin(plugins.SingletonPlugin, DefaultTranslation, toolkit.Defaul
         config_['ckan.datastore.search.rows_max'] = config_.get('ckan.datastore.search.rows_max', '10000')
         config_['ckan.upload.admin.mimetypes'] = config_.get('ckan.upload.admin.mimetypes', 'image/png image/gif image/jpeg image/vnd.microsoft.icon application/zip')
         config_['ckan.upload.admin.types'] = config_.get('ckan.upload.admin.types', 'image application')
-        config_['thai_gdc.proxy_request'] = True
-        config_['thai_gdc.proxy_url'] = 'http://proxy.mea.or.th:9090'
 
     def update_config_schema(self, schema):
         ignore_missing = toolkit.get_validator('ignore_missing')

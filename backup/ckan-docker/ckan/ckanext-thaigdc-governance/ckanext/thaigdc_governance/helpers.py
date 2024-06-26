@@ -365,3 +365,11 @@ def send_user_delete(id = ''):
         print(e)
     
     return state
+
+def find_resource_by_id(resources, resource_id):
+    log.info('find_resource_by_id: %s', resource_id)
+    log.info('resources: %s', resources)
+    for resource in resources:
+        if resource.get('id') == resource_id:
+            return resource
+    return None
