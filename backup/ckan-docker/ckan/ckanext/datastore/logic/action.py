@@ -493,7 +493,9 @@ def datastore_search(context, data_dict):
 
     '''
 
-    if g.user:
+    data_api = data_dict.get('data_api', 'False')
+    log.info(data_api)
+    if g.user and data_api == 'True':
         user = model.User.by_name(g.user)
         log.info(u'User %s call datastore_search', g.user)
         log.info(u'SUCCESS')
@@ -538,6 +540,9 @@ def datastore_search(context, data_dict):
         logic.get_action('activity_create')(activity_create_context, activity_dict)
         model.repo.commit()
 
+    if data_dict.get('data_api'):
+        del data_dict['data_api']
+    
     backend = DatastoreBackend.get_active_backend()
     schema = context.get('schema', dsschema.datastore_search_schema())
     data_dict, errors = _validate(data_dict, schema, context)
@@ -563,10 +568,6 @@ def datastore_search(context, data_dict):
         p.toolkit.check_access('datastore_search', context, data_dict)
 
     result = backend.search(context, data_dict)
-    log.info("DEBUGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
-    log.info('Performing datastore_search')
-    log.info(result)
-    log.info('Performing datastore_search')
 
     result.pop('id', None)
     result.pop('connection_url', None)
