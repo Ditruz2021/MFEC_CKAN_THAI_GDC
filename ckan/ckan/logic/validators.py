@@ -317,6 +317,7 @@ object_id_validators = {
     'deleted organization' : group_id_exists,
     'follow group' : group_id_exists,
     'download resource' : package_id_exists,
+    'call datastore search' : package_id_exists,
     }
 
 def object_id_validator(key, activity_dict, errors, context):

@@ -725,3 +725,6 @@ msgstr "เลือก Metadata..."
 
 msgid "The user {actor} has downloaded resource {resource} from the dataset {dataset}"
 msgstr "ผู้ใช้งาน {actor} ได้ทำการดาวน์โหลดข้อมูล {resource} จากชุดข้อมูล {dataset}"
+
+msgid "The user {actor} has called the {data_api} for the {resource} information from the {dataset} dataset"
+msgstr "ผู้ใช้งาน {actor} ได้ทำการเรียก {data_api} ข้อมูล {resource} จากชุดข้อมูล {dataset}"
