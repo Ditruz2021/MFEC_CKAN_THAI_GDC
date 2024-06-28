@@ -46,6 +46,9 @@ msgstr "Data of Various Types"
 msgid "ข้อมูลสถิติ"
 msgstr "Data Statistical"
 
+msgid "ข้อมูลความมั่นคง"
+msgstr "Security Information"
+
 msgid "เขตทำการ"
 msgstr "Organization"
 
@@ -72,3 +75,357 @@ msgstr "Number of times datasets have been updated"
 
 msgid "จำนวนทรัพยากรที่สร้าง"
 msgstr "Number of resources created"
+
+msgid "ยุทธศาสตร์ชาติ"
+msgstr "National Strategy"
+
+msgid "แผนพัฒนาเศรษฐกิจและสังคมแห่งชาติ"
+msgstr "National Economic and Social Development Plan"
+
+msgid "แผนความมั่นคงแห่งชาติ"
+msgstr "National Security Plan"
+
+msgid "แผนแม่บทภายใต้ยุทธศาสตร์ชาติ"
+msgstr "Master Plan under the National Strategy"
+
+msgid "แผนปฏิรูปประเทศ"
+msgstr "National Reform Plan"
+
+msgid "แผนระดับที่ 3 (มติครม. 4 ธ.ค. 2560)"
+msgstr "Level 3 Plan (Cabinet Resolution on December 4, 2017)"
+
+msgid "นโยบายรัฐบาล/ข้อสั่งการนายกรัฐมนตรี"
+msgstr "Government Policies/Prime Minister's Directives"
+
+msgid "มติคณะรัฐมนตรี"
+msgstr "Cabinet Resolution"
+
+msgid "เพื่อการให้บริการประชาชน"
+msgstr "For public service"
+
+msgid "กฎหมายที่เกี่ยวข้อง"
+msgstr "Related laws"
+
+msgid "พันธกิจหน่วยงาน"
+msgstr "Agency mission"
+
+msgid "ดัชนี/ตัวชี้วัดระดับนานาชาติ"
+msgstr "International index/indicator"
+
+msgid "อื่นๆ"
+msgstr "Other"
+
+msgid "ครึ่งปี"
+msgstr "half-year"
+
+msgid "ไตรมาส"
+msgstr "quarter"
+
+msgid "สัปดาห์"
+msgstr "week"
+
+msgid "วัน"
+msgstr "day"
+
+msgid "วันทำการ"
+msgstr "business day"
+
+msgid "ชั่วโมง"
+msgstr "hour"
+
+msgid "นาที"
+msgstr "minute"
+
+msgid "ตามเวลาจริง"
+msgstr "real-time"
+
+msgid "ไม่มีการปรับปรุงหลังจากการจัดเก็บข้อมูล"
+msgstr "as stored, without subsequent updates"
+
+msgid "เลขจำนวนที่ประกอบกับหน่วยความถี่ (ครั้ง/หน่วยความถี่)"
+msgstr "frequency count"
+
+msgid "โลก"
+msgstr "world"
+
+msgid "ทวีป/กลุ่มประเทศในทวีป"
+msgstr "continent/group of countries within a continent"
+
+msgid "กลุ่มประเทศทางเศรษฐกิจ"
+msgstr "economic bloc"
+
+msgid "ประเทศ"
+msgstr "country"
+
+msgid "ภาค"
+msgstr "region"
+
+msgid "จังหวัด"
+msgstr "province"
+
+msgid "อำเภอ"
+msgstr "district"
+
+msgid "ตำบล"
+msgstr "sub-district"
+
+msgid "หมู่บ้าน"
+msgstr "village"
+
+msgid "เทศบาล/อบต."
+msgstr "municipality"
+
+msgid "พิกัด"
+msgstr "coordinates"
+
+msgid "แหล่งที่มาของข้อมูลที่นำมาจัดทำชุดข้อมูล"
+msgstr "source of data used for dataset compilation"
+
+msgid "โปรดระบุ"
+msgstr "please specify"
+
+msgid "เปิดเผย"
+msgstr "disclose"
+
+msgid "เผยแพร่ภายในองค์กร"
+msgstr "internal disclosure"
+
+msgid "ลับ"
+msgstr "confidential"
+
+msgid "ลับมาก"
+msgstr "strictly confidential"
+
+msgid "ลับที่สุด"
+msgstr "top secret"
+
+msgid "เงื่อนไขเพื่อให้สามารถเข้าถึงหรือใช้ข้อมูลได้"
+msgstr "conditions for accessing or using data"
+
+msgid "หน่วยงานของรัฐ"
+msgstr "Government agency"
+
+msgid "หน่วยงานของเอกชน"
+msgstr "Private organization"
+
+msgid "หน่วยงาน/องค์กรระหว่างประเทศ"
+msgstr "International organization"
+
+msgid "มูลนิธิ/สมาคม"
+msgstr "Foundation/Association"
+
+msgid "สถาบันการศึกษา"
+msgstr "Educational institution"
+
+msgid "บุคคล"
+msgstr "Individual"
+
+msgid "ครัวเรือน/ครอบครัว"
+msgstr "Household"
+
+msgid "บ้าน/ที่อยู่อาศัย"
+msgstr "Residence"
+
+msgid "บริษัท/ห้างร้าน/สถานประกอบการ"
+msgstr "Company/Business/Enterprise"
+
+msgid "อาคาร/สิ่งปลูกสร้าง"
+msgstr "Building/Construction"
+
+msgid "พื้นที่การเกษตร ประมง ป่าไม้"
+msgstr "Agricultural, Fisheries, Forest areas"
+
+msgid "สัตว์และพันธุ์พืช"
+msgstr "Animals and plant species"
+
+msgid "ขอบเขตเชิงภูมิศาสตร์หรือเชิงพื้นที่"
+msgstr "Geographic or spatial boundaries"
+
+msgid "แหล่งน้ำ เช่น แม่น้ำ อ่างเก็บน้ำ"
+msgstr "Water sources, e.g., rivers, reservoirs"
+
+msgid "เส้นทางการเดินทาง เช่น ถนน ทางรถไฟ"
+msgstr "Transportation routes, e.g., roads, railways"
+
+msgid "ไม่ทราบ"
+msgstr "Unknown"
+
+msgid "URL ที่สามารถเข้าถึงรายละเอียดของชุดข้อมูลได้"
+msgstr "URL to access dataset details"
+
+msgid "ไทย"
+msgstr "Thai"
+
+msgid "อังกฤษ"
+msgstr "English"
+
+msgid "จีน"
+msgstr "Chinese"
+
+msgid "มลายู"
+msgstr "Malay"
+
+msgid "พม่า"
+msgstr "Burmese"
+
+msgid "ลาว"
+msgstr "Lao"
+
+msgid "เขมร"
+msgstr "Khmer"
+
+msgid "ญี่ปุ่น"
+msgstr "Japanese"
+
+msgid "เกาหลี"
+msgstr "Korean"
+
+msgid "ฝรั่งเศส"
+msgstr "French"
+
+msgid "เยอรมัน"
+msgstr "German"
+
+msgid "อารบิก"
+msgstr "Arabic"
+
+msgid "อื่น"
+msgstr "Other"
+
+msgid "เลือกข้อมูล..."
+msgstr "Select data..."
+
+msgid "ไม่มี"
+msgstr "None"
+
+msgid "เพศ"
+msgstr "Gender"
+
+msgid "อายุ/กลุ่มอายุ"
+msgstr "Age/Age group"
+
+msgid "สถานภาพสมรส"
+msgstr "Marital status"
+
+msgid "ศาสนา"
+msgstr "Religion"
+
+msgid "ระดับการศึกษา"
+msgstr "Education level"
+
+msgid "อาชีพ"
+msgstr "Occupation"
+
+msgid "สถานภาพการทำงาน"
+msgstr "Employment status"
+
+msgid "อุตสาหกรรม/ประเภทกิจการ"
+msgstr "Industry/Type of business"
+
+msgid "รายได้"
+msgstr "Income"
+
+msgid "ผลิตภัณฑ์"
+msgstr "Products"
+
+msgid "หน่วย"
+msgstr "Unit"
+
+msgid "สิบ"
+msgstr "Ten"
+
+msgid "ร้อย"
+msgstr "Hundred"
+
+msgid "พัน"
+msgstr "Thousand"
+
+msgid "หมื่น"
+msgstr "Ten thousand"
+
+msgid "แสน"
+msgstr "Hundred thousand"
+
+msgid "ล้าน"
+msgstr "Million"
+
+msgid "สิบล้าน"
+msgstr "Ten million"
+
+msgid "ร้อยล้าน"
+msgstr "Hundred million"
+
+msgid "พันล้าน"
+msgstr "Billion"
+
+msgid "หมื่นล้าน"
+msgstr "Ten billion"
+
+msgid "แสนล้าน"
+msgstr "Hundred billion"
+
+msgid "ล้านล้าน"
+msgstr "Trillion"
+
+msgid "ชั้นข้อมูลแปลงที่ดิน"
+msgstr "Land parcel data layer"
+
+msgid "ชั้นข้อมูลขอบเขตการปกครอง"
+msgstr "Administrative boundary data layer"
+
+msgid "ชั้นข้อมูลเส้นทางคมนาคม"
+msgstr "Transportation network data layer"
+
+msgid "ชั้นข้อมูลชุมนุม/อาคาร"
+msgstr "Points of interest/building data layer"
+
+msgid "ชั้นข้อมูลป่าไม้"
+msgstr "Forest data layer"
+
+msgid "ชั้นข้อมูลการใช้ประโยชน์ที่ดิน"
+msgstr "Land use data layer"
+
+msgid "ชั้นข้อมูลแหล่งน้ำ"
+msgstr "Water source data layer"
+
+msgid "ชั้นข้อมูลอุทกศาสตร์"
+msgstr "Topography data layer"
+
+msgid "ชั้นข้อมูลหมุดหลักฐานแผนที่"
+msgstr "Map reference point data layer"
+
+msgid "ชั้นข้อมูลความสูงภูมิประเทศเชิงตัวเลข"
+msgstr "Digital elevation model (DEM) data layer"
+
+msgid "ชั้นข้อมูลภาพแผนที่ภูมิประเทศ"
+msgstr "Topographic map image data layer"
+
+msgid "ชั้นข้อมูลแผนที่ภาพถ่ายทางอากาศ"
+msgstr "Aerial imagery data layer"
+
+msgid "ชั้นข้อมูลภาพวาดดาวเทียมดัดแก้"
+msgstr "Enhanced satellite imagery data layer"
+
+msgid "แก้ไขประเภทชุดข้อมูล"
+msgstr "Edit dataset type"
+
+msgid "ชื่อของทรัพยากร (มีความยาวไม่เกิน 150 ตัวอักษร) กำหนดโดยองค์กรที่รับผิดชอบข้อมูล โดยจะต้องสอดคล้องกับชื่อชุดข้อมูล เช่น รายได้จากการท่องเที่ยว พ.ศ. 2563-2565, จำนวนกำลังแรงงานรวม จำแนกตามเพศ"
+msgstr "The name of the resource (not exceeding 150 characters), as defined by the organization responsible for the data, should correspond to the dataset title. For example: 'Tourism Revenue for FY 2020-2022' or 'Total Workforce Numbers Segregated by Gender'."
+
+msgid "คำอธิบายรายละเอียดที่สำคัญของทรัพยากรอย่างสั้น (ไม่เกิน 1000 ตัวอักษร) เช่น คำนิยาม ข้อมูลเกี่ยวกับอะไร มีวิธีการจัดเก็บแบบใด กลุ่มเป้าหมายผู้ใช้งานข้อมูลเป็นใคร ตัวอย่างเช่น กำลังแรงงานรวม หมายถึงบุคคลทุกคนที่มี อายุ 15 ปีขึ้นไป ในสัปดาห์แห่งการสำรวจเป็นผู้อยู่ในกำลังแรงงานปัจจุบัน และเป็นผู้ถูกจัดจำแนกอยู่ในประเภทกำลังแรงงานที่รอฤดูกาล"
+msgstr "A concise description of the key details of the resource (not exceeding 1000 characters): 'The Total Workforce Numbers dataset includes individuals aged 15 and above surveyed during the reference week, categorized as currently employed. It provides statistics on the labor force participation rate, employment status, and industry classifications. This resource is gathered through national surveys and administrative records, detailing demographic insights crucial for policy-making, economic planning, and academic research. The data targets government agencies, researchers, economists, and businesses needing labor market trends to inform strategic decisions and interventions.'"
+
+msgid "เงื่อนไขเพื่อให้สามารถเข้าถึงหรือใช้ข้อมูลได้ กรณีที่ทรัพยากร เป็น ข้อมูลความมั่นคง ข้อมูลความลับทางราชการ หรือ ข้อมูลส่วนบุคคล ให้กำหนดค่าเป็น “มี” พร้อมระบุเงื่อนไขในการเข้าถึงข้อมูล กรณีที่ทรัพยากร เป็น ข้อมูลสาธารณะ กำหนดค่าเป็น “ไม่มี”"
+msgstr "Conditions for accessing or using data: Security Data, Government Confidential Data, or Personal Data: Value: 'Yes' Access conditions: Authorization from the relevant authority or agency is required. Additional conditions may include data encryption or usage within secure environments. Public Data: Value: 'No' No additional access conditions apply as the data is publicly accessible. These conditions ensure secure and lawful access and use of the data, based on its nature and regulatory requirements."
+
+msgid "หน่วยที่ย่อยที่สุดของการจัดเก็บข้อมูล ตัวอย่าง เช่น บุคคล สถานประกอบการ จังหวัด อำเภอ ตำบล หมู่บ้าน หรือ ประเทศ เป็นต้น"
+msgstr "The smallest unit of data storage, for example: individual, business establishment, province, district, sub-district, village, or country."
+
+msgid "วัน เดือน ปี ที่เริ่มต้นสร้างหรือจัดทำข้อมูลนี้ (รูปแบบปี พ.ศ. : DD/MM/YYYY)"
+msgstr "The date of creation or compilation of this data (format: DD/MM/YYYY)."
+
+msgid "วัน เดือน ปี ที่ปรับปรุงข้อมูลล่าสุด (รูปแบบปี พ.ศ. : DD/MM/YYYY)"
+msgstr "The date of the last data update (format: DD/MM/YYYY)."
+
+msgid "นามสกุลของไฟล์ข้อมูล เช่น CSV, XLS, Excel"
+msgstr "File extensions for data files, such as CSV, XLS, Excel"
