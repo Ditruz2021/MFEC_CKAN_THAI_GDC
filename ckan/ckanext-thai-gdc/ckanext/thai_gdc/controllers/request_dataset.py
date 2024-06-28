@@ -69,7 +69,7 @@ class RequestDatasetController(p.toolkit.BaseController):
                     thai_gdc_h.add_package_request(data)
                     submit_success = True
                     form_vars = {
-                        u'data': data or {},
+                        u'data': {},
                         u'errors': errors or {},
                         u'error_summary': error_summary or {}
                     }
