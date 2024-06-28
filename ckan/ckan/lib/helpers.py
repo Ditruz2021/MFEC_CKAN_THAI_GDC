@@ -196,7 +196,7 @@ def redirect_to(*args, **kw):
         toolkit.redirect_to('/some/other/path')
 
     '''
-    current_language = i18n.get_lang()
+    current_language = request.environ.get('CKAN_LANG')
     kw['locale'] = current_language
 
     log.info('Current language: %s' % current_language)

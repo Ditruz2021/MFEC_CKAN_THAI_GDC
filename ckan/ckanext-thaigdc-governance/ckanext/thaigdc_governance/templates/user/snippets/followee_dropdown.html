@@ -19,8 +19,8 @@
 <div id="followee-filter" class="pull-right">
   {% if context.q == 'reject' %}
   <div class="btn-group">
-    <a href="#followee-popover" class="btn btn-default dropdown-toggle" title="Governance: ชุดข้อมูลที่รอการปรับปรุง">
-    <span>Governance:</span> <strong>ชุดข้อมูลที่รอการปรับปรุง</strong> <span class="caret"></span>
+    <a href="#followee-popover" class="btn btn-default dropdown-toggle" title="Governance: {{_('ชุดข้อมูลที่รอการปรับปรุง')}}">
+    <span>Governance:</span> <strong>{{_('ชุดข้อมูลที่รอการปรับปรุง')}}</strong> <span class="caret"></span>
     </a>
   </div>
   {% else %}
@@ -66,7 +66,7 @@
     <li{% if context.q == 'reject' %} class="active"{% endif %} data-search="reject">
       <a href="{{ h.url_for('/dashboard?q=reject')}}" title="ชุดข้อมูลที่รอการปรับปรุง">
         Governance:
-        <span>ชุดข้อมูลที่รอการปรับปรุง</span>
+        <span>{{_('ชุดข้อมูลที่รอการปรับปรุง')}}</span>
       </a>
     </li>
     </ul>

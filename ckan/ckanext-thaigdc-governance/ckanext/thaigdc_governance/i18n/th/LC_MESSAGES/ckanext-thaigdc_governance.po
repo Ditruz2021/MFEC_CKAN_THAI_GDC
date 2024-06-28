@@ -167,3 +167,27 @@ msgstr "ก"
 
 msgid "tags"
 msgstr "คำสำคัญ"
+
+msgid "Public Data"
+msgstr "ข้อมูลสาธารณะ"
+
+msgid "Consideration of Data Request"
+msgstr "พิจารณาคำขอใช้ข้อมูล"
+
+msgid "Request status"
+msgstr "สถานะคำขอ"
+
+msgid "Decision communicated to the applicant"
+msgstr "ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ"
+
+msgid "Date and time of request consideration (latest)"
+msgstr "วันเวลาที่พิจารณาคำขอ (ล่าสุด)"
+
+msgid "Your data request has been received by the system"
+msgstr "ระบบได้รับคำขอใช้ข้อมูลของท่านแล้ว"
+
+msgid "We will inform you of the decision and the access method via email at a later time"
+msgstr "จะแจ้งผลการพิจารณาและวิธีการเข้าถึงข้อมูลให้ท่านทราบในภายหลังผ่านทางอีเมล"
+
+
+

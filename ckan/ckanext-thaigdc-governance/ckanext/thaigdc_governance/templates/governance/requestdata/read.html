@@ -56,14 +56,14 @@
             </div>
           
           <div class="notes embedded-content">
-            <strong>สถานะคำขอ:</strong> {{ _(pkg.request_state) }}
+            <strong>{{ _('Request state') }}:</strong> {{ _(pkg.request_state) }}
           </div>
           {% if pkg.request_state != 'requestdata_wait_steward' %}
         <div class="notes embedded-content">
-          <strong>ผลการพิจารณาที่แจ้งกับผู้ยื่นคำขอ:</strong> {{ pkg.summary_comment }}
+          <strong>{{ _('Decision communicated to the applicant') }}:</strong> {{ pkg.summary_comment }}
           </div>
         <div class="notes embedded-content">
-          <strong>วันเวลาที่พิจารณาคำขอ (ล่าสุด):</strong> {{ h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg.metadata_modified)) }}
+          <strong>{{ _('Date and time of request consideration (latest)') }}:</strong> {{ h.thaigdc_governance_day_thai(h.date_str_to_datetime(pkg.metadata_modified)) }}
           </div>
           {% endif %}
               {% endblock %}
@@ -93,7 +93,7 @@
     <div class="primary col-sm-4">
     {% block secondary_content %}
     <section class="module module-narrow">
-        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> พิจารณาคำขอใช้ข้อมูล</h3><br />
+        <h3 class="module-heading"><i class="fa fa-check-square-o" aria-hidden="true"></i> {{_("Consideration of Data Request")}}</h3><br />
         <form id="processing-edit" method="post" action="">
 
           {% set current_request_sate = pkg.request_state %}

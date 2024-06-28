@@ -53,15 +53,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="dataTypeChangeModalLabel">แก้ไขประเภทชุดข้อมูล</h5>
+        <h5 class="modal-title" id="dataTypeChangeModalLabel">{{_('แก้ไขประเภทชุดข้อมูล')}}</h5>
       </div>
         <div class="modal-body">
           <select id="field-data_type_change" name="data_type_change" class="form-control">
             {% for option in options %}
             {% if option.value == data['data_type'] %}
-            <option value="{{ option.value }}" id='option-{{option.value}}' selected="selected">{{ option.value }}</option>
+            <option value="{{ option.value }}" id='option-{{option.value}}' selected="selected">{{ _(option.value) }}</option>
             {% else %}
-            <option value="{{ option.value }}" id='option-{{option.value}}'>{{ option.value }}</option>
+            <option value="{{ option.value }}" id='option-{{option.value}}'>{{ _(option.value) }}</option>
             {% endif %}
             {% endfor %}
           </select>
@@ -75,13 +75,14 @@
     </div>
   </div>
 </div>
-<div style="text-align: right;"><a href="#" style="font-size: smaller;" class="btn btn-primary" data-toggle="modal" data-target="#dataTypeChangeModal">แก้ไขประเภทชุดข้อมูล</a></div>
+<div style="text-align: right;"><a href="#" style="font-size: smaller;" class="btn btn-primary" data-toggle="modal" data-target="#dataTypeChangeModal">{{_('แก้ไขประเภทชุดข้อมูล')}}</a></div>
 
 <script>
   $(document).ready(function(){
     $("#save_data_type_change").click(function(){
-      var r = confirm("การแก้ไขนี้จะส่งผลต่อข้อมูลเมตาเฉพาะของประเภทชุดข้อมูลเดิม หลังจากบันทึกแล้วกรุณาตรวจสอบข้อมูลเมตาอีกครั้ง คุณต้องการที่จะบันทึกหรือไม่");
+      var r = confirm("{{_('การแก้ไขนี้จะส่งผลต่อข้อมูลเมตาเฉพาะของประเภทชุดข้อมูลเดิม หลังจากบันทึกแล้วกรุณาตรวจสอบข้อมูลเมตาอีกครั้ง คุณต้องการที่จะบันทึกหรือไม่')}}");
       $(window).off('beforeunload');
+
       if (r == true) {
         var data_type_change = document.getElementById("field-data_type_change").value;
         window.location.href = "/dataset/edit-datatype/{{ data.name }}?data_type="+data_type_change;

@@ -429,3 +429,82 @@ msgstr "The date of the last data update (format: DD/MM/YYYY)."
 
 msgid "นามสกุลของไฟล์ข้อมูล เช่น CSV, XLS, Excel"
 msgstr "File extensions for data files, such as CSV, XLS, Excel"
+
+msgid "ผ่านการตรวจสอบ/รอการอนุมัติให้เผยแพร่"
+msgstr "Approved for Publication/Pending Approval"
+
+msgid "ไม่ผ่านการตรวจสอบ"
+msgstr "Not Approved"
+
+msgid "ความเห็น/ข้อเสนอแนะ"
+msgstr "Governance Notes"
+
+msgid "ผ่านการอนุมัติให้เผยแพร่"
+msgstr "Approved for Disclosure"
+
+msgid "ไม่ผ่านการอนุมัติให้เผยแพร่"
+msgstr "Not Approved for Disclosure"
+
+msgid "อนุมัติการขอใช้ และรอแจ้งผู้ดูแลข้อมูล"
+msgstr "Approved for Request and Pending Notification to Data Administrator"
+
+msgid "ไม่ผ่านการอนุมัติ"
+msgstr "Not Approved"
+
+msgid "แจ้งผู้ดูแลข้อมูลแล้ว และรอผู้ยื่นคำขอได้รับข้อมูล"
+msgstr "Requestdata wait received"
+
+msgid "ผู้ยื่นคำขอได้รับข้อมูลแล้ว"
+msgstr "Applicant has received the data"
+
+msgid "ขอใช้ในโครงการ"
+msgstr "Request for use in a project"
+
+msgid "ขอใช้ในหน่วยงาน"
+msgstr "Request for use in an organization"
+
+msgid "แสดงในหน้าบทความ"
+msgstr "Display in article"
+
+msgid "การใช้งานสำหรับผู้ใช้งาน"
+msgstr "Usage for Users"
+
+msgid "คู่มือการใช้งาน API"
+msgstr "API User Guide"
+
+msgid "ไม่ปักหมุด"
+msgstr "Unpin"
+
+msgid "ปักหมุด"
+msgstr "Pin"
+
+msgid "หน้าแสดงรายการสำหรับเหตุการณ์"
+msgstr "Page showing event listings"
+
+msgid "ค้นหา"
+msgstr "Search"
+
+msgid "การปรับแต่ง Banner และ Favicon"
+msgstr "Customizing Banner and Favicon"
+
+msgid "ภาพในส่วนแนะนำเว็บไซต์"
+msgstr "Featured website image"
+
+msgid "ภาพพื้นหลังส่วนค้นหาชุดข้อมูลในหน้าหลัก"
+msgstr "Background image for the dataset search section on the main page"
+
+msgid "ไอคอนประจำเว็บไซต์"
+msgstr "Website icon"
+
+msgid "ป็อปอัพ หน้าแรกสำหรับเหตุการณ์วันสำคัญต่างๆ"
+msgstr "Pop-up on the homepage for significant events"
+
+msgid "ชุดข้อมูลที่รอการปรับปรุง"
+msgstr "Datasets pending updates"
+
+msgid "รับทราบและจะดำเนินการให้ข้อมูล"
+msgstr "Acknowledged and will proceed to provide the information"
+
+msgid "การแก้ไขนี้จะส่งผลต่อข้อมูลเมตาเฉพาะของประเภทชุดข้อมูลเดิม หลังจากบันทึกแล้วกรุณาตรวจสอบข้อมูลเมตาอีกครั้ง คุณต้องการที่จะบันทึกหรือไม่"
+msgstr "This modification will affect the metadata specific to the original dataset type. After saving, please review the metadata again. Do you want to save?"
+
