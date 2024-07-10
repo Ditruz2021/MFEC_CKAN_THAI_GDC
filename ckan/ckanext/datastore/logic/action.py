@@ -494,7 +494,6 @@ def datastore_search(context, data_dict):
     '''
 
     data_api = data_dict.get('data_api', 'False')
-    log.info(data_api)
     if g.user and data_api == 'True':
         user = model.User.by_name(g.user)
         log.info(u'User %s call datastore_search', g.user)

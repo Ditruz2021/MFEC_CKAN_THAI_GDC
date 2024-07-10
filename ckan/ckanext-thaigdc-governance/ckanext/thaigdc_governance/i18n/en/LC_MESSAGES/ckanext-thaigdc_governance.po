@@ -478,8 +478,8 @@ msgstr "Unpin"
 msgid "ปักหมุด"
 msgstr "Pin"
 
-msgid "หน้าแสดงรายการสำหรับเหตุการณ์"
-msgstr "Page showing event listings"
+msgid "<p>หน้าแสดงรายการสำหรับเหตุการณ์</p>"
+msgstr "<p>Page showing event listings</p>"
 
 msgid "ค้นหา"
 msgstr "Search"

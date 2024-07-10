@@ -224,7 +224,6 @@ def redirect_to(*args, **kw):
 
     if _url.startswith('/'):
         _url = str(config['ckan.site_url'].rstrip('/') + _url)
-        log.info('URL_3: %s' % _url)
         
     if is_flask_request():
         return _flask_redirect(_url)

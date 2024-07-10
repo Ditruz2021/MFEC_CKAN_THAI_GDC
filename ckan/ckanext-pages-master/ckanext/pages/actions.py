@@ -156,9 +156,6 @@ def _pages_update(context, data_dict):
     context['group_id'] = org_id
     schema = update_pages_schema()
 
-    log.info(data_dict)
-    log.info("#######################")
-
     data, errors = df.validate(data_dict, schema, context)
 
 

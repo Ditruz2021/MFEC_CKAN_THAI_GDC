@@ -119,6 +119,5 @@ or have one of {} in the current directory.'''
 
     config_loader = CKANConfigLoader(filename)
     loggingFileConfig(filename)
-    log.info(u'Using configuration file {}'.format(filename))
 
     return config_loader.get_config()
